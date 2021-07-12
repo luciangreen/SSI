@@ -1,0 +1,290 @@
+%% finds line number to go to in predicate if true or false
+%% record predicate number
+
+/**
+
+x: load lpi first
+['ssi2.pl'].
+['ssi_find_state_machine.pl'].
+['../../../GitHub/listprologinterpreter/lpiverify4.pl'].
+['../../../GitHub/listprologinterpreter/la_strings.pl'].
+
+test(33,_,A,_),add_line_numbers_to_algorithm1(A,A2),writeln1(A2).            [[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]]
+
+
+A=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]],                                                     find_state_machine1(A,B),writeln1(B).
+
+[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]]
+A = B
+x
+
+B=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,1,-,-3,[n,member2],[[v,c],[v,c1]]],[1,2,-,-3,[n,equals1],[[v,c1]]],[2,3,-,-3,[n,equals1],[[v,c12]]],[3,4,-2,-3,[n,"->"],[[4,5,-,6,[n,>],[[v,a],[v,c121]]],[5,[end_function,3],-,-3,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,7,[end_function,3],-3,[n,"->"],[[7,8,-,9,[n,>],[[v,a],[v,c122]]],[8,[end_function,6],-,-3,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[end_function,6],-,-3,[n,fail]]]]]]]]]
+
+***
+
+A=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]],                                                     find_state_machine1(A,B,_,[[[n, downpipe], 3, [0, 1]]]),writeln1(B).
+
+B=
+[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,["on true",1],["go after",-],["on false",-3],["go to predicates",-],[n,member2],[[v,c],[v,c1]]],[1,["on true",2],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c1]]],[2,["on true",3],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c12]]],[3,["on true",4],["go after",-2],["on false",-3],[n,"->"],[[4,["on true",5],["go after",-],["on false",6],["go to predicates",-],[n,>],[[v,a],[v,c121]]],[5,["on true",[end_function,3]],["go after",-],["on false",-3],["go to predicates",[0,1]],[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,["on true",[end_function,3]],["go after",-],["on false",-3],["go to predicates",-],[n,"->"],[]]]]]]]
+
+***
+
+A=
+[
+        [[n,reverse],[[],[v,l],[v,l]]],
+        [[n,reverse],[[v,l],[v,m],[v,n]],":-",
+        [       [[n,head],[[v,l],[v,h]]],
+                [[n,tail],[[v,l],[v,t]]],
+                [[n,wrap],[[v,h],[v,h1]]],
+                [[n,append],[[v,h1],[v,m],[v,o]]],
+                [[n,reverse],[[v,t],[v,o],[v,n]]]
+        ]
+        ]
+],
+add_line_numbers_to_algorithm1(A,A2),writeln1(A2).
+
+A2=
+[[0,[n,reverse],[[],[v,l],[v,l]]],[1,[n,reverse],[[v,l],[v,m],[v,n]],":-",[[0,[n,head],[[v,l],[v,h]]],[1,[n,tail],[[v,l],[v,t]]],[2,[n,wrap],[[v,h],[v,h1]]],[3,[n,append],[[v,h1],[v,m],[v,o]]],[4,[n,reverse],[[v,t],[v,o],[v,n]]]]]]
+
+['find_pred_sm.pl'].
+find_pred_sm(Reserved_words1,_),writeln(Reserved_words1).
+[+,-,*,/,abort,any,append,atom,brackets,call,ceiling,code,creep,cut,date,delete,equals1,equals2,equals3,equals4,exit,fail,grammar,head,is,length,letters,list,member,member2,n,not,number,or,predicatename,random,round,skip,string,string_from_file,stringconcat,stringtonumber,sys,findall_sys,t,tail,true,unwrap,v,variable,vgp,wrap,input,output,string_length,sort,intersection,read_string,writeln,atom_string,trace,notrace,sqrt,notrace]
+
+A=            
+[[0,[n,reverse],[[],[v,l],[v,l]]],[1,[n,reverse],[[v,l],[v,m],[v,n]],":-",[[0,[n,head],[[v,l],[v,h]]],[1,[n,tail],[[v,l],[v,t]]],[2,[n,wrap],[[v,h],[v,h1]]],[3,[n,append],[[v,h1],[v,m],[v,o]]],[4,[n,reverse],[[v,t],[v,o],[v,n]]]]]],
+find_state_machine1(A,B,_,[+,-,*,/,abort,any,append,atom,brackets,call,ceiling,code,creep,cut,date,delete,equals1,equals2,equals3,equals4,exit,fail,grammar,head,is,length,letters,list,member,member2,n,not,number,or,predicatename,random,round,skip,string,string_from_file,stringconcat,stringtonumber,sys,findall_sys,t,tail,true,unwrap,v,variable,vgp,wrap,input,output,string_length,sort,intersection,read_string,writeln,atom_string,trace,notrace,sqrt,notrace]),writeln1(B).
+
+B=
+[[0,[n,reverse],[[],[v,l],[v,l]]],[1,[n,reverse],[[v,l],[v,m],[v,n]],":-",[[0,["on true",1],["go after",-],["on false",-3],["go to predicates",-],[n,head],[[v,l],[v,h]]],[1,["on true",2],["go after",-],["on false",-3],["go to predicates",-],[n,tail],[[v,l],[v,t]]],[2,["on true",3],["go after",-],["on false",-3],["go to predicates",-],[n,wrap],[[v,h],[v,h1]]],[3,["on true",4],["go after",-],["on false",-3],["go to predicates",-],[n,append],[[v,h1],[v,m],[v,o]]],[4,["on true",-2],["go after",-],["on false",-3],["go to predicates",-],[n,reverse],[[v,t],[v,o],[v,n]]]]]]
+
+
+**/
+
+find_state_machine1(Algorithm1,Algorithm2,Pred_numbers) :-
+	find_state_machine2(Algorithm1,[],Algorithm2,Pred_numbers).
+	
+find_state_machine2([],Algorithm,Algorithm,_) :- !.
+find_state_machine2(Algorithm1,Algorithm2,Algorithm3,Pred_numbers) :-
+	Algorithm1=[Function1|Functions],
+	((Function1=[Number,Name,Arguments1,Symbol1,Body1],symbol(Symbol1,Symbol2),
+	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
+	find_state_machine_body2(Body1,Body2,-2,-3,Pred_numbers),
+	append(Algorithm2,[[Number,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
+	
+	(Function1=[Number,Name,Arguments1],
+	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
+	append(Algorithm2,[[Number,Name,Arguments4]],Algorithm4))),
+	%%writeln1([Number,Name,Arguments4,Symbol2,Body2]),
+	%%trace,
+	find_state_machine2(Functions,Algorithm4,Algorithm3,Pred_numbers).
+
+	%%%****Delete these duplicate predicates
+symbol(Symbol,Symbol) :-!.
+
+%%slp2lp_variables(Name1,[v,Name1]) :- predicate_or_rule_name(Name1),!.
+slp2lp_variables(Name,Name) :- !.
+
+/**
+find_state_machine_body(Body1,Body2) :-
+	findall(*,(member(Statement1,Body1
+find_state_machine_body(Body1,[],Body2) :-
+
+**/
+
+%%predicate_or_rule_name([A,B]) :- atom(A),is_list(B),!.
+
+/**
+defined in grammar.pl
+predicate_or_rule_name([V_or_n,_Name]) :- (V_or_n=v->true;V_or_n=n),!.%%,atom(Name),!.
+**/
+
+%% x: predicate_or_rule_name(V_or_n) :- (V_or_n=v->true;V_or_n=n),fail,!.
+
+find_state_machine_body2([],[],_,_,_):-!.%%,Body3
+
+
+%%find_state_machine_body2([],Body,Body) :- !.
+find_state_machine_body2(Body1,Body2%%,Body3
+,Return_line_true,Return_line_false,Pred_numbers) :-
+        Body1=[[Number,[n,"[]"],[Statements1|Statements1a]]|Statements2
+        ],
+		not(predicate_or_rule_name(Statements1)),
+	not(number(Statements1)),
+	        find_first_line_number(Statements1,Statements1_number),
+
+		(Statements1a=[]->Statements1a_number=[end_function,Number];
+        find_first_line_number(Statements1a,Statements1a_number)),
+
+		(Statements2=[]->Statements2_number=Return_line_true;
+        find_first_line_number(Statements2,Statements2_number)),
+
+
+        %%find_first_line_number(Statements2,Statements2_number),
+	find_state_machine_body2([Statements1],Body3,Statements1a_number,Return_line_false,Pred_numbers), %% 2->1
+
+	find_state_machine_body2(Statements1a,Body4,[end_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statements2,Body5,Return_line_true,Return_line_false,Pred_numbers),
+
+	     append(Body3,Body4,Body34),
+        
+        %% [A,B1,B2,C| - A - Line number, B1 - Line to go to if true, 
+		  %% B2 - Line to go to next
+		  %% C - Line to go to if false
+Body6=[Number,["on true",Statements1_number],["go after",Statements2_number],["on false",Return_line_false],[n,"[]"],Body34
+        ],
+        append([Body6],Body5,Body2),
+	!.
+
+
+%% make predicates into dcgs with bottom case, to give input at any line x doesn't need to go back to any matching line, needs a single line x dcg would allow traversing tree structure x give a return to number as goes
+        
+%% if fails, back-tracks along track list x goes to return line in nested if thens
+%% returns to choice points when finishes predicates
+%% -3 if successfully finishes predicate x
+
+%% 
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+%%trace,
+        Body1=[[Number1,[n,not],Statement]|Statements2
+        ],
+        find_first_line_number(Statement,Statement_number),
+		(Statements2=[]->Statements2_number=Return_line_true;
+        find_first_line_number(Statements2,Statements2_number)),
+        find_state_machine_body2([Statement],Body3,[end_function,Number1],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statements2,Body4,Return_line_true,Return_line_false,Pred_numbers),
+        %%Number2 is Number1+1,
+        %%if_empty_list_then_return(Statements2,Number2,Number3),
+
+		  append([Number1,["on true",Statement_number],["go after",Statements2_number],
+		  ["on false",Return_line_false],
+		  [n,not]],Body3,Body5),
+		  append([Body5],Body4
+        ,Body2),
+
+	!.
+	
+	
+%% s1 and s2 may need separate line numbers for nondet for or
+%% find first line number in each of s1, s2
+%% account for brackets 
+%% vars have separate list for nondet, splices existing lists
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+        Body1=[[Number,[n,or],[Statements1,Statements2]]|Statements3],
+
+		  find_first_line_number(Statements1,Statements1_number),
+		  find_first_line_number(Statements2,Statements2_number),
+		(Statements3=[]->Statements3_number=Return_line_true;
+        find_first_line_number(Statements3,Statements3_number)),
+		  find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2_number,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
+        %%Number2 is Number1+1,
+        %%if_empty_list_then_return(Statements3,Number2,Number3),
+        append(Body3,Body4,Body34),
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],[n,or],Body34
+        ],
+        append([Body6],Body5,Body2),
+        !.
+
+%% If true at end of section, return to next line
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+        Body1=[[Number,[n,"->"],[Statements1,Statements2]]|Statements3],
+        
+        find_first_line_number(Statements1,Statements1_number),
+        find_first_line_number(Statements2,Statements2_number),
+		(Statements3=[]->Statements3_number=Return_line_true;
+        find_first_line_number(Statements3,Statements3_number)),
+find_state_machine_body2([Statements1],Body3,Statements2_number,Return_line_false,Pred_numbers), 
+    	  find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+
+        find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
+
+        append_list2([Body3,Body4],Body34),
+        %append(Body3,Body4,Body34),
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],[n,"->"]]
+        append([Body6],Body34,Body61),
+        append(Body61,Body5,Body2),
+
+        !.
+
+
+
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+        Body1=[[Number,[n,"->"],[Statements1,Statements2,Statements2a]]|Statements3],
+                        %trace,
+
+        find_first_line_number(Statements1,Statements1_number),
+        find_first_line_number(Statements2,Statements2_number),
+        find_first_line_number(Statements2a,Statements2a_number),
+        %%trace,
+		(Statements3=[]->Statements3_number=Return_line_true;
+        find_first_line_number(Statements3,Statements3_number)),       
+        find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+               %%trace,
+                find_state_machine_body2([Statements2a],Body5,[end_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
+
+        append_list2([Body3,Body4,Body5],Body345),
+        Body7=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],[n,"->"]],
+        append([Body7],Body345,Body71),
+        append(Body71,Body6,Body2),
+
+        !.
+
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+	Body1=[Statement|Statements],
+	not(predicate_or_rule_name(Statement)),
+	not(number(Statement)),
+	(Statements=[]->Statements_number=Return_line_true;
+        find_first_line_number(Statements,Statements_number)),
+	find_state_machine_statement1(Statement,Result1,Statements_number,Return_line_false,Pred_numbers),
+	find_state_machine_body2(Statements,Result2,Return_line_true,Return_line_false,Pred_numbers),
+   append_list2([Result1,Result2],Body2),!.
+   
+find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,Pred_numbers1) :-
+	((Statement=[Number,[n,Name1],Arguments],
+	
+	length(Arguments,Arity1),
+	%atom_string(Name1,Name),
+	%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
+	%(Name1=downpipe->trace;true),
+	(member([[n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+	
+	Arguments=Result2,
+	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
+	Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[n,Name1],Result2]])->true;
+	(%%Statement=[_,[n,Name]],
+	%%trace,
+	Statement=[Number,[n,Name1]],
+	length([],Arity1),
+		%atom_string(Name1,Name),
+%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
+(member([[n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+
+
+Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[n,Name1]]])).
+	%%writeln([[Number,Return_line_true,Return_line_false,[n,Name],Result2]]).
+	
+%%if_empty_list_then_return([],_Number,-3) :- !.
+%%if _empty_list_then_return(Statements,Number,Number) :-
+%%	not(Statements=[]),!.
+
+find_first_line_number([],-2) :- !.
+find_first_line_number(Number,Number) :- number(Number),!.
+find_first_line_number([[Number|_]|_],Number) :- number(Number),!.
+find_first_line_number([Statement|_],Number) :-
+%%trace,
+	not((Statement=[Number|_],number(Number))),
+	find_first_line_number(Statement,Number),!.
+	
+/**
+	Result1=[[Number,Return_line_true,-,Return_line_false,[n,Name]]])).
+
+	Result1=[[Number,Return_line_true,-,Return_line_false,[n,Name],Result2]])->true;
+
+**/
