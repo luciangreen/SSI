@@ -13,7 +13,7 @@ find_pred_sm(RW,"en"),writeln1(RW).
 **/
 
 find_pred_sm(Reserved_words1) :-
-	Reserved_words1=["+","-","*","/","abort","any","append","atom","brackets","call","ceiling","code","creep","cut","date","delete","equals1","equals2","equals3","equals4","exit","fail","grammar","head","is","length","letters","list","member","member2","n","not","number","or","predicatename","random","round","skip","string","string_from_file","stringconcat","stringtonumber","sys","findall_sys","t","tail","true","unwrap","v","variable","vgp","wrap","input","output","string_length","sort","intersection","read_string","writeln","atom_string","trace","notrace","sqrt","notrace","get_lang_word"].
+	Reserved_words1=["+","-","*","/","abort","any","append","atom","brackets","call","ceiling","code","creep","cut","date","delete","equals1","equals2","equals3","equals4","exit","fail","grammar","head","is","length","letters","list","member","member2","member3","n","not","number","or","predicatename","random","round","skip","string","string_from_file","stringconcat","stringtonumber","sys","findall_sys","t","tail","true","unwrap","v","variable","vgp","wrap","input","output","string_length","sort","intersection","read_string","writeln","atom_string","trace","notrace","sqrt","notrace","get_lang_word"].
 
 	
 % list of reserved words from lang dict
