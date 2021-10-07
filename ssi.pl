@@ -53,8 +53,11 @@ crop down pred from top x just goes to next command
 :-include('../listprologinterpreter/listprolog.pl').
 :-include('find_pred_sm.pl').
 :-include('ssi_find_state_machine.pl').
-:-include('find_types_sm.pl').
+%:-include('find_types_sm.pl').
+%:-include('go_forward_or_backtrack.pl').
+:-include('ssi3.pl').
 
+/*
 ssi(Debug,Query,Functions1,Result) :-
 	%load_lang_db, % * check this is done once for whole ssi
 
@@ -72,6 +75,8 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 		All_predicate_numbers),
 	ssi1([1,1,"predicate",Query,[],
 		All_predicate_numbers],Functions3,[],Result,[],_Choice_point_trail).
+	
+*/
 	
 prep_predicate_call(Query,Functions3,All_predicate_numbers) :-
 	Query=[Name|Arguments1],
@@ -226,6 +231,8 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 
 %%*del:Functions2,
 
+%% *** don't worry about sublevels, just level numbers x
+
 %ssi0
 
 % newer than comments in next section:
@@ -298,6 +305,7 @@ query_to_vars(Query,) :-
  	ssi_call(Query,Functions1,Predicate_numbers,Result1),
  	true.
 	  **/
+	  /*
 find_called_lines(Query,Functions1,Predicate_numbers) :-
 	findall(Number1,(Query=[Name|Arguments1],
 	length(Arguments1,Arguments_length),
@@ -337,6 +345,7 @@ ssi_call(Query,Functions1,Predicate_numbers,Vars21) :- %% ** added vars21
 %% if fails, returns to last choice point
 
 find_first_line_to_run([],Vars,Vars) :- !.
+*/
 %%find_first_line_to_run(Body,Vars1,Vars2) :-
 		
 	%% line 0, - easy to find
@@ -366,7 +375,9 @@ Predicate line
 -2 to return from predicate
 -3 if failed the predicate
 **/
+/*
 find_next_line_to_run(Predicate_number,-1) :-
 	run(Predicate_number,0),!.
 find_next_line_to_run(Predicate_number,Previous_line_number) :-
 true.	
+*/

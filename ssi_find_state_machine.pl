@@ -22,10 +22,10 @@ B=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-"
 
 ***
 
-A=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]],                                                     find_state_machine1(A,B,_,[[[n, downpipe], 3, [0, 1]]]),writeln1(B).
+A=[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,[n,member2],[[v,c],[v,c1]]],[1,[n,equals1],[[v,c1]]],[2,[n,equals1],[[v,c12]]],[3,[n,"->"],[[4,[n,>],[[v,a],[v,c121]]],[5,[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,[n,"->"],[[7,[n,>],[[v,a],[v,c122]]],[8,[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,[n,fail]]]]]]]]],                                                     find_state_machine1(A,B,[[[n, downpipe], 3, [0, 1]]]),writeln1(B).
 
 B=
-[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,["on true",1],["go after",-],["on false",-3],["go to predicates",-],[n,member2],[[v,c],[v,c1]]],[1,["on true",2],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c1]]],[2,["on true",3],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c12]]],[3,["on true",4],["go after",-2],["on false",-3],[n,"->"],[[4,["on true",5],["go after",-],["on false",6],["go to predicates",-],[n,>],[[v,a],[v,c121]]],[5,["on true",[end_function,3]],["go after",-],["on false",-3],["go to predicates",[0,1]],[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,["on true",[end_function,3]],["go after",-],["on false",-3],["go to predicates",-],[n,"->"],[]]]]]]]
+[[0,[n,downpipe],[[v,a],[v,a],[v,b]]],[1,[n,downpipe],[[v,a],[v,b],[v,c]],":-",[[0,["on true",1],["go after",-],["on false",-3],["go to predicates",-],[n,member2],[[v,c],[v,c1]]],[1,["on true",2],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c1]]],[2,["on true",3],["go after",-],["on false",-3],["go to predicates",-],[n,equals1],[[v,c12]]],[3,["on true",4],["go after",-2],["on false",-3],[n,"->"]],[4,["on true",5],["go after",-],["on false",6],["go to predicates",-],[n,>],[[v,a],[v,c121]]],[5,["on true",[end_function,3]],["go after",-],["on false",-3],["go to predicates",[0,1]],[n,downpipe],[[v,c121],[v,b],[v,c]]],[6,["on true",7],["go after",[end_function,3]],["on false",-3],[n,"->"]],[7,["on true",8],["go after",-],["on false",9],["go to predicates",-],[n,>],[[v,a],[v,c122]]],[8,["on true",[end_function,6]],["go after",-],["on false",-3],["go to predicates",[0,1]],[n,downpipe],[[v,c122],[v,b],[v,c]]],[9,["on true",[end_function,6]],["go after",-],["on false",-3],["go to predicates",-],[n,fail]]]]]
 
 ***
 
@@ -203,7 +203,7 @@ find_state_machine_body2([Statements1],Body3,Statements2_number,Return_line_fals
 
         append_list2([Body3,Body4],Body34),
         %append(Body3,Body4,Body34),
-        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],[n,"->"]]
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],[n,"->"]],
         append([Body6],Body34,Body61),
         append(Body61,Body5,Body2),
 
