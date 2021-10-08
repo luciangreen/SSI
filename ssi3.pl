@@ -47,12 +47,14 @@ lucianpl11(Debug,Query,Functions1,Result) :-
 	
 	
 	add_line_numbers_to_algorithm1(Functions2,Functions2a),
-	%%writeln1(Functions2a),
+	
+	%writeln1(Functions2a),
+	
 	find_pred_sm(Reserved_words1),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	find_state_machine1(Functions2a,Functions3,Pred_numbers),
 	
-	%%writeln1(Functions3),
+	%writeln1(Functions3),
 
 	% find first predicate
 
@@ -89,6 +91,9 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	%,Query,Functions2,Functions2,%Result1),
 	%Result1).
 lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result) 
+
+% **** QUERY BOX, update vars etc inside antecedant
+
 %%writeln1([i11]),
 	retractall(debug(_)),
  	assertz(debug(Debug)),
@@ -358,7 +363,7 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 	
 	% if triggers end_function (meaning the end of an if-then clause), writes trace display and goes to "go after" line at start of function
 	
-	% n.b. findall, maplist (x not in new shell x) need other code expansion in sm - with call, new shell
+	% n.b. findall, maplist (x not in new shell, with different end_function) need other code expansion in sm - with call, new shell
 	% also type check in new shell, separate from alg
 	% iso commands need to be done like c
 	
