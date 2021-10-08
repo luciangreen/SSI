@@ -352,13 +352,17 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 % 		append(Result3,[End_result],Result2)
 
 	(interpretstatement1(Functions,Functions,Line,Vars1,Vars3,Result21,_Cut)
-	% choose certain commands for ssi, rest customised
+	% choose certain commands from lpi for ssi, rest customised
+	
 	->
 	
 	% if triggers end_function (meaning the end of an if-then clause), writes trace display and goes to "go after" line at start of function
 	
-	% n.b. findall, maplist (x not in new shell) need other code expansion in sm - with call, new shell
-
+	% n.b. findall, maplist (x not in new shell x) need other code expansion in sm - with call, new shell
+	% also type check in new shell, separate from alg
+	% iso commands need to be done like c
+	
+ % - do bagof, setof later
 	,
 	
 
