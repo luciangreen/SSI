@@ -289,6 +289,33 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         append(Body71,Body6,Body2),
 
         !.
+     
+     /*   
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+        
+        Body1=[[Number,[n,maplist],[Statements1,Statements2,Statements2a,Statements2b]]|Statements3],
+                        %trace,
+
+        %find_first_line_number(Statements1,Statements1_number),
+        %find_first_line_number(Statements2,Statements2_number),
+        find_first_line_number(Statements2a,Statements2a_number),
+        %%trace,
+		(Statements3=[]->Statements3_number=Return_line_true;
+        find_first_line_number(Statements3,Statements3_number)),       
+        %find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
+        %find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+               %%trace,
+                find_state_machine_body2(Statements2a,Body5,[end_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
+
+        append_list2([%Body3,Body4,
+        Body5],Body345),
+        Body7=[Number,["on true",Statements2a_number],["go after",Statements3_number],["on false",Return_line_false],[n,findall],[Statements1,Statements2]],
+        append([Body7],Body345,Body71),
+        append(Body71,Body6,Body2),
+
+        !.
+        */
         /**
 find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,Pred_numbers1) :-
 	((Statement=[Number,[n,Name1],[Arguments1,Arguments2,Arguments3]],

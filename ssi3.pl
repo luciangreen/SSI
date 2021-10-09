@@ -352,11 +352,12 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3),
+	Choice_point_trail3)
+	
 	
 % 		append(Result3,[End_result],Result2)
-
-	(interpretstatement1(Functions,Functions,Line,Vars1,Vars3,Result21,_Cut)
+ );
+	(interpretstatement1(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut)
 	% choose certain commands from lpi for ssi, rest customised
 	
 	->
@@ -368,7 +369,15 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
-	,
+ 
+	ssi1([Level2,All_predicate_numbers1,-1,"predicate",Query,
+	Vars1,All_predicate_numbers2], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3)
+	
+
 	
 
 
