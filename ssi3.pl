@@ -357,7 +357,7 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 	
 % 		append(Result3,[End_result],Result2)
  );
-	(interpretstatement1(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut)
+	(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut)
 	% choose certain commands from lpi for ssi, rest customised
 	
 	->
@@ -387,6 +387,11 @@ last_line_of_algorithm(Predicate_number,Line_number,"line",Functions) :- member(
 (Rest=[_Args,":-"|Lines]->true;Rest=[":-"|Lines]),
 not(member([Line_number|_],Lines)),!.
 */
+
+interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
+	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
+interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
+	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
 
 no_more_choicepoints(Choice_point_trail) :-
 	forall(member([_Level,_Predicate_number,

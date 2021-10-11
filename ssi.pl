@@ -50,6 +50,7 @@ crop down pred from top x just goes to next command
 %	test(N,Query,Functions,Result),
 %	ssi(Debug,Query,Functions,Result).
 
+:-include('interpretstatement3.pl').
 :-include('../listprologinterpreter/listprolog.pl').
 :-include('find_pred_sm.pl').
 :-include('ssi_find_state_machine.pl').
