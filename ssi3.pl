@@ -1,3 +1,5 @@
+% test(2,Q,F,R),lucianpl(off,Q,F,R2).
+
 lucianpl(Debug,Query,Functions1,Result) :-
 	international_lucianpl([lang,"en"],
 	Debug,Query,Functions1,Result).
@@ -48,22 +50,23 @@ lucianpl11(Debug,Query,Functions1,Result) :-
 	
 	add_line_numbers_to_algorithm1(Functions2,Functions2a),
 	
-	%writeln1(Functions2a),
+	writeln1(Functions2a),
 	
 	find_pred_sm(Reserved_words1),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	find_state_machine1(Functions2a,Functions3,Pred_numbers),
 	
-	%writeln1(Functions3),
+	writeln1(Functions3),
 
 	% find first predicate
-
+%trace,
 	prep_predicate_call(Query,Functions3,
 		All_predicate_numbers),
 		
 			lucianpl1(Debug),
 
 	% ssi1([Level, % Trace level
+	% All_predicate_numbers1 % List of instances of this predicate left to call
 	% Predicate_or_line_number, % predicate nor line number in predicate
 	% Destination, % "predicate" or "line"
 	% Query, % Query when Destination="predicate"
@@ -76,9 +79,11 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	% Globals1, Globals2, % Initial and cumulative lists of assertz globals
 	% Choice_point_trail1, % Initial and cumulative lists of choice points
 	% Choice_point_trail2)
-	
-	ssi1([1,1,-1,"predicate",Query,[],
-		All_predicate_numbers],End_result,Functions3,Vars2,[],Result,
+	%trace,
+	All_predicate_numbers=[All_predicate_numbers1|All_predicate_numbers2],
+	trace,
+	ssi1([1,All_predicate_numbers1,-1,"predicate",Query,[],
+		All_predicate_numbers2],End_result,Functions3,Vars2,[],Result,
 		[],Globals2,
 		[], _Choice_point_trail2).
 	
@@ -103,9 +108,9 @@ lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result)
    assertz(leash1(off)), %% Should normally be off
   	retractall(sys(_)),
  	assertz(sys(1)),
-	(not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true),%equals4(Equals4)),
+	(not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).%equals4(Equals4)),
 	%%writeln1(member1(Query,Functions1,Functions2,Result)),
-	member1(Query,Functions1,Functions2,Result).
+	%member1(Query,Functions1,Functions2,Result).
 
 % can save state and retry/produce web service
 
@@ -141,13 +146,13 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3),
-
-	(Line_number=-1 % just started
+	Choice_point_trail3) :-
+%trace,
+	(Line_number = -1 % just started
 	->
 	(
 	Query=[Function,Arguments1],
-	(Functions2=[[Function,Arguments2,":-",Body]|_Functions3]), %*** predicates without arguments
+	member([Predicate_number,Function,Arguments2,":-",Body],Functions), %*** predicates without arguments
 	length(Arguments1,Length),
 	length(Arguments2,Length),
 
@@ -163,33 +168,44 @@ debug_call(Skip,[Function,Arguments1]),
 
 append(Globals1,
 [[[firstargs,Level],FirstArgs],
-[[[arguments1,Level],Arguments1]],
+[[arguments1,Level],Arguments1],
 [[skip,Level],Skip]],Globals3),
 
-	ssi1([Level,Predicate_number,1,"line",-,
-	Vars1,All_predicate_numbers], _, Functions,Vars2,
+append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
+	Vars2,[]]],Choice_point_trail11),
+	
+	ssi1([Level,Predicate_number,0,"line",-,
+	Vars1,All_predicate_numbers], _, Functions,Vars1,
 	Result1, Result2, 
 	Globals3,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail11,
 	Choice_point_trail4)
 	);
 	
-	(Line_number=-2
+	(Line_number = -2
 	% true exit from pred
 	->(
 	reverse(Globals1,Globals3),
 	member([[firstargs,Level],FirstArgs],Globals3), %*delete, where was pred called from? - prev level in cps
 	delete(Globals1,[[firstargs,Level],FirstArgs],Globals4),
+	
+	%writeln1(member([[arguments1,Level],Arguments1],Globals3)),
+	
 	member([[arguments1,Level],Arguments1],Globals3),
 	delete(Globals4,[[arguments1,Level],Arguments1],Globals51),
 	member([[skip,Level],Skip],Globals3),
 	delete(Globals51,[[skip,Level],Skip],Globals5),
 	
 	debug_fail_fail(Skip),
-	updatevars(FirstArgs,Vars1,[],Result),
-	unique1(Result,[],Vars3),
 
+	updatevars(FirstArgs,Vars2,[],Result),
+	unique1(Result,[],Vars3),
+%trace,
 	reverse(Choice_point_trail1,Choice_point_trail5),
+
+%trace,	
+writeln1(member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1],
+	_Vars,_All_predicate_numbers],Choice_point_trail5)),
 	member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1],
 	_Vars,_All_predicate_numbers],Choice_point_trail5),
 
@@ -197,7 +213,7 @@ append(Globals1,
 	
    debug_exit(Skip,[Function,Result21]), % return result21
    checktypes(Function,Result21),
-
+%trace,
 		((Level=1,no_more_choicepoints(Choice_point_trail1)->
 		(		append(Choice_point_trail1,[[1,Predicate_number,Line_number,"predicate",Query,
 	Vars,[]]],Choice_point_trail4));
@@ -252,7 +268,7 @@ append(Globals1,
 
 	)
 	)))));
-	(Line_number=-3
+	(Line_number = -3
 	% fail exit from pred
 	->(
 		
@@ -335,7 +351,24 @@ ssi1([Level,Predicate_number,Line_number,"line",Query,
 	Choice_point_trail3) :-
 
 member([Predicate_number,_F|Rest],Functions),
-(Rest=[_Args,":-"|Lines]->true;Rest=[":-"|Lines]),
+(Rest=[_Args,":-",Lines]->true;(Rest=[":-",Lines];
+(Rest=[],Lines=[[[n,true]]]))),
+
+%writeln1([member([Predicate_number,_F|Rest],Functions),
+%(Rest=[_Args,":-",Lines]->true;(Rest=[":-",Lines];
+%(Rest=[],Lines=[[[n,true]]])))]),
+%trace,
+
+	((Line_number= -2 ->true;Line_number= -3)->
+	%trace,
+	ssi1([Level, %*
+	Predicate_number,Line_number,"predicate",Query,
+	Vars1,All_predicate_numbers], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3);
+(
 member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicates",D]|Line],Lines),
 
 % * in find sm - are sm's hierarchical or linear? - linear
@@ -363,23 +396,37 @@ member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicat
 	->
 	
 	% if triggers end_function (meaning the end of an if-then clause), writes trace display and goes to "go after" line at start of function
-	
+
+	% end_function is given with line number to signal the end of the if-then statement etc.
+	% -2 line number for end of predicate, -3 for failed predicate - earlier
+
 	% n.b. findall, maplist (x not in new shell, with different end_function) need other code expansion in sm - with call, new shell
 	% also type check in new shell, separate from alg
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
  
-	ssi1([Level2,All_predicate_numbers1,-1,"predicate",Query,
-	Vars1,All_predicate_numbers2], End_result, Functions,Vars2,
+	ssi1([Level,Predicate_number,A,"line",Query,
+	Vars1,All_predicate_numbers], End_result, Functions,Vars3,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3)
 	
+	
+	;
+	
+	ssi1([Level,Predicate_number,C,"line",Query,
+	Vars1,All_predicate_numbers], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3))))).
 
 	
 
+% t or f
+% return true or false result from pred
 
 %last_line_of_algorithm(_Predicate_number,0,"predicate",_Functions) :- !.
 /*
@@ -388,8 +435,8 @@ last_line_of_algorithm(Predicate_number,Line_number,"line",Functions) :- member(
 not(member([Line_number|_],Lines)),!.
 */
 
-interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
-	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
+%interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
+	%interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
 interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
 

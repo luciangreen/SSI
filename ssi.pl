@@ -50,7 +50,7 @@ crop down pred from top x just goes to next command
 %	test(N,Query,Functions,Result),
 %	ssi(Debug,Query,Functions,Result).
 
-:-include('interpretstatement3.pl').
+%:-include('interpretstatement3.pl').
 :-include('../listprologinterpreter/listprolog.pl').
 :-include('find_pred_sm.pl').
 :-include('ssi_find_state_machine.pl').
@@ -81,7 +81,9 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	
 prep_predicate_call(Query,Functions3,All_predicate_numbers) :-
 	Query=[Name|Arguments1],
-	length(Arguments1,Arguments_length),
+	(Arguments1=[]->Arguments_length=0;
+	(Arguments1=[Arguments3],
+	length(Arguments3,Arguments_length))),
 	findall(Predicate_number1,
 	(member([Predicate_number1,Name|
 		[Arguments2|_]],Functions3),
