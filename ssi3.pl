@@ -150,7 +150,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail3,VR) :-
 %trace,
 %(Query='-'->trace;true),
-/*
+%/*
 writeln1([%vars2,Vars2,
 ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers], Result21, Functions,Vars2,
@@ -158,14 +158,17 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)]),
-	*/
+	%*/
+	(not((Line_number= -2; true->Line_number= -3))->
+	(Query_a=[Function,Arguments1]->Query_a=Query;
+	(Query_a=[Function],Query=[Function,[]],Arguments1=[]));
+	true),
+	
 	(Line_number = -1 % just started
 	->
 	(%trace,
 	
 	(((
-	(Query_a=[Function,Arguments1]->Query_a=Query;
-	(Query_a=[Function],Query=[Function,[]],Arguments1=[])),
 	member([Predicate_number,Function,Arguments2,":-",_Body],Functions), %*** predicates without arguments
 	length(Arguments1,Length),
 	length(Arguments2,Length),
@@ -179,7 +182,9 @@ checktypes_inputs(Function,Arguments1),
         %%->ca2 
 %writeln1([checkarguments,"Arguments1",Arguments1,"Arguments2",Arguments2,"Vars1",Vars1,"FirstArgs",FirstArgs]),
 debug_call(Skip,[Function,Arguments1])
-)->true;
+)
+/*
+->true;
 
 (
 	Query=[Function],
@@ -199,6 +204,7 @@ Arguments1=[],
 FirstArgs=[],
 debug_call(Skip,[Function])
 )
+*/
 ),
 
 
@@ -220,7 +226,8 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Choice_point_trail11,
 	Choice_point_trail3,VR)
 	
-	)->true;
+	)
+	/*->true;
 	
 	(((
 	
@@ -290,7 +297,7 @@ append(Globals1,
 [[skip,Level],Skip]],Globals3),
 
 append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
-	[],%Vars3,
+	Vars3, % []->vars3***
 	[]]],Choice_point_trail11)
 	)->Line_number_b= -2; Line_number_b= -3),
 
@@ -303,6 +310,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Choice_point_trail3,VR)
 
 ))
+*/
 	);
 	
 	(Line_number = -2
@@ -553,7 +561,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR) :-
-	/*
+	%/*
 	writeln1([%vars2,Vars2,
 	ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Vars1,All_predicate_numbers], _, Functions,Vars2,
@@ -561,7 +569,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)]),
-	*/
+	%*/
 	%trace,
 	%((Level=0,Predicate_number=0,Line_number_a=-1)->trace;true),
 

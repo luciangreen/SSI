@@ -112,24 +112,28 @@ add_line_numbers_to_algorithm2(Algorithm1,Algorithm2,Algorithm3,Number1,Number2)
 	Algorithm1=[Function1|Functions],
 	((Function1=[Name,Arguments1,Symbol1,Body1],symbol(Symbol1,Symbol2),
 	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
-	Number1a is Number1+1,
+	%Number1a is Number1+1,
 	add_line_numbers_to_algorithm_body2(Body1,Body2,0,_),
 	append(Algorithm2,[[Number1,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
 	
 		((Function1=[Name,Symbol1,Body1],symbol(Symbol1,Symbol2),
 
-	Number1a is Number1+1,
+	%Number1a is Number1+1,
 	add_line_numbers_to_algorithm_body2(Body1,Body2,0,_),
-	append(Algorithm2,[[Number1,Name,Symbol2,Body2]],Algorithm4))->true;
+	append(Algorithm2,[[Number1,Name,[],Symbol2,Body2]],Algorithm4))->true;
 
-	((Function1=[Name,Arguments1],
+	((Function1=[Name,Arguments1],symbol(":-",Symbol2),
 	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
-	append(Algorithm2,[[Number1,Name,Arguments4]],Algorithm4))->true;
+	
+		add_line_numbers_to_algorithm_body2([[[n,true]]],Body2,0,_),
+
+append(Algorithm2,[[Number1,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
 
 	
-	(Function1=[Name],
+	(Function1=[Name],symbol(":-",Symbol2),
+		add_line_numbers_to_algorithm_body2([[[n,true]]],Body2,0,_),
 
-	append(Algorithm2,[[Number1,Name]],Algorithm4))))),
+	append(Algorithm2,[[Number1,Name,[],Symbol2,Body2]],Algorithm4))))),
 
 	Number1a is Number1+1,
 	%%writeln1([Number1,Name,Arguments4,Symbol2,Body2]),
