@@ -91,9 +91,17 @@ find_state_machine2(Algorithm1,Algorithm2,Algorithm3,Pred_numbers) :-
 	find_state_machine_body2(Body1,Body2,-2,-3,Pred_numbers),
 	append(Algorithm2,[[Number,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
 	
-	(Function1=[Number,Name,Arguments1],
+	((Function1=[Number,Name,Symbol1,Body1],symbol(Symbol1,Symbol2),
+
+	find_state_machine_body2(Body1,Body2,-2,-3,Pred_numbers),
+	append(Algorithm2,[[Number,Name,[],Symbol2,Body2]],Algorithm4))->true;
+	
+	((Function1=[Number,Name,Arguments1],symbol(Symbol1,Symbol2),
 	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
-	append(Algorithm2,[[Number,Name,Arguments4]],Algorithm4))),
+	append(Algorithm2,[[Number,Name,Arguments4,Symbol2,[[[n,true]]]]],Algorithm4))->true;
+
+	(Function1=[Number,Name],symbol(Symbol1,Symbol2),
+	append(Algorithm2,[[Number,Name,[],Symbol2,[[[n,true]]]]],Algorithm4))))),
 	%%writeln1([Number,Name,Arguments4,Symbol2,Body2]),
 	%%trace,
 	find_state_machine2(Functions,Algorithm4,Algorithm3,Pred_numbers).

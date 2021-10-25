@@ -80,14 +80,28 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 */
 	
 prep_predicate_call(Query,Functions3,All_predicate_numbers) :-
+
+%writeln(prep_predicate_call(Query,Functions3,All_predicate_numbers)),
+%trace,
 	Query=[Name|Arguments1],
 	(Arguments1=[]->Arguments_length=0;
 	(Arguments1=[Arguments3],
 	length(Arguments3,Arguments_length))),
 	findall(Predicate_number1,
-	(member([Predicate_number1,Name|
-		[Arguments2|_]],Functions3),
-	length(Arguments2,Arguments_length)),
+	(
+	
+	%member([Predicate_number1,Name|
+	%	[Arguments2|_]],Functions3),
+	%length(Arguments2,Arguments_length)
+	
+		member([Predicate_number1,Name|Rest],Functions3),
+(Rest=[Args,":-",Lines]->length(Args,Arguments_length);
+(Rest=[Args]->(Lines=[[[n,true]]],length(Args,Arguments_length));
+(Rest=[":-",Lines]->Arguments_length=0;
+(Rest=[],Lines=[[[n,true]]],Arguments_length=0))))
+
+
+	),
 	All_predicate_numbers).
 	
 add_line_numbers_to_algorithm1(Algorithm1,Algorithm2) :-
@@ -102,9 +116,21 @@ add_line_numbers_to_algorithm2(Algorithm1,Algorithm2,Algorithm3,Number1,Number2)
 	add_line_numbers_to_algorithm_body2(Body1,Body2,0,_),
 	append(Algorithm2,[[Number1,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
 	
-	(Function1=[Name,Arguments1],
+		((Function1=[Name,Symbol1,Body1],symbol(Symbol1,Symbol2),
+
+	Number1a is Number1+1,
+	add_line_numbers_to_algorithm_body2(Body1,Body2,0,_),
+	append(Algorithm2,[[Number1,Name,Symbol2,Body2]],Algorithm4))->true;
+
+	((Function1=[Name,Arguments1],
 	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
-	append(Algorithm2,[[Number1,Name,Arguments4]],Algorithm4))),
+	append(Algorithm2,[[Number1,Name,Arguments4]],Algorithm4))->true;
+
+	
+	(Function1=[Name],
+
+	append(Algorithm2,[[Number1,Name]],Algorithm4))))),
+
 	Number1a is Number1+1,
 	%%writeln1([Number1,Name,Arguments4,Symbol2,Body2]),
 	add_line_numbers_to_algorithm2(Functions,Algorithm4,Algorithm3,Number1a,Number2).

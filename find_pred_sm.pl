@@ -44,12 +44,39 @@ Pred_numbers = [[[n, downpipe], 3, [0, 1]]].
 **/
 
 find_pred_numbers(Functions,_Reserved_words,Pred_numbers) :-
-	findall([Pred_name1,Arity1],(member([_Pred_number1,Pred_name1,Arguments|_],Functions),(Arguments=":-"->Arity1=0;length(Arguments,Arity1))),Unique_predicates1),
+%trace,
+	findall([Pred_name1,Arity1],(
+	
+	%member([_Pred_number1,Pred_name1|Arguments_Body],Functions),(Arguments=":-"->Arity1=0;length(Arguments,Arity1))
+	
+	member([Pred_number2,Pred_name1|Rest],Functions),
+(Rest=[Args,":-",Lines]->length(Args,Arity1);
+(Rest=[Args]->(Lines=[[[n,true]]],length(Args,Arity1));
+(Rest=[":-",Lines]->Arity1=0;
+(Rest=[],Lines=[[[n,true]]],Arity1=0))))
+
+
+	),Unique_predicates1),
 	sort(Unique_predicates1,Unique_predicates2),
 
 	% functions may contain a reserved word:
 	%forall((member([Pred_name3,_Arity3],Unique_predicates2),not(member(Pred_name3,Reserved_words))),(term_to_atom(Pred_name3,Pred_name31),concat_list(["Error: Functions contains reserved word: ",Pred_name31,"."],Note),writeln(Note),abort)),
-		findall([Pred_name2,Arity2,Pred_number3],(member([Pred_name2,Arity2],Unique_predicates2),findall(Pred_number2,(member([Pred_number2,Pred_name2,Arguments2|_],Functions),length(Arguments2,Arity2)),Pred_number3)),Pred_numbers).
+		%trace,
+		findall([Pred_name2,Arity1,Pred_number3],(member([Pred_name2,Arity1],Unique_predicates2),findall(Pred_number2,(
+		
+		
+%member([Pred_number2,Pred_name2,Arguments2|_],Functions),length(Arguments2,Arity2)
+
+
+	member([Pred_number2,Pred_name2|Rest],Functions),
+(Rest=[Args,":-",Lines]->length(Args,Arity1);
+(Rest=[Args]->(Lines=[[[n,true]]],length(Args,Arity1));
+(Rest=[":-",Lines]->Arity1=0;
+(Rest=[],Lines=[[[n,true]]],Arity1=0))))
+
+
+
+),Pred_number3)),Pred_numbers).
 
 % stores these in pred calls in the sm - see ssi_find_sm.pl
 
