@@ -443,14 +443,14 @@ reverse(Globals21,Globals22),
 );(
 	Vars8=[])),
 	
-	Vars8=Vars4 %% 4 not 2? ***
+	Vars8=Vars44 %% 4 not 2? ***
 )
 ;
 
 Line_number2a=Line_number2b), % Line_number2 to 2b
 
 	ssi1([Level2,Predicate_number2,Line_number2a,"line",-,
-	Vars4,All_predicate_numbers2], _, Functions,Vars2,
+	Vars44,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
 	Globals3,Globals22,
 	Choice_point_trail1,
