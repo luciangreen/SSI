@@ -159,7 +159,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)]),
 	%*/
-	(not((Line_number= -2; true->Line_number= -3))->
+	((not(Line_number= -2), not(Line_number= -3))->
 	(Query_a=[Function,Arguments1]->Query_a=Query;
 	(Query_a=[Function],Query=[Function,[]],Arguments1=[]));
 	true),
@@ -318,6 +318,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	->(
 	%trace,
 	reverse(Globals1,Globals31),
+	%Globals1=Globals31,
 	member([[firstargs,Level],FirstArgs],Globals31), %*delete, where was pred called from? - prev level in cps
 	%delete(Globals3,[[firstargs,Level],FirstArgs],Globals4),
 	Globals31=Globals4,
@@ -331,6 +332,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Globals21=Globals51,
 	%trace,
 	reverse(Globals21,Globals3),
+	%Globals21=Globals3,
 	
 	debug_fail_fail(Skip),
 %trace,
@@ -346,7 +348,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 %trace,
 %writeln1(	member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1],
 %	_Vars,_All_predicate_numbers],Choice_point_trail5)),
-	member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1],
+	member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers],Choice_point_trail5),
 %trace,
 	findresult3(Arguments1,Vars3,[],Result22),
@@ -428,7 +430,7 @@ A=Line_number2a,
 	%delete(Globals4,[[vars1,Level2],Vars1],Globals21),
 	Globals43=Globals21,
 
-reverse(Globals21,Globals2),
+reverse(Globals21,Globals22),
 	%Result1=Vars3,
 	%trace,
 	updatevars2(FirstArgs1,Vars3,[],Vars5),
@@ -450,7 +452,7 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	ssi1([Level2,Predicate_number2,Line_number2a,"line",-,
 	Vars4,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
-	Globals3,Globals2,
+	Globals3,Globals22,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)
 	
