@@ -86,7 +86,7 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 		All_predicate_numbers2],_End_result,Functions3,_Vars2,[],_Result1,
 		[],_Globals2,
 		[], _Choice_point_trail2,VR),
-		Result=[VR].
+		(var(VR)->Result=[];Result=[VR]).
 	
 	
 	
@@ -358,8 +358,8 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	reverse(Globals21,Globals3),
 	%Globals21=Globals3,
 	
-	debug_fail_fail(Skip),
-%trace,
+	(debug_fail_fail(Skip)->true;true),
+	%trace,
 	updatevars(FirstArgs,Vars,[],Result),
 	unique1(Result,[],Vars3),
 %trace,
@@ -503,9 +503,10 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	)))));
 	(Line_number = -3
 	% fail exit from pred
-	->(
+	->(%trace,
 		
-	reverse(Globals1,Globals3),
+	(Level=0->true;
+	(reverse(Globals1,Globals3),
 	member([[firstargs,Level],FirstArgs],Globals3), %*delete, where was pred called from? - prev level in cps
 	delete(Globals3,[[firstargs,Level],FirstArgs],Globals41),
 	member([[function,Level],Function],Globals41),
@@ -517,7 +518,9 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	
 	reverse(Globals21,Globals222),
 	
-	(debug_fail(Skip,[Function,Arguments1])->true;true),
+	(debug_fail(Skip,[Function,Arguments1])->true;true)
+	
+	)),
 
 	((Level=0,no_more_choicepoints(Choice_point_trail1))->
 		(		append(Choice_point_trail1,[[1,Predicate_number,Line_number,"predicate",Query,
@@ -543,7 +546,9 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	Level2 is Level-1,
 	
 	reverse(Choice_point_trail1,Choice_point_trail11),
-		member([Level2,Predicate_number2,_Line_number2,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
+		
+	(Level2=0->(Predicate_number2=0,All_predicate_numbers2=[],
+	Vars4=[]);	member([Level2,Predicate_number2,_Line_number2,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11)),
 
 	ssi1([Level2,Predicate_number2,-3,"predicate",-,
 	Vars4,All_predicate_numbers2], End_result,Functions,Vars2,
@@ -721,7 +726,7 @@ Line=Query1,
 % 		append(Result3,[End_result],Result2)
  );
 	(%trace,
-	interpretstatement2(Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut))
+	interpretstatement2(Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut)
 	% choose certain commands from lpi for ssi, rest customised
 	
 	->
@@ -746,13 +751,13 @@ Line=Query1,
 	
 	
 	;
-	
+	(%trace,
 	ssi1([Level,Predicate_number,C,"line",Query,
 	Vars1,All_predicate_numbers], _End_result4, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3,VR))).
+	Choice_point_trail3,VR))))).
 
 	
 
