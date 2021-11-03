@@ -681,9 +681,17 @@ Vars5),
 	((	
 	reverse(Choice_point_trail1,Choice_point_trail5),
 	writeln1(Choice_point_trail5),
-	
-	member([Level,_Predicate_number24,_Line_number24,"predicate",_Query24,Vars445,All_predicate_numbers4],Choice_point_trail5),
+	trace,
+	member([Level,_Predicate_number24,_Line_number24,
+	"predicate",_Query24,Vars445,All_predicate_numbers4],Choice_point_trail5),
 
+
+	%member([Level,_Predicate_number24,_Line_number24,
+	%"predicate",_Query24,Vars445,All_predicate_numbers4],Choice_point_trail5),
+
+
+%writeln1([Level,_Predicate_number24,-1,%_Line_number24,
+	%"predicate",_Query24,Vars445,All_predicate_numbers4]),
 	
 	(All_predicate_numbers4=[]->
 	
