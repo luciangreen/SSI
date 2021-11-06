@@ -1,5 +1,7 @@
 % test(2,Q,F,R),lucianpl(off,Q,F,R2).
 
+% numbers(180,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R2)),_,false),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
+
 % numbers(180,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(5,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
 
 lucianpl(Debug,Query,Functions1,Result) :-
