@@ -396,12 +396,11 @@ writeln(ssi1([Level,Predicate_number,Line_number,"predicate",Query,
 %trace,
 
 %not_last_line()
-		((Level=0,
-		no_more_choicepoints(Choice_point_trail1)->
+		((Level=0 ->
 		(		append(Choice_point_trail1,[[1,Predicate_number,Line_number,"predicate",Query,
 	Vars3,[]]],Choice_point_trail3));
 
-	((not(Level=0),no_more_choicepoints(Choice_point_trail1))->(
+	((not(Level=0))->(
 	Level2 is Level-1,
 	%trace,
 	
@@ -490,11 +489,11 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	
 	(debug_fail(Skip,[Function,Arguments1])->true;true),
 
-	((Level=0,no_more_choicepoints(Choice_point_trail1))->
+	((Level=0)->
 		(		append(Choice_point_trail1,[[1,Predicate_number,Line_number,"predicate",Query,
 	Vars3,[]]],Choice_point_trail3));
 	
-	((not(Level=0),no_more_choicepoints(Choice_point_trail1))->(
+	((not(Level=0))->(
 	
 	%trace,
 	Level2 is Level-1,
@@ -761,8 +760,8 @@ interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
 
-no_more_choicepoints(Choice_point_trail) :-
-true.
+%no_more_choicepoints(Choice_point_trail) :-
+%true.
 	%(Choice_point_trail=[[1,0,-1|_]|_]->trace;true),
 	%writeln1(Choice_point_trail),
 	%forall(member([_Level,_Predicate_number,
