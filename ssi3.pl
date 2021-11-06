@@ -1,5 +1,7 @@
 % test(2,Q,F,R),lucianpl(off,Q,F,R2).
 
+% numbers(180,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(lucianpl(off,Q,F,R),_,true),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
+
 lucianpl(Debug,Query,Functions1,Result) :-
 	international_lucianpl([lang,"en"],
 	Debug,Query,Functions1,Result).
@@ -150,7 +152,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail3,VR) :-
 %trace,
 %(Query='-'->trace;true),
-%/*
+/*
 writeln1([%vars2,Vars2,
 ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers], Result21, Functions,Vars2,
@@ -168,7 +170,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	->
 	(%trace,
 	
-	(((
+	((((
 	member([Predicate_number,Function,Arguments2,":-",_Body],Functions), %*** predicates without arguments
 	length(Arguments1,Length),
 	length(Arguments2,Length),
@@ -226,7 +228,30 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Choice_point_trail11,
 	Choice_point_trail3,VR)
 	
-	)
+	)->true;
+	
+	(%Line_number = -1,
+	
+	%trace,
+	All_predicate_numbers=[Predicate_number_a|All_predicate_numbers2],
+	
+	/*
+	writeln1(	
+	ssi1([Level,Predicate_number_a,Line_number,"predicate",Query_a,
+	Vars,All_predicate_numbers2], Result21, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,VR)),
+	*/
+	
+	ssi1([Level,Predicate_number_a,Line_number,"predicate",Query_a,
+	Vars,All_predicate_numbers2], Result21, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,VR)
+	))
 	/*->true;
 	
 	(((
@@ -404,6 +429,9 @@ writeln(ssi1([Level,Predicate_number,Line_number,"predicate",Query,
 		reverse(Choice_point_trail1,Choice_point_trail11),
 		%trace,
 		Level2 is Level-1,
+		
+		%writeln1([choice_point_trail11,Choice_point_trail11]),
+		
 		member([Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
 	%(	Line_number2= ["returns to", 0]->trace;true),
 		
@@ -491,9 +519,9 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	member([[skip,Level],Skip],Globals61),
 	delete(Globals61,[[skip,Level],Skip],Globals21),
 	
-	reverse(Globals21,Globals2),
+	reverse(Globals21,Globals222),
 	
-	debug_fail(Skip,[Function,Arguments1]),
+	(debug_fail(Skip,[Function,Arguments1])->true;true),
 
 	((Level=0,no_more_choicepoints(Choice_point_trail1))->
 		(		append(Choice_point_trail1,[[1,Predicate_number,Line_number,"predicate",Query,
@@ -502,12 +530,14 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	((Level=0,not(no_more_choicepoints(Choice_point_trail1)))->
 	
 	(	%member([Level2,Predicate_number2,Line_number2,"predicate",_Query2,Vars4,All_predicate_numbers],Choice_point_trail5),
+	
+	
 	All_predicate_numbers=[All_predicate_numbers1|All_predicate_numbers2],
 
 	ssi1([Level,All_predicate_numbers1,-1,"predicate",Query,
 	Vars3,All_predicate_numbers2], End_result, Functions,Vars2,
 	Result1, Result3, 
-	Globals3,Globals2,
+	Globals222,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR),
 	
@@ -516,20 +546,71 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	);
 	
 	((not(Level=0),no_more_choicepoints(Choice_point_trail1))->(
+	
+	%trace,
 	Level2 is Level-1,
 	
 	reverse(Choice_point_trail1,Choice_point_trail11),
-		member([Level2,Predicate_number2,_Line_number2,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
+		
+		% 3 7 -1 
+		% If no more cps, fail, otherwise follow next cp
+		 member([Level,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
+
+	(All_predicate_numbers2=[]->
+	(%****
+
+%member([Line_number2b,["on true",_A],["go after",_B],["on false",C],["go to predicates",_D]|_Line],Lines),
+%C=Line_number2a,
+
+	ssi1([Level2,Predicate_number2,-3,"line",-,
+	_Vars41,_All_predicate_numbers2], End_result,Functions,Vars2,
+	Result1, Result3,%2, 
+	Globals222,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,VR)
+	
+	% Level2 to Level
+	
+	);
+	
+	(
+	All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
+	%Level3 is Level+1,
+	ssi1([Level,All_predicate_numbers3,Line_number2b,"line",-,
+	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
+	Result1, Result3,%2, 
+	Globals222,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,VR)
+
+)
+	)
+	%*******	%member([Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
+	%(	Line_number2= ["returns to", 0]->trace;true),
+	
+	/*	
+	(Line_number2b=["returns to",Line_number3]->
+	(
+member([Predicate_number2,_F|Rest],Functions),
+(Rest=[_Args,":-",Lines]->true;
+(Rest=[_Args]->Lines=[[[n,true]]];
+(Rest=[":-",Lines];
+(Rest=[],Lines=[[[n,true]]])))),
+*/
+
+/*
+	member([Line_number2b,["on true",A],["go after",_B],["on false",_C],["go to predicates",_D]|_Line],Lines),
+A=Line_number2a,
 
 	ssi1([Level2,Predicate_number2,-3,"predicate",-,
 	Vars4,All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result3,%2, 
-	Globals3,Globals2,
+	Globals222,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR),
 	
 		append(Result3,[End_result],Result2)
-
+*/
 	)
 	;
 	
@@ -541,7 +622,7 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	ssi1([Level,All_predicate_numbers1,-1,"predicate",Query,
 	Vars3,All_predicate_numbers2], End_result, Functions,Vars2,
 	Result1, Result3, 
-	Globals3,Globals2,
+	Globals222,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR),
 	
@@ -563,7 +644,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR) :-
-	%/*
+	/*
 	writeln1([%vars2,Vars2,
 	ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Vars1,All_predicate_numbers], _, Functions,Vars2,
@@ -571,7 +652,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)]),
-	%*/
+	*/
 	%trace,
 	%((Level=0,Predicate_number=0,Line_number_a=-1)->trace;true),
 
