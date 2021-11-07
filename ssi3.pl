@@ -43,12 +43,12 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	load_lang_db,
 	query_box(Query,Query1,Functions,Functions1),
 
-	writeln1(query_box(Query,Query1,Functions,Functions1)),
+	%writeln1(query_box(Query,Query1,Functions,Functions1)),
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
 	convert_to_grammar_part1(Functions1,[],Functions2,_),
 
-	writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
+	%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),
 	%%pp3(Functions2),
 	%%writeln1(lucianpl1(Debug,Query,Functions2,Functions2,Result)),
@@ -57,14 +57,14 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	%trace,
 	add_line_numbers_to_algorithm1(Functions2,Functions2a),
 	
-	writeln1(add_line_numbers_to_algorithm1(Functions2,Functions2a)),
+	%writeln1(add_line_numbers_to_algorithm1(Functions2,Functions2a)),
 	%writeln1(Functions2a),
 	
 	find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	find_state_machine1(Functions2a,Functions3,Pred_numbers),
 	
-writeln1(find_state_machine1(Functions2a,Functions3,Pred_numbers)),
+%writeln1(find_state_machine1(Functions2a,Functions3,Pred_numbers)),
 	% find first predicate
 %trace,
 	prep_predicate_call(Query1,Functions3,
@@ -240,7 +240,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	%trace,
 	All_predicate_numbers=[Predicate_number_a|All_predicate_numbers2],
 	
-	/*
+	%/*
 	writeln1(	
 	ssi1([Level,Predicate_number_a,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers2], Result21, Functions,Vars2,
@@ -248,7 +248,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)),
-	*/
+	%*/
 	
 	ssi1([Level,Predicate_number_a,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers2], Result21, Functions,Vars2,
@@ -597,12 +597,10 @@ member([Predicate_number,_F|Rest],Functions),
 (Rest=[],Lines=[[[n,true]]])))),
 
 (Line_number_a=[end_function,End_line] ->
-(Line_number=End_line
-
-);Line_number=Line_number_a),
+Line_number=End_line; Line_number=Line_number_a),
 
 %(Line_number= -2 ->trace;true),
-((Line_number= -2 ->true;Line_number= -3)->
+((Line_number= -2 -> true; Line_number= -3)->
 true;
 (member([Line_number,["on true",A],["go after",B],["on false",C],["go to predicates",D]|Line],Lines))),
 
@@ -632,10 +630,28 @@ append(Globals1,[[[vars1,Level],Vars1]],Globals3),
 % * in find sm - are sm's hierarchical or linear? - linear
 %trace,
 
-/*
-(Line_number=[end_function,End_line] ->
+%/*
+(Line_number_a=[end_function,End_line] ->
 
-	(
+	
+	
+	(End_line=0 ->
+	(%trace,
+	%writeln(here4),
+	%Level2 is Level-1,
+		ssi1([Level, %*
+	Predicate_number,-2,"predicate",Query,
+	Vars1,All_predicate_numbers], _End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals3,Globals2,
+	Choice_point_trail11,
+	Choice_point_trail3,VR)
+
+	);
+	
+	
+	%trace,
+	(%trace,
 	append(Choice_point_trail1,[[Level,Predicate_number,[end_function,End_line],"predicate",Query,
 	Vars2,All_predicate_numbers]],Choice_point_trail11),
 
@@ -646,7 +662,7 @@ append(Globals1,[[[vars1,Level],Vars1]],Globals3),
 	Choice_point_trail11,
 	Choice_point_trail3,VR))
 );
-*/
+%*/
 
 	
 	(not(D='-') ->
@@ -713,7 +729,7 @@ Line=Query1,
 	
 % 		append(Result3,[End_result],Result2)
  );
-	(trace,
+	((%trace,
 	interpretstatement2(Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut))
 	% choose certain commands from lpi for ssi, rest customised
 	
@@ -745,7 +761,7 @@ Line=Query1,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3,VR))).
+	Choice_point_trail3,VR))))).
 
 	
 
@@ -764,39 +780,3 @@ interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
 interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
-
-%** debug displays in not, findall
-	interpretstatement3(ssi,_,_,[[n,"[]"]|_],Vars,Vars,Result21,_Cut).
-interpretstatement3(ssi,_,_,[[n,not]|_],Vars,Vars,Result21,_Cut) :-
-debug_call(_Skip,[[n,not]]).
-
-interpretstatement3(ssi,_,_,[[n,or]|_],Vars,Vars,Result21,_Cut).
-interpretstatement3(ssi,_,_,[[n,"->"]|_],Vars,Vars,Result21,_Cut).
-
-%% ** findall/2 is done above
-
-%no_more_choicepoints(Choice_point_trail) :-
-%true.
-	%(Choice_point_trail=[[1,0,-1|_]|_]->trace;true),
-	%writeln1(Choice_point_trail),
-	%forall(member([_Level,_Predicate_number,
-	%_Line_number,_Destination,_Query,
-	%All_predicate_numbers],
-	%Choice_point_trail),All_predicate_numbers=[]),!.
-
-/*not_last_line(Choice_point_trail1) :-
-		reverse(Choice_point_trail1,Choice_point_trail11),
-		member([Level2,Predicate_number2,Line_number2,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
-	%(	Line_number2= ["returns to", 0]->trace;true),
-		
-	(Line_number2=["returns to",Line_number3]->
-	(
-member([Predicate_number2,_F|Rest],Functions),
-(Rest=[_Args,":-",Lines]->true;(Rest=[":-",Lines];
-(Rest=[],Lines=[[[n,true]]]))),
-
-	member([Line_number3,["on true",A],["go after",_B],["on false",_C],["go to predicates",_D]|_Line],Lines));
-	A=Line_number2),
-not(Line_number2= -2),not(Line_number2= -3).
-*/
-
