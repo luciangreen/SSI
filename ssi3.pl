@@ -43,10 +43,12 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	load_lang_db,
 	query_box(Query,Query1,Functions,Functions1),
 
+	writeln1(query_box(Query,Query1,Functions,Functions1)),
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
 	convert_to_grammar_part1(Functions1,[],Functions2,_),
-	%trace,
+
+	writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),
 	%%pp3(Functions2),
 	%%writeln1(lucianpl1(Debug,Query,Functions2,Functions2,Result)),
@@ -55,14 +57,14 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	%trace,
 	add_line_numbers_to_algorithm1(Functions2,Functions2a),
 	
+	writeln1(add_line_numbers_to_algorithm1(Functions2,Functions2a)),
 	%writeln1(Functions2a),
 	
 	find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	find_state_machine1(Functions2a,Functions3,Pred_numbers),
 	
-	%writeln1(Functions3),
-
+writeln1(find_state_machine1(Functions2a,Functions3,Pred_numbers)),
 	% find first predicate
 %trace,
 	prep_predicate_call(Query1,Functions3,
@@ -595,7 +597,9 @@ member([Predicate_number,_F|Rest],Functions),
 (Rest=[],Lines=[[[n,true]]])))),
 
 (Line_number_a=[end_function,End_line] ->
-Line_number=End_line;Line_number=Line_number_a),
+(Line_number=End_line
+
+);Line_number=Line_number_a),
 
 %(Line_number= -2 ->trace;true),
 ((Line_number= -2 ->true;Line_number= -3)->
@@ -709,7 +713,7 @@ Line=Query1,
 	
 % 		append(Result3,[End_result],Result2)
  );
-	(%trace,
+	(trace,
 	interpretstatement2(Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut))
 	% choose certain commands from lpi for ssi, rest customised
 	
@@ -755,11 +759,21 @@ last_line_of_algorithm(Predicate_number,Line_number,"line",Functions) :- member(
 not(member([Line_number|_],Lines)),!.
 */
 
-%interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
-	%interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
+interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
+	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
 interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
+
+%** debug displays in not, findall
+	interpretstatement3(ssi,_,_,[[n,"[]"]|_],Vars,Vars,Result21,_Cut).
+interpretstatement3(ssi,_,_,[[n,not]|_],Vars,Vars,Result21,_Cut) :-
+debug_call(_Skip,[[n,not]]).
+
+interpretstatement3(ssi,_,_,[[n,or]|_],Vars,Vars,Result21,_Cut).
+interpretstatement3(ssi,_,_,[[n,"->"]|_],Vars,Vars,Result21,_Cut).
+
+%% ** findall/2 is done above
 
 %no_more_choicepoints(Choice_point_trail) :-
 %true.
