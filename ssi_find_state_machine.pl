@@ -188,11 +188,14 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements2,Number2,Number3),
 
-		  append([Number1,["on true",Statement_number],["go after",Statements2_number],
+		  maplist(append,[[Body3,Body4]],[Body34]),
+
+		  Body2a=[Number1,["on true",Statement_number],["go after",Statements2_number],
 		  ["on false",Return_line_false],["go to predicates",-],
-		  [n,not]],Body3,Body5),
-		  append([Body5],Body4
-        ,Body2),
+		  [n,not]],
+		  append([Body2a],Body34,Body2),
+		  %append([Body5],Body4
+      %  ,Body2),
 
 	!.
 	
@@ -213,10 +216,10 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements3,Number2,Number3),
-        append(Body3,Body4,Body34),
-        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,or],Body34
-        ],
-        append([Body6],Body5,Body2),
+        maplist(append,[[Body3,Body4,Body5]],[Body345]),
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,or]],%Body34
+        %],
+        append([Body6],Body345,Body2),
         !.
 
 %% If true at end of section, return to next line
@@ -233,11 +236,11 @@ find_state_machine_body2([Statements1],Body3,Statements2_number,Return_line_fals
 
         find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
 
-        append_list2([Body3,Body4],Body34),
+        maplist(append,[[Body3,Body4,Body5]],[Body345]),
         %append(Body3,Body4,Body34),
         Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,"->"]],
-        append([Body6],Body34,Body61),
-        append(Body61,Body5,Body2),
+        append([Body6],Body345,Body2),
+        %append(Body61,Body5,Body2),
 
         !.
 
@@ -260,10 +263,10 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
                 find_state_machine_body2([Statements2a],Body5,[end_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
-        append_list2([Body3,Body4,Body5],Body345),
+        maplist(append,[[Body3,Body4,Body5]],[Body345]),
         Body7=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,"->"]],
-        append([Body7],Body345,Body71),
-        append(Body71,Body6,Body2),
+        append([Body7],Body345,Body2),
+        %append(Body71,Body6,Body2),
 
         !.
 
@@ -294,11 +297,11 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
                 find_state_machine_body2(Statements2a,Body5,[end_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
-        append_list2([%Body3,Body4,
-        Body5],Body345),
+        maplist(append,[[%Body3,Body4,
+        Body5,Body6]],[Body56]),
         Body7=[Number,["on true",Statements2a_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,findall],[Statements1,Statements2]],
-        append([Body7],Body345,Body71),
-        append(Body71,Body6,Body2),
+        append([Body7],Body56,Body2),
+        %append(Body71,Body6,Body2),
 
         !.
      
