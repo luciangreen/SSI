@@ -240,7 +240,7 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	%trace,
 	All_predicate_numbers=[Predicate_number_a|All_predicate_numbers2],
 	
-	%/*
+	/*
 	writeln1(	
 	ssi1([Level,Predicate_number_a,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers2], Result21, Functions,Vars2,
