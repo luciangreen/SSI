@@ -282,7 +282,7 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
 	Result1=[[Number1,[n,Name],Result2]])->true;
 	(Statement=[[n,Name]],
-	Result1=[[Number1,[n,Name]]])),
+	Result1=[[Number1,[n,Name],[]]])),
 	Number2 is Number1+1.
 
 %%*del:Functions2,

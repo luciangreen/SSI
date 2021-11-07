@@ -33,7 +33,7 @@ lucianpl_1(Debug,Query,TypeStatements,ModeStatements,Functions1,Result) :-
  	assertz(modestatements(ModeStatements)),
 lucianpl11(Debug,Query,Functions1,Result).
 
-lucianpl11(Debug,Query,Functions1,Result) :-
+lucianpl11(Debug,Query,Functions,Result) :-
 	((not(lang(_Lang1))
 	%var(Lang1)
 	)->
@@ -41,6 +41,7 @@ lucianpl11(Debug,Query,Functions1,Result) :-
  	assertz(lang("en")));
 	true),
 	load_lang_db,
+	query_box(Query,Query1,Functions,Functions1),
 
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
@@ -64,7 +65,7 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 
 	% find first predicate
 %trace,
-	prep_predicate_call(Query,Functions3,
+	prep_predicate_call(Query1,Functions3,
 		All_predicate_numbers),
 		
 			lucianpl1(Debug),
@@ -86,7 +87,7 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	%trace,
 	All_predicate_numbers=[All_predicate_numbers1|All_predicate_numbers2],
 	%trace,
-	ssi1([1,All_predicate_numbers1,-1,"predicate",Query,[],
+	ssi1([1,All_predicate_numbers1,-1,"predicate",Query1,[],
 		All_predicate_numbers2],_End_result,Functions3,_Vars2,[],_Result1,
 		[],_Globals2,
 		[], _Choice_point_trail2,VR),
@@ -116,7 +117,7 @@ lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result)
 	(not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).%equals4(Equals4)),
 	%%writeln1(member1(Query,Functions1,Functions2,Result)),
 	%member1(Query,Functions1,Functions2,Result).
-
+	
 % can save state and retry/produce web service
 
 /*
@@ -162,7 +163,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)]),
-	%*/
+	*/
 	((not(Line_number= -2), not(Line_number= -3))->
 	(Query_a=[Function,Arguments1]->Query_a=Query;
 	(Query_a=[Function],Query=[Function,[]],Arguments1=[]));
