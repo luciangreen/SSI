@@ -9,6 +9,8 @@
 
 %% ssi_test_all0(test,4,"en",off,A,B).
 
+%% ssi_test_all01(test,_,"en",off,1,Passed).
+
 ssi_test_all00(Lang,Debug,NTotal,Score) :-
 	retractall(lang(_)),
 	assertz(lang(Lang)),

@@ -211,7 +211,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 		  find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
-		  find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2_number,Pred_numbers),
+		  find_state_machine_body2([Statements1],Body3,[end_function,Number],Statements2_number,Pred_numbers),
         find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
         %%Number2 is Number1+1,
