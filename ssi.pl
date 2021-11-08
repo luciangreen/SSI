@@ -59,6 +59,7 @@ crop down pred from top x just goes to next command
 %:-include('find_types_sm.pl').
 %:-include('go_forward_or_backtrack.pl').
 :-include('ssi3.pl').
+:-include('ssi_verify4_test_lang_all.pl').
 
 /*
 ssi(Debug,Query,Functions1,Result) :-

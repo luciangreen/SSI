@@ -183,7 +183,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         find_first_line_number(Statement,Statement_number),
 		(Statements2=[]->Statements2_number=Return_line_true;
         find_first_line_number(Statements2,Statements2_number)),
-        find_state_machine_body2([Statement],Body3,[end_function,Number1],Return_line_false,Pred_numbers),
+        find_state_machine_body2(Statement,Body3,[end_function,Number1],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements2,Body4,Return_line_true,Return_line_false,Pred_numbers),
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements2,Number2,Number3),
