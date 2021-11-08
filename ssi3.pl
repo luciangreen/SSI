@@ -730,7 +730,7 @@ Line=Query1,
 % 		append(Result3,[End_result],Result2)
  );
 	((%trace,
-	interpretstatement2(Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut))
+	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c))
 	% choose certain commands from lpi for ssi, rest customised
 	
 	->
@@ -745,14 +745,17 @@ Line=Query1,
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
- 
+ (
+ % append(Choice_point_trail1,[[Level,Predicate_number,["returns to",Line_number_b],"predicate",Query,
+	%Vars2,All_predicate_numbers]],Choice_point_trail11),
+% where All_predicate_numbers has ["command cps",Vars2c]
 	ssi1([Level,Predicate_number,A,"line",Query,
 	Vars3,All_predicate_numbers], _End_result3, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,VR)
-	
+	)
 	
 	;
 	
@@ -775,8 +778,8 @@ last_line_of_algorithm(Predicate_number,Line_number,"line",Functions) :- member(
 not(member([Line_number|_],Lines)),!.
 */
 
-interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut) :-
-	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
-interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1) :-
+interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_) :-
+	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_).
+interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars2c) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
-	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut).
+	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c).

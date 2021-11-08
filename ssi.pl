@@ -60,7 +60,8 @@ crop down pred from top x just goes to next command
 %:-include('go_forward_or_backtrack.pl').
 :-include('ssi3.pl').
 :-include('ssi_verify4_test_lang_all.pl').
-
+:-include('ssi_listrecursion4.pl').
+:-include('ssi_3preds5.pl').
 /*
 ssi(Debug,Query,Functions1,Result) :-
 	%load_lang_db, % * check this is done once for whole ssi
