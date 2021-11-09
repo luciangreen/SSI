@@ -1,8 +1,9 @@
 % test(2,Q,F,R),lucianpl(off,Q,F,R2).
 
-% numbers(180,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R2)),_,false),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
 
-% numbers(180,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(5,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
+/*
+numbers(181,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),write(N3),length(N3,L).
+*/
 
 lucianpl(Debug,Query,Functions1,Result) :-
 	international_lucianpl([lang,"en"],
@@ -745,15 +746,15 @@ Line=Query1,
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
- (
- % append(Choice_point_trail1,[[Level,Predicate_number,["returns to",Line_number_b],"predicate",Query,
-	%Vars2,All_predicate_numbers]],Choice_point_trail11),
-% where All_predicate_numbers has ["command cps",Vars2c]
+ ((Vars2c=[]->Choice_point_trail1=Choice_point_trail11;
+  append(Choice_point_trail1,[[Level,Predicate_number,Line_number_a,"line",-,
+	Vars3,Vars2c]],Choice_point_trail11)),
+
 	ssi1([Level,Predicate_number,A,"line",Query,
 	Vars3,All_predicate_numbers], _End_result3, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail11,
 	Choice_point_trail3,VR)
 	)
 	

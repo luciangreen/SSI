@@ -21,7 +21,7 @@ get_lang_word("member3",Dbw_member21),Dbw_member21=Dbw_member2,
 
 
 interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C,[]) :- %writeln(here),
-interpretstatement1(non-ssi,_F0,_Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C).
+interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C).
 
 %%%%
 
