@@ -298,10 +298,10 @@ delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,_
 (Pred_or_line="line" ->
 	
 (	
-(%trace,
+(trace,
 %writeln1(Choice_point_trail1),
 delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail6,D1,AC),
-%writeln([D1,AC]))->
+writeln([D1,AC]))->
 	
 	%(append(Result1,%[Vars],
 	%[],Result3),

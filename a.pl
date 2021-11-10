@@ -1,0 +1,1 @@
+a(A):-member(A,[1,2]),true.
