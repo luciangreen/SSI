@@ -282,7 +282,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
    append_list2([Result1,Result2],Body2),!.
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-        Body1=[[Number,[n,findall],[Statements1,Statements2,Statements2a]]|Statements3],
+        Body1=[[Number,[n,findall],[Statements1,Statements2a,Statements2]]|Statements3],
                         %trace,
 
         %find_first_line_number(Statements1,Statements1_number),
@@ -294,7 +294,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         %find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
         %find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
                %%trace,
-                find_state_machine_body2(Statements2a,Body5,[end_function,Number],Return_line_false,Pred_numbers),
+                find_state_machine_body2(Statements2a,Body5,[findall_end_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
         maplist(append,[[%Body3,Body4,

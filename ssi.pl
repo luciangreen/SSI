@@ -62,6 +62,7 @@ crop down pred from top x just goes to next command
 :-include('ssi_verify4_test_lang_all.pl').
 :-include('ssi_listrecursion4.pl').
 :-include('ssi_3preds5.pl').
+:-include('d.pl').
 /*
 ssi(Debug,Query,Functions1,Result) :-
 	%load_lang_db, % * check this is done once for whole ssi
@@ -262,10 +263,11 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 	%Arguments=Result2,
 	%trace,
 	Number1a is Number1+1,
-	add_line_numbers_to_algorithm_body2([Arguments2],Body3,Number1a,Number2),
+	add_line_numbers_to_algorithm_body2(Arguments2,Body3,Number1a,Number2),
+	%%*** [Arguments2] to Arguments2
 			  
 %findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
-	Result1=[[Number1,[n,findall],[Arguments1,Arguments3,Body3]]])).
+	Result1=[[Number1,[n,findall],[Arguments1,Body3,Arguments3]]])).
 
 /*
 add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
