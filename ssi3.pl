@@ -785,11 +785,11 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail6,D1,AC),
 	))));
 
 %****
-	ssi1([Level2,Predicate_number2,-3,"line",-,
-	_Vars41,All_predicate_numbers2], End_result,Functions,Vars2,
+	ssi1([Level2,_Predicate_number2,-3,"line",-,
+	[],_All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
-	Globals222,Globals2,
-	Choice_point_trail11,
+	Globals1,Globals2,
+	Choice_point_trail1,
 	Choice_point_trail3)
 )))))))),!.
 	%*******	%member([Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
@@ -1029,13 +1029,21 @@ Line=Query1,
 	)
 	
 	;
-	
-	ssi1([Level,Predicate_number,C,"line",Query,
+	(%trace,
+	/*
+	writeln1(ssi1([Level,Predicate_number,C,"line",Query,
 	Vars1,All_predicate_numbers], _End_result4, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3))))).
+	Choice_point_trail3)),
+	*/
+		ssi1([Level,Predicate_number,C,"line",Query,
+	Vars1,All_predicate_numbers], _End_result4, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3)))))),!.
 
 	
 
@@ -1071,7 +1079,7 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail2,D1,AC
 	D=[Level,Predicate_number,Line_number_a,"line",-,
 	_Vars3,Vars2c],
 	%(Vars2c=[]->fail;
-	Vars2c=Vars2e,%[[[Dbw_n,Dbw_member],[Value1,Value2],Value3]|[Vars2e1]],%[[Vars2d,Vars2d1]|Vars2e], % *** needs image of commmand with answer Vars2d1
+	Vars2c=Vars2e,%[[[Dbw_n,Dbw_member],[Value1,Value2],Value3]|[Vars2e1]],%[[Vars2d,Vars2d1]|Vars2e], % *** needs image of command with answer Vars2d1
 		%writeln1([vars2e,Vars2e]),
 %vars2e=[[[n,member2],[[1,2,3],empty],[[1,2,3],1]],[[[v,a],[1,2,3*1?]],[[v,b],3]],[[[[[v,a],[1,2,3]],[[v,b],2]],[[1,2,3],2]],[[[[v,a],[1,2,3]],[[v,b],3]],[[1,2,3],3]]]]
 	%trace,
