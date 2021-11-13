@@ -181,8 +181,8 @@ ssi1([0,_Predicate_number,Line_number,"predicate",_Query_a,
 (Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,
 	_,Vars2c],not(Vars2c=[])))),
 	delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
-	*/
-)->
+)	*/
+->
 
 (delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,_Query2,Vars4,All_predicate_numbers2],Choice_point_trail12),
 
@@ -231,7 +231,7 @@ delete_until_last_choicepoint(Choice_point_trail11,Choice_point_trail6,D1,AC),
 	append(Result1,[Vars],Result2))
 
 	%Vars3=VR)
-	);
+	));
 	
 	(Line_number = -3 ->
 	
@@ -247,7 +247,7 @@ delete_until_last_choicepoint(Choice_point_trail11,Choice_point_trail6,D1,AC),
 (Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,
 	_,Vars2c],not(Vars2c=[])))),
 	delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
-)->
+->
 
 	(Pred_or_line="predicate"->
 	
@@ -287,7 +287,7 @@ delete_until_last_choicepoint(Choice_point_trail12,Choice_point_trail6,D1,AC),
 	%append(Result1,[Vars3])
 	%Vars3=VR)
 	%VR=[]
-	))),!.
+	)))),!.
 	
 ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers], Result21, Functions,Vars2,
@@ -742,7 +742,7 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 (Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,
 	_,Vars2c],not(Vars2c=[])))),
 	delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
-)->
+->
 
 
 	(Pred_or_line="predicate"->
@@ -791,7 +791,7 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail6,D1,AC),
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3)
-)))))))),!.
+))))))))),!.
 	%*******	%member([Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
 	%(	Line_number2= ["returns to", 0]->trace;true),
 	
