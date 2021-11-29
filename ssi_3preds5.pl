@@ -23,9 +23,9 @@ debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
 	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
 		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
-			Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2],_,_%,%Value2a
-			%[Value1,Value2a]
-			,Vars2c1]
+			Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1]
 
 	))),
       debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]])).
@@ -42,8 +42,8 @@ debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
 	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
 		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
-					Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2],_,_%,[Value1,Value2a]
-					,Vars2c1]
+					Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2],_,_,%,[Value1,Value2a]
+					_,_,Vars2c1]
 
 	))),
       debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]])).
@@ -70,19 +70,19 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 */
 
 ssi_interpretpart(member2,_Variable1,_Variable2,_Vars1,Vars2,_Vars2c,AC) :-
-%get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-%get_lang_word("member2",Dbw_member2),
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("member2",Dbw_member2),
 %trace,
-AC=[[Dbw_n,_Dbw_member],Value1_Value2,Value1a_Value2a,Vars2|_],
-
+AC=[[Dbw_n,Dbw_member2],Value1_Value2,Value1a_Value2a,Vars2|_],
+%writeln1(AC),
     %getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_member],Value1_Value2]),	%((%Value2=empty,
+debug_call(Skip,[[Dbw_n,Dbw_member2],Value1_Value2]),	%((%Value2=empty,
 	%((findall([Vars2b,Value2a],(member(Value2a,Value1),
 	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	%),Vars2a),Vars2a=[[Vars2,Value2a]|Vars2d],
 	%	findall(Vars2e,member([Vars2e,_],Vars2d),Vars2c)
 	%))),
-      debug_exit(Skip,[[Dbw_n,Dbw_member],Value1a_Value2a])%)
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],Value1a_Value2a])%)
       .
 %%;     %%debug_fail(Skip,[[n,member2],[Value1,Value2]])),!.
 %%		((debug(on)->(writeln1([fail,[[n,member2],[Value1,value]],"Press c."]),(leash1(on)->true;(not(get_single_char(97))->true;abort)));true),fail))))).
