@@ -317,7 +317,7 @@ ssi1([Level,Predicate_number,Line_number,"predicate",Query_a,
 	->
 	(%trace,
 	
-	((((
+	(((((
 	member([Predicate_number,Function,Arguments2,":-",_Body],Functions), %*** predicates without arguments
 	length(Arguments1,Length),
 	length(Arguments2,Length),
@@ -400,7 +400,16 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3)
-	))
+	))->true;
+	
+	(Level2 is Level-1,
+	ssi1([Level2,_Predicate_number2,-3,"line",-,
+	[],_All_predicate_numbers], Result21,Functions,Vars2,
+	Result1, Result2,%2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3))
+	)
 	/*->true;
 	
 	(((
@@ -490,6 +499,8 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	(Line_number = -2
 	% true exit from pred
 	->(
+	(
+	
 	%trace,
 	reverse(Globals1,Globals31),
 	%Globals1=Globals31,
@@ -661,7 +672,15 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	Choice_point_trail3)
 	
 	)))))
-
+->true;
+	(Level2 is Level-1,
+	ssi1([Level2,_Predicate_number2,-3,"line",-,
+	[],_All_predicate_numbers], Result21,Functions,Vars2,
+	Result1, Result2,%2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3))
+)
 	%));
 	;
 	(Line_number = -3
