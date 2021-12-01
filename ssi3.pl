@@ -878,7 +878,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Vars1,All_predicate_numbers], _, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail0,
+	Choice_point_trail1,
 	Choice_point_trail3,["appearance of command",AC]) :-
 	/*
 	writeln1([%vars2,Vars2,
@@ -887,7 +887,7 @@ ssi1([Level,Predicate_number,Line_number_a,"line",Query,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3)]),
+	Choice_point_trail3,["appearance of command",AC])]),
 	*/
 	%trace,
 	%((Level=0,Predicate_number=0,Line_number_a=-1)->trace;true),
@@ -923,11 +923,11 @@ get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
 
 Line=[[Dbw_n,Dbw_findall],[S1,S2]])->
 
-(append(Choice_point_trail0,[[Level,Predicate_number,-1,"findall",-,
+(append(Choice_point_trail1,[[Level,Predicate_number,-1,"findall",-,
 	[old_vars,Vars1],[findall_vars,[]],[format_vars,S1],
-	[result_var,S2]]],Choice_point_trail1)
+	[result_var,S2]]],Choice_point_trail1e)
 );
-(Choice_point_trail0=Choice_point_trail1)
+(Choice_point_trail1=Choice_point_trail1e)
 ),
 
 
@@ -938,7 +938,7 @@ append(Globals1,[[[vars1,Level],Vars1]],Globals3),
 	%writeln(here0)
 	)->
 	
-	(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)->
+	(cp_since_findall_start(Choice_point_trail1e,Level,D1,E1)->
 	(%trace,writeln(here1),
 	D1=[Level,_Predicate_number1,_Line_number_a1,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 	E1=[Level,Predicate_number2,Line_number_a2,"line",Query_a2,CPV0,CPV],
@@ -960,7 +960,7 @@ find_sys(Sys_name),
 	append(Findall_vars,[Value3],Findall_vars2),
 	 %turn_back_debug(Debug)
 
-	delete(Choice_point_trail1,D1,Choice_point_trail1a),
+	delete(Choice_point_trail1e,D1,Choice_point_trail1a),
 	
 	D2=[Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars2],[format_vars,Format_vars],[result_var,Result_var]],
 	
@@ -1068,7 +1068,7 @@ find_sys(Sys_name),
 	Vars1,All_predicate_numbers], _End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals3,Globals2,
-	Choice_point_trail11,
+	Choice_point_trail1,%***
 	Choice_point_trail3)
 
 	);
@@ -1113,7 +1113,8 @@ find_sys(Sys_name),
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
- ((Vars2c=[]->Choice_point_trail1=Choice_point_trail11;
+ ((%trace,
+ Vars2c=[]->Choice_point_trail1=Choice_point_trail11;
   append(Choice_point_trail1,[[Level,Predicate_number,Line_number_a,"line",-,
 	Vars3,Vars2c]],Choice_point_trail11)),
 
