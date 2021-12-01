@@ -673,13 +673,16 @@ Line_number2a=Line_number2b), % Line_number2 to 2b
 	
 	)))))
 ->true;
-	(Level2 is Level-1,
+	(false
+	/*
+	Level2 is Level-1,
 	ssi1([Level2,_Predicate_number2,-3,"line",-,
 	[],_All_predicate_numbers], Result21,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
-	Choice_point_trail3))
+	Choice_point_trail3)*/
+	)
 )
 	%));
 	;
