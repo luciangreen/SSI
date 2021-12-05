@@ -143,7 +143,7 @@ find_state_machine_body2(Body1,Body2%%,Body3
 	not(number(Statements1)),
 	        find_first_line_number(Statements1,Statements1_number),
 
-		(Statements1a=[]->Statements1a_number=[end_function,Number];
+		(Statements1a=[]->Statements1a_number=[exit_function,Number];
         find_first_line_number(Statements1a,Statements1a_number)),
 
 		(Statements2=[]->Statements2_number=Return_line_true;
@@ -151,10 +151,10 @@ find_state_machine_body2(Body1,Body2%%,Body3
 
 
         %%find_first_line_number(Statements2,Statements2_number),
-	find_state_machine_body2([Statements1],Body3,Statements1a_number,Return_line_false,Pred_numbers), %% 2->1
+	find_state_machine_body2([Statements1],Body3,Statements1a_number,[exit_function,Number],Pred_numbers), %% 2->1
 
-	find_state_machine_body2(Statements1a,Body4,[end_function,Number],Return_line_false,Pred_numbers),
-        find_state_machine_body2(Statements2,Body5,Return_line_true,Return_line_false,Pred_numbers),
+	find_state_machine_body2([Statements1a],Body4,[exit_function,Number],[fail_function,Number],Pred_numbers),
+        find_state_machine_body2([Statements2],Body5,-2,-3,Pred_numbers),
 
 	     maplist(append,[[Body3,Body4,Body5]],[Body345]),
         
@@ -180,18 +180,23 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 %%trace,
         Body1=[[Number1,[n,not],Statement]|Statements2
         ],
-        find_first_line_number(Statement,Statement_number),
+      %trace,  
+      find_first_line_number(Statement,Statement_number),
 		(Statements2=[]->Statements2_number=Return_line_true;
         find_first_line_number(Statements2,Statements2_number)),
-        find_state_machine_body2(Statement,Body3,[end_function,Number1],Return_line_false,Pred_numbers),
-        find_state_machine_body2(Statements2,Body4,Return_line_true,Return_line_false,Pred_numbers),
+        %%%% swap args 3,4 ?
+        find_state_machine_body2([Statement],Body3,[fail_function,Number1],[exit_function,Number1],Pred_numbers),
+        
+        %writeln1(Body3),
+        find_state_machine_body2([Statements2],Body4,-2,-3,Pred_numbers),
         %%Number2 is Number1+1,
-        %%if_empty_list_then_return(Statements2,Number2,Number3),
+        %writeln1(Body4),
+                %%if_empty_list_then_return(Statements2,Number2,Number3),
 
 		  maplist(append,[[Body3,Body4]],[Body34]),
 
-		  Body2a=[Number1,["on true",Statement_number],["go after",Statements2_number],
-		  ["on false",Return_line_false],["go to predicates",-],
+		  Body2a=[Number1,["on true",Statement_number],["go after",Return_line_false],
+		  ["on false",Statements2_number],["go to predicates",-],
 		  [n,not]],
 		  append([Body2a],Body34,Body2),
 		  %append([Body5],Body4
@@ -211,9 +216,9 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 		  find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
-		  find_state_machine_body2([Statements1],Body3,[end_function,Number],Statements2_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
-        find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
+		  find_state_machine_body2([Statements1],Body3,[exit_function,Number],Statements2_number,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
+        find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements3,Number2,Number3),
         maplist(append,[[Body3,Body4,Body5]],[Body345]),
@@ -231,10 +236,10 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
-find_state_machine_body2([Statements1],Body3,Statements2_number,Return_line_false,Pred_numbers), 
-    	  find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+find_state_machine_body2([Statements1],Body3,Statements2_number,-3,Pred_numbers), 
+    	  find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
 
-        find_state_machine_body2(Statements3,Body5,Return_line_true,Return_line_false,Pred_numbers),
+        find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5]],[Body345]),
         %append(Body3,Body4,Body34),
@@ -258,10 +263,10 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),       
         find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
                %%trace,
-                find_state_machine_body2([Statements2a],Body5,[end_function,Number],Return_line_false,Pred_numbers),
-        find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
+                find_state_machine_body2([Statements2a],Body5,[exit_function,Number],-3,Pred_numbers),
+        find_state_machine_body2([Statements3],Body6,-2,-3,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5,Body6]],[Body3456]),
         Body7=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,"->"]],
@@ -270,16 +275,6 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 
         !.
 
-
-find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-	Body1=[Statement|Statements],
-	not(predicate_or_rule_name(Statement)),
-	not(number(Statement)),
-	(Statements=[]->Statements_number=Return_line_true;
-        find_first_line_number(Statements,Statements_number)),
-	find_state_machine_statement1(Statement,Result1,Statements_number,Return_line_false,Pred_numbers),
-	find_state_machine_body2(Statements,Result2,Return_line_true,Return_line_false,Pred_numbers),
-   append_list2([Result1,Result2],Body2),!.
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
         Body1=[[Number,[n,findall],[Statements1,Statements2a,Statements2]]|Statements3],
@@ -294,7 +289,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
         %find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
         %find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
                %%trace,
-                find_state_machine_body2(Statements2a,Body5,[findall_end_function,Number],Return_line_false,Pred_numbers),
+                find_state_machine_body2(Statements2a,Body5,[findall_exit_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
         maplist(append,[[%Body3,Body4,
@@ -305,6 +300,23 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 
         !.
      
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+	Body1=[]->Body2=[];
+	(Body1=[Statement|Statements],
+	((
+	(get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+	Statement=[N,[Dbw_n,_]|_],number(N))->
+	(%not(predicate_or_rule_name(Statement)),
+	%not(number(Statement)),
+	(Statements=[]->Statements_number=Return_line_true;
+        find_first_line_number(Statements,Statements_number)),
+	find_state_machine_statement1(Statement,Result1,Statements_number,Return_line_false,Pred_numbers));
+
+find_state_machine_body2(Statement,Body2,Return_line_true,Return_line_false,Pred_numbers))),
+	find_state_machine_body2(Statements,Result2,Return_line_true,Return_line_false,Pred_numbers)),
+   append_list2([Result1,Result2],Body2),!.
+
      /*   
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
         

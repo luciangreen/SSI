@@ -194,8 +194,9 @@ add_line_numbers_to_algorithm_body2(Body1,Body2,Number1,Number2) :-
         Body1=[[[n,not],Statement]|Statements2 %% [] removed from Statement
         ],
 		  Number1a is Number1+1,
-        add_line_numbers_to_algorithm_body2([Statement],Body3,Number1a,Number3),
+        add_line_numbers_to_algorithm_body2(Statement,Body3,Number1a,Number3),
         add_line_numbers_to_algorithm_body2(Statements2,Body4,Number3,Number2),
+        %trace,
 		  append([Number1,%%*,
 		  [n,not]],Body3,Body5),
 		  append([Body5],Body4
