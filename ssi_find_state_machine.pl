@@ -185,7 +185,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 		(Statements2=[]->Statements2_number=Return_line_true;
         find_first_line_number(Statements2,Statements2_number)),
         %%%% swap args 3,4 ?
-        find_state_machine_body2([Statement],Body3,[fail_function,Number1],[exit_function,Number1],Pred_numbers),
+        find_state_machine_body2([Statement],Body3,[exit_function,Number1],[fail_function,Number1],Pred_numbers),
         
         %writeln1(Body3),
         find_state_machine_body2([Statements2],Body4,-2,-3,Pred_numbers),
