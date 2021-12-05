@@ -151,7 +151,7 @@ find_state_machine_body2(Body1,Body2%%,Body3
 
 
         %%find_first_line_number(Statements2,Statements2_number),
-	find_state_machine_body2([Statements1],Body3,Statements1a_number,[exit_function,Number],Pred_numbers), %% 2->1
+	find_state_machine_body2([Statements1],Body3,Statements1a_number,[fail_function,Number],Pred_numbers), %% 2->1
 
 	find_state_machine_body2([Statements1a],Body4,[exit_function,Number],[fail_function,Number],Pred_numbers),
         find_state_machine_body2([Statements2],Body5,-2,-3,Pred_numbers),
