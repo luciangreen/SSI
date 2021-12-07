@@ -1241,14 +1241,14 @@ Line_number_b=[fail_function,End_line]) ->
 	
 	;
 	(%trace,
-	%/*
+	/*
 	writeln1(ssi1([Level,Predicate_number,C,"line",Query,
 	Vars1,All_predicate_numbers], _End_result4, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3)),
-	%*/
+	*/
 		ssi1([Level,Predicate_number,C,"line",Query,
 	Vars1,All_predicate_numbers], _End_result4, Functions,Vars2,
 	Result1, Result2, 
