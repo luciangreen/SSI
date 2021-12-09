@@ -663,7 +663,11 @@ reverse(Globals21,Globals22),
 )
 ;
 
-Line_number2a=Line_number2b), % Line_number2 to 2b
+(Line_number2a=Line_number2b
+%,
+%Vars44=Vars3
+
+)), % Line_number2 to 2b
 
 	ssi1([Level2,Predicate_number2,Line_number2a,"line",-,
 	Vars44,All_predicate_numbers2], _, Functions,Vars2,
