@@ -2,7 +2,7 @@
 
 
 /*
-numbers(191,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+numbers(197,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
 */
 
 lucianpl(Debug,Query,Functions1,Result) :-
@@ -280,7 +280,7 @@ Choice_point_trail12a=Choice_point_trail12,
 	
 (
 
-delete_until_last_choicepoint(Choice_point_trail12,Choice_point_trail6a,D1,AC),
+delete_until_last_choicepoint(Choice_point_trail12,Choice_point_trail16a,D1,AC),
 
 	(
 	D1=[Level11,Predicate_number11,Line_number_a11,"line",-,
@@ -293,7 +293,7 @@ delete_until_last_choicepoint(Choice_point_trail12,Choice_point_trail6a,D1,AC),
 	Vars2d11,Vars2e11], End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals222,Globals2,
-	Choice_point_trail6,
+	Choice_point_trail16,
 	Choice_point_trail3,["appearance of command",AC])
 	))));
 
