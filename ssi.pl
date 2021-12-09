@@ -63,6 +63,9 @@ crop down pred from top x just goes to next command
 :-include('ssi_listrecursion4.pl').
 :-include('ssi_3preds5.pl').
 :-include('d.pl').
+
+:- dynamic debug2/1.
+
 /*
 ssi(Debug,Query,Functions1,Result) :-
 	%load_lang_db, % * check this is done once for whole ssi
