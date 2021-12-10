@@ -3,6 +3,14 @@
 
 /*
 numbers(191,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+
+turn leash on in lpi, ssi
+
+turn_save_debug(on),numbers(191,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R1),do_saved_debug([]),interpret(on,Q,F,R2),writeln(""),saved_debug(S1),do_saved_debug([]),catch(call_with_time_limit(3,lucianpl(on,Q,F,R3)),_,false),writeln(""),saved_debug(S2),S1=S2,do_saved_debug([]),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+
+NOT:
+turn_save_debug(on),numbers(13,13,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R1),do_saved_debug([]),interpret(on,Q,F,R2),saved_debug(S1),writeln1([s,S1]),writeln(""),do_saved_debug([]),catch(call_with_time_limit(3,lucianpl(on,Q,F,R3)),_,false),saved_debug(S2),writeln([s,S2]),S1=S2,do_saved_debug([]),writeln(N1),writeln("")),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+
 */
 
 lucianpl(Debug,Query,Functions1,Result) :-
@@ -115,7 +123,7 @@ lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result)
    retractall(cut(_)),
    assertz(cut(off)),
 	retractall(leash1(_)),
-   assertz(leash1(off)), %% Should normally be off
+   assertz(leash1(on)), %% Should normally be off
   	retractall(sys(_)),
  	assertz(sys(1)),
 	  	retractall(debug2(_)),
@@ -133,6 +141,8 @@ lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result)
  	 	assertz(b(0)),
  	 	assertz(c(0)),
 %*/
+	(not(save_debug(_))->(retractall(save_debug(_)),assertz(save_debug(off)));true),
+
 (not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).%equals4(Equals4)),
 	%%writeln1(member1(Query,Functions1,Functions2,Result)),
 	%member1(Query,Functions1,Functions2,Result).
@@ -350,7 +360,9 @@ checktypes_inputs(Function,Arguments1),
 %writeln1([checkarguments,"Arguments1",Arguments1,"Arguments2",Arguments2,"Vars1",Vars1,"FirstArgs",FirstArgs]),
 	(debug3(on)->
 write(["L",Level]);true),
+%trace,
 debug_call(Skip,[Function,Arguments1])
+%,notrace
 )
 /*
 ->true;
