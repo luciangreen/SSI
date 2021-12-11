@@ -63,6 +63,7 @@ crop down pred from top x just goes to next command
 :-include('ssi_listrecursion4.pl').
 :-include('ssi_3preds5.pl').
 :-include('d.pl').
+:-include('e.pl').
 
 :- dynamic debug2/1.
 
