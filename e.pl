@@ -92,7 +92,7 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail6,D1,AC),
 	member([[skip,Level],Skip],Globals61),
 	delete(Globals61,[[skip,Level],Skip],Globals71),
 	member([[pred_id,Level],Pred_id],Globals71),
-	delete(Globals71,[[skip,Level],Pred_id],Globals21),
+	delete(Globals71,[[pred_id,Level],Pred_id],Globals21),
 	
 	reverse(Globals21,Globals222),
 %*/

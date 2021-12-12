@@ -452,7 +452,7 @@ ssi1([-,Level,Predicate_number_a,Line_number,"predicate",Query_a,
 	))->true;
 	
 	(Level2 is Level-1,
-	ssi1([-,Level2,_Predicate_number2,-3,"line",-, % (-) as pred id
+	ssi1([_,Level2,_Predicate_number2,-3,"line",-, % (-) as pred id
 	[],_All_predicate_numbers], Result21,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals1,Globals2,
@@ -564,6 +564,8 @@ append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	member([[skip,Level],Skip],Globals51),
 	%delete(Globals51,[[skip,Level],Skip],Globals21),
 	Globals21=Globals51,
+
+	member([[pred_id,Level],Pred_id4],Globals21),
 	%trace,
 	reverse(Globals21,Globals3),
 	%Globals21=Globals3,
@@ -585,7 +587,10 @@ write(["L",Level]);true),
 %trace,
 %writeln1(	member([Level,_Predicate_number,-1,"predicate",[Function,Arguments1],
 %	_Vars,_All_predicate_numbers],Choice_point_trail5)),
-	member([Pred_id,Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
+	%trace,
+	%writeln1([choice_point_trail5,Choice_point_trail5]),
+	
+	member([Pred_id4,Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers4],Choice_point_trail5),
 %trace,
 	findresult3(Arguments1,Vars3,[],Result22),
@@ -649,7 +654,7 @@ write(["L",Level]);true),
 	(Level2 = 0 ->
 	
 	%trace,
-	(false%(b(1)
+	((false%(b(1)
 	-> append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query_a,
 	Vars,
 	All_predicate_numbers]],Choice_point_trail11z);
@@ -783,7 +788,7 @@ write(["L",Level]);true),
 	
 	%reverse(Globals21,Globals222),
 
-	member([[pred_id,Level],Pred_id],Globals1), % Globals61
+	%member([[pred_id,Level],Pred_id],Globals1), % Globals61
 
 
 	(debug_fail(Skip,[Function,Arguments1])->true;true), % below instead
@@ -831,7 +836,7 @@ write(["L",Level]);true),
 	Choice_point_trail3
 	)
 	
-	))),!.
+	)))),!.
 	%*******	%member([Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),%->notrace;(notrace,fail)),
 	%(	Line_number2= ["returns to", 0]->trace;true),
 	
