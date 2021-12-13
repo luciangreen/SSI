@@ -19,20 +19,11 @@ e(_Pred_id,Level,Vars3,End_result,Functions,Vars2,Result1, Result2,
 	Choice_point_trail3);
 
 	(
-	
-	%Choice_point_trail1=Choice_point_trail11,
-
-	%reverse(Choice_point_trail1,Choice_point_trail11),
+		reverse(Choice_point_trail1,Choice_point_trail11),
 
 %writeln([choice_point_trail11,Choice_point_trail11]),
 ((%trace,
-
-get_last_cp_before_n(Choice_point_trail1,
-	[_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
-	[Cp_a,Cb_b,_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_),
-	
-	
-%member([_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
+member([_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
 (((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;
 (Pred_or_line="line",%writeln1(All_predicate_numbers2),
 All_predicate_numbers2=[_,_,_,_,_,
@@ -41,7 +32,7 @@ All_predicate_numbers2=[_,_,_,_,_,
 	%[[n,member2],[[1,2,3],empty],_204342,_204348,[[[[[v,a],[1,2,3]],[[v,b],2]],[[1,2,3],2]],[[[[v,a],[1,2,3]],[[v,b],3]],[[1,2,3],3]]]]
 
 %writeln1(delete(Choice_point_trail1,[Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12)),
-delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
+delete(Choice_point_trail1,[_Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
 ->
 
 
@@ -77,7 +68,7 @@ delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_number2,Line_n
 delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail6,D1,AC),
 
 	(
-	D1=[_,_,Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
+	D1=[Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
 	Vars2d11,Vars2e11],
 	
 	ssi1([Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
