@@ -138,7 +138,7 @@ lucianpl1(Debug) :- %,Query,Functions1,Functions2,Result)
 	  	retractall(debug2(_)),
 	  	retractall(debug3(_)),
 	  	
- 	assertz(debug2(off)), % on - displays ssi debug info
+ 	assertz(debug2(on)), % on - displays ssi debug info
  	assertz(debug3(off)), % on - displays level
  
  %/*
@@ -209,7 +209,8 @@ ssi1([-,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	
 	%*****
 
-		reverse(Choice_point_trail1,Choice_point_trail11),
+	% don't need to change this because unused
+		%reverse(Choice_point_trail1,Choice_point_trail11),
 
 (false
 /*(member([Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
@@ -276,15 +277,25 @@ delete_until_last_choicepoint(Choice_point_trail11,Choice_point_trail6,D1,AC),
 	%*****
 	
 		
-		reverse(Choice_point_trail1,Choice_point_trail11),
+		%reverse(Choice_point_trail1,Choice_point_trail11),
 
-((%trace,
-member([Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
+((
+
+get_last_cp_before_n(Choice_point_trail1,
+	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
+	[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_),
+
+%trace,
+%member([Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail11),
 (((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;
 (Pred_or_line="line",%writeln1(All_predicate_numbers2),
 All_predicate_numbers2=[_,_,_,_,_,
 	_,Vars2c],not(Vars2c=[])))),
-	delete(Choice_point_trail1,[Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12))
+	%delete(Choice_point_trail1,[Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12)
+	delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12)
+
+
+	)
 ->
 
 	(Pred_or_line="predicate"->
@@ -308,7 +319,7 @@ All_predicate_numbers2=[_,_,_,_,_,
 delete_until_last_choicepoint(Choice_point_trail12,Choice_point_trail6,D1,AC),
 
 	(
-	D1=[Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
+	D1=[_,_,Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
 	Vars2d11,Vars2e11],
 	
 	ssi1([Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
@@ -438,7 +449,8 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,-1,"predicate",Qu
 	%*/
 	
 	%trace,
-	(false%a(1)
+	(false%a(1) 
+	% unused
 	-> append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query,
 	Vars3,
 	All_predicate_numbers]],Choice_point_trail11z);Choice_point_trail1=Choice_point_trail11z),
@@ -590,7 +602,7 @@ write(["L",Level]);true),
 	%trace,
 	%writeln1([choice_point_trail5,Choice_point_trail5]),
 	
-	member([Pred_id4,Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
+	member([_,_,Pred_id4,Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers4],Choice_point_trail5),
 %trace,
 	findresult3(Arguments1,Vars3,[],Result22),
@@ -1279,10 +1291,21 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail2,D1,AC
 %,Vars3
 ) :-
 %trace,
+
+	get_last_cp_before_n(Choice_point_trail1,
+	[Pred_id,Level,Predicate_number,Line_number_a,"line",-,
+	_Vars3,Vars2c],
+	D2,D),
+	
+	/*
 	reverse(Choice_point_trail1,Choice_point_trail3),
 	append(_B,C,Choice_point_trail3),append([D],E,C),
+	*/
 	D=[Pred_id,Level,Predicate_number,Line_number_a,"line",-,
 	_Vars3,Vars2c],
+	%trace,
+	D2=[Cp_a,Cp_b|D],
+
 	%(Vars2c=[]->fail;
 	Vars2c=Vars2e,%[[[Dbw_n,Dbw_member],[Value1,Value2],Value3]|[Vars2e1]],%[[Vars2d,Vars2d1]|Vars2e], % *** needs image of command with answer Vars2d1
 		%writeln1([vars2e,Vars2e]),
@@ -1304,15 +1327,23 @@ delete_until_last_choicepoint(Choice_point_trail1,Choice_point_trail2,D1,AC
 	
 	AC=[[Dbw_n,Dbw_member],[Value1,Value2],Value5a,Value4,Vars2e3], % Vars2e3->Vars2e1
 
-	D1=[Pred_id,Level,Predicate_number,Line_number_a,"line",-,
+	D1=[Cp_a,Cp_b,Pred_id,Level,Predicate_number,Line_number_a,"line",-,
 	AC2,%Vars2f,
-	AC],
+	AC]
 	%Vars2e3=[[[Dbw_n,Dbw_member],[Value1,Value2]]%[Value1a,Value2a]
 	%,Vars2e2],
-	append([D1],E,C1))),
-	reverse(C1,Choice_point_trail2),
+	%append([D1],E,C1)
+	)),
+	
+	%get_earlier_cps_before_cp(Choice_point_trail1,D2,C1),
+	%subtract(C1,D2,C2),
+	delete(Choice_point_trail1,D2,Choice_point_trail3),
+	append([D1],Choice_point_trail3,Choice_point_trail2),
+	set(curr_cp,Cp_a),
+	%reverse(C1,Choice_point_trail2),
 	%trace,writeln([D1,AC]),
 	!.
+	
 	
 cp_since_findall_start(Choice_point_trail1,Level,D1,E1) :-
 %trace,
@@ -1414,23 +1445,97 @@ find_pred_id(N2) :-
 
 /*
 
-?- append_cp([[2,3,a],[3,4,b]],[c],3,A).                                        A = [[3, 4, b], [2, 1, a], [1, 3, c]].
+set(curr_cp,3),curr_cp(C),set(n_cps,3),n_cps(D),append_cp([[1,2,a],[2,3,b]],[[c]],A),curr_cp(E),n_cps(F).
 
-?- append_cp([[3,4,b]],[c],3,A).
-A = [[3, 4, b], [1, 3, c]].
+C = D, D = 3,
+A = [[1, 2, a], [2, 3, b], [3, 4, c]],
+E = F, F = 4.
 
-?- append_cp([[2,3,a]],[c],2,A).
-A = [[2, 3, a], [1, 2, c]].
+set(curr_cp,2),curr_cp(C),set(n_cps,3),n_cps(D),append_cp([[1,2,a],[2,3,b]],[[c]],A),curr_cp(E),n_cps(F).
 
-?- append_cp([[2,3,a]],[c],3,A).
-A = [[2, 1, a], [3, 1, c]].
+C = 2,
+D = 3,
+A = [[2, 3, b], [1, 4, a], [4, 2, c]],
+E = F, F = 4.
 
-?- append_cp([],[c],2,A).
+set(curr_cp,1),curr_cp(C),set(n_cps,3),n_cps(D),append_cp([[1,2,a],[2,3,b]],[[c]],A),curr_cp(E),n_cps(F).
+
+C = 1,
+D = 3,
+A = [[1, 2, a], [2, 3, b], [4, 1, c]],
+E = F, F = 4.
+
+set(curr_cp,2),curr_cp(C),set(n_cps,2),n_cps(D),append_cp([[1,2,a]],[[c]],A),curr_cp(E),n_cps(F).
+
+C = D, D = 2,
+A = [[1, 2, a], [2, 3, c]],
+E = F, F = 3.
+
+set(curr_cp,1),curr_cp(C),set(n_cps,2),n_cps(D),append_cp([[1,2,a]],[[c]],A),curr_cp(E),n_cps(F).
+
+C = 1,
+D = 2,
+A = [[1, 2, a], [3, 1, c]],
+E = F, F = 3.
+
+set(curr_cp,0),curr_cp(C),set(n_cps,0),n_cps(D),append_cp([],[[c]],A),curr_cp(E),n_cps(F).
+
+?- append_cp([],[c],A).
 A = [[2, 8, c]].
 
 */
 
-append_cp(A,B,C) :-
+
+append_cp(List1,CP,List5) :-
+	CP=[CP2],
+
+	curr_cp(N),
+	n_cps(N_cps1),
+	N_cps2 is N_cps1+1,
+	
+	(
+	(List1=[],
+	N_cps3 is N_cps2+1,
+	List5=[[N_cps2,N_cps3|CP2]]),
+	set(curr_cp,N_cps3)%N_cps2=N_cps3
+	)->true;
+	
+	(member([N,A|CP21],List1),not(member([F,N|_],List1)),
+	append(List1,[[N_cps2,N|CP2]],List5),
+	set(curr_cp,N_cps2),N_cps2=N_cps3
+	)->true;
+	
+	(member([A,N|CP21],List1),not(member([N,F|_],List1)),
+	%N_cps3 is N_cps2+1,
+	append(List1,[[N,N_cps2|CP2]],List5),
+	set(curr_cp,N_cps2),N_cps2=N_cps3
+	)->true;
+
+	(
+	%N_cps3 is N_cps2+1,
+	member([D,N|CP4],List1),
+	member([N,_B|_CP21],List1),
+	delete(List1,[D,N|CP4],List4),
+	append(List4,[[D,N_cps2|CP4]],List2),
+	append(List2,[[N_cps2,N|CP2]],List5),
+	N_cps2=N_cps3,
+	
+	set(curr_cp,N_cps3)
+		
+	)),
+
+	
+	set(n_cps,N_cps3),
+
+	!.
+
+/*
+append_cp(A,B1,C) :-
+writeln1(append_cp(A,B1,C)),
+trace,
+	append_cp1(A,B1,C),notrace.
+append_cp1(A,B1,C) :-
+	B1=[B],
 	curr_cp(N),
 	n_cps(N_cps1),
 	N_cps2 is N_cps1+1,
@@ -1439,7 +1544,7 @@ append_cp(A,B,C) :-
 	(member([E,N|Cp1],A)->
 	(delete(A,[E,N|Cp1],A10),
 	append(A10,[[E,N_cps2|Cp1]],A1));A=A1),
-	(member([N,D|Cp2],A1)->
+	(member([N,_D|_Cp2],A1)->
 	(append(A1,[[N_cps2,N|B]],C));
 	(N_cps3 is N_cps2+1,
 	retractall(n_cps(_)),
@@ -1447,3 +1552,106 @@ append_cp(A,B,C) :-
 	append(A1,[[N,N_cps2|B]],C))),
 	retractall(curr_cp(_)),
 	assertz(curr_cp(N_cps2)),!.
+*/
+
+get_cp(List1,N,Cp) :-
+	member([N,B|Cp1],List1),
+	Cp=[N,B|Cp1].
+	
+get_last_cp_before_n(List1,Cp1,Cp2,Cp3) :-
+%trace,
+%writeln1([list1,List1]),
+	curr_cp(N),
+	get_last_cp_before_n1(List1,Cp1,N,Cp2),
+	Cp2=[_,_|Cp3].
+
+get_last_cp_before_n1(List1,_Cp1,N,_Cp2) :-
+	(not(member([N,_|_],List1)),fail),!.
+get_last_cp_before_n1(List1,Cp1,N,Cp2) :-
+	member([N,B|Cp1],List1),
+	Cp2=[N,B|Cp1],!.
+get_last_cp_before_n1(List1,Cp1,N,Cp2) :-
+	member([B,N|Cp1],List1),
+	Cp2=[B,N|Cp1],!.
+get_last_cp_before_n1(List1,Cp1,N,Cp2) :-
+	member([B,N|Cp3],List1),
+	not(Cp1=Cp3),
+	get_last_cp_before_n1(List1,Cp1,B,Cp2),!.
+
+/*
+
+[debug]  ?- get_earlier_cps_before_cp([[1,2,a],[2,3,b],[3,4,c]],[2,3,b],C).                           C = [[2, 3, b], [1, 2, a]].
+
+[debug]  ?- get_earlier_cps_before_cp([[1,2,a],[2,3,b],[3,4,c]],[1,2,a],C).
+C = [[1, 2, a]].
+
+[debug]  ?- get_earlier_cps_before_cp([[1,2,a],[2,3,b],[3,4,c]],[3,4,c],C).
+C = [[3, 4, c], [2, 3, b], [1, 2, a]].
+
+*/
+
+get_earlier_cps_before_cp(List1,Cp1,Cps) :-
+	%curr_cp(N),
+	Cp1=[_Cp_b,Cp_a|_Cp],
+	get_earlier_cps_before_cp(List1,Cp_a,[],Cps).
+	%Cp2=[_,_|Cp3].
+
+get_earlier_cps_before_cp(List1,Cp_a,Cps,Cps) :-
+	not(member([_,Cp_a|_],List1)),!.
+get_earlier_cps_before_cp(List1,Cp_a,Cps1,Cps2) :-
+	member([Cp_b,Cp_a|Cp3],List1),
+	append(Cps1,[[Cp_b,Cp_a|Cp3]],Cps3),
+	get_earlier_cps_before_cp(List1,Cp_b,Cps3,Cps2),!.
+
+
+
+set(A,B) :-
+	functor(C,A,1),D=C,arg(1,D,_),
+	retractall(D),
+	arg(1,C,B),
+	assertz(C),!.
+	
+/*
+
+set(curr_cp,1),curr_cp(C),delete_cp([[1,2,a],[2,3,b],[3,4,c]],[1,2,a],A),curr_cp(B).
+C = 1,
+A = [[2, 3, b], [3, 4, c]],
+B = 2.
+
+set(curr_cp,2),curr_cp(C),                                                                               delete_cp([[1,2,a],[2,3,b],[3,4,c]],[2,3,b],A),curr_cp(B).
+C = 2,
+A = [[3, 4, c], [1, 3, a]],
+B = 3.
+
+set(curr_cp,3),curr_cp(C),                                                                               delete_cp([[1,2,a],[2,3,b],[3,4,c]],[3,4,c],A),curr_cp(B).
+C = 4,
+A = [[1, 2, a], [2, 3, b]],
+B = 3.
+
+*/
+
+delete_cp(List1,CP,List5) :-
+	CP=[A,B|CP2],
+	
+	(
+	((member([A,B|CP2],List1),not(member([F,A|_],List1)))->
+	(delete(List1,[A,B|CP2],List5),
+	(curr_cp(A)->set(curr_cp,B);true)
+	))->true;
+	
+	(((member([A,B|CP2],List1),not(member([B,F|_],List1)))->
+	delete(List1,[A,B|CP2],List5),
+	(curr_cp(B)->set(curr_cp,A);true)
+	)->true;
+
+	(
+	member([D,A|CP4],List1),
+	delete(List1,[D,A|CP4],List2),
+	member([B,_C|_CP3],List2),
+	member([A,B|CP2],List2),
+	delete(List2,[A,B|CP2],List4),
+	append(List4,[[D,B|CP4]],List5),
+	
+	(curr_cp(A)->set(curr_cp,B);true)
+	
+	))),!.
