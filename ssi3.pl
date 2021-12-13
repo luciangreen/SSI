@@ -654,7 +654,7 @@ write(["L",Level]);true),
 	(Level2 = 0 ->
 	
 	%trace,
-	((false%(b(1)
+	((false%b(1)
 	-> append(Choice_point_trail1,[[Level,Predicate_number,-1,"predicate",Query_a,
 	Vars,
 	All_predicate_numbers]],Choice_point_trail11z);
@@ -1412,6 +1412,38 @@ find_pred_id(N2) :-
 	retractall(pred_id(_)),
  	assertz(pred_id(N2)).
 
+/*
+
+?- append_cp([[2,3,a],[3,4,b]],[c],3,A).                                        A = [[3, 4, b], [2, 1, a], [1, 3, c]].
+
+?- append_cp([[3,4,b]],[c],3,A).
+A = [[3, 4, b], [1, 3, c]].
+
+?- append_cp([[2,3,a]],[c],2,A).
+A = [[2, 3, a], [1, 2, c]].
+
+?- append_cp([[2,3,a]],[c],3,A).
+A = [[2, 1, a], [3, 1, c]].
+
+?- append_cp([],[c],2,A).
+A = [[2, 8, c]].
+
+*/
+
 append_cp(A,B,C) :-
-	append(A,B,C).
-	
+	curr_cp(N),
+	n_cps(N_cps1),
+	N_cps2 is N_cps1+1,
+	retractall(n_cps(_)),
+	assertz(n_cps(N_cps2)),
+	(member([E,N|Cp1],A)->
+	(delete(A,[E,N|Cp1],A10),
+	append(A10,[[E,N_cps2|Cp1]],A1));A=A1),
+	(member([N,D|Cp2],A1)->
+	(append(A1,[[N_cps2,N|B]],C));
+	(N_cps3 is N_cps2+1,
+	retractall(n_cps(_)),
+	assertz(n_cps(N_cps3)),	
+	append(A1,[[N,N_cps2|B]],C))),
+	retractall(curr_cp(_)),
+	assertz(curr_cp(N_cps2)),!.
