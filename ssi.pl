@@ -66,9 +66,8 @@ crop down pred from top x just goes to next command
 :-include('e.pl').
 
 :- dynamic debug2/1.
-:- dynamic debug3/1.
-%:- dynamic curr_cp/1.
-:- dynamic curr_cp_index/1.
+:- dynamic curr_cp/1.
+:- dynamic n_cps/1.
 :- dynamic pred_id/1.
 
 /*

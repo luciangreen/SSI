@@ -1,4 +1,4 @@
-d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars1,CP_Vars2) :-
+d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3) :-
 
 %append(D,All_predicate_numbers,All_predicate_numbers3),
 	%All_predicate_numbers3=
@@ -7,12 +7,8 @@ d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate
 	
 	Level2 is Level+1,
 
-%writeln1(append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Line_number_b],"predicate",Query,
-	%Vars2,All_predicate_numbers]],Choice_point_trail11)
-%),
-
 append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Line_number_b],"predicate",Query,
-	Vars2,All_predicate_numbers]],Choice_point_trail11,CP_Vars1,CP_Vars3),
+	Vars2,All_predicate_numbers]],Choice_point_trail11),
 
 %Line=[Function,Arguments],
 
@@ -53,7 +49,6 @@ Line=Query1,
 
 */
 
-
 	%% **
 	ssi1([-,Level2,All_predicate_numbers1,-1,"predicate",Query2,
 	Vars1,All_predicate_numbers2],
@@ -62,8 +57,7 @@ Line=Query1,
 	Result1, Result2,  % don't need
 	Globals32,Globals2,
 	Choice_point_trail11,
-	Choice_point_trail3,
-	CP_Vars3,CP_Vars2)
+	Choice_point_trail3)
 	
 	
 % 		append(Result3,[End_result],Result2)
