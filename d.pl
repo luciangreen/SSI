@@ -60,7 +60,7 @@ Line=Query1,
 
 
 	%% **
-	(Pred_id=3->writeln(here1);true),
+	%(Pred_id=3->writeln(here1);true),
 	ssi1([["prev_pred_id",Prev_pred_id],Level2,All_predicate_numbers11,-1,"predicate",Query2,
 	Vars1,All_predicate_numbers2],
 	 _End_result2, %don't need

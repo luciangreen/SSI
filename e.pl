@@ -12,7 +12,7 @@ e(Pred_id,Level,Vars3,End_result,Functions,Vars2,Result1, Result2,
 	
 	(Level2 = 0 ->
 	
-	(	(Pred_id=3->writeln(here2);true),
+	(	%(Pred_id=3->writeln(here2);true),
 	
 	% pred_id in following is _ (and _ for pred_id in ssi1 calls in e.pl because they are -3 line calls, and shouldn't pass previous pred ids to be added to pred id chain)
 	
@@ -33,17 +33,17 @@ e(Pred_id,Level,Vars3,End_result,Functions,Vars2,Result1, Result2,
 %writeln([choice_point_trail11,Choice_point_trail11]),
 ((%trace,
 %writeln(here1),
-/*writeln1(get_last_cp_before_n(Choice_point_trail1,
+/*writeln1(get_last_cp_after_n(Choice_point_trail1,
 	[_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	[Cp_a,Cb_b,_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_)),
 	*/
 	
-	get_last_cp_before_n(Choice_point_trail1,
+	get_last_cp_after_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
 	 CP_Vars1,CP_Vars21),
 	/*
-writeln1(get_last_cp_before_n(Choice_point_trail1,
+writeln1(get_last_cp_after_n(Choice_point_trail1,
 	[_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	[Cp_a,Cb_b,_Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_)),
 	*/
@@ -86,7 +86,7 @@ writeln1(delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_numbe
 	%Level3 is Level+1,
 	Level3 is Level,
 
-	(Pred_id=3->writeln(here3);true),
+	%(Pred_id=3->writeln(here3);true),
 	
 	% pred id in the following was _
 	

@@ -1,7 +1,11 @@
 get_earlier_cps_before_cp1(List1,Cp1,Cp3,Cps) :-
 	%curr_cp(N),
-	Cp1=[_Cp_b,Cp_a|_Cp],
-	member([Cp_b,Cp_a|Cp3],List1),
+	%writeln1([cp1,Cp1]),
+	%writeln1([list1,List1]),
+	%trace,
+	Cp1=[Cp_b,_Cp_c|Cp3],
+	member([Cp_b,Cp_a1|_Cp5],List1),
+	member([Cp_a1,Cp_a|_Cp4],List1),
 	get_earlier_cps_before_cp(List1,Cp_a,[],Cps).
 	%Cp2=[_,_|Cp3].
 /*
@@ -17,12 +21,13 @@ get_earlier_cps_before_cp1(List1,Cp_a,Cps1,Cps2) :-
 
 cp_since_findall_start2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2) :-
 	%writeln1("y for trace:"),(get_char(y)->trace;true),
-	get(curr_cp,Curr_cp,Curr_cp1),%writeln([curr_cp,Curr_cp]),
-	writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2)),
-	(get_last_cp_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,_)->true;(writeln([get_last_cp_before_n2,abort]),abort)),
+	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
+	(debug4(on)->writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2));true),
+	(get_last_cp_after_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2)->true;false%(writeln([get_last_cp_after_n2,abort]),abort)
+	),
 	%writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3)),
-	get(curr_cp,Curr_cp1,CP_Vars1),%writeln([curr_cp,Curr_cp1]),
-	writeln([cp_since_findall_start2,curr_cp,Curr_cp,Curr_cp1,Cp2,CP_Vars1]).
+	get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
+	(debug4(on)->writeln([cp_since_findall_start22,curr_cp,CP_Vars1,CP_Vars2,(-),List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
 	%notrace.
 	
 	/*
