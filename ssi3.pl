@@ -390,7 +390,7 @@ ssi1([["prev_pred_id",Prev_pred_id],Level,Predicate_number_a1,Line_number,"predi
 
 	member([[level,Pred_id1],Level_a],Globals1),
 
-	%Globals1=Globals3,
+	Globals1=Globals3,
 
 	(debug3(on)->
 write(["L",Level_a]);true),
@@ -442,7 +442,7 @@ ssi1([_,0,_Predicate_number,-2,"predicate",_Query_a,
 	(%trace,
 
 %writeln1([globals3,Globals3]),
-member([pred_id_chain,PID1,Pred_id1],Globals1),
+member([pred_id_chain,PID1,Pred_id1],Globals3),
 %trace,
 		get_last_cp_after_n(Choice_point_trail1,
 	[PID1,_Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],
@@ -454,7 +454,7 @@ member([pred_id_chain,PID1,Pred_id1],Globals1),
 	Line_number3,"pred_id",Pred_id3]
 	->
 	(
-member([[pred_num,Pred_id3],Predicate_number2],Globals1),
+member([[pred_num,Pred_id3],Predicate_number2],Globals3),
 
 member([Predicate_number2,_F|Rest],Functions),
 (Rest=[_Args,":-",Lines]->true;
@@ -467,18 +467,18 @@ member([Predicate_number2,_F|Rest],Functions),
 	member([Line_number3,["on true",A],["go after",_B],["on false",_C],["go to predicates",_D]|_Line],Lines),
 A=Line_number2a,
 %trace,
-	%reverse(Globals1,Globals33), 
+	reverse(Globals1,Globals33), 
 
-	member([[firstargs_uv2,Pred_id3],FirstArgs1],Globals1),
+	member([[firstargs_uv2,Pred_id3],FirstArgs1],Globals33),
 %trace,
 %writeln1([globals33,Globals33]),
-	%Globals33=Globals43,
+	Globals33=Globals43,
 
-	member([[vars1,Pred_id3],Vars11],Globals1),
+	member([[vars1,Pred_id3],Vars11],Globals43),
 
-	%Globals43=Globals212,
+	Globals43=Globals212,
 
-%reverse(Globals212,Globals22),
+reverse(Globals212,Globals22),
 
 	updatevars2(FirstArgs1,Vars3,[],Vars5),
 	updatevars3(Vars11,Vars5,Vars6),
@@ -505,7 +505,7 @@ A=Line_number2a,
 	ssi1([PID1,Level2,Predicate_number2,Line_number2a,"line",-,
 	Vars44,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
-	Globals1,Globals2,
+	Globals3,Globals22,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars4,CP_Vars2)
