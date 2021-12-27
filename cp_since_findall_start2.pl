@@ -21,13 +21,13 @@ get_earlier_cps_before_cp1(List1,Cp_a,Cps1,Cps2) :-
 
 cp_since_findall_start2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2) :-
 	%writeln1("y for trace:"),(get_char(y)->trace;true),
-	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
+	%get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
 	(debug4(on)->writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2));true),
 	(get_last_cp_after_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2)->true;false%(writeln([get_last_cp_after_n2,abort]),abort)
 	),
 	%writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3)),
-	get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([cp_since_findall_start22,curr_cp,CP_Vars1,CP_Vars2,(-),List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
+	%get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
+	(debug4(on)->writeln([cp_since_findall_start22,(-),List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
 	%notrace.
 	
 	/*

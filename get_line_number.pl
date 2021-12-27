@@ -4,7 +4,7 @@ get_line_number(Line_number2b,Functions,Level2,Vars3,Globals1,Line_number2a) :-
 	Line_number3,"pred_id",Pred_id]%]
 	->
 	(
-member([pred_num,Pred_id],Predicate_number2],Globals1),
+member([[pred_num,Pred_id],Predicate_number2],Globals1),
 
 member([Predicate_number2,_F|Rest],Functions),
 (Rest=[_Args,":-",Lines]->true;
