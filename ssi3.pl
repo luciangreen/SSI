@@ -505,7 +505,7 @@ reverse(Globals212,Globals22),
 	ssi1([PID1,Level2,Predicate_number2,Line_number2a,"line",-,
 	Vars44,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
-	Globals3,Globals22,
+	Globals3,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars4,CP_Vars2)
