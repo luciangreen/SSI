@@ -27,7 +27,7 @@ cp_since_findall_start2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2) :-
 	),
 	%writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3)),
 	%get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([cp_since_findall_start22,(-),List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
+	(debug4(on)->writeln([cp_since_findall_start22,List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
 	%notrace.
 	
 	/*

@@ -40,9 +40,6 @@ e(Pred_id,Level,Vars3,End_result,Functions,Vars2,Result1, Result2,
 	
 	%writeln([choice_point_trail1,Choice_point_trail1]),
 	
-	%trace,
-	%writeln1([globals1,Globals1]),
-	
 	get_last_cp_after_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
@@ -144,7 +141,7 @@ delete_until_last_cp(Choice_point_trail12,Choice_point_trail6,D1,AC,CP_Vars3,CP_
 %*/
 %(debug_fail(Skip,[Function,Arguments1])->true;true),
 
-%trace,
+
 ssi1([Pred_id,Level2,_Predicate_number2,-3,"predicate",-,
 	[],_All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
