@@ -762,7 +762,7 @@ find_sys(Sys_name),
 	
 	((Line_number_b= -3)->
 	
-	e(_Pred_id,Level,Vars1,End_result,Functions,Vars2,Result1, Result2, 
+	e(Pred_id,Level,Vars1,End_result,Functions,Vars2,Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
