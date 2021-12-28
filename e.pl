@@ -1,4 +1,4 @@
-e(Pred_id,Level,Vars3,End_result,Functions,Vars2,Result1, Result2, 
+e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
@@ -142,7 +142,7 @@ delete_until_last_cp(Choice_point_trail12,Choice_point_trail6,D1,AC,CP_Vars3,CP_
 %(debug_fail(Skip,[Function,Arguments1])->true;true),
 
 
-ssi1([Pred_id,Level2,_Predicate_number2,-3,"predicate",-,
+ssi1([Pred_id,Level,Predicate_number,-3,"predicate",-,
 	[],_All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals222,Globals2, % *** Globals1->Globals222
