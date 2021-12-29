@@ -189,10 +189,8 @@ get_last_cp_after_n(Choice_point_trail1,
 (((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;
 (Pred_or_line="line",
 All_predicate_numbers2=[_,_,_,_,_,
-	_,Vars2c],not(Vars2c=[])))),
+	_,Vars2c],not(Vars2c=[]))))
 
-	delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12,
-	CP_Vars3,CP_Vars4)
 
 
 	)
@@ -201,7 +199,11 @@ All_predicate_numbers2=[_,_,_,_,_,
 	(Pred_or_line="predicate"->
 	
 	(
-	All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
+	
+		delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12,
+	CP_Vars3,CP_Vars4),
+
+All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
 	
 		All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],
 
@@ -220,13 +222,13 @@ All_predicate_numbers2=[_,_,_,_,_,
 	
 (
 
-delete_until_last_cp(Choice_point_trail12,Choice_point_trail6,D1,AC,CP_Vars4,CP_Vars5),
+delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_Vars5),
 
 	(
-	D1=[_,_,Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
+	D1=[_,_,Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
 	Vars2d11,Vars2e11],
 	
-	ssi1([Pred_id,Level11,Predicate_number11,Line_number_a11,"line",-,
+	ssi1([Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
 	Vars2d11,Vars2e11], End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
@@ -854,10 +856,10 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail2,D1,AC
 ,CP_Vars1,CP_Vars2) :-
 (delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
 %,Vars3
-,CP_Vars1,CP_Vars2)->
-writeln1(delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
-%,Vars3
-,CP_Vars1,CP_Vars2));
+,CP_Vars1,CP_Vars2)->true
+%writeln1(delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
+%,Vars3,CP_Vars1,CP_Vars2))
+;
 (writeln1(delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
 %,Vars3
 ,CP_Vars1,CP_Vars2)),abort)),!.
@@ -1115,6 +1117,7 @@ get_last_cp_after_n1(List1,Cp1,N,Cp2) :-
 	%get_last_cp_after_n1(List1,Cp1,B,Cp2);
 	Cp2=[B,N|Cp1].
 get_last_cp_after_n1(List1,Cp1,N,Cp2) :-
+%trace,writeln1(List1),
 	member([N,B|Cp1],List1),
 	%((Cp1=[_,_,_,["returns to",_]|_])->
 	%fail%get_last_cp_after_n1(List1,Cp1,B,Cp2)
