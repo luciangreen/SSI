@@ -44,6 +44,7 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
 	 CP_Vars1,CP_Vars21),
+	 %trace,
 	/*
 writeln1(get_last_cp_after_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
@@ -128,7 +129,7 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars21,CP_
 
 %****
 	(
-	%/*
+	/*
 	%reverse(Globals1,Globals3),
 	member([[firstargs,Pred_id],FirstArgs],Globals1), %*delete, where was pred called from? - prev level in cps
 	delete(Globals1,[[firstargs,Pred_id],FirstArgs],Globals41),
@@ -142,14 +143,14 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars21,CP_
 	delete(Globals71,[[level,Pred_id],Level],Globals222),
 	
 	%reverse(Globals21,Globals222),
-%*/
+*/
 %(debug_fail(Skip,[Function,Arguments1])->true;true),
 
 
 ssi1([Pred_id,Level,Predicate_number,-3,"predicate",-,
 	[],_All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
-	Globals222,Globals2, % *** Globals1->Globals222
+	Globals1,Globals2, % *** Globals1->Globals222
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2))

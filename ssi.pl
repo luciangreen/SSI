@@ -65,6 +65,7 @@ crop down pred from top x just goes to next command
 :-include('d.pl').
 :-include('e.pl').
 :-include('cp_since_findall_start2.pl').
+:-include('pred_minus_three.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.

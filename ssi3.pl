@@ -97,6 +97,7 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 	% Choice_point_trail1, % Initial and cumulative lists of choice points
 	% Choice_point_trail2, Cpv1, Cpv2)
 	%trace,
+	%trace,
 	findall([All_predicate_numbers0,"prev_pred_id",0],member(All_predicate_numbers0,All_predicate_numbers),All_predicate_numbers01),
 	All_predicate_numbers01=[[All_predicate_numbers1,"prev_pred_id",Prev_pred_id]|All_predicate_numbers2],
 	%trace,
@@ -254,6 +255,8 @@ ssi1([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
+	
+	%writeln([all_predicate_numbers,All_predicate_numbers]),
 	
 	(Pred_id_a1=["prev_pred_id",Pred_id1]->true;Pred_id_a1=Pred_id1),
 
@@ -524,25 +527,15 @@ reverse(Globals212,Globals22),
 	% fail exit from pred
 	->(
 		
-	%trace,
-	(debug3(on)->
-write(["L",Level]);true),
 
-	member([[function,Pred_id1],Function],Globals1),
 
-	member([[arguments1,Pred_id1],Arguments1],Globals1),
-
-	member([[skip,Pred_id1],Skip],Globals1),
-
-	(debug_fail(Skip,[Function,Arguments1])->true;true),
-
-%trace,
-	e(Pred_id1,Level,Predicate_number,_Vars3,_End_result,Functions,Vars2,Result1, Result2, 
+pred_minus_three([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
+	Vars,All_predicate_numbers], Result21, Functions,Vars2,
+	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
-	CP_Vars1,CP_Vars2
-	)
+	CP_Vars1,CP_Vars2)
 	
 	)))),!.
 
@@ -572,6 +565,8 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
 	Choice_point_trail3,["appearance of command",AC],
 	CP_Vars1,CP_Vars2) :-
 	%/*
+	
+	%writeln([all_predicate_numbers,All_predicate_numbers]),
 		(debug2(on)->
 writeln1(
 	ssi1([Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
@@ -770,7 +765,7 @@ find_sys(Sys_name),
 	Choice_point_trail3,
 	CP_Vars3,CP_Vars2
 	);
-	
+
 	ssi1([Pred_id,Level, %*
 	Predicate_number,Line_number_b,"predicate",Query,
 	Vars1,All_predicate_numbers], _End_result, Functions,Vars2,
