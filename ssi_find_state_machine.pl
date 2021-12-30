@@ -317,6 +317,23 @@ find_state_machine_body2(Statement,Body2,Return_line_true,Return_line_false,Pred
 	find_state_machine_body2(Statements,Result2,Return_line_true,Return_line_false,Pred_numbers)),
    append_list2([Result1,Result2],Body2),!.
 
+
+find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
+	Body1=[]->Body2=[];
+	(Body1=[Statement|Statements],
+	((
+	(get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
+	Statement=[N,[Dbw_v,_]|_],number(N))->
+	(%not(predicate_or_rule_name(Statement)),
+	%not(number(Statement)),
+	(Statements=[]->Statements_number=Return_line_true;
+        find_first_line_number(Statements,Statements_number)),
+	find_state_machine_statement1(Statement,Result1,Statements_number,Return_line_false,Pred_numbers));
+
+find_state_machine_body2(Statement,Body2,Return_line_true,Return_line_false,Pred_numbers))),
+	find_state_machine_body2(Statements,Result2,Return_line_true,Return_line_false,Pred_numbers)),
+   append_list2([Result1,Result2],Body2),!.
+
      /*   
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
         
@@ -389,6 +406,36 @@ find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_fal
 
 
 Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[n,Name1]]])).
+	
+	
+	
+	find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,Pred_numbers1) :-
+	((Statement=[Number,[v,Name1],Arguments],
+	%trace,
+
+	not(Name1=findall),
+
+	length(Arguments,Arity1),
+	%atom_string(Name1,Name),
+	%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
+	%(Name1=downpipe->trace;true),
+	%(member([[v,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+	
+	Pred_numbers2=(*),
+	
+	Arguments=Result2,
+	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
+	Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[v,Name1],Result2]])->true;
+	(%%Statement=[_,[n,Name]],
+	%%trace,
+	Statement=[Number,[v,Name1]],
+	length([],Arity1),
+		%atom_string(Name1,Name),
+%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
+%(member([[v,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+	Pred_numbers2=(*),
+
+Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[v,Name1]]])).
 	%%writeln([[Number,Return_line_true,Return_line_false,[n,Name],Result2]]).
 	
 %%if_empty_list_then_return([],_Number,-3) :- !.

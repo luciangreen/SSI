@@ -4,20 +4,12 @@ d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicat
 	%All_predicate_numbers3=
 
 	% * vars1,3
-		findall([All_predicate_numbers0,"prev_pred_id",Pred_id],member(All_predicate_numbers0,D0),D),
-
-	
-	D=
-	[All_predicate_numbers1|All_predicate_numbers2],
 	
 	Level2 is Level+1,
 
 %writeln1(append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Line_number_b],"predicate",Query,
 	%Vars2,All_predicate_numbers]],Choice_point_trail11)
 %),
-
-append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Line_number_b,"pred_id",Pred_id],"predicate",Query,
-	Vars1,All_predicate_numbers]],Choice_point_trail11,CP_Vars1,CP_Vars3),
 
 %Line=[Function,Arguments],
 
@@ -43,13 +35,34 @@ Line=Query1,
         append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
 
         Vars3=[Function1|Vars31],
-        Query2=[Function1,Vars31]);
+        Query2=[Function1,Vars31],
+        
+        pred_numbers(Pred_numbers),
+        length(Arguments,Arity1),
+        %trace,
+        member([Function1,Arity1,Pred_numbers1],Pred_numbers),        
+	findall([All_predicate_numbers0,"prev_pred_id",Pred_id],member(All_predicate_numbers0,Pred_numbers1),D)
+	%All_predicate_numbers01=[[All_predicate_numbers1,"prev_pred_id",Prev_pred_id]|All_predicate_numbers2]
+
+        
+        );
         (
         substitutevarsA1(Arguments,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals32),
 
-        Query2=[Function,Vars3])),
+        Query2=[Function,Vars3],
+        	findall([All_predicate_numbers0,"prev_pred_id",Pred_id],member(All_predicate_numbers0,D0),D)
+        
+        )
+        
+        
+
+	
+
+
+        
+        ),
         %interpret2(Query2,Functions0,Functions0,Result1), 
 
 /*
@@ -57,8 +70,17 @@ Line=Query1,
 	updatevars3(Vars1,Vars5,Vars6),
 
 */
+	D=
+	[All_predicate_numbers1|All_predicate_numbers2],
+
 	All_predicate_numbers1=[All_predicate_numbers11,"prev_pred_id",Prev_pred_id],
 
+
+
+append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Line_number_b,"pred_id",Pred_id],"predicate",Query,
+	Vars1,All_predicate_numbers
+	%D
+	]],Choice_point_trail11,CP_Vars1,CP_Vars3),
 
 	%% **
 	%(Pred_id=3->writeln(here1);true),

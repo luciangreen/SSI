@@ -70,6 +70,7 @@ crop down pred from top x just goes to next command
 :- dynamic debug2/1.
 :- dynamic debug3/1.
 :- dynamic debug4/1.
+:- dynamic pred_numbers/1.
 %:- dynamic curr_cp/1.
 :- dynamic curr_cp_index/1.
 :- dynamic pred_id/1.
@@ -301,6 +302,16 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 	Result1=[[Number1,[n,Name],Result2]])->true;
 	(Statement=[[n,Name]],
 	Result1=[[Number1,[n,Name],[]]])),
+	Number2 is Number1+1.
+
+add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
+	((Statement=[[v,Name],Arguments],
+	%not(Name=findall),
+	Arguments=Result2,
+	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
+	Result1=[[Number1,[v,Name],Result2]])->true;
+	(Statement=[[v,Name]],
+	Result1=[[Number1,[v,Name],[]]])),
 	Number2 is Number1+1.
 
 %%*del:Functions2,

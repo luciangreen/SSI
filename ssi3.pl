@@ -71,6 +71,9 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	
 	find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
+
+	retractall(pred_numbers(_)),
+ 	assertz(pred_numbers(Pred_numbers)),
 %trace,
 	find_state_machine1(Functions2a,Functions3,Pred_numbers),
 	
@@ -483,7 +486,7 @@ A=Line_number2a,
 
 	Globals43=Globals212,
 
-reverse(Globals212,Globals22),
+reverse(Globals212,_Globals22),
 
 	updatevars2(FirstArgs1,Vars3,[],Vars5),
 	updatevars3(Vars11,Vars5,Vars6),

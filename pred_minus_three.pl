@@ -1,12 +1,12 @@
-pred_minus_three([Pred_id1,Level,Predicate_number,Line_number,"predicate",Query_a,
-	Vars,All_predicate_numbers], Result21, Functions,Vars2,
+pred_minus_three([Pred_id1,Level,_Predicate_number,_Line_number,"predicate",_Query_a,
+	Vars,_All_predicate_numbers], _Result21, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
 	%trace,
-	member([[firstargs,Pred_id1],FirstArgs],Globals1),
+	member([[firstargs,Pred_id1],_FirstArgs],Globals1),
 
 	member([[function,Pred_id1],Function],Globals1),
 	
@@ -145,7 +145,7 @@ reverse(Globals212,Globals22),
 )
 ;
 
-(Line_number2a=Line_number2b
+(Line_number2a=Line_number3%Line_number2b
 %,
 %,Level_x=Level2
 %Vars44=Vars3
