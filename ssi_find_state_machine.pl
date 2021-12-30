@@ -277,7 +277,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-        Body1=[[Number,[n,findall],[Statements1,Statements2a,Statements2]]|Statements3],
+        Body1=[[Number,[n,findall],[Statements1,Statements2,Statements2a]]|Statements3],
                         %trace,
 
         %find_first_line_number(Statements1,Statements1_number),

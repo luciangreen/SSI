@@ -625,22 +625,75 @@ append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 	
 %trace,
 
-cp_since_findall_start(Choice_point_trail1e,Level,D1,E1,CP_Vars3,CP_Vars31)
-	%writeln1(cp_since_findall_start(Choice_point_trail1e,Level,D1,E1))
+cp_since_findall_start(Choice_point_trail1e,Level,_D10,E1,D1,CP_Vars3,CP_Vars31)
+	%writeln1(cp_since_findall_start(Choice_point_trail1e,Level,D1,E1,CP_Vars3,CP_Vars31))
 	)->
 	(%trace,writeln(here1),
 	D1=[Pred_id3,Level4
 	%1
 	,Predicate_number14,Line_number_a14,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
-	%writeln(D1),
-	E1=[Pred_id2,Level3,_Predicate_number2,Line_number_a2,Pred_or_line%"line"
+	
+	
+	%writeln([d1,D1]),
+	E1=[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line%"line"
 	,Query_a2,_CPV0,CPV3],
 	
 	(Pred_or_line="line"->
-	CPV3=[CPV_A1,CPV_A2,CPV_A3,CPV_A4,CPV_A5,
-	CPV_A6,CPV];
+	(CPV3=[CPV_A1,CPV_A2,_CPV_A3,_CPV_A4,_CPV_A5,
+	_CPV_A6,CPV],
+	
+	%CPV=[CPV1|CPV2],
+	CPV=[[CPV11,CPV12]|CPV2],
+
+	get_lang_word("v",Dbw_v),
+		
+	remember_and_turn_off_debug(Debug),
+
+	find_sys(Sys_name),
+ 	interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
+
+	getvalue([Dbw_v,Sys_name],Value3,Vars2fa),
+	
+	append(Findall_vars,[Value3],Findall_vars2),
+	
+	turn_back_debug(Debug),
+
+	get_last_cp_after_n(Choice_point_trail1e,D1,[Cp_a1,Cp_a2|D1],_,CP_Vars31,CP_Vars4),
+	delete_cp(Choice_point_trail1e,[Cp_a1,Cp_a2|D1],Choice_point_trail1a,CP_Vars4,CP_Vars5),
+	
+	D2=[Pred_id3,Level4
+	%1
+	,Predicate_number14,Line_number_a14,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars2],[format_vars,Format_vars],[result_var,Result_var]],
+
+	append_cp(Choice_point_trail1a,[D2],Choice_point_trail1b,CP_Vars5,CP_Vars6),
+	
+	delete_cp(Choice_point_trail1b,[_,_|E1],Choice_point_trail1c,CP_Vars6,CP_Vars7),
+	
+		%CPV22=CPV2,
+		CPV22=[CPV_A1,CPV_A2,CPV12,CPV11],
+		
+		CPV23=[CPV_A1,CPV_A2,_CPV_A3,_CPV_A4,_CPV_A5,
+	_CPV_A6,CPV2],
+	
+append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line,_,_,CPV23]],Choice_point_trail1d,CP_Vars7,CP_Vars8),
+
+%CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
+
+	ssi1([Pred_id2,Level3, %*
+	Predicate_number2,Line_number_a2,"line",Query_a2,
+	Old_vars,CPV23], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	Result1, Result2, 
+	Globals3,Globals2,
+	Choice_point_trail1d,
+	Choice_point_trail3,["appearance of command",CPV22],
+	CP_Vars8,CP_Vars2)
+
+
+		
+	
+	);
 	(Pred_or_line="predicate"->
-	CPV3=CPV)),
+	(CPV3=CPV,
 
 	CPV=[CPV1|CPV2],
 	
@@ -670,11 +723,13 @@ cp_since_findall_start(Choice_point_trail1e,Level,D1,E1,CP_Vars3,CP_Vars31)
 	
 	delete_cp(Choice_point_trail1b,[_,_|E1],Choice_point_trail1c,CP_Vars6,CP_Vars7),
 	
-	(Pred_or_line="line"->
-	CPV22=[CPV_A1,CPV_A2,CPV_A3,CPV_A4,CPV_A5,
-	CPV_A6,CPV2];
-	(Pred_or_line="predicate"->
-	CPV22=CPV2)),
+	%(Pred_or_line="line"->
+	%(CPV22=[CPV_A1,CPV_A2,CPV_A3,CPV_A4,CPV_A5,
+	%CPV_A6,CPV2]
+	
+	%);
+	%(Pred_or_line="predicate"->
+	CPV22=CPV2,
 
 append_cp(Choice_point_trail1c,[[Pred_id2,Level3,CPV1,Line_number_a2,Pred_or_line,_,_,CPV22]],Choice_point_trail1d,CP_Vars7,CP_Vars8),
 
@@ -690,7 +745,8 @@ CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
 	Choice_point_trail1d,
 	Choice_point_trail3,
 	CP_Vars8,CP_Vars2)
-	);
+	)
+	)));
 
 	(
 	%Choice_point_trail1e=Choice_point_trail4,
@@ -787,7 +843,8 @@ find_sys(Sys_name),
 	
 	(%writeln1(interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c)),
 	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c));
-	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c,AC))
+	(%trace,
+	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c,AC)))
 	)
 	% choose certain commands from lpi for ssi, rest customised
 	
@@ -921,11 +978,15 @@ delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
 % arg3= cpa cpb_
 % E1= no cpa cpb
 
-cp_since_findall_start(Choice_point_trail1,Level,D1,E1,CP_Vars1,CP_Vars2) :-
+cp_since_findall_start(Choice_point_trail1,Level,D1,E1,D11,CP_Vars1,CP_Vars2) :-
 %trace,
+	
+	%trace,
+	member([A1,A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail1),
+	D11=[A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
 	%writeln1(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)),
 	get_earlier_cps_before_cp1(Choice_point_trail1,
-	[_,_,_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
+	[_,_,Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
 	D1,B),
 	
 	%D1=[_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],

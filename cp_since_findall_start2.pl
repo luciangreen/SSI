@@ -3,7 +3,10 @@ get_earlier_cps_before_cp1(List1,Cp1,Cp3,Cps) :-
 	%writeln1([cp1,Cp1]),
 	%writeln1([list1,List1]),
 	%trace,
+	%Cp1=
+	%trace,
 	Cp1=[Cp_b,_Cp_c|Cp3],
+	%member(Cp1,List1),
 	member([Cp_b,Cp_a1|_Cp5],List1),
 	member([Cp_a1,Cp_a|_Cp4],List1),
 	get_earlier_cps_before_cp(List1,Cp_a,[],Cps).
