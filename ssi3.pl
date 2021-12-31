@@ -343,9 +343,6 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,-1,"predicate",Qu
 	)->true;
 	
 	(%Line_number = -1,
-	All_predicate_numbers=[Predicate_number_a|All_predicate_numbers2],
-	
-	Predicate_number_a=[Predicate_number_a1,"prev_pred_id",Prev_pred_id],
 	
 	(debug3(on)->
 write(["L",Level]);true),
@@ -353,6 +350,11 @@ write(["L",Level]);true),
 debug_call(Skip1,[Function,Arguments1]),
 
 	(debug_fail(Skip1,[Function,Arguments1])->true;true), % below instead
+	
+	All_predicate_numbers=[Predicate_number_a|All_predicate_numbers2],
+	
+	Predicate_number_a=[Predicate_number_a1,"prev_pred_id",Prev_pred_id],
+	
 
 	%trace,
 	
@@ -372,8 +374,12 @@ ssi1([["prev_pred_id",Prev_pred_id],Level,Predicate_number_a1,Line_number,"predi
 	CP_Vars1,CP_Vars2)
 	))->true;
 	
-	(Level2 is Level-1,
-	ssi1([_,Level2,_Predicate_number2,-3,"line",-, % (-) as pred id
+	(%trace,
+	Level2 is Level-1,
+	%member([pred_id_chain,PID1,Pred_id1],Globals1),
+	%member([[pred_num,PID1],Predicate_number_c],Globals1),
+
+pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) as pred id
 	[],_All_predicate_numbers], Result21,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals1,Globals2,
@@ -588,7 +594,7 @@ member([Predicate_number,_F|Rest],Functions),
 (Rest=[],Lines=[[[n,true]]])))),
 
 (%trace,
-return_to_last_non_end_function(Line_number_a,Lines,Line_number_b,["on true",A],["go after",_B],["on false",C],["go to predicates",D],Line)
+return_to_last_non_end_function(Line_number_a,Lines,Line_number_b,["on true",A],["go after",_B],["on false",C],["go to predicates",D],Line,Globals1,Pred_id,Line_number_a)
 
 ),
 
@@ -842,9 +848,9 @@ find_sys(Sys_name),
 	(AC=(-) ->
 	
 	(%writeln1(interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c)),
-	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c));
+	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c,Skip));
 	(%trace,
-	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c,AC)))
+	interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c,AC,Skip)))
 	)
 	% choose certain commands from lpi for ssi, rest customised
 	
@@ -860,7 +866,12 @@ find_sys(Sys_name),
 	% iso commands need to be done like c
 	
  % - do bagof, setof later
- ((%trace,
+ (
+
+ (var(Skip)->Globals3=Globals4;
+ append(Globals3,[[[skip,Pred_id,Line_number_a],Skip]],Globals4)),
+ 
+ (%trace,
  Vars2c=[]->(Choice_point_trail1e=Choice_point_trail11,
  CP_Vars3=CP_Vars4);
   append_cp(Choice_point_trail1e,[[Pred_id,Level,Predicate_number,Line_number_a,"line",-,
@@ -869,7 +880,7 @@ find_sys(Sys_name),
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
 	Vars3,All_predicate_numbers], _End_result3, Functions,Vars2,
 	Result1, Result2, 
-	Globals3,Globals2,
+	Globals4,Globals2,
 	Choice_point_trail11,
 	Choice_point_trail3,
 	CP_Vars4,CP_Vars2)
@@ -892,11 +903,11 @@ find_sys(Sys_name),
 % return true or false result from pred
 
 
-interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_) :-
+interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_,Skip) :-
 	%false.
-	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_).
+	interpretstatement3(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_,Skip).
 
-interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars2c) :-
+interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars2c,_Skip) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	%false.%
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c).
@@ -982,11 +993,11 @@ cp_since_findall_start(Choice_point_trail1,Level,D1,E1,D11,CP_Vars1,CP_Vars2) :-
 %trace,
 	
 	%trace,
-	member([A1,A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail1),
+	member([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail1),
 	D11=[A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
 	%writeln1(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)),
 	get_earlier_cps_before_cp1(Choice_point_trail1,
-	[_,_,Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
+	[_,_,_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
 	D1,B),
 	
 	%D1=[_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
@@ -1016,7 +1027,7 @@ cp_since_findall_start(Choice_point_trail1,Level,D1,E1,D11,CP_Vars1,CP_Vars2) :-
 
 % bc
 
-return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1) :-
+return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1,Globals,_,_) :-
 
 	% if -2 or -3, fill A-Line
 	((E1= -1->true;(E1= -2->true; E1= -3))->
@@ -1028,17 +1039,29 @@ return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1
 	(find_line_number(E1,E),End_line4=E,
 	member([E,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1]|Line1],Lines))))).
 	
-return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1) :-
+return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1,Globals,Pred_id,Line_number_a) :-
+%trace,
+%writeln1([lines,Lines]),
 %writeln1(return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1)),
 %trace,
 %writeln(E1),
 	find_line_number(E1,E),
-	member([E,["on true",_A],["go after",B],["on false",C],["go to predicates",_D]|_Line],Lines),
+	%trace,
+	%writeln1([globals,Globals]),
+	find_line_number(Line_number_a,Line_number_a1),
+	member([[skip,Pred_id,Line_number_a1],Skip],Globals),
+	
+	get_lang_word("n",Dbw_n),
+	get_lang_word("not",Dbw_not),
+	member([E,["on true",_A],["go after",B],["on false",C],["go to predicates",_D]|Line],Lines),
 	(E1=[exit_function,_]->
-	F=B;
+	(F=B,(Line=[[Dbw_n,Dbw_not]]-> 
+	(debug_fail(Skip,Line)->true;true);debug_exit(Skip,Line)));
 	(E1=[fail_function,_]->
-	F=C)),
-	return_to_last_non_end_function(F,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1).
+	(F=C,(Line=[[Dbw_n,Dbw_not]]->
+	debug_exit(Skip,Line);(debug_fail(Skip,Line)->true;true))))),
+	
+	return_to_last_non_end_function(F,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1,Globals,Pred_id,Line_number_a).
 	
 	
 find_line_number(Line_number1,Line_number2) :-
