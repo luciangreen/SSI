@@ -869,7 +869,7 @@ find_sys(Sys_name),
  (
 
  (var(Skip)->Globals3=Globals4;
- append(Globals3,[[[skip,Pred_id,Line_number_a],Skip]],Globals4)),
+ append(Globals3,[[[skip,Pred_id,Line_number_b],Skip]],Globals4)),
  
  (%trace,
  Vars2c=[]->(Choice_point_trail1e=Choice_point_trail11,
@@ -912,7 +912,7 @@ interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars
 	%false.%
 	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c).
 
-interpretstatement2(ssi,Functions,Functions,_Line,Vars2,Vars3,Result21,_Cut,_,AC) :-
+interpretstatement2(ssi,Functions,Functions,_Line,Vars2,Vars3,Result21,_Cut,_,AC,_Skip) :-
 %trace,
 	interpretstatement4(ssi,Functions,Functions,_Line,Vars2,Vars3,Result21,_Cut,_,AC).
 

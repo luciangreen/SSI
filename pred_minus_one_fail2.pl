@@ -82,7 +82,6 @@ ssi1([_,0,_Predicate_number,-3,"predicate",_Query_a,
 %trace,
 	PID1=Pred_id1,
 	
-((
 	get_last_cp_after_n(Choice_point_trail1,
 	[PID1,_Level2,_Predicate_number2,["returns to",Line_number3,"pred_id",Pred_id3]
 	,"predicate",_Query2,Vars4,_All_predicate_numbers2],
@@ -170,16 +169,4 @@ reverse(Globals212,Globals22),
 	Choice_point_trail3,
 	CP_Vars4,CP_Vars2)
 	
-	
-	)->true;
-	
-		(%Level2 is Level-1,
-	ssi1([_,Level,_Predicate_number21,-3,"line",-, % (-) as pred id
-	[],_All_predicate_numbers], Result21,Functions,Vars2,
-	Result1, Result2,%2, 
-	Globals1,Globals2,
-	Choice_point_trail1,
-	Choice_point_trail3,
-	CP_Vars1,CP_Vars2))
-)
 	)))).
