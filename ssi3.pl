@@ -846,7 +846,7 @@ CP_Vars5a=CP_Vars513,
 (
 
 
-writeln([old_vars,Old_vars,findall_vars,Findall_vars,format_vars,Format_vars,result_var,Result_var,value3,Value3,findall_vars2,Findall_vars2,value4,Value4,vars2fb,Vars2fb,vars2fd,Vars2fd,vars2fc,Vars2fc,vars1,Vars1,choice_point_trail1a31,Choice_point_trail1a31]),
+%writeln([old_vars,Old_vars,findall_vars,Findall_vars,format_vars,Format_vars,result_var,Result_var,value3,Value3,findall_vars2,Findall_vars2,value4,Value4,vars2fb,Vars2fb,vars2fd,Vars2fd,vars2fc,Vars2fc,vars1,Vars1,choice_point_trail1a31,Choice_point_trail1a31]),
 
 reverse(Choice_point_trail1a31,Choice_point_trail1a311),
 
