@@ -1,4 +1,11 @@
-get_earlier_cps_before_cp1(List1,Cp1,Cp3,Cps) :-
+get_later_cps_than_cp11(List1,Cp1,Cp3,Cps) :-
+%trace,
+%member([Cp_a,Cp_b|Cp1],List1),
+%trace,
+append(_,B,List1),
+append([Cp1],Cps,B),
+	[_,_|Cp3]=Cp1.
+	get_later_cps_than_cp1(List1,Cp1,Cp3,Cps) :-
 	%curr_cp(N),
 	%writeln1([cp1,Cp1]),
 	%writeln1([list1,List1]),
@@ -9,15 +16,15 @@ get_earlier_cps_before_cp1(List1,Cp1,Cp3,Cps) :-
 	%member(Cp1,List1),
 	member([Cp_b,Cp_a1|_Cp5],List1),
 	member([Cp_a1,Cp_a|_Cp4],List1),
-	get_earlier_cps_before_cp(List1,Cp_a,[],Cps).
+	get_later_cps_than_cp(List1,Cp_a,[],Cps).
 	%Cp2=[_,_|Cp3].
 /*
-get_earlier_cps_before_cp1(List1,Cp_a,Cps,Cps) :-
+get_later_cps_than_cp1(List1,Cp_a,Cps,Cps) :-
 	not(member([_,Cp_a|_],List1)),!.
-get_earlier_cps_before_cp1(List1,Cp_a,Cps1,Cps2) :-
+get_later_cps_than_cp1(List1,Cp_a,Cps1,Cps2) :-
 	member([Cp_b,Cp_a|Cp3],List1),
 	append(Cps1,[[Cp_b,Cp_a|Cp3]],Cps3),
-	get_earlier_cps_before_cp1(List1,Cp_b,Cps3,Cps2),!.
+	get_later_cps_than_cp1(List1,Cp_b,Cps3,Cps2),!.
 */
 % new above that returns cp a
 

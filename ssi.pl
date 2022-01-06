@@ -67,6 +67,8 @@ crop down pred from top x just goes to next command
 :-include('cp_since_findall_start2.pl').
 :-include('pred_minus_three.pl').
 :-include('pred_minus_one_fail2.pl').
+:-include('flush_after_last_findall').
+:-include('process_cp.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.
@@ -277,7 +279,7 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 	%Arguments=Result2,
 	%trace,
 	Number1a is Number1+1,
-	add_line_numbers_to_algorithm_body2([[Arguments2]],Body3,Number1a,Number2),
+	add_line_numbers_to_algorithm_body2([Arguments2],Body3,Number1a,Number2),
 	%%*** [Arguments2] to Arguments2
 			  
 %findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
