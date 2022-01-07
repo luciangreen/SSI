@@ -2,7 +2,7 @@
 
 
 /*
-numbers(191,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+numbers(193,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
 
 turn leash on in lpi, ssi
 
@@ -752,7 +752,7 @@ CP_Vars5a=CP_Vars512,
 	CP_Vars512,CP_Vars2)
 );
 
-(	append_cp(Choice_point_trail1a31,[[Pred_id,Level,Predicate_number,[findall_exit_function,Findall_end_line],"predicate",Query,
+(	append_cp(Choice_point_trail1a31,[[Pred_id,Level,Predicate_number,[findall_exit_function,Findall_end_line],"line",Query,
 	Vars2fb,All_predicate_numbers]],Choice_point_trail11,
 	CP_Vars512,CP_Vars6), % Pred_id n?
 
@@ -850,7 +850,7 @@ CP_Vars5a=CP_Vars513,
 
 reverse(Choice_point_trail1a31,Choice_point_trail1a311),
 
-member([_,_,_,_,_,[findall_exit_function,_],"predicate",-,Vars11|_],Choice_point_trail1a311),
+member([_,_,_,_,_,[findall_exit_function,_],"line",-,Vars11|_],Choice_point_trail1a311),
 
 
 member([A1c,A2c,
@@ -894,7 +894,7 @@ member([Cc,_F2|Rest2],Functions),
 
 member([0,["on true",1],["go after",Findall_end_line2]|_],Lines2),
 
-append_cp(Choice_point_trail1a31,[[Pred_id,Level,Predicate_number,[findall_exit_function,Findall_end_line],"predicate",Query,
+append_cp(Choice_point_trail1a31,[[Pred_id,Level,Predicate_number,[findall_exit_function,Findall_end_line],"line",Query,
 	Vars2fb,All_predicate_numbers]],Choice_point_trail11,
 	CP_Vars513,CP_Vars6), % Pred_id n?
 
@@ -1082,26 +1082,37 @@ delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
 
 cp_since_findall_start(Choice_point_trail1,Level,D1,E1,D11,CP_Vars1,CP_Vars2) :-
 %trace,
-	
+	CP_Vars1=CP_Vars2,
 	%trace,
 
 reverse(Choice_point_trail1,Choice_point_trail14),
-	member([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail14),
+	member_cut([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail14),
 	D11=[A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
 	%writeln1(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)),
 	get_later_cps_than_cp11(Choice_point_trail1,
-	[_,_,_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
+	[_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
 	D1,B),
+	
+	reverse(B,B1),
 	
 	%D1=[_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
 	%member([_,_|D1],Choice_point_trail1),
 	
-	cp_since_findall_start2(
+	member([A,B2,C,D_Level
+	%2
+	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],B1),
+	
+	E1=[C,D_Level
+	%2
+	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
+	
+	/*cp_since_findall_start2(
 	%get_last_cp_after_n(
 	B,
 	[_,Level
 	%2
 	,_Predicate_number2,_Line_number_a2,Pred_or_line,_,_,All_predicate_numbers2],_,E1,CP_Vars1,CP_Vars2),
+	*/
 	
 	
 	(Pred_or_line="line"->
@@ -1111,6 +1122,8 @@ reverse(Choice_point_trail1,Choice_point_trail14),
 	not(All_predicate_numbers2=[]))%)	
 	
 	.
+		member_cut([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail14) :-
+	member([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail14),!.
 
 % return until last non end function, go to line after
 % return until last non end function, go to line for false
