@@ -28,7 +28,7 @@ get_later_cps_than_cp1(List1,Cp_a,Cps1,Cps2) :-
 */
 % new above that returns cp a
 
-
+/*
 cp_since_findall_start2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2) :-
 	%writeln1("y for trace:"),(get_char(y)->trace;true),
 	%get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
@@ -38,6 +38,7 @@ cp_since_findall_start2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2) :-
 	%writeln1(cp_since_findall_start22(List1,Cp1,Cp2,Cp3)),
 	%get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
 	(debug4(on)->writeln([cp_since_findall_start22,List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars2]);true).
+	*/
 	%notrace.
 	
 	/*
