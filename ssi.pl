@@ -69,6 +69,7 @@ crop down pred from top x just goes to next command
 :-include('pred_minus_one_fail2.pl').
 :-include('flush_after_last_findall').
 :-include('process_cp.pl').
+:-include('end_nested_findall.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.

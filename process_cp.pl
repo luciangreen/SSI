@@ -1,4 +1,4 @@
-process_cp(D1,E1,
+process_cp(Findall_end_line,D1,E1,
 
 Query_a2,
 
@@ -61,6 +61,10 @@ Vars1,
 	
 append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line,_,_,CPV23]],Choice_point_trail1d,CP_Vars7,CP_Vars8),
 
+append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[findall_exit_function,Findall_end_line],"line",_,
+	Vars2fa,_]],Choice_point_trail1d1,
+	CP_Vars8,CP_Vars81), % Pred_id n?
+
 %CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
 
 	ssi1([Pred_id2,Level3, %*
@@ -68,9 +72,9 @@ append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a
 	Old_vars,CPV23], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
-	Choice_point_trail1d,
+	Choice_point_trail1d1,
 	Choice_point_trail3,["appearance of command",CPV22],
-	CP_Vars8,CP_Vars2)
+	CP_Vars81,CP_Vars2)
 
 
 		
@@ -117,6 +121,10 @@ append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a
 
 append_cp(Choice_point_trail1c,[[Pred_id2,Level3,CPV1,Line_number_a2,Pred_or_line,_,_,CPV22]],Choice_point_trail1d,CP_Vars7,CP_Vars8),
 
+append_cp(Choice_point_trail1d,[[Pred_id2,Level3,CPV1,[findall_exit_function,Findall_end_line],"line",_,
+	Vars2fa,_]],Choice_point_trail1d1,
+	CP_Vars8,CP_Vars81), % Pred_id n?
+
 %trace,
 
 CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
@@ -126,8 +134,8 @@ CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
 	_,CPV2], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
-	Choice_point_trail1d,
+	Choice_point_trail1d1,
 	Choice_point_trail3,
-	CP_Vars8,CP_Vars2)
+	CP_Vars81,CP_Vars2)
 	)
 	)).
