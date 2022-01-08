@@ -59,8 +59,8 @@ find_sys(Sys_name),
 	
 	getvalue(Result_var,Value4,Vars2fb),
 	
-	
-	subtract(Old_vars,[Result_var,_],Vars2fd),
+	%trace,
+	subtract(Old_vars,[[Result_var,_]],Vars2fd),
 	
 	append(Vars2fd,[[Result_var,Value4]],Vars2fc),
 
@@ -73,6 +73,8 @@ reverse(Choice_point_trail3,Choice_point_trail4),
 %trace,
 ((
 member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4),
+
+%writeln1(member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4)),
 
 member_cut1([A1c,A2c,
 Ac, Bc, Cc, Dc, "findall", -,

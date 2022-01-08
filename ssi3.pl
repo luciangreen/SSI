@@ -845,15 +845,23 @@ append_cp(Choice_point_trail1a31,[[Pred_id,Level,Predicate_number,[findall_exit_
 	CP_Vars513,CP_Vars6), % Pred_id n?
 
 */
+%trace,
+/*
 member([Predicate_number,_F2|Rest2],Functions),
 (Rest2=[_Args2,":-",Lines2]->true;
 (Rest2=[_Args2]->Lines2=[[[n,true]]];
 (Rest2=[":-",Lines2];
 (Rest2=[],Lines2=[[[n,true]]])))),
+*/
+%writeln([Line_number_a,Line_number_b]),
+%trace,
 
-member([0,["on true",1],["go after",Findall_end_line2]|_],Lines2),
+exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
 
-	ssi1([Pred_id,Level,Predicate_number,Findall_end_line2,"line",Query,
+%member([0,["on true",_],["go after",Findall_end_line2]|_],Lines2),
+
+	ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
+	,"line",Query,
 	Result3,%Jc,%Old_vars,
 	All_predicate_numbers], End_result, Functions,Vars2,
 	Result1, Result2, 
@@ -1408,3 +1416,18 @@ replace_cp(Choice_point_trail1e,Cp_a1,Cp_a2,D1,D2,Choice_point_trail1b,CP_Vars1,
 	set(curr_cp,Cp_a1,CP_Vars1,CP_Vars2),
 	sort(Choice_point_trail1g,Choice_point_trail1b).	
 	
+exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c) :-
+%trace,
+	member([Predicate_number,_F|Rest],Functions),
+(Rest=[_Args,":-",Lines]->true;
+(Rest=[_Args]->Lines=[[[n,true]]];
+(Rest=[":-",Lines];
+(Rest=[],Lines=[[[n,true]]])))),
+
+((Line_number_b=[findall_exit_function,C]->true;
+Line_number_b=[exit_function,C])->
+(member([C,["on true",_A],["go after",B]|_],Lines),
+exit_findall_line(Predicate_number,B,Functions,Line_number_c));
+
+(Line_number_c=Line_number_b%trace,member([Line_number_b,["on true",_A],["go after",Line_number_c]|_],Lines)
+)).
