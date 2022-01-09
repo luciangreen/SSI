@@ -2,7 +2,7 @@
 
 
 /*
-numbers(193,1,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
+numbers(104,104,[],N),findall(N1,(member(N1,N),test(N1,Q,F,R),catch(call_with_time_limit(3,lucianpl(off,Q,F,R)),_,false),writeln(N1)),N2),sort(N2,N3),writeln(N3),length(N3,L),subtract(N,N3,U),writeln(U).
 
 turn leash on in lpi, ssi
 
@@ -399,7 +399,7 @@ pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) a
 	member([[firstargs,Pred_id1],FirstArgs],Globals1),
 	
 	member([[arguments1,Pred_id1],Arguments1],Globals1),
-
+%trace,
 	member([[skip,Pred_id1],Skip],Globals1),
 
 	member([[level,Pred_id1],Level_a],Globals1),
@@ -432,8 +432,10 @@ write(["L",Level_a]);true),
 %trace,
 	findresult3(Arguments1,Vars3,[],Result22),
 	
+	%trace,
 	(debug3(on)->
 write(["L",Level_a]);true),
+%notrace,
    debug_exit(Skip,[Function,Result22]), % return result21
    checktypes(Function,Result22),
 
@@ -655,7 +657,7 @@ Vars1,
 	%trace,
 	
 	
-	end_nested_findall(Choice_point_trail1e,Choice_point_trail11,Vars1,Vars2,CP_Vars3,CP_Vars6,Result3),
+	end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail11,Vars1,Vars2,CP_Vars3,CP_Vars6,Functions,Result3,Globals3,Globals31)
 
 %trace,	%Choice_point_trail1e=Choice_point_trail4,
 %flush_after_last_findall(Choice_point_trail1e,Choice_point_trail1e1,CP_Vars3,CP_Vars31),
@@ -856,19 +858,7 @@ member([Predicate_number,_F2|Rest2],Functions),
 %writeln([Line_number_a,Line_number_b]),
 %trace,
 
-exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
-
-%member([0,["on true",_],["go after",Findall_end_line2]|_],Lines2),
-
-	ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
-	,"line",Query,
-	Result3,%Jc,%Old_vars,
-	All_predicate_numbers], End_result, Functions,Vars2,
-	Result1, Result2, 
-	Globals3,Globals2,
-	Choice_point_trail11, % Choice_point_trail11 to Choice_point_trail1a
-	Choice_point_trail3,
-	CP_Vars6,CP_Vars2)));
+));
 %reverse()
 %Level32 is Level-1,
 	((Line_number_b= -1 -> true;(Line_number_b= -2 ->true;Line_number_b= -3))->
@@ -883,6 +873,7 @@ exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
 	CP_Vars3,CP_Vars2
 	);
 
+	(%trace,
 	ssi1([Pred_id,Level, %*
 	Predicate_number,Line_number_b,"predicate",Query,
 	Vars1,All_predicate_numbers], _End_result, Functions,Vars2,
@@ -890,7 +881,7 @@ exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2));
+	CP_Vars3,CP_Vars2)));
 
 
 	(not(D='-') ->
