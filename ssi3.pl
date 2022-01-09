@@ -657,7 +657,7 @@ Vars1,
 	%trace,
 	
 	
-	end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail11,Vars1,Vars2,CP_Vars3,CP_Vars6,Functions,Result3,Globals3,Globals31)
+	end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Result3,Globals3,Globals2,Result1, Result2)
 
 %trace,	%Choice_point_trail1e=Choice_point_trail4,
 %flush_after_last_findall(Choice_point_trail1e,Choice_point_trail1e1,CP_Vars3,CP_Vars31),
