@@ -1,4 +1,4 @@
-end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1,Choice_point_trail2,Vars1,Vars2,CP_Vars1,CP_Vars2,Functions,Result3,Globals1,Globals2,Result1, Result2) :-
+end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1,Choice_point_trail2,Vars1,Vars2,CP_Vars1,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2) :-
 	% if there are no more choice points after the current findall, then pass back results.
 	
 	% [1,2,1,1,0,-1,"predicate",[[n,query_box_1],[[v,b]]],[[[v,b],empty]],[]],[2,3,1,1,0,["returns to",0,"pred_id",1],"predicate",-,[[[v,b],empty]],[]],[3,4,2,2,1,-1,"predicate",[[n,findall1],[[[1,2],[3,4]],[v,b]]],[[[v,a],[[1,2],[3,4]]],[[v,b],empty]],[]],[4,5,2,2,1,0,"findall",-,[old_vars,[[[v,a],[[1,2],[3,4]]],[[v,b],empty]]],[findall_vars,[empty]],[format_vars,[v,b1]],[result_var,[v,b]]],[5,6,2,2,1,2,"line",_536118,_536124,[[n,member2],[[[1,2],[3,4]],empty],_462556,_462562,_462568,_462574,[]]],[6,7,2,2,1,3,"findall",-,[old_vars,[[[v,a],[[1,2],[3,4]]],[[v,b],empty],[[v,a1],[3,4]]]],[findall_vars,[8]],[format_vars,[v,a3]],[result_var,[v,b1]]],[7,8,2,2,1,5,"line",_577278,_577284,[[n,member2],[[3,4],empty],_557636,_557642,_557648,_557654,[]]],[8,9,2,2,1,[findall_exit_function,3],"predicate",-,[[[v,a],[[1,2],[3,4]]],[[v,b],empty],[[v,a1],[1,2]],[[v,a2],2],[[v,a3],7],[[v,b1],[6,7]]],[[n,member2],[[1,2],empty],_482002,_482008,_482014,_482020,[]]],[9,10,2,2,1,5,"line",_499516,_499522,[[n,member2],[[1,2],empty],_482002,_482008,_482014,_482020,[]]]
@@ -34,7 +34,7 @@ x
 
 %trace,
 
-get_last_cp_after_n(Choice_point_trail1,[_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
+get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 	[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
 	D1=[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 
@@ -72,13 +72,13 @@ reverse(Choice_point_trail3,Choice_point_trail4),
 
 %trace,
 ((
-member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4),
+member_cut1([_Ad,_Bd,_Cf,_Ef,_Ff,[findall_exit_function,_Gf],"line",-,_Vars11|_],Choice_point_trail4),
 
 %writeln1(member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4)),
 
-member_cut1([A1c,A2c,
-Ac, Bc, Cc, Dc, "findall", -,
-[old_vars,Ec],[findall_vars,Fc],[format_vars,Gc],[result_var,Hc]],
+member_cut1([_A1c,_A2c,
+_Ac, _Bc, _Cc, _Dc, "findall", -,
+[old_vars,Ec],[findall_vars,_Fc],[format_vars,_Gc],[result_var,Hc]],
 Choice_point_trail4),
 
 %trace,
@@ -121,7 +121,7 @@ member_cut1([_,_,_,_,_,_,"findall",-|_],Choice_point_trail52))
 
 %cp_since_findall_start(Choice_point_trail5,_Level,_D10,E1,_D1,CP_Vars41,CP_Vars4)
 -> 
-end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Result3,Globals1,Globals2,Result1, Result2);
+end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2);
 (%trace,
 (cp_since_findall_start(Choice_point_trail3,Level,_,E100,D100,CP_Vars3,CP_Vars3111)->
 
@@ -139,8 +139,8 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
 	*/
 		
 		%trace,
-		E100=[C_Pred_id2,C_Level3,C_Predicate_number2,C_Line_number_a2,C_Pred_or_line%"line"
-	,C_Query_a2,_CCPV0,CCPV3],
+		E100=[_C_Pred_id2,_C_Level3,_C_Predicate_number2,C_Line_number_a2,_C_Pred_or_line%"line"
+	,_C_Query_a2,_CCPV0,_CCPV3],
 
 %trace,
 %writeln([choice_point_trail3,Choice_point_trail3]),
@@ -168,9 +168,9 @@ exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
 %member([0,["on true",_],["go after",Findall_end_line2]|_],Lines2),
 
 	ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
-	,"line",Query,
+	,"line",_Query,
 	Vars2fc,%Jc,%Old_vars,
-	All_predicate_numbers], End_result, Functions,Vars2,
+	_All_predicate_numbers], _End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
 	Choice_point_trail3, % Choice_point_trail11 to Choice_point_trail1a
@@ -182,7 +182,6 @@ Choice_point_trail3=Choice_point_trail2,
 Vars1=Vars2,
 CP_Vars3=CP_Vars2,
 Cd=Ce,Ed=Ee,Fd=Fe,Gd=Ge,
-Vars2fc=Result3,
 Globals1=Globals2
 */
 ))))

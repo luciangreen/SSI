@@ -31,7 +31,7 @@ write(["L",Level_a]);true),
 	/*
 	Pred_id1=Pred_id4,
 	
-	get_last_cp_after_n(Choice_point_trail1,[%_,_,
+	get_last_p_before_n(Choice_point_trail1,[%_,_,
 	Pred_id4,_Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers4],
 	[_,_,Pred_id4,_Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
@@ -82,21 +82,21 @@ ssi1([_,0,_Predicate_number,-3,"predicate",_Query_a,
 %trace,
 	PID1=Pred_id1,
 	
-	get_last_cp_after_n(Choice_point_trail1,
+	get_last_p_before_n(Choice_point_trail1,
 	[PID1,_Level2,_Predicate_number2,["returns to",Line_number3,"pred_id",Pred_id3]
 	,"predicate",_Query2,Vars4,_All_predicate_numbers2],
 	[_Cp_a,_Cb_b,PID1,_Level2,_Predicate_number2,["returns to",Line_number3,"pred_id",Pred_id3]
 	,"predicate",_Query2,Vars4,_All_predicate_numbers2],_,
 	CP_Vars1,CP_Vars41),
 	
-	get_last_cp_after_n(Choice_point_trail1,
+	get_last_p_before_n(Choice_point_trail1,
 	[PID1,_Level21,Predicate_number2,-1%Line_number2b
 	,"predicate",_Query21,_Vars4,All_predicate_numbers2],
 	[_Cp_a1,_Cb_b1,PID1,_Level21,Predicate_number2,-1%Line_number2b
 	,"predicate",_Query21,_Vars4,All_predicate_numbers2],_,
 	CP_Vars41,CP_Vars4),
 
-/*writeln1(get_last_cp_after_n(Choice_point_trail1,
+/*writeln1(get_last_p_before_n(Choice_point_trail1,
 	[PID1,_Level2,Predicate_number2,-1%Line_number2b
 	,"predicate",_Query2,Vars4,All_predicate_numbers2],
 	[_Cp_a,_Cb_b,PID1,_Level2,Predicate_number2,Line_number2b,"predicate",_Query2,Vars4,All_predicate_numbers2],_,

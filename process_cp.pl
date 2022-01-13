@@ -42,7 +42,7 @@ Vars1,
 	
 	turn_back_debug(Debug),
 
-	get_last_cp_after_n(Choice_point_trail1e,D1,[Cp_a1,Cp_a2|D1],_,CP_Vars31,CP_Vars4),
+	get_last_p_before_n(Choice_point_trail1e,D1,[Cp_a1,Cp_a2|D1],_,CP_Vars31,CP_Vars4),
 	delete_cp(Choice_point_trail1e,[Cp_a1,Cp_a2|D1],Choice_point_trail1a,CP_Vars4,CP_Vars5,_),
 	
 	D2=[Pred_id3,Level4
@@ -100,7 +100,7 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[findall_exit
 	turn_back_debug(Debug),
 
 %trace,
-	get_last_cp_after_n(Choice_point_trail1e,D1,[Cp_a1,Cp_a2|D1],_,CP_Vars31,CP_Vars4),
+	get_last_p_before_n(Choice_point_trail1e,D1,[Cp_a1,Cp_a2|D1],_,CP_Vars31,CP_Vars4),
 	delete_cp(Choice_point_trail1e,[Cp_a1,Cp_a2|D1],Choice_point_trail1a,CP_Vars4,CP_Vars5,_),
 	
 	D2=[Pred_id3,Level4

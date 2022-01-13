@@ -409,13 +409,13 @@ Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_
 	
 	
 	
-	find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,Pred_numbers1) :-
+	find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,_Pred_numbers1) :-
 	((Statement=[Number,[v,Name1],Arguments],
 	%trace,
 
 	not(Name1=findall),
 
-	length(Arguments,Arity1),
+	%length(Arguments,Arity1),
 	%atom_string(Name1,Name),
 	%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
 	%(Name1=downpipe->trace;true),
@@ -429,7 +429,7 @@ Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_
 	(%%Statement=[_,[n,Name]],
 	%%trace,
 	Statement=[Number,[v,Name1]],
-	length([],Arity1),
+	%length([],Arity1),
 		%atom_string(Name1,Name),
 %(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
 %(member([[v,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
