@@ -59,11 +59,6 @@ where `2` is replaced by the test number (1-194) from <a href="https://github.co
 * Later SSI may support going backwards, breaking, modifying and correcting code in trace mode.
 * SSI will enable running segments of a complex algorithm on a supercomputer and prevent data loss in low-power areas.
 
-# To Do
-
-* Retry feature in trace mode.
-* Web service API (allows the user to debug algorithms online).
-
 # Documentation
 
 See <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Documentation</a>.
