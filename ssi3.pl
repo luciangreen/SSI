@@ -122,7 +122,9 @@ lucianpl1(Debug) :-
   	retractall(sys(_)),
  	assertz(sys(1)),
 	retractall(pred_id(_)),
- 	assertz(pred_id(0)),
+ 	assertz(pred_id(%100%
+ 	0
+ 	)),
  	
 	  	retractall(debug2(_)),
 	  	retractall(debug3(_)),
@@ -392,6 +394,13 @@ pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) a
 	% true exit from pred
 	->(
 	(
+	%trace,
+	%delete_cp(Choice_point_trail1,
+	%[_,_,Pred_id1,Level,Predicate_number,_,"predicate"|_],
+	%Choice_point_trail1a,CP_Vars1,CP_Vars1a,_),
+
+	Choice_point_trail1=Choice_point_trail1a,
+	CP_Vars1=CP_Vars1a,
 	
 	member([[firstargs,Pred_id1],FirstArgs],Globals1),
 	
@@ -413,15 +422,15 @@ write(["L",Level_a]);true),
 	
 	Pred_id1=Pred_id4,
 	
-	get_last_p_before_n(Choice_point_trail1,[%_,_,
+	get_last_p_before_n(Choice_point_trail1a,[%_,_,
 	Pred_id4,_Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers4],
 	[_,_,Pred_id4,_Level,_Predicate_number4,-1,"predicate",[Function,Arguments1], %**
 	_Vars,_All_predicate_numbers4],_%Choice_point_trail5
 	,
-	CP_Vars1,CP_Vars3),
+	CP_Vars1a,CP_Vars3),
 	
-	Choice_point_trail1=Choice_point_trail2,
+	Choice_point_trail1a=Choice_point_trail2,
 	CP_Vars3=CP_Vars41,
 	
 	%trace,
@@ -896,7 +905,28 @@ member([Predicate_number,_F2|Rest2],Functions),
 	(not(D='-') ->
 
 (d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
+
+((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+	get_lang_word("cut",Dbw_cut1),Dbw_cut1=Dbw_cut,
+	%writeln1([line,Line]),
+	
+	Line=[[Dbw_n,Dbw_cut],[]]) ->
+	%trace,
+	(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3),
+	
+	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
+	Vars1,All_predicate_numbers], _End_result3, Functions,Vars2,
+	Result1, Result2, 
+	Globals3,Globals2,
+	Choice_point_trail11,
+	Choice_point_trail3,
+	CP_Vars4,CP_Vars2)
+
+	);
+	
 	((%trace,
+	((
+
 	(AC=(-) ->
 	
 	(%writeln1(interpretstatement2(ssi,Functions,Functions,Line,Vars1,Vars3,_Result21,_Cut,Vars2c)),
@@ -947,7 +977,7 @@ member([Predicate_number,_F2|Rest2],Functions),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2)))))),!.
+	CP_Vars3,CP_Vars2))))))))),!.
 
 	
 
@@ -1530,3 +1560,44 @@ exit_findall_line(Predicate_number,B,Functions,Line_number_c));
 
 (Line_number_c=Line_number_b%trace,member([Line_number_b,["on true",_A],["go after",Line_number_c]|_],Lines)
 )).
+
+% delete choicepoints in all clauses of current predicate
+% find cps of same name, arity that have same previous pred_id
+cut_cps(Choice_point_trail1,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
+	member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+	pred_numbers(Pred_numbers),
+	member([Function1,Arity1,Pred_numbers1],Pred_numbers),
+	member(Predicate_number,Pred_numbers1),
+
+	findall(Pred_id1,(member([pred_id_chain,Prev_pred_id,Pred_id1],Globals3),
+	member([Function1,Arity1,Pred_numbers2],Pred_numbers),
+	member([[pred_num,Pred_id1],Predicate_number1],Globals3),
+	member(Predicate_number1,Pred_numbers2)),
+	Pred_ids2),
+	
+	findall([E2,E4],(member(C,Pred_ids2),
+	E2=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
+	member(E2,Choice_point_trail1),
+	
+	%E1=[C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
+	
+	(Pred_or_line="line"->
+	(All_predicate_numbers2=[Ab,Bb,Cb,Db,Eb,
+	Fb,Vars2c],not(Vars2c=[]),
+	E4=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,[Ab,Bb,Cb,Db,Eb,
+	Fb,[]]]);
+	Pred_or_line="predicate"->
+	not(All_predicate_numbers2=[]),
+	E4=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,[]])
+	),E3),
+	
+	replace_cp2(Choice_point_trail1,E3,Choice_point_trail2,CP_Vars1,CP_Vars2).
+
+	replace_cp2(Choice_point_trail,[],Choice_point_trail,CP_Vars,CP_Vars) :- !.
+	replace_cp2(Choice_point_trail1,E3,Choice_point_trail2,CP_Vars1,CP_Vars2) :-
+		
+	E3=[[[A,B|E1],[A,B|E11]]|E2],
+replace_cp(Choice_point_trail1,A,B,E1,E11,Choice_point_trail3,CP_Vars1,CP_Vars3),
+replace_cp2(Choice_point_trail3,E2,Choice_point_trail2,CP_Vars3,CP_Vars2).
+
+		

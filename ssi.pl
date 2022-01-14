@@ -299,8 +299,11 @@ add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
 	*/
 	   
 add_line_numbers_to_algorithm_statement1(Statement,Result1,Number1,Number2) :-
+	%(Statement=[[n,cut]]->trace;true),
+
 	((Statement=[[n,Name],Arguments],
 	not(Name=findall),
+
 	Arguments=Result2,
 	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
 	Result1=[[Number1,[n,Name],Result2]])->true;
