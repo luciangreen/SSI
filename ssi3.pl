@@ -251,7 +251,7 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 	
 
 	))))
-	)->true;(writeln([ssi1,0,abort]),number_string(a,_)%abort
+	)->true;(writeln([ssi1,0,abort]),fail%number_string(a,_)%abort
 	)),!.
 
 
