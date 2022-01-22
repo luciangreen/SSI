@@ -16,16 +16,18 @@ d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicat
 
 
 get_lang_word("v",Dbw_v),
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
+%get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+%get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 
 %find_pred_sm(Reserved_words1),
 Line=Query1,
-        ((Query1=[[Dbw_n,Dbw_call],[Function,Arguments]]
-        )->true;
-(Query1=[Function,Arguments]
-)
-),
+        %((Query1=[[Dbw_n,Dbw_call],[Function,Arguments]]
+        %)->true;
+%(
+Query1=[Function,Arguments]
+%)
+%)
+,
 
         (Function=[Dbw_v,_]->
         (append([Function],Arguments,Arguments1),

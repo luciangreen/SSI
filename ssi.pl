@@ -70,6 +70,7 @@ crop down pred from top x just goes to next command
 :-include('flush_after_last_findall').
 :-include('process_cp.pl').
 :-include('end_nested_findall.pl').
+:-include('used_by_call_command.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.
@@ -78,6 +79,11 @@ crop down pred from top x just goes to next command
 %:- dynamic curr_cp/1.
 :- dynamic curr_cp_index/1.
 :- dynamic pred_id/1.
+
+:- dynamic types/1.
+:- dynamic typestatements/1.
+:- dynamic modestatements/1.
+
 
 /*
 ssi(Debug,Query,Functions1,Result) :-
