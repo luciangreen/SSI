@@ -18,12 +18,12 @@ pred_minus_three([Pred_id1,Level,_Predicate_number,_Line_number,"predicate",_Que
 
 	Globals1=Globals3,
 
-/*(trace,
+%/*(trace,
 	(debug3(on)->
 write(["L",Level_a]);true),
 	
 	(debug_fail(Skip,[Function,Arguments1])->true;true),
-*/
+%*/
 %trace,
 	%updatevars(FirstArgs,Vars,[],Result),
 	%unique1(Result,[],Vars3),

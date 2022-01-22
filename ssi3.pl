@@ -146,7 +146,7 @@ ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
 	
-	Level=_,
+((	Level=_,
 	%/*
 	(debug2(on)->
 	writeln1(ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
@@ -186,6 +186,7 @@ Choice_point_trail1=Choice_point_trail3
 
 ((
 %writeln(here2),
+	 %Query2=[_|_],
 
 get_last_cp_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
@@ -211,6 +212,8 @@ All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
 		All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],
 
 	
+	%(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1,trace) ; Line_number2b1 = Line_number2b),
+
 	ssi1([Prev_pred_id,Level,All_predicate_numbers31,Line_number2b,"predicate",Query2,
 	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
 	Result1, Result2, 
@@ -247,7 +250,9 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 	Choice_point_trail1=Choice_point_trail3)
 	
 
-	)))),!.
+	))))
+	)->true;(writeln([ssi1,0,abort]),number_string(a,_)%abort
+	)),!.
 
 
 ssi1([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
@@ -258,7 +263,7 @@ ssi1([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
 	
-	%writeln([all_predicate_numbers,All_predicate_numbers]),
+((	%writeln([all_predicate_numbers,All_predicate_numbers]),
 	
 	(Pred_id_a1=["prev_pred_id",Pred_id1]->true;Pred_id_a1=Pred_id1),
 
@@ -546,7 +551,15 @@ reverse(Globals212,_Globals22),
 	
 	)))))
 ->true;
-	(false
+	(
+	ssi1([Pred_id_a1,Level,Predicate_number,-3%Line_number
+	,"predicate",Query_a,
+	Vars,All_predicate_numbers], Result21, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,
+	CP_Vars1,CP_Vars2)
 
 	)
 )
@@ -566,7 +579,12 @@ pred_minus_three([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Quer
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2)
 	
-	)))),!.
+	))))
+	
+		)->true;(writeln([ssi1,predicate,abort]),false
+		%number_string(a,_)%abort
+		)),!.
+
 
 
 
@@ -595,7 +613,7 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
 	CP_Vars1,CP_Vars2) :-
 	%/*
 	
-	%writeln([all_predicate_numbers,All_predicate_numbers]),
+((	%writeln([all_predicate_numbers,All_predicate_numbers]),
 		(debug2(on)->
 writeln1(
 	ssi1([Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
@@ -977,7 +995,8 @@ member([Predicate_number,_F2|Rest2],Functions),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2))))))))),!.
+	CP_Vars3,CP_Vars2)))))))))		)->true;(writeln([ssi1,line,abort]),false%number_string(a,_)%abort
+	)),!.
 
 	
 

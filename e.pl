@@ -5,6 +5,14 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	CP_Vars1,CP_Vars2
 	) :-
 %trace,
+	member([[function,Pred_id],Function],Globals1),
+	member([[arguments1,Pred_id],Arguments1],Globals1),
+
+	member([[skip,Pred_id],Skip],Globals1),
+
+(debug_fail(Skip,[Function,Arguments1])->true;true),
+
+
 ((not(Level=0))->(
 	
 	%trace,
@@ -39,11 +47,14 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	*/
 	
 	%writeln([choice_point_trail1,Choice_point_trail1]),
+
+	 Query2=[_|_],
 	%trace,
 	get_last_cp_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
-	 CP_Vars1,CP_Vars21)
+	 CP_Vars1,CP_Vars21)	
+
 	 %trace,
 	/*
 writeln1(get_last_p_before_n(Choice_point_trail1,
@@ -91,8 +102,9 @@ writeln1(delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_numbe
 	%(Pred_id=3->writeln(here3);true),
 	
 	% pred id in the following was _
+	(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1,trace) ; Line_number2b1 = Line_number2b),
 	
-ssi1([["prev_pred_id",Prev_pred_id],L,All_predicate_numbers31,Line_number2b,"predicate",Query2,
+ssi1([["prev_pred_id",Prev_pred_id],L,All_predicate_numbers31,Line_number2b1,"predicate",Query2,
 	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals1,Globals2,
@@ -141,6 +153,7 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars21,CP_
 	
 	%reverse(Globals21,Globals222),
 */
+
 %(debug_fail(Skip,[Function,Arguments1])->true;true),
 
 
