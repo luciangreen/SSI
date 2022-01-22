@@ -5,13 +5,14 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	CP_Vars1,CP_Vars2
 	) :-
 %trace,
-	member([[function,Pred_id],Function],Globals1),
+
+/*	member([[function,Pred_id],Function],Globals1),
 	member([[arguments1,Pred_id],Arguments1],Globals1),
 
 	member([[skip,Pred_id],Skip],Globals1),
 
 (debug_fail(Skip,[Function,Arguments1])->true;true),
-
+*/
 
 ((not(Level=0))->(
 	
