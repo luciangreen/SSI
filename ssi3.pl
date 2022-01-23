@@ -253,7 +253,8 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 	
 
 	))))
-	)->true;(writeln([ssi1,0,abort]),fail%number_string(a,_)%abort
+	)->true;(%writeln([ssi1,0,abort]),
+	fail%number_string(a,_)%abort
 	)),!.
 
 
@@ -583,7 +584,8 @@ pred_minus_three([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Quer
 	
 	))))
 	
-		)->true;(writeln([ssi1,predicate,abort]),false
+		)->true;(%writeln([ssi1,predicate,abort]),
+		fail
 		%number_string(a,_)%abort
 		)),!.
 
@@ -997,7 +999,8 @@ member([Predicate_number,_F2|Rest2],Functions),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2)))))))))		)->true;(writeln([ssi1,line,abort]),false%number_string(a,_)%abort
+	CP_Vars3,CP_Vars2)))))))))		)->true;(%writeln([ssi1,line,abort]),
+	fail%number_string(a,_)%abort
 	)),!.
 
 	

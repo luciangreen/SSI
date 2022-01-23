@@ -183,8 +183,8 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 %writeln1(interpret2(Query2,Functions0,Functions0,Result1)),
 
          remember_and_turn_off_debug(Debug),
- %turndebug(off),	%trace,
-         (lucianpl1(on,%,off,%Debug,
+ turndebug(off),	%trace,
+         (lucianpl1(off,%,off,%Debug,
          Query2,Functions0,Result1a)%interpret2(Query2,Functions0,Functions0,Result1)
          ->true;(turn_back_debug(Debug),false)),
                   

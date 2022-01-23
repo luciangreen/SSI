@@ -37,9 +37,10 @@ lucianpl111(Debug,Query,Functions,Result) :-
  	assertz(lang("en")));
 	true),
 	load_lang_db,
-	query_box(Query,Query1,[],Functions1),
 
 %trace,
+	query_box(Query,Query1,[],Functions1),
+
 
 delete(Functions,[0,[n,query_box_1]|_],Functions1a),
 
@@ -64,9 +65,12 @@ append(Functions2a,Functions1a,Functions2b),
 	find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2b,Reserved_words,Pred_numbers),
 
+%pred_numbers(Pred_numbers0),
+%writeln([pred_numbers0,Pred_numbers0]),
 	retractall(pred_numbers(_)),
  	assertz(pred_numbers(Pred_numbers)),
 %trace,
+%writeln([pred_numbers1,Pred_numbers]),
 
 	find_state_machine1(Functions2a,Functions3a,Pred_numbers),
 	append(Functions3a,Functions1a,Functions3b),
