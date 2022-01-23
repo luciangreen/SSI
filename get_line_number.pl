@@ -4,17 +4,24 @@ get_line_number(Line_number2b,Functions,Level2,Vars3,Globals1,Line_number2a) :-
 	Line_number3,"pred_id",Pred_id]%]
 	->
 	(
+	get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
+
 member([[pred_num,Pred_id],Predicate_number2],Globals1),
 
 member([Predicate_number2,_F|Rest],Functions),
 (Rest=[_Args,":-",Lines]->true;
-(Rest=[_Args]->Lines=[[[n,true]]];
+(Rest=[_Args]->Lines=[[[Dbw_n,Dbw_true]]];
 (Rest=[":-",Lines];
-(Rest=[],Lines=[[[n,true]]])))),
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]])))),
+
+get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
+get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
+get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
+get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
 
 
-
-	member([Line_number3,["on true",A],["go after",_B],["on false",_C],["go to predicates",_D]|_Line],Lines),
+	member([Line_number3,[Dbw_on_true,A],[Dbw_go_after,_B],[Dbw_on_false,_C],[Dbw_go_to_predicates,_D]|_Line],Lines),
 A=Line_number2a,
 %trace,
 	reverse(Globals1,Globals33), % I reversed this
