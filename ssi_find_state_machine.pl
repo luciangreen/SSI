@@ -137,20 +137,13 @@ find_state_machine_body2([],[],_,_,_):-!.%%,Body3
 %%find_state_machine_body2([],Body,Body) :- !.
 find_state_machine_body2(Body1,Body2%%,Body3
 ,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
-get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-        Body1=[[Number,[Dbw_n,"[]"],[Statements1|Statements1a]]|Statements2
+        Body1=[[Number,[n,"[]"],[Statements1|Statements1a]]|Statements2
         ],
 		not(predicate_or_rule_name(Statements1)),
 	not(number(Statements1)),
 	        find_first_line_number(Statements1,Statements1_number),
 
-		(Statements1a=[]->Statements1a_number=[Dbw_exit_function,Number];
+		(Statements1a=[]->Statements1a_number=[exit_function,Number];
         find_first_line_number(Statements1a,Statements1a_number)),
 
 		(Statements2=[]->Statements2_number=Return_line_true;
@@ -160,7 +153,7 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
         %%find_first_line_number(Statements2,Statements2_number),
 	find_state_machine_body2([Statements1],Body3,Statements1a_number,[fail_function,Number],Pred_numbers), %% 2->1
 
-	find_state_machine_body2([Statements1a],Body4,[Dbw_exit_function,Number],[fail_function,Number],Pred_numbers),
+	find_state_machine_body2([Statements1a],Body4,[exit_function,Number],[fail_function,Number],Pred_numbers),
         find_state_machine_body2([Statements2],Body5,-2,-3,Pred_numbers),
 
 	     maplist(append,[[Body3,Body4,Body5]],[Body345]),
@@ -169,7 +162,7 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 		  %% B2 - Line to go to next
 		  %% C - Line to go to if false
 		  
-Body6=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements2_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,"[]"]%,Body34
+Body6=[Number,["on true",Statements1_number],["go after",Statements2_number],["on false",Return_line_false],["go to predicates",-],[n,"[]"]%,Body34
         ],
         append([Body6],Body345,Body2),
 	!.
@@ -184,20 +177,15 @@ Body6=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements2_number]
 %% 
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("not",Dbw_not1),Dbw_not1=Dbw_not,
-get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
-get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_function,
-
 %%trace,
-        Body1=[[Number1,[Dbw_n,Dbw_not],Statement]|Statements2
+        Body1=[[Number1,[n,not],Statement]|Statements2
         ],
       %trace,  
       find_first_line_number(Statement,Statement_number),
 		(Statements2=[]->Statements2_number=Return_line_true;
         find_first_line_number(Statements2,Statements2_number)),
         %%%% swap args 3,4 ?
-        find_state_machine_body2([Statement],Body3,[Dbw_exit_function,Number1],[Dbw_fail_function,Number1],Pred_numbers),
+        find_state_machine_body2([Statement],Body3,[exit_function,Number1],[fail_function,Number1],Pred_numbers),
         
         %writeln1(Body3),
         find_state_machine_body2([Statements2],Body4,-2,-3,Pred_numbers),
@@ -207,14 +195,9 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 
 		  maplist(append,[[Body3,Body4]],[Body34]),
 
-get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-		  Body2a=[Number1,[Dbw_on_true,Statement_number],[Dbw_go_after,Return_line_false],
-		  [Dbw_on_false,Statements2_number],[Dbw_go_to_predicates,-],
-		  [Dbw_n,Dbw_not]],
+		  Body2a=[Number1,["on true",Statement_number],["go after",Return_line_false],
+		  ["on false",Statements2_number],["go to predicates",-],
+		  [n,not]],
 		  append([Body2a],Body34,Body2),
 		  %append([Body5],Body4
       %  ,Body2),
@@ -227,32 +210,19 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 %% account for brackets 
 %% vars have separate list for nondet, splices existing lists
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("or",Dbw_or1),Dbw_or1=Dbw_or,
-get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
-        Body1=[[Number,[Dbw_n,Dbw_or],[Statements1,Statements2]]|Statements3],
+        Body1=[[Number,[n,or],[Statements1,Statements2]]|Statements3],
 
 		  find_first_line_number(Statements1,Statements1_number),
 		  find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
-		  find_state_machine_body2([Statements1],Body3,[Dbw_exit_function,Number],Statements2_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
+		  find_state_machine_body2([Statements1],Body3,[exit_function,Number],Statements2_number,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
         find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements3,Number2,Number3),
-        get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("or",Dbw_or1),Dbw_or1=Dbw_or,
-
-
-
         maplist(append,[[Body3,Body4,Body5]],[Body345]),
-        Body6=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements3_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,Dbw_or]],%Body34
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,or]],%Body34
         %],
         append([Body6],Body345,Body2),
         !.
@@ -260,28 +230,20 @@ get_lang_word("or",Dbw_or1),Dbw_or1=Dbw_or,
 %% If true at end of section, return to next line
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
-
-        get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-        Body1=[[Number,[Dbw_n,"->"],[Statements1,Statements2]]|Statements3],
+        Body1=[[Number,[n,"->"],[Statements1,Statements2]]|Statements3],
         
         find_first_line_number(Statements1,Statements1_number),
         find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
 find_state_machine_body2([Statements1],Body3,Statements2_number,-3,Pred_numbers), 
-    	  find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
+    	  find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
 
         find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5]],[Body345]),
         %append(Body3,Body4,Body34),
-        Body6=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements3_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,"->"]],
+        Body6=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,"->"]],
         append([Body6],Body345,Body2),
         %append(Body61,Body5,Body2),
 
@@ -291,13 +253,7 @@ find_state_machine_body2([Statements1],Body3,Statements2_number,-3,Pred_numbers)
 
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
-        get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-        Body1=[[Number,[Dbw_n,"->"],[Statements1,Statements2,Statements2a]]|Statements3],
+        Body1=[[Number,[n,"->"],[Statements1,Statements2,Statements2a]]|Statements3],
                         %trace,
 
         find_first_line_number(Statements1,Statements1_number),
@@ -307,13 +263,13 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),       
         find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[exit_function,Number],-3,Pred_numbers),
                %%trace,
-                find_state_machine_body2([Statements2a],Body5,[Dbw_exit_function,Number],-3,Pred_numbers),
+                find_state_machine_body2([Statements2a],Body5,[exit_function,Number],-3,Pred_numbers),
         find_state_machine_body2([Statements3],Body6,-2,-3,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5,Body6]],[Body3456]),
-        Body7=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements3_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,"->"]],
+        Body7=[Number,["on true",Statements1_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,"->"]],
         append([Body7],Body3456,Body2),
         %append(Body71,Body6,Body2),
 
@@ -321,15 +277,7 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 
 
 find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_numbers) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
-get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
-        get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-Body1=[[Number,[Dbw_n,Dbw_findall],[Statements1,Statements2,Statements2a]]|Statements3],
+        Body1=[[Number,[n,findall],[Statements1,Statements2,Statements2a]]|Statements3],
                         %trace,
 
         %find_first_line_number(Statements1,Statements1_number),
@@ -341,12 +289,12 @@ Body1=[[Number,[Dbw_n,Dbw_findall],[Statements1,Statements2,Statements2a]]|State
         %find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
         %find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
                %%trace,
-                find_state_machine_body2(Statements2a,Body5,[Dbw_findall_exit_function,Number],Return_line_false,Pred_numbers),
+                find_state_machine_body2(Statements2a,Body5,[findall_exit_function,Number],Return_line_false,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
         maplist(append,[[%Body3,Body4,
         Body5,Body6]],[Body56]),
-        Body7=[Number,[Dbw_on_true,Statements2a_number],[Dbw_go_after,Statements3_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,Dbw_findall],[Statements1,Statements2]],
+        Body7=[Number,["on true",Statements2a_number],["go after",Statements3_number],["on false",Return_line_false],["go to predicates",-],[n,findall],[Statements1,Statements2]],
         append([Body7],Body56,Body2),
         %append(Body71,Body6,Body2),
 
@@ -435,50 +383,37 @@ find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_fal
 	   **/
 	   
 find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,Pred_numbers1) :-
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
-get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-	((Statement=[Number,[Dbw_n,Name1],Arguments],
+	((Statement=[Number,[n,Name1],Arguments],
 
-	not(Name1=Dbw_findall),
+	not(Name1=findall),
 
 	length(Arguments,Arity1),
 	%atom_string(Name1,Name),
 	%(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
 	%(Name1=downpipe->trace;true),
-	(member([[Dbw_n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+	(member([[n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
 	
 	Arguments=Result2,
 	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
-
-	Result1=[[Number,[Dbw_on_true,Return_line_true],[Dbw_go_after,-],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,Pred_numbers2],[Dbw_n,Name1],Result2]])->true;
+	Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[n,Name1],Result2]])->true;
 	(%%Statement=[_,[n,Name]],
 	%%trace,
-	Statement=[Number,[Dbw_n,Name1]],
+	Statement=[Number,[n,Name1]],
 	length([],Arity1),
 		%atom_string(Name1,Name),
 %(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
-(member([[Dbw_n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
+(member([[n,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
 
 
-Result1=[[Number,[Dbw_on_true,Return_line_true],[Dbw_go_after,-],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,Pred_numbers2],[Dbw_n,Name1]]])).
+Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[n,Name1]]])).
 	
 	
 	
 	find_state_machine_statement1(Statement,Result1,Return_line_true,Return_line_false,_Pred_numbers1) :-
-get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
-get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
-get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-	((Statement=[Number,[Dbw_v,Name1],Arguments],
+	((Statement=[Number,[v,Name1],Arguments],
 	%trace,
 
-	not(Name1=Dbw_findall),
+	not(Name1=findall),
 
 	%length(Arguments,Arity1),
 	%atom_string(Name1,Name),
@@ -490,17 +425,17 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 	
 	Arguments=Result2,
 	%findall(Argument,(member(Argument,Arguments),(predicate_or_rule_name(Argument))),Result2),
-	Result1=[[Number,[Dbw_on_true,Return_line_true],[Dbw_go_after,-],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,Pred_numbers2],[Dbw_v,Name1],Result2]])->true;
+	Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[v,Name1],Result2]])->true;
 	(%%Statement=[_,[n,Name]],
 	%%trace,
-	Statement=[Number,[Dbw_v,Name1]],
+	Statement=[Number,[v,Name1]],
 	%length([],Arity1),
 		%atom_string(Name1,Name),
 %(member(Name,Reserved_words)->Pred_numbers2=none;(member([[n,Name],Arity1,Pred_numbers2],Pred_numbers1))),
 %(member([[v,Name1],Arity1,Pred_numbers2a],Pred_numbers1)->Pred_numbers2=Pred_numbers2a;Pred_numbers2=(-)),
 	Pred_numbers2=(*),
 
-Result1=[[Number,[Dbw_on_true,Return_line_true],[Dbw_go_after,-],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,Pred_numbers2],[Dbw_v,Name1]]])).
+Result1=[[Number,["on true",Return_line_true],["go after",-],["on false",Return_line_false],["go to predicates",Pred_numbers2],[v,Name1]]])).
 	%%writeln([[Number,Return_line_true,Return_line_false,[n,Name],Result2]]).
 	
 %%if_empty_list_then_return([],_Number,-3) :- !.

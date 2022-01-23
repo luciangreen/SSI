@@ -112,23 +112,16 @@ ssi1([_,0,_Predicate_number,-3,"predicate",_Query_a,
 	->
 	(
 %member([[pred_num,Pred_id3],Predicate_number2],Globals3),
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 
 member([Predicate_number2,_F|Rest],Functions),
 (Rest=[_Args,":-",Lines]->true;
-(Rest=[_Args]->Lines=[[[Dbw_n,Dbw_true]]];
+(Rest=[_Args]->Lines=[[[n,true]]];
 (Rest=[":-",Lines];
-(Rest=[],Lines=[[[Dbw_n,Dbw_true]]])))),
+(Rest=[],Lines=[[[n,true]]])))),
 
 
 
-get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
-get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
-get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
-get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
-
-	member([Line_number3,[Dbw_on_true,_A],[Dbw_go_after,_B],[Dbw_on_false,C],[Dbw_go_to_predicates,_D]|_Line],Lines),
+	member([Line_number3,["on true",_A],["go after",_B],["on false",C],["go to predicates",_D]|_Line],Lines),
 C=Line_number2a
 %trace,
 /*

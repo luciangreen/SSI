@@ -41,9 +41,8 @@ lucianpl111(Debug,Query,Functions,Result) :-
 %trace,
 	query_box(Query,Query1,[],Functions1),
 
-%get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 
-delete(Functions,[0|_],Functions1a), % delete query box
+delete(Functions,[0,[n,query_box_1]|_],Functions1a),
 
 	%writeln1(query_box(Query,Query1,Functions,Functions1)),
 %%writeln1([i1]),
