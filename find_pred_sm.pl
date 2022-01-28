@@ -13,7 +13,9 @@ find_pred_sm(RW,"en"),writeln1(RW).
 **/
 
 find_pred_sm(Reserved_words1) :-
-	Reserved_words1=["+","-","*","/","abort","any","append","atom","brackets","call","ceiling","code","creep","cut","date","delete","equals1","equals2","equals3","equals4","equals4_on","equals4_off","exit","fail","grammar","head","is","length","letters","list","member","member2","member3","n","not","number","or","predicatename","random","round","skip","string","string_from_file","stringconcat","stringtonumber","sys","findall_sys","t","tail","true","unwrap","v","variable","vgp","wrap","input","output","string_length","sort","intersection","read_string","writeln","atom_string","trace","notrace","sqrt","notrace","get_lang_word"].
+	Reserved_words1=["+","-","*","/","abort","any","append","atom","brackets","call","ceiling","code","creep","cut","date","delete","equals1","equals2","equals3","equals4","equals4_on","equals4_off","exit","fail","grammar","head","is","length","letters","list","member","member2","member3","n","not","number","or","predicatename","random","round","skip","string","string_from_file","stringconcat","stringtonumber","sys","findall_sys","t","tail","true","unwrap","v","variable","vgp","wrap","input","output","string_length","sort","intersection","read_string","writeln","atom_string","trace","notrace","sqrt","notrace","get_lang_word"
+,"on_true","go_after","on_false","go_to_predicates",
+"exit_function","fail_function","findall_exit_function"].
 
 	
 % list of reserved words from lang dict
@@ -49,11 +51,13 @@ find_pred_numbers(Functions,_Reserved_words,Pred_numbers) :-
 	
 	%member([_Pred_number1,Pred_name1|Arguments_Body],Functions),(Arguments=":-"->Arity1=0;length(Arguments,Arity1))
 	
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 	member([Pred_number2,Pred_name1|Rest],Functions),
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
-(Rest=[Args]->(Lines=[[[n,true]]],length(Args,Arity1));
+(Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
-(Rest=[],Lines=[[[n,true]]],Arity1=0))))
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))
 
 
 	),Unique_predicates1),
@@ -70,9 +74,9 @@ find_pred_numbers(Functions,_Reserved_words,Pred_numbers) :-
 
 	member([Pred_number2,Pred_name2|Rest],Functions),
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
-(Rest=[Args]->(Lines=[[[n,true]]],length(Args,Arity1));
+(Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
-(Rest=[],Lines=[[[n,true]]],Arity1=0))))
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))
 
 
 

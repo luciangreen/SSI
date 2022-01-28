@@ -38,7 +38,7 @@ get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,_Line_number
 	[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
 	D1=[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 
-	get_lang_word("v",Dbw_v),
+	get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
 		
 	 remember_and_turn_off_debug(Debug),
 
@@ -47,7 +47,8 @@ find_sys(Sys_name),
 
 	getvalue([Dbw_v,Sys_name],Value3,Vars2fa),
 	
-	append(Findall_vars,[Value3],Findall_vars2),
+
+(Value3=empty-> Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	 
 	 turn_back_debug(Debug),
 
@@ -71,8 +72,9 @@ reverse(Choice_point_trail3,Choice_point_trail4),
 
 
 %trace,
-((
-member_cut1([_Ad,_Bd,_Cf,_Ef,_Ff,[findall_exit_function,_Gf],"line",-,_Vars11|_],Choice_point_trail4),
+((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
+
+member_cut1([_Ad,_Bd,_Cf,_Ef,_Ff,[Dbw_findall_exit_function,_Gf],"line",-,_Vars11|_],Choice_point_trail4),
 
 %writeln1(member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4)),
 
@@ -163,7 +165,19 @@ Vars1,
 
 (
 
-exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
+exit_findall_line(Pred_id,Globals1,Predicate_number,Line_number_b,Functions,Line_number_c),
+
+
+flush_after_last_findall(Choice_point_trail3,Choice_point_trail51,CP_Vars1,CP_Vars311),
+
+
+%trace,
+get_last_p_before_n(Choice_point_trail51,[_,_Level_f,_Predicate_number_f,_Line_number_a_f,"findall",-|Rest_f],
+	[Cp_b1_f,Cb_b2_f,_,_Level_f,_Predicate_number_f,_Line_number_a_f,"findall",-|Rest_f],_,CP_Vars1,CP_Vars4),
+	D1_f=[Cp_b1_f,Cb_b2_f,_,_Level_f,_Predicate_number_f,_Line_number_a_f,"findall",-|Rest_f],
+
+delete_cp(Choice_point_trail51,D1_f,Choice_point_trail52,CP_Vars311,CP_Vars411,_),
+
 
 %member([0,["on true",_],["go after",Findall_end_line2]|_],Lines2),
 
@@ -173,9 +187,9 @@ exit_findall_line(Predicate_number,Line_number_b,Functions,Line_number_c),
 	_All_predicate_numbers], _End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail3, % Choice_point_trail11 to Choice_point_trail1a
+	Choice_point_trail52, % Choice_point_trail11 to Choice_point_trail1a
 	Choice_point_trail2,
-	CP_Vars1,CP_Vars2)
+	CP_Vars411,CP_Vars2)
 	
 	/*
 Choice_point_trail3=Choice_point_trail2,

@@ -12,7 +12,7 @@ get_lang_word("member",Dbw_member1),Dbw_member1=Dbw_member,
 
 interpretstatement1(ssi,_Functions0,_Functions,Query1,Vars1,Vars8,true,nocut,_) :-
 %writeln1([*,_Functions0,_Functions]),
-get_lang_word("v",Dbw_v),
+get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 
@@ -140,7 +140,7 @@ interpretstatement1(ssi,Functions0,_Functions,Query1,Vars1,Vars8,true,nocut,_) :
         %trace,
                %writeln(interpretstatement1(ssi,Functions0,_Functions,Query1,Vars1,Vars8,true,nocut)),
 
-get_lang_word("v",Dbw_v),
+get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 
@@ -243,10 +243,10 @@ get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
 
         ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c).
 
-interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member2],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c) :-
+interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member3],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 %trace,
-get_lang_word("member3",Dbw_member21),Dbw_member21=Dbw_member2,
+get_lang_word("member3",Dbw_member31),Dbw_member31=Dbw_member3,
 %%writeln1(8),
         ssi_interpretpart(member3,Variable1,Variable2,Vars1,Vars2,Vars2c).
 
@@ -264,10 +264,10 @@ get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
 
         ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c,AC).
 
-interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member2],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c,AC) :-
+interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member3],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c,AC) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 %trace,
-get_lang_word("member3",Dbw_member21),Dbw_member21=Dbw_member2,
+get_lang_word("member3",Dbw_member31),Dbw_member31=Dbw_member3,
 %%writeln1(8),
         ssi_interpretpart(member3,Variable1,Variable2,Vars1,Vars2,Vars2c,AC).
 

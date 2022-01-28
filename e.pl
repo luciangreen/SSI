@@ -56,7 +56,7 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
 	 CP_Vars1,CP_Vars21)	
 
-	 %trace,
+%Query2=[AB1|AB2],not(var(AB1)),not(var(AB2)),	 %trace,
 	/*
 writeln1(get_last_p_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
@@ -96,6 +96,11 @@ writeln1(delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_numbe
 	
 	All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],
 	%trace,
+	
+	
+		delete_cp_value(Choice_point_trail12,[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],Choice_point_trail13,CP_Vars3,CP_Vars31),
+
+
 	member([[level,Pred_id],L],Globals1),
 	%Level3 is Level+1,
 	%Level3 is Level,
@@ -109,9 +114,9 @@ ssi1([["prev_pred_id",Prev_pred_id],L,All_predicate_numbers31,Line_number2b1,"pr
 	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
 	Globals1,Globals2,
-	Choice_point_trail12,
+	Choice_point_trail13,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2)
+	CP_Vars31,CP_Vars2)
 
 );
 

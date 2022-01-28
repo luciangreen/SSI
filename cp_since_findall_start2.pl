@@ -3,7 +3,10 @@ get_later_cps_than_cp11(List1,Cp1,Cp3,Cps) :-
 %member([Cp_a,Cp_b|Cp1],List1),
 %trace,
 append(_,B,List1),
+
 append([Cp1],Cps,B),
+
+%writeln1(["*4",append([Cp1],Cps,B)]),
 	[_,_|Cp3]=Cp1.
 	get_later_cps_than_cp1(List1,Cp1,Cp3,Cps) :-
 	%curr_cp(N),

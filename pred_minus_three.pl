@@ -77,8 +77,11 @@ ssi1([_,0,_Predicate_number,-3,"predicate",_Query_a,
 
 	(%trace,
 
+%(Mode=pred_minus_three->
 %writeln1([globals3,Globals3]),
-member([pred_id_chain,PID1,Pred_id1],Globals3),
+member([pred_id_chain,PID1,Pred_id1],Globals3),%;
+
+%PID1=Pred_id1), 
 %trace,
 
 	get_last_p_before_n(Choice_point_trail1,
@@ -94,6 +97,9 @@ member([pred_id_chain,PID1,Pred_id1],Globals3),
 	[_Cp_a1,_Cb_b1,PID1,_Level21,Predicate_number2,-1%Line_number2b
 	,"predicate",_Query21,_Vars4,All_predicate_numbers2],_,
 	CP_Vars41,CP_Vars4),
+	
+%trace,	writeln1([all_predicate_numbers2,All_predicate_numbers2]),
+%notrace,
 
 /*writeln1(get_last_p_before_n(Choice_point_trail1,
 	[PID1,_Level2,Predicate_number2,-1%Line_number2b
@@ -112,15 +118,22 @@ member([pred_id_chain,PID1,Pred_id1],Globals3),
 	(
 %member([[pred_num,Pred_id3],Predicate_number2],Globals3),
 
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
+
 member([Predicate_number2,_F|Rest],Functions),
 (Rest=[_Args,":-",Lines]->true;
-(Rest=[_Args]->Lines=[[[n,true]]];
+(Rest=[_Args]->Lines=[[[Dbw_n,Dbw_true]]];
 (Rest=[":-",Lines];
-(Rest=[],Lines=[[[n,true]]])))),
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]])))),
 
 
+get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
+get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
+get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
+get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
 
-	member([Line_number3,["on true",_A],["go after",_B],["on false",C],["go to predicates",_D]|_Line],Lines),
+	member([Line_number3,[Dbw_on_true,_A],[Dbw_go_after,_B],[Dbw_on_false,C],[Dbw_go_to_predicates,_D]|_Line],Lines),
 C=Line_number2a
 %trace,
 /*

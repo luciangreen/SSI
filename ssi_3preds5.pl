@@ -16,7 +16,7 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 
 ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("member2",Dbw_member2),
+get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
 	((findall([Vars2b,[Value1,Value2a],Value2a],(member(Value2a,Value1),
@@ -35,18 +35,18 @@ debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
 
 ssi_interpretpart(member3,Variable2,Variable1,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("member3",Dbw_member2),
+get_lang_word("member3",Dbw_member31),Dbw_member31=Dbw_member3,
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
+debug_call(Skip,[[Dbw_n,Dbw_member3],[Value1,Value2]]),	((%Value2=empty,
 	((findall([Vars2b,[Value1,Value2a],Value2a],(member(Value2a,Value1),
 	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
 		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
-					Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2],_,_,%,[Value1,Value2a]
+					Vars2c=[[Dbw_n,Dbw_member3],[Value1,Value2],_,_,%,[Value1,Value2a]
 					_,_,Vars2c1]
 
 	))),
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]])).
+      debug_exit(Skip,[[Dbw_n,Dbw_member3],[Value1,Value2a]])).
 
 %%%
 
@@ -71,7 +71,7 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 
 ssi_interpretpart(member2,_Variable1,_Variable2,_Vars1,Vars2,_Vars2c,AC) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("member2",Dbw_member2),
+get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
 %trace,
 AC=[[Dbw_n,Dbw_member2],Value1_Value2,Value1a_Value2a,Vars2|_],
 %writeln1(AC),
