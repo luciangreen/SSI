@@ -747,7 +747,21 @@ Vars1,
 	CP_Vars3,CP_Vars2)));
 
 
-	(not(D='-') ->
+	( %(trace,
+	%not(D='-')
+	(((%trace,
+	D=[_|_])-> true;(D=(*),get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,Line=[Function,Arguments],Function=[Dbw_v,_],
+	
+append([Function],Arguments,Arguments1),
+        substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
+        
+        append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
+        append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
+
+        Vars3=[Function1|Vars31],
+        Query2=[Function1,Vars31],	
+	pred_numbers(Pred_numbers),length(Arguments,Arity1),member([Function1,Arity1,Pred_numbers1],Pred_numbers)))
+	) ->
 
 (d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
 
