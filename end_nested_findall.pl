@@ -112,6 +112,7 @@ append(Ec,[[Hc,Findall_vars41]],Result42),
 % delete the rest of nested findall in ssi3
 % exits end_nested_findall when 1 findall left
 
+not(cp_since_findall_start(Choice_point_trail3,_,_,_,_,CP_Vars3,_)),
 
 flush_after_last_findall(Choice_point_trail3,Choice_point_trail51,CP_Vars3,CP_Vars311),
 %trace,
