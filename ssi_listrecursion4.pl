@@ -212,6 +212,7 @@ Function=[Dbw_v,_]))%,Function=[Dbw_n1,Function_a],atom_string(Function_a,Functi
 %%writeln1(["FirstArgs",FirstArgs,"Result1",Result1,"Vars5",Vars5,"Vars4",Vars4]),
 %%writeln1(["Vars1:",Vars1,"Vars4:",Vars4]),
 %%		debug(on)->writeln1([exit,[Function,[Result2]]]).
+/*
 interpretstatement1(ssi,Functions0,_Functions,Query,Vars,Vars,true,nocut,_) :-
 find_pred_sm(Reserved_words1),
 
@@ -233,7 +234,7 @@ find_pred_sm(Reserved_words1),
 
 ,!.
 
-
+*/
 
 
 interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member2],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c) :-

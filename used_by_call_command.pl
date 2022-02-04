@@ -1,7 +1,8 @@
 % used by call command
 
 lucianpl1(Debug,Query,Functions1,Result) :-
-	international_lucianpl1([lang,"en"],
+	lang(Lang1),
+	international_lucianpl1([lang,Lang1],
 	Debug,Query,Functions1,Result).
 
 international_lucianpl1([lang,Lang],Debug,Query,Functions1,Result) :-
@@ -30,6 +31,7 @@ lucianpl1_1(Debug,Query,TypeStatements,ModeStatements,Functions1,Result) :-
 lucianpl111(Debug,Query,Functions1,Result).
 
 lucianpl111(Debug,Query,Functions,Result) :-
+	/*
 	((not(lang(_Lang1))
 	%var(Lang1)
 	)->
@@ -37,7 +39,7 @@ lucianpl111(Debug,Query,Functions,Result) :-
  	assertz(lang("en")));
 	true),
 	load_lang_db,
-
+	*/
 %trace,
 	query_box(Query,Query1,[],Functions1),
 
