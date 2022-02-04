@@ -77,6 +77,8 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 	%writeln1(Functions2a),
 %append(Functions2a,Functions1a,Functions2b),
 	
+	pred_numbers(Pred_numbers0),
+	
 	find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 
@@ -106,6 +108,9 @@ Query2,Types,Modes,Functions3a,Result1a)	%international_interpret([lang,Lang2],o
 
 
 	member(Result1,Result1a),
+
+	retractall(pred_numbers(_)),
+ 	assertz(pred_numbers(Pred_numbers0)),
 
 	retractall(lang(_)),
  	assertz(lang(Lang2a)),
