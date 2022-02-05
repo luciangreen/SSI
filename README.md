@@ -22,7 +22,7 @@ to correct location of <a href="https://github.com/soimort/translate-shell">tran
 
 # 1. Install manually
 
-Download <a href="http://github.com/luciangreen/SSI/">this repository</a>, <a href="http://github.com/luciangreen/listprologinterpreter/">List Prolog Interpreter</a> (LPI) and the repositories which LPI is dependent on.
+Download <a href="http://github.com/luciangreen/SSI/">this repository</a>, <a href="http://github.com/luciangreen/listprologinterpreter/">List Prolog Interpreter</a> (LPI) and the repositories which LPI is dependent on.  The <a href="https://github.com/luciangreen/Languages"> Languages repository</a> enables SSI to be run in different languages.
 
 # 2. Or Install from List Prolog Package Manager (LPPM)
 
