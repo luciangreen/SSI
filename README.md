@@ -67,8 +67,6 @@ ssi_test_all00("en2",off,NTotal,Score).
 ```
 where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
 
-* Note 1: drag and drop contents of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/test_open_and_types_open_data/">test_open_and_types_open_data/</a> into an empty file in BBEdit (Mac) to copy and paste into Terminal for tests with input.
-
 To run a test from one of main, types, open or open types, run one of:
 ```
 ssi_test_all01(test,            4,"en2",off,1,Passed).
@@ -85,7 +83,7 @@ where 1 is replaced with the test number from
 
 respectively.
 
-* See note 1 above.
+* Note 1: drag and drop contents of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/test_open_and_types_open_data/">test_open_and_types_open_data/</a> into an empty file in BBEdit (Mac) to copy and paste into Terminal for tests with input.
 
 To run all tests (main, types, open and open types) back-translating to and from any language:
 ```
@@ -107,6 +105,8 @@ where 1 is replaced with the test number from
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open_types.pl">lpiverify4_open_types.pl</a>
 
 respectively.
+
+* See note 1 above.
 
 # Documentation
 
