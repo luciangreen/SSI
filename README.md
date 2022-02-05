@@ -51,13 +51,60 @@ where `2` is replaced by the test number (1-194) from <a href="https://github.co
 
 # Explanation of what it does
 
-* SSI was written to save states of the Prolog interpreter, to support the retry (reloading of saved states) feature in trace mode. 
-* Because it solves the problem of backtracking by saving states, it can form the basis of an online application programming language, which allows access to files and web features.
+* SSI was written to save states of the Prolog interpreter. 
+* It solves the problem of backtracking by saving states.
 * It works by manually storing and referring to choice points, records of the variable binding table and recursive states. These include "virtual" commands (commands such as `member` which compute all results when they are first run). The interpreter loads these choice points as the algorithm encounters flow through predicates, commands and recursion.
-* It will support the Higher-Order `call` Command, which saves states of multiple interpreters and reloads them when continuing with an interpreter.
+* It supports the Higher-Order `call` Command.
 * SSI supports `member`, `string_concat`, `nested findall`, `cut` and the commands of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Interpreter</a>.
-* Later SSI may support going backwards, breaking, modifying and correcting code in trace mode.
 * SSI will enable running segments of a complex algorithm on a supercomputer and prevent data loss in low-power areas.
+
+# Tests
+
+To run all tests (main, types, open and open types) in any language:
+```
+ssi_test_all00("en",off,NTotal,Score).
+ssi_test_all00("en2",off,NTotal,Score).
+```
+where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
+
+To run a test from one of main, types, open or open types, run one of:
+```
+ssi_test_all01(test,            4,"en2",off,1,Passed).
+ssi_test_all01(test_types_cases,6,"en2",off,1,Passed).
+ssi_test_all01(testopen_cases,  3,"en2",off,1,Passed).
+ssi_test_all01(test_open_types, 5,"en2",off,1,Passed).
+```
+where 1 is replaced with the test number from
+```
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open.pl">lpiverify4_open.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open_types.pl">lpiverify4_open_types.pl</a>
+```
+respectively.
+
+* See note 1 above.
+
+To run all tests (main, types, open and open types) back-translating to and from any language:
+```
+ssi_test_all_bt00("en2",off,NTotal,Score).
+```
+
+To run a test from one of main, types, open or open types, run one of:
+```
+ssi_test_all_bt01(test,            4,"en2",off,1,Passed).
+ssi_test_all_bt01(test_types_cases,6,"en2",off,1,Passed).
+ssi_test_all_bt01(testopen_cases,  3,"en2",off,1,Passed).
+ssi_test_all_bt01(test_open_types, 5,"en2",off,1,Passed).
+```
+where 1 is replaced with the test number from
+```
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open.pl">lpiverify4_open.pl</a>
+<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open_types.pl">lpiverify4_open_types.pl</a>
+```
+respectively.
 
 # Documentation
 
