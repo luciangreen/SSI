@@ -44,11 +44,6 @@ halt
 `swipl`
 `['ssi'].`    
 
-* Running the tests
-To run all tests, enter:
-`test(2,Q,F,R),lucianpl(off,Q,F,R2)`
-where `2` is replaced by the test number (1-194) from <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>.
-
 # Explanation of what it does
 
 * SSI was written to save states of the Prolog interpreter. 
