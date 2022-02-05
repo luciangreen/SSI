@@ -67,7 +67,7 @@ ssi_test_all00("en2",off,NTotal,Score).
 ```
 where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
 
-* Note 1: drag and drop contents of `<a href="https://github.com/luciangreen/listprologinterpreter/blob/master/test_open_and_types_open_data/">test_open_and_types_open_data/</a>` into an empty file in BBEdit (Mac) to copy and paste into Terminal for tests with input.
+* Note 1: drag and drop contents of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/test_open_and_types_open_data/">test_open_and_types_open_data/</a> into an empty file in BBEdit (Mac) to copy and paste into Terminal for tests with input.
 
 To run a test from one of main, types, open or open types, run one of:
 ```
@@ -77,12 +77,12 @@ ssi_test_all01(testopen_cases,  3,"en2",off,1,Passed).
 ssi_test_all01(test_open_types, 5,"en2",off,1,Passed).
 ```
 where 1 is replaced with the test number from
-```
+
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open.pl">lpiverify4_open.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open_types.pl">lpiverify4_open_types.pl</a>
-```
+
 respectively.
 
 * See note 1 above.
@@ -100,12 +100,12 @@ ssi_test_all_bt01(testopen_cases,  3,"en2",off,1,Passed).
 ssi_test_all_bt01(test_open_types, 5,"en2",off,1,Passed).
 ```
 where 1 is replaced with the test number from
-```
+
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open.pl">lpiverify4_open.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_open_types.pl">lpiverify4_open_types.pl</a>
-```
+
 respectively.
 
 # Documentation
