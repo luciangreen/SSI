@@ -162,7 +162,7 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	find_state_machine_body2([Statements1],Body3,Statements1a_number,[Dbw_fail_function,Number],Pred_numbers), %% 2->1
 
 	find_state_machine_body2([Statements1a],Body4,[Dbw_exit_function,Number],[Dbw_fail_function,Number],Pred_numbers),
-        find_state_machine_body2([Statements2],Body5,-2,-3,Pred_numbers),
+        find_state_machine_body2([Statements2],Body5,Return_line_true,Return_line_false,Pred_numbers),
 
 	     maplist(append,[[Body3,Body4,Body5]],[Body345]),
         
@@ -201,7 +201,7 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
         find_state_machine_body2([Statement],Body3,[Dbw_exit_function,Number1],[Dbw_fail_function,Number1],Pred_numbers),
         
         %writeln1(Body3),
-        find_state_machine_body2([Statements2],Body4,-2,-3,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,Return_line_true,Return_line_false,Pred_numbers),
         %%Number2 is Number1+1,
         %writeln1(Body4),
                 %%if_empty_list_then_return(Statements2,Number2,Number3),
@@ -238,8 +238,8 @@ get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_fu
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
 		  find_state_machine_body2([Statements1],Body3,[Dbw_exit_function,Number],Statements2_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
-        find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2([Statements3],Body5,Return_line_true,Return_line_false,Pred_numbers),
         %%Number2 is Number1+1,
         %%if_empty_list_then_return(Statements3,Number2,Number3),
         get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
@@ -275,10 +275,10 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
         find_first_line_number(Statements2,Statements2_number),
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),
-find_state_machine_body2([Statements1],Body3,Statements2_number,-3,Pred_numbers), 
-    	  find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
+find_state_machine_body2([Statements1],Body3,Statements2_number,Return_line_false,Pred_numbers), 
+    	  find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],Return_line_false,Pred_numbers),
 
-        find_state_machine_body2([Statements3],Body5,-2,-3,Pred_numbers),
+        find_state_machine_body2([Statements3],Body5,Return_line_true,Return_line_false,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5]],[Body345]),
         %append(Body3,Body4,Body34),
@@ -308,10 +308,10 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 		(Statements3=[]->Statements3_number=Return_line_true;
         find_first_line_number(Statements3,Statements3_number)),       
         find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
-        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],-3,Pred_numbers),
+        find_state_machine_body2([Statements2],Body4,[Dbw_exit_function,Number],Return_line_false,Pred_numbers),
                %%trace,
-                find_state_machine_body2([Statements2a],Body5,[Dbw_exit_function,Number],-3,Pred_numbers),
-        find_state_machine_body2([Statements3],Body6,-2,-3,Pred_numbers),
+                find_state_machine_body2([Statements2a],Body5,[Dbw_exit_function,Number],Return_line_false,Pred_numbers),
+        find_state_machine_body2([Statements3],Body6,Return_line_true,Return_line_false,Pred_numbers),
 
         maplist(append,[[Body3,Body4,Body5,Body6]],[Body3456]),
         Body7=[Number,[Dbw_on_true,Statements1_number],[Dbw_go_after,Statements3_number],[Dbw_on_false,Return_line_false],[Dbw_go_to_predicates,-],[Dbw_n,"->"]],
