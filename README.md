@@ -60,7 +60,7 @@ To run all tests (main, types, open and open types) in any language:
 ssi_test_all00("en",off,NTotal,Score).
 ssi_test_all00("en2",off,NTotal,Score).
 ```
-where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
+where "en2" is an English language with e.g. `"concatenate strings"` instead of `string_concat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
 
 To run a test from one of main, types, open or open types, run one of:
 ```
