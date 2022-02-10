@@ -48,9 +48,9 @@ halt
 
 * SSI was written to save states of the Prolog interpreter. 
 * It solves the problem of backtracking by saving states.
-* It works by manually storing and referring to choice points, records of the variable binding table and recursive states. These include "virtual" commands (commands such as `member` which compute all results when they are first run). The interpreter loads these choice points as the algorithm encounters flow through predicates, commands and recursion.
+* It works by manually storing and referring to choice points, records of the variable binding table and recursive states. These include "virtual" commands (commands such as `member2` which compute all results when they are first run). The interpreter loads these choice points as the algorithm encounters flow through predicates, commands and recursion.
 * It supports the Higher-Order `call` Command.
-* SSI supports `member`, `string_concat`, `nested findall`, `cut` and the commands of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Interpreter</a>.
+* SSI supports `member2`, `stringconcat`, `nested findall`, `cut` and the commands of <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Interpreter</a>.
 * SSI will enable running segments of a complex algorithm on a supercomputer and prevent data loss in low-power areas.
 
 # Tests
@@ -60,7 +60,7 @@ To run all tests (main, types, open and open types) in any language:
 ssi_test_all00("en",off,NTotal,Score).
 ssi_test_all00("en2",off,NTotal,Score).
 ```
-where "en2" is an English language with e.g. `"concatenate strings"` instead of `string_concat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
+where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
 
 To run a test from one of main, types, open or open types, run one of:
 ```
