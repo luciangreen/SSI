@@ -65,8 +65,9 @@ delete(Functions,[0|_],Functions1a), % delete query box
 	%writeln1(Functions2a),
 append(Functions2a,Functions1a,Functions2b),
 	
-	find_pred_sm(Reserved_words),%,"en"),
-find_pred_numbers(Functions2b,Reserved_words,Pred_numbers),
+	%find_pred_sm(Reserved_words),%,"en"),
+find_pred_numbers(Functions2b,[]%Reserved_words
+,Pred_numbers),
 
 %pred_numbers(Pred_numbers0),
 %writeln([pred_numbers0,Pred_numbers0]),

@@ -71,8 +71,9 @@ lucianpl11(Debug,Query,Functions,Result) :-
 	%writeln1(add_line_numbers_to_algorithm1(Functions2,Functions2a)),
 	%writeln1(Functions2a),
 	
-	find_pred_sm(Reserved_words),%,"en"),
-find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
+	%find_pred_sm(Reserved_words),%,"en"),
+find_pred_numbers(Functions2a,[]%Reserved_words
+,Pred_numbers),
 
 	retractall(pred_numbers(_)),
  	assertz(pred_numbers(Pred_numbers)),

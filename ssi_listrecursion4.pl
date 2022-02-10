@@ -79,8 +79,9 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
 	
 	pred_numbers(Pred_numbers0),
 	
-	find_pred_sm(Reserved_words),%,"en"),
-find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
+	%find_pred_sm(Reserved_words),%,"en"),
+find_pred_numbers(Functions2a,[],%Reserved_words,
+Pred_numbers),
 
 	retractall(pred_numbers(_)),
  	assertz(pred_numbers(Pred_numbers)),
