@@ -172,8 +172,10 @@ reverse(Globals212,Globals22),
 
 )), % Line_number2 to 2b
 
+	member([[level,PID1],Level_b],Globals3),
+
 	%trace,
-	ssi1([PID1,Level2,Predicate_number2,Line_number2a,"line",-,
+	ssi1([PID1,Level_b,Predicate_number2,Line_number2a,"line",-,
 	Vars4,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
 	Globals3,Globals2,
