@@ -44,6 +44,8 @@ halt
 `swipl`
 `['ssi'].`    
 
+* You may need to replace `swipl` with `swipl --stack-limit=1G` above to run tests 15 and 25.
+
 # Explanation of what it does
 
 * SSI was written to save states of the Prolog interpreter. 
