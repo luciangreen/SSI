@@ -189,7 +189,7 @@ Choice_point_trail1=Choice_point_trail3
 
 ((
 %writeln(here2),
-	 %Query2=[_|_],
+	 Query2=[_|_],
 
 get_last_cp_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
@@ -1241,6 +1241,8 @@ get_last_cp_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	C,D_Level
 	%2
 	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
+	
+	%not(F_Line_number_a2=["returns to", _, "pred_id", _]),
 	
 	member([A,B2,C,D_Level
 	%2
