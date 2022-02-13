@@ -54,7 +54,15 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	get_last_cp_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
-	 CP_Vars1,CP_Vars21)	
+	 CP_Vars1,CP_Vars21)	,
+	 
+	member([[function,Pred_id],Function],Globals1),
+	member([[arguments1,Pred_id],Arguments1],Globals1),
+
+	member([[skip,Pred_id],Skip],Globals1),
+
+(debug_fail(Skip,[Function,Arguments1])->true;true)
+
 
 %Query2=[AB1|AB2],not(var(AB1)),not(var(AB2)),	 %trace,
 	/*

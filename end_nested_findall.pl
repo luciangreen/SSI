@@ -69,6 +69,15 @@ find_sys(Sys_name),
 
 reverse(Choice_point_trail3,Choice_point_trail4),
 
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
+
+%trace,
+(Line_number_b=[_,Line_number_b2]->Line_number_b2=Line_number_b1;
+Line_number_b2=Line_number_b),
+	member([[skip,Pred_id,Line_number_b2],Skip],Globals1),
+
+debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
 
 
 %trace,

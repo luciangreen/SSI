@@ -1035,12 +1035,15 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	member([E,[Dbw_on_true,_A],[Dbw_go_after,B],[Dbw_on_false,C],[Dbw_go_to_predicates,_D]|Line],Lines),
 	(E1=[Dbw_exit_function,_]->
 	(F=B,(Line=[[Dbw_n,Dbw_not]]-> 
-	(debug_fail(Skip,Line)->true;true);debug_exit(Skip,Line)));
+	(debug_fail(Skip,Line)->true;true);true%debug_exit(Skip,Line)
+	));
 	(%trace,
 	E1=[Dbw_fail_function,_]->
 	(%trace,
 	F=C,(Line=[[Dbw_n,Dbw_not]]->
-	debug_exit(Skip,Line);(debug_fail(Skip,Line)->true;true))))),
+	true%debug_exit(Skip,Line)
+	;((Line=[[Dbw_n,Dbw_not]],
+	debug_fail(Skip,Line))->true;true))))),
 	
 	return_to_last_non_end_function(F,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,Globals,Pred_id,Line_number_a).
 	
