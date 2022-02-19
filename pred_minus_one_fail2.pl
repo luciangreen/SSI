@@ -62,7 +62,7 @@ write(["L",Level_a]);true),
 	(
 	%trace,
 	(debug3(on)->
-write(["L",Level_a]);true),
+write0(["L",Level_a]);true),
 	
 	(debug_fail(Skip,[Function,Arguments1])->true;true),
 

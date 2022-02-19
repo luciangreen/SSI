@@ -51,6 +51,8 @@ crop down pred from top x just goes to next command
 %	ssi(Debug,Query,Functions,Result).
 
 %:-include('interpretstatement3.pl').
+:-include('ssi-api.pl').
+
 :-include('interpretstatement3.pl').
 
 :-include('../listprologinterpreter/listprolog.pl').
@@ -81,6 +83,16 @@ crop down pred from top x just goes to next command
 :- dynamic debug2/1.
 :- dynamic debug3/1.
 :- dynamic debug4/1.
+:- dynamic retry_back/1.
+:- dynamic retry_back_stack/1.
+:- dynamic retry_back_stack_n/1.
+:- dynamic cumulative_or_current_text/1.
+:- dynamic number_of_current_text/1.
+:- dynamic html_api_maker_or_terminal/1.
+
+%:- dynamic screen_text/1.
+%:- dynamic curr_screen_text/1.
+
 :- dynamic pred_numbers/1.
 %:- dynamic curr_cp/1.
 :- dynamic curr_cp_index/1.
@@ -89,6 +101,8 @@ crop down pred from top x just goes to next command
 :- dynamic types/1.
 :- dynamic typestatements/1.
 :- dynamic modestatements/1.
+
+%:- dynamic hidden/1.
 
 
 /*

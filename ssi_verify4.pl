@@ -11,8 +11,8 @@ ssi_test(Debug,NTotal1,NTotal2,Score1,Score2) :-
 	test(NTotal3,Query,Functions,Result),
 	(international_lucianpl([lang,"en"],Debug,Query,Functions,Result)
 	%%writeln1(Result2
-	->(Score3 is Score1+1,writeln([ssi_test,NTotal3,passed]));(Score3=Score1,writeln([ssi_test,NTotal3,failed]))),
-	writeln(""),
+	->(Score3 is Score1+1,writeln0([ssi_test,NTotal3,passed]));(Score3=Score1,writeln0([ssi_test,NTotal3,failed]))),
+	writeln0(""),
 	test(Debug,NTotal3,NTotal2,Score3,Score2),!.
 
 %% ssi_test individual cases, Debug=trace=on or off, N=case number, Passed=output=result
@@ -22,4 +22,4 @@ ssi_test1(Debug,N,Passed) :-
 	((international_lucianpl([lang,"en"],Debug,Query,Functions,Result1),
 	%writeln1([result1,Result1]),
 	Result=Result1
-	)->(Passed=passed,writeln([ssi_test,N,passed]));(Passed=failed,writeln([ssi_test,N,failed]))),!.
+	)->(Passed=passed,writeln0([ssi_test,N,passed]));(Passed=failed,writeln0([ssi_test,N,failed]))),!.

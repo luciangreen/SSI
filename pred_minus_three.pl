@@ -20,7 +20,7 @@ pred_minus_three([Pred_id1,Level,_Predicate_number,_Line_number,"predicate",_Que
 
 %/*(trace,
 	(debug3(on)->
-write(["L",Level_a]);true),
+write0(["L",Level_a]);true),
 	
 	(debug_fail(Skip,[Function,Arguments1])->true;true),
 %*/
@@ -62,7 +62,7 @@ write(["L",Level_a]);true),
 	(
 	%trace,
 	(debug3(on)->
-write(["L",Level_a]);true),
+write0(["L",Level_a]);true),
 	
 	(debug_fail(Skip,[Function,Arguments1])->true;true),
 

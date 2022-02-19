@@ -105,6 +105,12 @@ respectively.
 
 * See note 1 above.
 
+# SSI Web Service
+
+* After loading `swipl` and `[ssi].`, load State Saving Interpreter to run web apps with `ssi_server(8000).` and go to `http://127.0.0.1:8000` in your browser.
+
+* Modify application to run, title of window and background colour in `ssi-api.pl`.
+
 # Documentation
 
 See <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Documentation</a>.

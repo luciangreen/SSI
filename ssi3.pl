@@ -132,14 +132,74 @@ lucianpl1(Debug) :-
 	  	retractall(debug2(_)),
 	  	retractall(debug3(_)),
 	  	retractall(debug4(_)),
+	  	retractall(retry_back(_)),
+	  	retractall(retry_back_stack(_)),
+	  	retractall(retry_back_stack_n(_)),
+	  	retractall(cumulative_or_current_text(_)),
+	  	retractall(number_of_current_text(_)),
+	  	retractall(html_api_maker_or_terminal(_)),
+	  	%retractall(screen_text(_)),
+	  	%retractall(curr_screen_text(_)),
+	  	
 	  	
  	assertz(debug2(off)), % on - displays ssi debug info
  	assertz(debug3(off)), % on - displays level
  	assertz(debug4(off)), % on - displays append cp etc. trace
- 
+ 	assertz(retry_back(on)), % on - retry/back mode options available in trace mode
+ 	assertz(retry_back_stack([])), % on - retry/back mode options available in trace mode
+ 	%assertz(screen_text([])), 
+ %	assertz(curr_screen_text("")), 
+ assertz(retry_back_stack_n(0)),
+ assertz(cumulative_or_current_text(current)),
+ assertz(number_of_current_text(1)),
+ assertz(html_api_maker_or_terminal(html
+ %terminal
+ )),
 	(not(save_debug(_))->(retractall(save_debug(_)),assertz(save_debug(off)));true),
 
 (not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).
+
+append_retry_back_stack(Item) :-
+%trace,
+	find_retry_back_stack_n(N2),
+	retry_back_stack(List1),
+	append(List1,[[N2,Item]],List2),
+	retractall(retry_back_stack(_)),
+ 	assertz(retry_back_stack(List2)).
+
+replace(A,Find,Replace,F) :- 	
+	split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F).
+
+/*
+print_text :-
+trace,
+	html_api_maker_or_terminal(Html_api_maker_or_terminal),
+	retry_back_stack(Stack),
+	cumulative_or_current_text(Cumulative_or_current_text),
+	(Cumulative_or_current_text=cumulative->
+	findall([Text1,"\n"],member([_,[text,Text1]],Stack),Text2);
+	get_curr_text(Stack,Text2)),
+	term_to_atom(Text2,Text4),
+	%concat_list(Text2,Text4),
+	(Html_api_maker_or_terminal=html->
+	(replace(Text4,"\n","<br>",Text3),
+	format(Text3,[]));
+	(Text4=Text3,
+	writeln(Text3))).
+
+get_curr_text(Stack,Text2) :-
+trace,
+	number_of_current_text(N1),
+	((%member([N1,[_,Text1]],Stack),
+	append(_,[[N1,[_,Text1]]|A],Stack))->true;Text1=[]),
+	findall([Text10,"\n"],member([_,[text,Text10]],[[N1,[_,Text1]]|A]),Text2),
+	
+	%flatten(Text2,Text3),
+	
+	retry_back_stack_n(N2),
+	retractall(number_of_current_text(_)),
+ 	assertz(number_of_current_text(N2)).
+*/
 
 ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
@@ -148,6 +208,15 @@ ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
+	
+	append_retry_back_stack([ssi,[[_,0,_Predicate_number,Line_number,"predicate",_Query_a,
+	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,
+	CP_Vars1,CP_Vars2]]),
+	
 	
 ((	Level=_,
 	%/*
@@ -254,7 +323,7 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 	
 
 	))))
-	)->true;(writeln([ssi1,0,abort]),
+	)->true;(writeln0([ssi1,0,abort]),
 	fail%number_string(a,_)%abort
 	)),!.
 
@@ -266,7 +335,17 @@ ssi1([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
-	
+
+
+append_retry_back_stack([ssi,[[Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
+	Vars,All_predicate_numbers], Result21, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,
+	CP_Vars1,CP_Vars2]]),
+
+		
 ((	%writeln([all_predicate_numbers,All_predicate_numbers]),
 	
 	(Pred_id_a1=["prev_pred_id",Pred_id1]->true;Pred_id_a1=Pred_id1),
@@ -306,7 +385,7 @@ checktypes_inputs(Function,Arguments1),
 
 %writeln1([checkarguments,"Arguments1",Arguments1,"Arguments2",Arguments2,"Vars1",Vars1,"FirstArgs",FirstArgs]),
 	(debug3(on)->
-write(["L",Level]);true),
+write0(["L",Level]);true),
 %trace,
 debug_call(Skip,[Function,Arguments1])
 %,notrace
@@ -358,7 +437,7 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,-1,"predicate",Qu
 	(%Line_number = -1,
 	
 	(debug3(on)->
-write(["L",Level]);true),
+write0(["L",Level]);true),
 %trace,
 debug_call(Skip1,[Function,Arguments1]),
 
@@ -427,7 +506,7 @@ pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) a
 	Globals1=Globals3,
 
 	(debug3(on)->
-write(["L",Level_a]);true),
+write0(["L",Level_a]);true),
 	
 	debug_fail_fail(Skip),
 %trace,
@@ -466,7 +545,7 @@ write(["L",Level_a]);true),
 	
 	%trace,
 	(debug3(on)->
-write(["L",Level_a]);true),
+write0(["L",Level_a]);true),
 %notrace,
    debug_exit(Skip,[Function,Result22]), % return result21
    checktypes(Function,Result22),
@@ -597,7 +676,7 @@ pred_minus_three([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Quer
 	
 	))))
 	
-		)->true;(writeln([ssi1,predicate,abort]),
+		)->true;(writeln0([ssi1,predicate,abort]),
 		fail
 		%number_string(a,_)%abort
 		)),!.
@@ -628,7 +707,15 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
 	Choice_point_trail1,
 	Choice_point_trail3,["appearance of command",AC],
 	CP_Vars1,CP_Vars2) :-
-	%/*
+
+append_retry_back_stack([ssi,[[Pred_id,Level,Predicate_number,Line_number_a,"line",Query,
+	Vars1,All_predicate_numbers], _, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail1,
+	Choice_point_trail3,["appearance of command",AC],
+	CP_Vars1,CP_Vars2]]),
+		%/*
 	
 ((	%writeln([all_predicate_numbers,All_predicate_numbers]),
 		(debug2(on)->
@@ -784,8 +871,132 @@ append([Function],Arguments,Arguments1),
 
 	);
 	
-	((%trace,
+	(((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+	get_lang_word("read_string",Dbw_read_string1),Dbw_read_string1=Dbw_read_string,
+	%writeln1([line,Line]),
+	
+	Line=[[Dbw_n,Dbw_read_string],[Variable1]],
+	
+	html_api_maker_or_terminal(html)
+	)->
+	
+	(
+	%trace,
+	% if html, output web form code, stop
+	% () if api maker, 
+	% if terminal, use ssi read string below
+	
+	%interpretpart(read_string1,Variable1,Vars1,Vars3)
+	
+	
+/*
+ (var(Skip)->Globals3=Globals4;
+ append(Globals3,[[[skip,Pred_id,Line_number_b],Skip]],Globals4)),
+ 
+ (%trace,
+ Vars2c=[]->(Choice_point_trail1e=Choice_point_trail11,
+ CP_Vars3=CP_Vars4);
+  append_cp(Choice_point_trail1e,[[Pred_id,Level,Predicate_number,Line_number_a,"line",_,
+	Vars3,Vars2c]],Choice_point_trail11,CP_Vars3,CP_Vars4)),
+*/
+
+getvalue(Variable1,Value1,Vars1),
+debug_call(Skip,[[Dbw_n,Dbw_read_string],[variable]]),
+
+lang(Lang),
+
+debug2(Debug2),
+debug3(Debug3),
+debug4(Debug4),
+retry_back(Retry_back),
+retry_back_stack(Retry_back_stack),
+retry_back_stack_n(Retry_back_stack_n),
+cumulative_or_current_text(Cumulative_or_current_text),
+number_of_current_text(Number_of_current_text),
+html_api_maker_or_terminal(Html_api_maker_or_terminal),
+pred_numbers(Pred_numbers),
+%curr_cp_index(Curr_cp_index),
+pred_id(Pred_id),
+types(Types),
+typestatements(Typestatements),
+modestatements(Modestatements),
+
+%retractall(hidden(Hidden)),
+
+%assertz(hidden(
+Hidden=[Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
+
+debug2(Debug2),
+debug3(Debug3),
+debug4(Debug4),
+retry_back(Retry_back),
+retry_back_stack(Retry_back_stack),
+retry_back_stack_n(Retry_back_stack_n),
+cumulative_or_current_text(Cumulative_or_current_text),
+number_of_current_text(Number_of_current_text),
+html_api_maker_or_terminal(Html_api_maker_or_terminal),
+pred_numbers(Pred_numbers),
+
+pred_id(Pred_id),
+types(Types),
+typestatements(Typestatements),
+modestatements(Modestatements),
+
+
+	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
+	Vars3,All_predicate_numbers], _End_result3, Functions,Vars2,
+	Result1, Result2, 
+	Globals3,Globals2,
+	Choice_point_trail1e,
+	Choice_point_trail3,
+	CP_Vars3,CP_Vars2),
+	
+	ssi1([C,"line",Query,Vars1])],
+	
+	%print_text,
+
+	%trace,
+	term_to_atom(Hidden,Hidden1),
+	
+	concat_list(["
+	   
+  <form action=\"/landing\" method=\"POST\">
+  <label for=ssi></label>
+  <input type=text id=input name=input value=''><br><br>
+  <input type=hidden id=ssi name=ssi value='",Hidden1,"'><br><br>
+  <input type=submit name=submit value='Submit'>
+</form>
+"],Form_text1),
+
+/*'",
+  'a',
+  %,
+  "'
+  */
+  
+atom_string(Form_text,Form_text1),
+
+	%format(Hidden1,[]),
+
+	format(Form_text,[])
+
+	
+	
+	)
+	
+	);
+	
+	(%trace,
 	((
+	
+	(not((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+	get_lang_word("read_string",Dbw_read_string1),Dbw_read_string1=Dbw_read_string,
+	%writeln1([line,Line]),
+	
+	Line=[[Dbw_n,Dbw_read_string],[Variable1]],
+	
+	html_api_maker_or_terminal(html)
+	))),
 
 	(AC=(-) ->
 	
@@ -837,7 +1048,7 @@ append([Function],Arguments,Arguments1),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2)))))))))		)->true;(writeln([ssi1,line,abort]),
+	CP_Vars3,CP_Vars2)))))))))		)->true;(writeln0([ssi1,line,abort]),
 	fail%number_string(a,_)%abort
 	)),!.
 
@@ -1071,10 +1282,10 @@ append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2) :-
 	%trace,
 	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
 	(debug4(on)->writeln1(append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2));true),
-	(append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2)->true;(writeln([append_cp,abort]),abort)),
+	(append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2)->true;(writeln0([append_cp,abort]),abort)),
 	%writeln1(append_cp(List1,CP,List5a)),
 	get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([append_cp,curr_cp,Curr_cp,Curr_cp1,List5a,CP_Vars1,CP_Vars2]);true).
+	(debug4(on)->writeln0([append_cp,curr_cp,Curr_cp,Curr_cp1,List5a,CP_Vars1,CP_Vars2]);true).
 	%notrace.
 
 append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2a) :-
@@ -1159,7 +1370,7 @@ renumber_cps1(List1,Min_cp,Max_cp,List1a,List2,Curr_cp,Max_cp2,Curr_cp31,Curr_cp
 
 
 get_cp(List1,N,Cp) :-
-	(member([N,B|Cp1],List1)->true;(writeln("get_cp failed"),abort)),
+	(member([N,B|Cp1],List1)->true;(writeln0("get_cp failed"),abort)),
 	Cp=[N,B|Cp1].
 	
 	
@@ -1172,7 +1383,7 @@ get_last_p_before_n(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	%writeln1(get_last_p_before_n2(List1,Cp1,Cp2,Cp3)
 	),
 	%get(curr_cp,Curr_cp1,CP_Vars1),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([get_last_p_before_n,Cp2,CP_Vars1,CP_Vars1]);true).
+	(debug4(on)->writeln0([get_last_p_before_n,Cp2,CP_Vars1,CP_Vars1]);true).
 	%notrace.
 
 get_last_p_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
@@ -1231,7 +1442,7 @@ get_last_cp_before_n(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	%writeln1(get_last_p_before_n2(List1,Cp1,Cp2,Cp3)
 	),
 	%get(curr_cp,Curr_cp1,CP_Vars1),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([get_last_cp_before_n,Cp2,CP_Vars1,CP_Vars1]);true).
+	(debug4(on)->writeln0([get_last_cp_before_n,Cp2,CP_Vars1,CP_Vars1]);true).
 	%notrace.
 
 get_last_cp_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
@@ -1358,12 +1569,12 @@ delete_cp(List1,CP,List5,CP_Vars1,CP_Vars2,Swaps) :-
 	%trace,
 	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),	
 		%trace,
-		(debug4(on)->writeln([delete_cp,curr_cp,Curr_cp,CP,List1,List5,CP_Vars1,CP_Vars2,Swaps]);true),
+		(debug4(on)->writeln0([delete_cp,curr_cp,Curr_cp,CP,List1,List5,CP_Vars1,CP_Vars2,Swaps]);true),
 
-(delete_cp1(List1,CP,List5,CP_Vars1,CP_Vars2,Swaps)->true;(writeln([delete_cp1,abort]),abort)),
+(delete_cp1(List1,CP,List5,CP_Vars1,CP_Vars2,Swaps)->true;(writeln0([delete_cp1,abort]),abort)),
 	%writeln1(delete_cp1(List1,CP,List5)),
 	get(curr_cp,Curr_cp1,CP_Vars1),%writeln([curr_cp,Curr_cp1]),
-	(debug4(on)->writeln([delete_cp,curr_cp,Curr_cp,Curr_cp1,CP,List1,List5,CP_Vars1,CP_Vars2,Swaps]);true).
+	(debug4(on)->writeln0([delete_cp,curr_cp,Curr_cp,Curr_cp1,CP,List1,List5,CP_Vars1,CP_Vars2,Swaps]);true).
 	%notrace.
 	
 delete_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2a,Swaps) :-
@@ -1430,7 +1641,7 @@ replace_cp(Choice_point_trail1e,Cp_a1,Cp_a2,D1,D2,Choice_point_trail1b,CP_Vars1,
 
 %trace,	
 (member([Cp_a1,Cp_a2|D1],Choice_point_trail1e)->true;
-(writeln("replace_cp abort"),abort)),
+(writeln0("replace_cp abort"),abort)),
 	delete(Choice_point_trail1e,[Cp_a1,Cp_a2|D1],Choice_point_trail1f),
 	append(Choice_point_trail1f,[[Cp_a1,Cp_a2|D2]],Choice_point_trail1g),
 
@@ -1526,3 +1737,10 @@ replace_cp(Choice_point_trail1,A1,A2,
 Choice_point_trail31,CP_Vars1,CP_Vars21))->true;
 (Choice_point_trail1=Choice_point_trail31,
 CP_Vars1=CP_Vars21)).
+
+
+find_retry_back_stack_n(N2) :-
+	retry_back_stack_n(N1),
+	N2 is N1+1,
+	retractall(retry_back_stack_n(_)),
+ 	assertz(retry_back_stack_n(N2)).
