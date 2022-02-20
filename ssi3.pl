@@ -137,7 +137,7 @@ lucianpl1(Debug) :-
 	  	retractall(retry_back_stack_n(_)),
 	  	retractall(cumulative_or_current_text(_)),
 	  	retractall(number_of_current_text(_)),
-	  	retractall(html_api_maker_or_terminal(_)),
+	  	%retractall(html_api_maker_or_terminal(_)),
 	  	%retractall(screen_text(_)),
 	  	%retractall(curr_screen_text(_)),
 	  	
@@ -152,9 +152,9 @@ lucianpl1(Debug) :-
  assertz(retry_back_stack_n(0)),
  assertz(cumulative_or_current_text(current)),
  assertz(number_of_current_text(1)),
- assertz(html_api_maker_or_terminal(html
+ %assertz(html_api_maker_or_terminal(html
  %terminal
- )),
+ %)),
 	(not(save_debug(_))->(retractall(save_debug(_)),assertz(save_debug(off)));true),
 
 (not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).
