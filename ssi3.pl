@@ -168,7 +168,7 @@ append_retry_back_stack(Item) :-
  	assertz(retry_back_stack(List2)).
 
 replace(A,Find,Replace,F) :- 	
-	writeln(a),split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F),!.
+	split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F),!.
 
 /*
 print_text :-
@@ -944,7 +944,7 @@ modestatements(Modestatements),
 
 
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
-	Vars3,All_predicate_numbers], _End_result3, Functions,Vars2,
+	Vars1,All_predicate_numbers], _End_result3, Functions,Vars2,
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,

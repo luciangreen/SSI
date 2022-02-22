@@ -141,15 +141,15 @@ format(Header,[]),
 %trace,
 
         ((val1emptyorvalsequal(Value1,Value1A),
-        putvalue(Variable1,Value1A,Vars3,Vars2))->
+        putvalue(Variable1,Value1A,Vars3,Vars2a))->
       (debug_exit(Skip,[[Dbw_n,Dbw_read_string],[Value1A]]),
 
  (var(Skip)->Globals3=Globals4;
  append(Globals3,[[[skip,Pred_id,Line_number_b],Skip]],Globals4)),
  
-       
+       %trace,
       	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
-	Vars2,All_predicate_numbers], _End_result31, Functions,Vars2,
+	Vars2a,All_predicate_numbers], _End_result31, Functions,_Vars21,
 	Result1, Result2, 
 	Globals4,Globals2,
 	Choice_point_trail1e,
@@ -160,7 +160,7 @@ format(Header,[]),
 ;     (debug_fail(Skip,[[Dbw_n,Dbw_read_string],[variable]]),
 
       	ssi1([Pred_id,Level,Predicate_number,C,"line",Query,
-	Vars1,All_predicate_numbers], _End_result3, Functions,Vars2,
+	Vars1,All_predicate_numbers], _End_result3, Functions,_Vars21,
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
