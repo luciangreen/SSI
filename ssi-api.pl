@@ -35,7 +35,7 @@ Debug=off,
 international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 
 	%test(1,Query,Functions,Result),
-	%international_lucianpl([lang,"en"],Debug,Query,Functions,Result1),
+	%international_lucianpl([lang,"en"],Debug,Query,Functions,_Result1),
 
 
 format(Footer,[])
@@ -83,9 +83,9 @@ html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
 pred_id(Pred_id),
-types(Types),
-typestatements(Typestatements),
-modestatements(Modestatements),
+(types(Types)->
+(typestatements(Typestatements),
+modestatements(Modestatements))),
 
 
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
