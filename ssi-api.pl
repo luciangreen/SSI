@@ -56,16 +56,25 @@ format(Footer,[])
 																												        %%term_to_atom(Term,Data),
 	
 		%format(Data,[])
-
 																												        
 %/*
 Data=[%%debug='off',%%Debug1,
-input=Input,
-ssi=Hidden,submit=_],
+input=Input1,
+ssi=Hidden1,submit=_],
 %term_to_atom(Hidden1,Hidden),
 
+%writeln(Data),
 %*/
-%Input="2",
+%/*
+
+%writeln(Hidden1),
+%writeln(Input1),
+
+	%replace_new(Hidden1,"&quot;","\"",Hidden2),
+	%replace_new(Input1,"&quot;","\"",Input2),
+
+%writeln(Hidden2),
+%writeln(Input2)
 %/*
 term_to_atom([Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
 
@@ -83,9 +92,9 @@ html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
 pred_id(Pred_id),
-(types(Types)->
-(typestatements(Typestatements),
-modestatements(Modestatements))),
+types(Types),
+typestatements(Typestatements),
+modestatements(Modestatements),
 
 
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
@@ -97,13 +106,8 @@ modestatements(Modestatements))),
 	CP_Vars3,CP_Vars2),
 	
 	ssi1([C,"line",Query,Vars1])],
-	Hidden), %****
-	%*/
-%term_to_atom(Hidden1,Hidden),
-%format(Hidden)
-
-	%format('here',[])
-	%/*
+	Hidden1), 
+	
 lang(Lang),
 
 retractall(debug2(_)),assertz(debug2(Debug2)),
@@ -122,7 +126,8 @@ retractall(types(_)),assertz(types(Types)),
 retractall(typestatements(_)),assertz(typestatements(Typestatements)),
 retractall(modestatements(_)),assertz(modestatements(Modestatements)),
 
-atom_string(Input,Value1A),
+
+atom_string(Input1,Value1A),
 
 data(Header,Footer),
 
@@ -209,7 +214,7 @@ td {word-wrap: break-word;}
 --> 
   </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
   </head>
   <body style="background-color: rgb(255, 239, 227);">
 

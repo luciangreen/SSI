@@ -168,7 +168,7 @@ append_retry_back_stack(Item) :-
  	assertz(retry_back_stack(List2)).
 
 replace(A,Find,Replace,F) :- 	
-	split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F).
+	writeln(a),split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F),!.
 
 /*
 print_text :-
@@ -917,9 +917,9 @@ html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
 pred_id(Pred_id),
-types(Types),
-typestatements(Typestatements),
-modestatements(Modestatements),
+(types(Types)->
+(typestatements(Typestatements),
+modestatements(Modestatements))),
 
 %retractall(hidden(Hidden)),
 
@@ -958,12 +958,15 @@ modestatements(Modestatements),
 	%trace,
 	term_to_atom(Hidden,Hidden1),
 	
+	replace_new(Hidden1,"\"","&quot;",Hidden2),
+	%replace_new(Hidden2,"\'","\'\'",Hidden3),
+	
 	concat_list(["
 	   
   <form action=\"/landing\" method=\"POST\">
   <label for=ssi></label>
   <input type=text id=input name=input value=''><br><br>
-  <input type=hidden id=ssi name=ssi value='",Hidden1,"'><br><br>
+  <input type=hidden id=ssi name=ssi value=\"",Hidden2,"\"><br><br>
   <input type=submit name=submit value='Submit'>
 </form>
 "],Form_text1),
