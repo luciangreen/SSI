@@ -48,7 +48,7 @@ halt
 
 # Explanation of what it does
 
-* SSI was written to save states of the Prolog interpreter. 
+* SSI was written to save the states of the Prolog interpreter. 
 * It solves the problem of backtracking by saving states.
 * It works by manually storing and referring to choice points, records of the variable binding table and recursive states. These include "virtual" commands (commands such as `member2` which compute all results when they are first run). The interpreter loads these choice points as the algorithm encounters flow through predicates, commands and recursion.
 * It supports the Higher-Order `call` Command.
@@ -64,14 +64,14 @@ ssi_test_all00("en2",off,NTotal,Score).
 ```
 where "en2" is an English language with e.g. `"concatenate strings"` instead of `stringconcat` ("en", or see available <a href="https://github.com/soimort/translate-shell">language codes</a> - see the <a href="https://github.com/luciangreen/Languages"> Languages repository</a> for instructions about how to install different languages).
 
-To run a test from one of main, types, open or open types, run one of:
+To run a test from one of the primary, types, open or open types, run one of:
 ```
 ssi_test_all01(test,            4,"en2",off,1,Passed).
 ssi_test_all01(test_types_cases,6,"en2",off,1,Passed).
 ssi_test_all01(testopen_cases,  3,"en2",off,1,Passed).
 ssi_test_all01(test_open_types, 5,"en2",off,1,Passed).
 ```
-where 1 is replaced with the test number from
+where the user should replace 1 with the test number from
 
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
@@ -87,14 +87,14 @@ To run all tests (main, types, open and open types) back-translating to and from
 ssi_test_all_bt00("en2",off,NTotal,Score).
 ```
 
-To run a test from one of main, types, open or open types, run one of:
+To run a test from one of the primary, types, open or open types, run one of:
 ```
 ssi_test_all_bt01(test,            4,"en2",off,1,Passed).
 ssi_test_all_bt01(test_types_cases,6,"en2",off,1,Passed).
 ssi_test_all_bt01(testopen_cases,  3,"en2",off,1,Passed).
 ssi_test_all_bt01(test_open_types, 5,"en2",off,1,Passed).
 ```
-where 1 is replaced with the test number from
+where the user replaces 1 with the test number from
 
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4.pl">lpiverify4.pl</a>
 <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/lpiverify4_types.pl">lpiverify4_types.pl</a>
@@ -109,7 +109,7 @@ respectively.
 
 * After loading `swipl` and `[ssi].`, load State Saving Interpreter to run web apps with `ssi_server(8000).` and go to `http://127.0.0.1:8000` in your browser.
 
-* Modify application to run, title of window and background colour in `ssi-api.pl`.
+* Modify the application to run the window's title and background colour in `ssi-api.pl`.
 
 # Documentation
 
