@@ -1,6 +1,6 @@
 # State Saving Interpreter (SSI)
 
-With the State Saving Interpreter, users can save states of the interpreter between times and deprecate the <a href="https://github.com/luciangreen/listprologinterpreter">List Prolog Interpreter</a>.
+With the State Saving Interpreter, users can save states of the interpreter between times and deprecate <a href="https://github.com/luciangreen/listprologinterpreter">List Prolog Interpreter</a>.
 
 # Getting Started
 
