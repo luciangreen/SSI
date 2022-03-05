@@ -159,13 +159,16 @@ lucianpl1(Debug) :-
 
 (not(equals4(_Equals4))->(retractall(equals4(_)),assertz(equals4(on)));true).
 
-append_retry_back_stack(Item) :-
+append_retry_back_stack(_Item) :-
+true.
 %trace,
-	find_retry_back_stack_n(N2),
+
+/*	find_retry_back_stack_n(N2),
 	retry_back_stack(List1),
 	append(List1,[[N2,Item]],List2),
 	retractall(retry_back_stack(_)),
  	assertz(retry_back_stack(List2)).
+*/
 
 replace(A,Find,Replace,F) :- 	
 	split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F),!.
