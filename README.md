@@ -109,7 +109,7 @@ respectively.
 
 * After loading `swipl` and `[ssi].`, load State Saving Interpreter to run web apps with `ssi_server(8000).` and go to `http://127.0.0.1:8000` in your browser.
 
-* Modify the application to run the window's title and background colour in `ssi-api.pl`.
+* Modify the application to run, the window's title and background colour in `ssi-api.pl`.
 
 # Documentation
 
