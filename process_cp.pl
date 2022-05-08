@@ -21,7 +21,7 @@ Vars1,
 	%writeln([d1,D1]),
 	E1=[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line%"line"
 	,Query_a2,_CPV0,CPV3],
-	
+	%trace,
 	(Pred_or_line="line"->
 	(CPV3=[CPV_A1,CPV_A2,_CPV_A3,_CPV_A4,_CPV_A5,
 	_CPV_A6,CPV],
@@ -38,7 +38,7 @@ Vars1,
 
 	getvalue([Dbw_v,Sys_name],Value3,Vars2fa),
 	
-	append(Findall_vars,[Value3],Findall_vars2),
+(Value3=empty->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	
 	turn_back_debug(Debug),
 
@@ -99,7 +99,7 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[Dbw_findall_
 
 	getvalue([Dbw_v,Sys_name],Value3,Vars2fa),
 	
-	append(Findall_vars,[Value3],Findall_vars2),
+(Value3=empty->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	
 	turn_back_debug(Debug),
 
@@ -135,7 +135,21 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,CPV1,[Dbw_findall_exit_function
 
 %trace,
 
-CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
+%(
+CPV1=[CPV10, "prev_pred_id", Prev_pred_id],%->
+
+ssi1([Prev_pred_id,Level3, %*
+	CPV10,Line_number_a2,"line",Query_a2,
+	_,CPV2], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	Result1, Result2, 
+	Globals3,Globals2,
+	Choice_point_trail1d1,
+	Choice_point_trail3,
+	CP_Vars81,CP_Vars2)
+	/*
+	;
+(Line_number_a2=["returns to", CPV10, "pred_id", Prev_pred_id]),
+%[CPV10, "prev_pred_id", Prev_pred_id]),
 
 	ssi1([Prev_pred_id,Level3, %*
 	CPV10,Line_number_a2,"line",Query_a2,
@@ -145,5 +159,7 @@ CPV1=[CPV10, "prev_pred_id", Prev_pred_id],
 	Choice_point_trail1d1,
 	Choice_point_trail3,
 	CP_Vars81,CP_Vars2)
-	)
-	)).
+	).
+	))).
+*/
+	))).

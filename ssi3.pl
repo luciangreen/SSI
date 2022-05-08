@@ -1172,6 +1172,8 @@ reverse(Choice_point_trail1,Choice_point_trail14),
 	%2
 	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],B1),
 	
+	not(F_Line_number_a2=["returns to", _, "pred_id", _]),
+	
 %not(var(H)),
 	E1=[C,D_Level
 	%2
