@@ -747,7 +747,7 @@ get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
 get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
 get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Dbw_go_to_predicates,
 
-return_to_last_non_end_function(Line_number_a,Lines,Line_number_b,[Dbw_on_true,A],[Dbw_go_after,_B],[Dbw_on_false,C],[Dbw_go_to_predicates,D],Line,Globals1,Pred_id,Line_number_a)
+return_to_last_non_end_function(Line_number_a,Lines,Line_number_b,[Dbw_on_true,A],[Dbw_go_after,_B],[Dbw_on_false,C],[Dbw_go_to_predicates,D],Line,Globals1,Pred_id,Line_number_a,FA)
 
 ),
 
@@ -778,9 +778,11 @@ CP_Vars1=CP_Vars3)
 append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 
 	((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
+get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,	
 
 	
-	Line_number_b=[Dbw_findall_exit_function,Findall_end_line]
+	(Line_number_b=[Dbw_findall_exit_function,Findall_end_line]->true;
+	Line_number_b=[Dbw_findall_fail_function,Findall_end_line])
 	%,trace
 	%writeln(here0)
 	)->
@@ -794,7 +796,7 @@ cp_since_findall_start(Choice_point_trail1e,Level,_D10,E1,D1,CP_Vars3,CP_Vars31)
 	)->
 	(
 %trace,
-	process_cp(Findall_end_line,D1,E1,
+	process_cp(Findall_end_line,FA,D1,E1,
 
 _,
 
@@ -811,7 +813,7 @@ Vars1,
 	%trace,
 	
 	
-	end_nested_findall(Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2)
+	end_nested_findall(FA,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2)
 
 ));
 %Level32 is Level-1,
@@ -820,7 +822,7 @@ Vars1,
 	
 	((Line_number_b= -3)->
 	
-	e(Pred_id,Level,Predicate_number,Vars1,End_result,Functions,Vars2,Result1, Result2, 
+	e(Pred_id,Level,Predicate_number,Vars1,_End_result,Functions,Vars2,Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
@@ -841,7 +843,7 @@ Vars1,
 	( %(trace,
 	%not(D='-')
 	(((%trace,
-	D=[_|_])-> true;(D=(*),get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,Line=[Function,Arguments],Function=[Dbw_v,_],
+	D=[_|_])-> true;(D=(*),get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,Line=[Function,Arguments],Function=[Dbw_v,_Function2],%,not(reserved_word2(Function2))
 	
 append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
@@ -1207,7 +1209,7 @@ reverse(Choice_point_trail1,Choice_point_trail14),
 
 % bc
 
-return_to_last_non_end_function(E1,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,_Globals,_,_) :-
+return_to_last_non_end_function(E1,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,_Globals,_,_,FA) :-
 
 get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
 get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
@@ -1216,6 +1218,7 @@ get_lang_word("go_to_predicates",Dbw_go_to_predicates1),Dbw_go_to_predicates1=Db
 
 get_lang_word("exit_function",Dbw_exit_function1),Dbw_exit_function1=Dbw_exit_function,
 get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
+get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,
 get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_function,
 
 
@@ -1225,11 +1228,14 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	((E1=[Dbw_exit_function,_]->true;E1=[Dbw_fail_function,_])->
 	fail;
 	(E1=[Dbw_findall_exit_function,_]->
-	(End_line4=E1,A1=(-),B1=(-),C1=(-),D1=(-),Line1=(-));
+	(End_line4=E1,A1=(-),B1=(-),C1=(-),D1=(-),Line1=(-),FA=exit);
+	(E1=[Dbw_findall_fail_function,E]->
+	(member([E,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1]|Line1],Lines),FA=fail);
+	%End_line4=E1,A1=(-),B1=(-),C1=(-),D1=(-),Line1=(-),FA=fail);
 	(find_line_number(E1,E),End_line4=E,
-	member([E,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1]|Line1],Lines))))).
+	member([E,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1]|Line1],Lines)))))).
 	
-return_to_last_non_end_function(E1,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,Globals,Pred_id,Line_number_a) :-
+return_to_last_non_end_function(E1,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,Globals,Pred_id,Line_number_a,FA) :-
 %trace,
 %writeln1([lines,Lines]),
 %writeln1(return_to_last_non_end_function(E1,Lines,End_line4,["on true",A1],["go after",B1],["on false",C1],["go to predicates",D1],Line1)),
@@ -1264,7 +1270,7 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	;((Line=[[Dbw_n,Dbw_not]],
 	debug_fail(Skip,Line))->true;true))))),
 	
-	return_to_last_non_end_function(F,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,Globals,Pred_id,Line_number_a).
+	return_to_last_non_end_function(F,Lines,End_line4,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1],Line1,Globals,Pred_id,Line_number_a,FA).
 	
 	
 find_line_number(Line_number1,Line_number2) :-

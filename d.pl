@@ -29,7 +29,8 @@ Query1=[Function,Arguments]
 %)
 ,
 
-        (Function=[Dbw_v,_]->
+        ((Function=[Dbw_v,Function2],
+        not(reserved_word2(Function2)))->
         (append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         

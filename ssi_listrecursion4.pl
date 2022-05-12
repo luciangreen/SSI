@@ -39,7 +39,8 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
         %%not(Function=[n,grammar]->true;Function=[n,grammar_part]), ****
 %%writeln1(["Arguments",Arguments,"Vars1",Vars1]),
         %%***writeln1(substitutevarsA1(Arguments,Vars1,[],Vars3,[],FirstArgs)),
-        (Function=[Dbw_v,_]->
+        ((Function=[Dbw_v,Function2],
+        not(reserved_word2(Function2)))->
         (append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         Vars3=[Function1|Vars31],
@@ -159,7 +160,9 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
         ((Query1=[[Dbw_n,Dbw_call],[Function,Arguments]]%,        not_reserved_word(Function,Reserved_words1)
         )->true;
 (Query1=[Function,Arguments],
-Function=[Dbw_v,_]))%,Function=[Dbw_n1,Function_a],atom_string(Function_a,Function_s),
+Function=[Dbw_v,_Function2]
+%not(reserved_word2(Function2))
+))%,Function=[Dbw_n1,Function_a],atom_string(Function_a,Function_s),
 %,not_reserved_word(Function,Reserved_words1))
 %)
 ,
@@ -168,7 +171,8 @@ Function=[Dbw_v,_]))%,Function=[Dbw_n1,Function_a],atom_string(Function_a,Functi
         %%not(Function=[n,grammar]->true;Function=[n,grammar_part]), ****
 %%writeln1(["Arguments",Arguments,"Vars1",Vars1]),
         %%***writeln1(substitutevarsA1(Arguments,Vars1,[],Vars3,[],FirstArgs)),
-        (Function=[Dbw_v,_]->
+        ((Function=[Dbw_v,Function2],
+        not(reserved_word2(Function2)))->
         (%trace,
         append([Function],Arguments,Arguments1),
         %trace,

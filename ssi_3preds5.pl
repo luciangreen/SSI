@@ -1,3 +1,4 @@
+/*
 interpretpart(read_string1,Variable1,Vars1,Vars2) :- 
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("read_string",Dbw_read_string),
@@ -8,6 +9,7 @@ get_lang_word("read_string",Dbw_read_string),
         putvalue(Variable1,Value1A,Vars1,Vars2))->
       debug_exit(Skip,[[Dbw_n,Dbw_read_string],[Value1A]])
 ;     debug_fail(Skip,[[Dbw_n,Dbw_read_string],[variable]])),!.
+*/
 
 /*ssi_interpretpart(member,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,

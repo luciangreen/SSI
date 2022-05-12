@@ -325,6 +325,7 @@ find_state_machine_body2(Body1,Body2,Return_line_true,Return_line_false,Pred_num
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
 get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
+get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,
         get_lang_word("on_true",Dbw_on_true1),Dbw_on_true1=Dbw_on_true,
 get_lang_word("go_after",Dbw_go_after1),Dbw_go_after1=Dbw_go_after,
 get_lang_word("on_false",Dbw_on_false1),Dbw_on_false1=Dbw_on_false,
@@ -342,7 +343,7 @@ Body1=[[Number,[Dbw_n,Dbw_findall],[Statements1,Statements2,Statements2a]]|State
         %find_state_machine_body2([Statements1],Body3,Statements2_number,Statements2a_number,Pred_numbers),
         %find_state_machine_body2([Statements2],Body4,[end_function,Number],Return_line_false,Pred_numbers),
                %%trace,
-                find_state_machine_body2(Statements2a,Body5,[Dbw_findall_exit_function,Number],[Dbw_findall_exit_function,Number]%Return_line_false
+                find_state_machine_body2(Statements2a,Body5,[Dbw_findall_exit_function,Number],[Dbw_findall_fail_function,Number]%Return_line_false
                 ,Pred_numbers),
         find_state_machine_body2(Statements3,Body6,Return_line_true,Return_line_false,Pred_numbers),
 
