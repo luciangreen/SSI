@@ -35,7 +35,7 @@ Vars1,
 
 	find_sys(Sys_name),
  	interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
-
+%writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
 	Value3=empty),
 	
@@ -97,7 +97,7 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[Dbw_findall_
 	find_sys(Sys_name),
  
  interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
-
+%writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
 	Value3=empty),
 	
@@ -130,8 +130,9 @@ append_cp(Choice_point_trail1c,[[Pred_id2,Level3,CPV1,Line_number_a2,Pred_or_lin
 %writeln1(["*2",append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line,_,_,CPV23]],Choice_point_trail1d,CP_Vars7,CP_Vars8)]),
 
 get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
-
-(FA=fail->FA1=Dbw_findall_fail_function;FA1=Dbw_findall_exit_function),
+get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,
+%writeln([*,FA]),
+(not(FA=exit)->FA1=Dbw_findall_fail_function;FA1=Dbw_findall_exit_function),
 
 append_cp(Choice_point_trail1d,[[Pred_id2,Level3,CPV1,[FA1,Findall_end_line],"line",_,
 	Vars2fa,_]],Choice_point_trail1d1,

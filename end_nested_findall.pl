@@ -46,6 +46,7 @@ find_sys(Sys_name),
         interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
 
 %trace,
+%writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
 	Value3=empty),
 	
@@ -84,8 +85,8 @@ debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
 
 %trace,
 ((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
-
-member_cut1([_Ad,_Bd,_Cf,_Ef,_Ff,[Dbw_findall_exit_function,_Gf],"line",-,_Vars11|_],Choice_point_trail4),
+%trace,
+(member_cut1([_Ad,_Bd,_Cf,_Ef,_Ff,[Dbw_findall_exit_function,_Gf],"line",-,_Vars11|_],Choice_point_trail4)->true;true),
 
 %writeln1(member_cut1([_Ad,_Bd,Cf,Ef,Ff,[findall_exit_function,Gf],"line",-,Vars11|_],Choice_point_trail4)),
 
@@ -160,7 +161,7 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
 %trace,
 %writeln([choice_point_trail3,Choice_point_trail3]),
 	
-	process_cp(C_Line_number_a2,_FA,D100,E100,
+	process_cp(C_Line_number_a2,FA,D100,E100,
 
 _,
 
