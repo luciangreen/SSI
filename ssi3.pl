@@ -813,7 +813,8 @@ Vars1,
 	%trace,
 	
 	
-	end_nested_findall(FA,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2)
+	end_nested_findall(FA
+	,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2)
 
 ));
 %Level32 is Level-1,

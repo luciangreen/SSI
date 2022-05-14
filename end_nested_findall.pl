@@ -137,7 +137,7 @@ member_cut1([_,_,_,_,_,_,"findall",-|_],Choice_point_trail52))
 
 %cp_since_findall_start(Choice_point_trail5,_Level,_D10,E1,_D1,CP_Vars41,CP_Vars4)
 -> 
-end_nested_findall(FA,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2);
+end_nested_findall(exit,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2);
 (%trace,
 (cp_since_findall_start(Choice_point_trail3,Level,_,E100,D100,CP_Vars3,CP_Vars3111)->
 
@@ -161,7 +161,9 @@ ssi1([Pred_id,Level,Predicate_number,Line_number_c%Line_number_c
 %trace,
 %writeln([choice_point_trail3,Choice_point_trail3]),
 	
-	process_cp(C_Line_number_a2,FA,D100,E100,
+	process_cp(C_Line_number_a2,%exit%
+	FA
+	,D100,E100,
 
 _,
 
