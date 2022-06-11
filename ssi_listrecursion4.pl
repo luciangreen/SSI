@@ -122,7 +122,9 @@ Query2,Types,Modes,Functions3a,Result1a)	%international_interpret([lang,Lang2],o
 
 		  (Types2a=on->(
 		  	retractall(typestatements(_)),
- 	assertz(typestatements(TypeStatements2a)),
+ 		%findall([A,C],(member([A,B],TypeStatements2a),expand_types(B,[],C)),TypeStatements2a1),
+
+assertz(typestatements(TypeStatements2a)),
 	retractall(modestatements(_)),
  	assertz(modestatements(ModeStatements2a)));true),
 

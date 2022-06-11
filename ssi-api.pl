@@ -123,7 +123,11 @@ retractall(pred_numbers(_)),assertz(pred_numbers(Pred_numbers)),
 
 retractall(pred_id(_)),assertz(pred_id(Pred_id)),
 retractall(types(_)),assertz(types(Types)),
-retractall(typestatements(_)),assertz(typestatements(Typestatements)),
+retractall(typestatements(_)),
+
+	%findall([A,C],(member([A,B],TypeStatements),expand_types(B,[],C)),TypeStatements1),
+
+assertz(typestatements(Typestatements)),
 retractall(modestatements(_)),assertz(modestatements(Modestatements)),
 
 

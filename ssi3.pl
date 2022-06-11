@@ -39,7 +39,9 @@ lucianpl_1(Debug,Query,TypeStatements,ModeStatements,Functions1,Result) :-
 	retractall(types(_)),
  	assertz(types(on)),
 	retractall(typestatements(_)),
- 	assertz(typestatements(TypeStatements)),
+ 		findall([A,C],(member([A,B],TypeStatements),expand_types(B,[],C)),TypeStatements1),
+
+assertz(typestatements(TypeStatements1)),
 	retractall(modestatements(_)),
  	assertz(modestatements(ModeStatements)),
 lucianpl11(Debug,Query,Functions1,Result).
