@@ -2,6 +2,8 @@
 
 % Place in root directory, check paths below.
 
+% run with swipl ssi-ws.pl in e.g. crontab -e
+
 :- initialization main.
 
 :- use_module(library(http/thread_httpd)).
