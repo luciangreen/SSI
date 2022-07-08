@@ -143,6 +143,8 @@ lucianpl1(Debug) :-
 	  	%retractall(screen_text(_)),
 	  	%retractall(curr_screen_text(_)),
 	  	
+	  	retractall(session_number(_)),
+ 	assertz(session_number(_)),
 	  	
  	assertz(debug2(off)), % on - displays ssi debug info
  	assertz(debug3(off)), % on - displays level
@@ -928,11 +930,17 @@ pred_id(Pred_id),
 (types(Types)->
 (typestatements(Typestatements),
 modestatements(Modestatements))),
-
+%writeln(1),
+session_number(Session_number),
 %retractall(hidden(Hidden)),
+%writeln(2),
 
 %assertz(hidden(
-Hidden=[Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
+Hidden=Session_number,
+
+%writeln(3),
+
+Hidden3=[Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
 
 debug2(Debug2),
 debug3(Debug3),
@@ -960,6 +968,12 @@ modestatements(Modestatements),
 	CP_Vars3,CP_Vars2),
 	
 	ssi1([C,"line",Query,Vars1])],
+
+%writeln(4),
+
+save_session(Session_number,Hidden3),
+
+%writeln(5),
 	
 	%print_text,
 

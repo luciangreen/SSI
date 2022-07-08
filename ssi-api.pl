@@ -76,7 +76,15 @@ ssi=Hidden1,submit=_],
 %writeln(Hidden2),
 %writeln(Input2)
 %/*
-term_to_atom([Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
+term_to_atom(Hidden11,Hidden1),
+
+%writeln1([atom_string(Hidden11,Hidden1)]),
+
+get_session(Hidden11,Session),
+
+%/*
+%term_to_atom(
+Session=[Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
 
 
 
@@ -106,10 +114,13 @@ modestatements(Modestatements),
 	CP_Vars3,CP_Vars2),
 	
 	ssi1([C,"line",Query,Vars1])],
-	Hidden1), 
-	
+	%Session), 
+	%*/
+
+%/*	
 lang(Lang),
 
+retractall(session_number(_)),assertz(session_number(Hidden11)),
 retractall(debug2(_)),assertz(debug2(Debug2)),
 retractall(debug3(_)),assertz(debug3(Debug3)),
 retractall(debug4(_)),assertz(debug4(Debug4)),
@@ -132,9 +143,10 @@ retractall(modestatements(_)),assertz(modestatements(Modestatements)),
 
 
 atom_string(Input1,Value1A),
+%*/
 
 data(Header,Footer),
-
+%/*
 format(Header,[]),
 
 
@@ -173,7 +185,7 @@ format(Header,[]),
 
 
 )),
-
+%*/
 format(Footer,[])
 %*/
 .

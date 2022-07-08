@@ -79,6 +79,8 @@ crop down pred from top x just goes to next command
 :-include('process_cp.pl').
 :-include('end_nested_findall.pl').
 :-include('used_by_call_command.pl').
+:-include('sessions.pl').
+:-include('ssi-api-key.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.
@@ -89,6 +91,7 @@ crop down pred from top x just goes to next command
 :- dynamic cumulative_or_current_text/1.
 :- dynamic number_of_current_text/1.
 :- dynamic html_api_maker_or_terminal/1.
+:- dynamic session_number/1.
 
 %:- dynamic screen_text/1.
 %:- dynamic curr_screen_text/1.

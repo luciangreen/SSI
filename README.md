@@ -111,6 +111,8 @@ respectively.
 
 * Modify the application to run, the window's title and background colour in `ssi-api.pl`.
 
+* Before running on your server, change the API key in `api-key(1234567890).` in `ssi-api-key.pl` to a different API key.
+
 # Documentation
 
 See <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Documentation</a>.
