@@ -1,10 +1,13 @@
 generate_session_key(Key5) :-
+ repeat,
  api-key(API_key),
  length(Key,10),
  findall(Key1,(member(_,Key),random(X),Key1 is ceiling(10*X)),Key2),
  flatten([API_key,"-",Key2],List),
  foldr(string_concat,List,"",Key4),
  string_atom(Key4,Key5),
+ foldr(string_concat,["sessions/session",Key5,".txt"],Path),
+ not(exists_file(Path)),
  %number_string(Key31,Key3),
  %Key4=API_key-Key31,
  !.
