@@ -16,13 +16,13 @@
 :- http_handler('/', web_form, []).
 
 % GitHub/Algorithm-Writer-with-Lists/
-:- include('GitHub2/SSI/ssi.pl').
+:- include('GitHub/SSI/ssi.pl').
 
 main :-
-	working_directory(_, 'GitHub2/SSI/'),
+	working_directory(_, 'GitHub/SSI/'),
 
 delete_old_sessions,
-ssi_server(8007),sleep(86400).
+ssi_server(8000),sleep(86400).
 
 main :- halt(1).
 
