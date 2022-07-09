@@ -927,9 +927,10 @@ html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
 pred_id(Pred_id),
-(types(Types)->
+types(Types),
+(types(on)->
 (typestatements(Typestatements),
-modestatements(Modestatements))),
+modestatements(Modestatements));true),
 %writeln(1),
 session_number(Session_number),
 %retractall(hidden(Hidden)),
