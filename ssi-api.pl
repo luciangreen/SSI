@@ -30,11 +30,11 @@ format(Header,[]),
 
 Debug=off,
 
-	test_open_types_cases(4,Query,Types,Modes,Functions),
+	%test_open_types_cases(4,Query,Types,Modes,Functions),
 
 %international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 
-%testopen_cases(3,Query,Functions),
+testopen_cases(3,Query,Functions),
 	%test(1,Query,Functions,Result),
 	international_lucianpl([lang,"en"],Debug,Query,Functions,_Result1),
 
