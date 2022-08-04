@@ -1349,7 +1349,8 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	(((number(E2),E2= -3)->(member([E,[Dbw_on_true,A11],[Dbw_go_after,B11],[Dbw_on_false,C11],[Dbw_go_to_predicates,D11]|Line11],Lines),
 	
 ((%trace,
-not(B11= -1),not(B11= -2),not(B11= -3))->	(member([B11,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1]|Line1],Lines),End_line42=B11);
+not(B11= -1),not(B11= -2),not(B11= -3),number(B11)%,trace
+)->	(member([B11,[Dbw_on_true,A1],[Dbw_go_after,B1],[Dbw_on_false,C1],[Dbw_go_to_predicates,D1]|Line1],Lines),End_line42=B11);
 (A11=A1,B11=B1,C11=C1,D11=D1,Line11=Line1,End_line42=_)),
 
 	FA=fail);
