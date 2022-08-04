@@ -74,7 +74,7 @@ ssi_test_all000(test,Debug,NTotal3,Score1,Score3,Lang) :-
 
 
 			((
-catch(call_with_time_limit(100,international_lucianpl([lang,Lang],Debug,Query1,Functions1,Result1)),_,false)	%,writeln1(Result2)
+catch(call_with_time_limit(80,international_lucianpl([lang,Lang],Debug,Query1,Functions1,Result1)),_,false)	%,writeln1(Result2)
 	)
 	->(Score3 is Score1+1,writeln0([ssi_test,NTotal3,passed]));(Score3=Score1,writeln0([ssi_test,NTotal3,failed]))).
 
@@ -89,7 +89,7 @@ test_types_cases(NTotal3,Query,Types,Modes,Functions,Result),
 	(Debug=on->writeln1(Functions1);true),
 	trans_alg(Result,"en",Lang,Result1),
 
-(catch(call_with_time_limit(100,international_lucianpl([lang,Lang],Debug,Query1,Types1,Modes1,Functions1,Result1)),_,false)	%,writeln1(Result2)
+(catch(call_with_time_limit(80,international_lucianpl([lang,Lang],Debug,Query1,Types1,Modes1,Functions1,Result1)),_,false)	%,writeln1(Result2)
 ->(Score3 is Score1+1,writeln0([ssi_test_types,NTotal3,passed]));(Score3=Score1,writeln0([ssi_test_types,NTotal3,failed]))).
 	
 ssi_test_all000(testopen_cases,Debug,NTotal3,Score1,Score3,Lang) :-

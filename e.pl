@@ -51,6 +51,7 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 
 	 Query2=[_|_],
 	%trace,
+%writeln("*1"),
 	get_last_cp_before_n(Choice_point_trail1,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,

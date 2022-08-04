@@ -96,8 +96,14 @@ member([pred_id_chain,PID1,Pred_id1],Globals3),%;
 	,"predicate",_Query21,_Vars4,All_predicate_numbers2],
 	[_Cp_a1,_Cb_b1,PID1,_Level21,Predicate_number2,-1%Line_number2b
 	,"predicate",_Query21,_Vars4,All_predicate_numbers2],_,
-	CP_Vars41,CP_Vars4),
+	CP_Vars41,CP_Vars42),
 	
+/*
+delete_cp(Choice_point_trail1,[_Cp_a1,_Cb_b1,PID1,_Level21,Predicate_number2,-1%Line_number2b
+	,"predicate",_Query21,_Vars4,All_predicate_numbers2],Choice_point_trail1a,CP_Vars42,CP_Vars4,_),
+	*/
+
+Choice_point_trail1=Choice_point_trail1a,CP_Vars42=CP_Vars4,	
 %trace,	writeln1([all_predicate_numbers2,All_predicate_numbers2]),
 %notrace,
 
@@ -179,7 +185,7 @@ reverse(Globals212,Globals22),
 	Vars4,All_predicate_numbers2], _, Functions,Vars2,
 	Result1, Result2, 
 	Globals3,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail1a,
 	Choice_point_trail3,
 	CP_Vars4,CP_Vars2)
 	

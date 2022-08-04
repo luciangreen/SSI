@@ -42,6 +42,260 @@ debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
 
 	))),
       debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]])).
+      
+
+matrix([iii,
+iio,
+ioi,
+ioo,
+oii,
+oio,
+ooi]).
+
+
+	
+ssi_interpretpart(stringconcat,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("stringconcat",Dbw_stringconcat1),Dbw_stringconcat1=Dbw_stringconcat,
+
+%trace,        
+
+getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
+debug_call(Skip,[[Dbw_n,Dbw_stringconcat],[Value1z,Value2z,Value3z]]),	
+
+matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(Y=empty->X=o;X=i)),Z),
+foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,stringconcat,modes,W]),abort)),
+
+%findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),
+[Value1z,Value2z,Value3z]=[Value1,Value2,Value3],
+
+(W=iii->
+(%findall([Vars2b,[Value1,Value2a],Value2a],(,*
+((string_concat(Value1,Value2,Value3)
+%,
+%replace_undefined_with_empty(Item,Item_e)
+)->
+debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]);
+debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]])),
+	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	%),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		%findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1)),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			[]]
+);		
+
+%numbers(3,1,[],N),
+%findall(P,(member(N1,N),get_item_n(Z,N1,Z1),(Z1=i->get_item_n([Value1,Value2,Value3],N1,P));P=[v1,N1]%(Z1=o,get_item_n([Value1a,Value2a,Value3a],N1,P))
+%),P1),
+
+(W=iio->
+	(findall([Vars2b,[Value1,Value2,Value3a],Value3a],(string_concat(Value1,Value2,Value3a),
+	putvalue_equals4(Variable3,Value3a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value3a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3a]]));
+		
+
+(W=ioi->
+	(findall([Vars2b,[Value1,Value2a,Value3],Value2a],(string_concat(Value1,Value2a,Value3),
+	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2a,Value3]]));
+
+
+/*
+(W=ioo->
+	(findall([Vars2b,[Value1,Value2a,Value3a],Value2a,Value3a],(string_concat*(Value1,Value2a,Value3a),
+	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2a,Value3]]));
+*/	
+
+(W=oii->
+	(findall([Vars2b,[Value1a,Value2,Value3],Value1a],(string_concat(Value1a,Value2,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1a,Value2,Value3]]));
+
+
+/*
+(W=oio->
+	(findall([Vars2b,[Value1a,Value2,Value3],Value1a],(string_concat(Value1a,Value2,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1a,Value2,Value3]]));
+*/
+
+(W=ooi->
+	(%trace,
+	findall([Vars2b,[Value1a,Value2a,Value3],Value1a,Value2a],(string_concat(Value1a,Value2a,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2ba),
+	putvalue_equals4(Variable2,Value2a,Vars2ba,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1a,Value2a,Value3]]))
+
+))))).	
+
+
+
+
+	
+ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("append",Dbw_append1),Dbw_append1=Dbw_append,
+        getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
+debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),	
+
+matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var(empty,Y)->X=o;X=i)),Z),
+foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,modes,W]),abort)),
+
+%findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),
+[Value1z,Value2z,Value3z]=[Value1,Value2,Value3],
+
+
+(W=iii->
+(%findall([Vars2b,[Value1,Value2a],Value2a],(,*
+((append(Value1,Value2,Value3)
+%,
+%replace_undefined_with_empty(Item,Item_e)
+)->
+debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]]);
+debug_fail(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]])),
+	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	%),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		%findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1)),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],W,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			[]]
+);
+		
+
+%numbers(3,1,[],N),
+%findall(P,(member(N1,N),get_item_n(Z,N1,Z1),(Z1=i->get_item_n([Value1,Value2,Value3],N1,P));P=[v1,N1]%(Z1=o,get_item_n([Value1a,Value2a,Value3a],N1,P))
+%),P1),
+
+(W=iio->
+	(findall([Vars2b,[Value1,Value2,Value3a],Value3a],(append(Value1,Value2,Value3a),
+	putvalue_equals4(Variable3,Value3a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value3a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3a]]));
+		
+
+(W=ioi->
+	(findall([Vars2b,[Value1,Value2a,Value3],Value2a],(append(Value1,Value2a,Value3),
+	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2a,Value3]]));
+
+
+/* % this is possible later
+(W=ioo->
+	(findall([Vars2b,[Value1,Value2a,Value3a],Value2a,Value3a],(append*(Value1,Value2a,Value3a),
+	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2a,Value3]]));
+*/	
+
+(W=oii->
+	(findall([Vars2b,[Value1a,Value2,Value3],Value1a],(append(Value1a,Value2,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2,Value3]]));
+
+
+/* possible later
+
+(W=oio->
+	(findall([Vars2b,[Value1a,Value2,Value3],Value1a],(string_concat(Value1a,Value2,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1a,Value2,Value3]]));
+*/
+
+(W=ooi->
+	(%trace,
+	findall([Vars2b,[Value1a,Value2a,Value3],Value1a,Value2a],(append(Value1a,Value2a,Value3),
+	putvalue_equals4(Variable1,Value1a,Vars1,Vars2ba),
+	putvalue_equals4(Variable2,Value2a,Vars2ba,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a,Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2a,Value3]]))
+
+))))).	
+
      % writeln(Vars2c),trace.
 %%;     %%debug_fail(Skip,[[n,member2],[Value1,Value2]])),!.
 %%		((debug(on)->(writeln1([fail,[[n,member2],[Value1,value]],"Press c."]),(leash1(on)->true;(not(get_single_char(97))->true;abort)));true),fail))))).
@@ -98,6 +352,33 @@ debug_call(Skip,[[Dbw_n,Dbw_member2],Value1_Value2]),	%((%Value2=empty,
 	%))),
       debug_exit(Skip,[[Dbw_n,Dbw_member2],Value1a_Value2a])%)
       .
+      
+      
+      
+      
+ssi_interpretpart(stringconcat,_Variable1,_Variable2,_Variable3,_Vars1,Vars2,_Vars2c,AC) :-
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("stringconcat",Dbw_stringconcat1),Dbw_stringconcat1=Dbw_stringconcat,
+
+AC=[[Dbw_n,Dbw_stringconcat],Values,Values_a,Vars2|_],
+
+debug_call(Skip,[[Dbw_n,Dbw_stringconcat],Values]),	
+
+      debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],Values_a]).
+            
+            
+            
+            
+ssi_interpretpart(append,_Variable1,_Variable2,_Variable3,_Vars1,Vars2,_Vars2c,AC) :-
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("append",Dbw_append1),Dbw_append1=Dbw_append,
+
+AC=[[Dbw_n,Dbw_append],Values,Values_a,Vars2|_],
+
+debug_call(Skip,[[Dbw_n,Dbw_append],Values]),	
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],Values_a]).
+            
 %%;     %%debug_fail(Skip,[[n,member2],[Value1,Value2]])),!.
 %%		((debug(on)->(writeln1([fail,[[n,member2],[Value1,value]],"Press c."]),(leash1(on)->true;(not(get_single_char(97))->true;abort)));true),fail))))).
 
