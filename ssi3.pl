@@ -895,6 +895,8 @@ append([Function],Arguments,Arguments1),
 	%trace,
 	(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3),
 	
+	%writeln1(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3)),
+	
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
 	Vars1,All_predicate_numbers], _End_result3, Functions,Vars2,
 	Result1, Result2, 
@@ -1821,10 +1823,41 @@ exit_findall_line(_Pred_id,_Globals,Predicate_number,B,Functions,Line_number_c))
 (Line_number_c=Line_number_b%trace,member([Line_number_b,["on true",_A],["go after",Line_number_c]|_],Lines)
 )).
 
-% delete choicepoints in all clauses of current predicate
-% find cps of same name, arity that have same previous pred_id
+%/*
+collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+ member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+ ((not(member(Prev_pred_id,Pred_ids1)),
+ member([[pred_num,Prev_pred_id],Predicate_number],Globals3))->
+ (append(Pred_ids1,[Prev_pred_id],Pred_ids3),
+ collect_connected_pred_ids(Prev_pred_id,Pred_ids3,Pred_ids2,Predicate_number,Globals3));
+ Pred_ids1=Pred_ids2),!.
+%*/
+/*
+collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+ member([pred_id_chain,Pred_id,Next_pred_id],Globals3),
+ ((not(member(Next_pred_id,Pred_ids1)),
+ member([[pred_num,Next_pred_id],Predicate_number],Globals3))->
+ (append(Pred_ids1,[Next_pred_id],Pred_ids3),
+ collect_connected_pred_ids(Next_pred_id,Pred_ids3,Pred_ids2,Predicate_number,Globals3));
+ Pred_ids1=Pred_ids2),!.
+*/
+ 
+% delete choicepoints in all clauses of current predicate x
+% find cps of same name, arity that have same previous pred_id x
 cut_cps(Choice_point_trail1,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
-	member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+
+%trace,		% collect pred ids connected by curr pred num
+		
+findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
+
+flatten(Pred_ids1,Pred_ids1a),
+sort(Pred_ids1a,Pred_ids2),
+		% replace their cps with [] x
+						
+				
+/*	member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
 	pred_numbers(Pred_numbers),
 	member([Function1,Arity1,Pred_numbers1],Pred_numbers),
 	member(Predicate_number,Pred_numbers1),
@@ -1834,13 +1867,16 @@ cut_cps(Choice_point_trail1,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predic
 	member([[pred_num,Pred_id1],Predicate_number1],Globals3),
 	member(Predicate_number1,Pred_numbers2)),
 	Pred_ids2),
-	
-	findall([E2,E4],(member(C,Pred_ids2),
+*/	
+	findall([
+	E2,E4]
+	,(member(C,Pred_ids2),
 	E2=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
 	member(E2,Choice_point_trail1),
 	
 	%E1=[C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
 	
+%/*
 	(Pred_or_line="line"->
 	(All_predicate_numbers2=[Ab,Bb,Cb,Db,Eb,
 	Fb,Vars2c],not(Vars2c=[]),
@@ -1849,9 +1885,48 @@ cut_cps(Choice_point_trail1,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predic
 	Pred_or_line="predicate"->
 	not(All_predicate_numbers2=[]),
 	E4=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,[]])
+%*/
 	),E3),
+
+				% * delete not replace []s, heap since first line needed for retry
+				% - delete rest of cps with pred_ids2		
+
+%replace_cps(E3,B21,B23,B22),
+
+%replace1(Choice_point_trail1,Pred_ids2,Choice_point_trail3,CP_Vars1,CP_Vars3),
+
+%delete1(E3,Pred_ids2,E31),%,CP_Vars3,CP_Vars4),
+
+							%delete_cp2(Choice_point_trail3,E31,Choice_point_trail2,CP_Vars3,CP_Vars2).
 	
+%delete_cps(Choice_point_trail1,E31,Choice_point_trail12,CP_Vars1a,CP_Vars2).	
+
+/*
+delete_cps(Choice_point_trail1,[],Choice_point_trail11,CP_Vars,CP_Vars) :- !.
+
+delete_cps(Choice_point_trail1,[E31|E32],Choice_point_trail12,CP_Vars1,CP_Vars2) :-	delete_cp(Choice_point_trail1,E31,Choice_point_trail13,CP_Vars1,CP_Vars3,_),
+delete_cps(Choice_point_trail3,E32,Choice_point_trail12,CP_Vars3,CP_Vars2),!.
+*/
 	replace_cp2(Choice_point_trail1,E3,Choice_point_trail2,CP_Vars1,CP_Vars2).
+
+replace1(E3,Pred_ids2,E31,CP_Vars1,CP_Vars3) :-
+
+member([A,B,C,D,E,-1,"predicate",F,H,J],E3),
+member(C,Pred_ids2),
+replace_cp(E3,A,B,[C,D,E,-1,"predicate",F,H,J],
+[C,D,E,-1,"predicate",F,H,[]],E31,CP_Vars1,CP_Vars3),!.
+
+replace1(E,_,E) :- !.
+
+delete1(E3,Pred_ids2,E31%,CP_Vars1,CP_Vars3
+) :-
+
+member([A,B,C,D,E,-1,"predicate",F,H,J],E3),
+member(C,Pred_ids2),
+delete(E3,[A,B,C,D,E,-1,"predicate",F,H,J],E31%,CP_Vars1,CP_Vars3,_
+),!.
+
+delete1(E,_,E) :- !.
 
 	replace_cp2(Choice_point_trail,[],Choice_point_trail,CP_Vars,CP_Vars) :- !.
 	replace_cp2(Choice_point_trail1,E3,Choice_point_trail2,CP_Vars1,CP_Vars2) :-
