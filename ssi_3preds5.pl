@@ -96,16 +96,6 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
       
       
 
-matrix([iii,
-iio,
-ioi,
-ioo,
-oii,
-oio,
-ooi]).
-
-matrix_member([ii,oi,io]).
-	
 ssi_interpretpart(stringconcat,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("stringconcat",Dbw_stringconcat1),Dbw_stringconcat1=Dbw_stringconcat,
@@ -379,20 +369,6 @@ findall([Vars2b,[Value1,Value2a,Value3a],Value3a],(
 )))))).	
 
 
-convert_to_lp_pipe(Value1A,Value1A) :-
- foldr(append,[Value1A],[],_).
-
-convert_to_lp_pipe(Value1A,Value1A1) :-
- command_n_sols(N),
- numbers(N,1,[],N1),
- member(N2,N1),
- length(L,N2),
- append(L,A,Value1A),
- %length(A,1),
- %foldr(append,[A],[],_),
- A=empty,
- foldr(append,[L,["|"],[A]],[],Value1A1).
- 
      % writeln(Vars2c),trace.
 %%;     %%debug_fail(Skip,[[n,member2],[Value1,Value2]])),!.
 %%		((debug(on)->(writeln1([fail,[[n,member2],[Value1,value]],"Press c."]),(leash1(on)->true;(not(get_single_char(97))->true;abort)));true),fail))))).
