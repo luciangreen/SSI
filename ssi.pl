@@ -81,6 +81,7 @@ crop down pred from top x just goes to next command
 :-include('used_by_call_command.pl').
 :-include('sessions.pl').
 :-include('ssi-api-key.pl').
+%:-include('replace_in_term.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.
