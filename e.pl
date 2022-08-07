@@ -117,7 +117,8 @@ writeln1(delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_numbe
 	%(Pred_id=3->writeln(here3);true),
 	
 	% pred id in the following was _
-	(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1,trace) ; Line_number2b1 = Line_number2b),
+	(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1%,trace
+	) ; Line_number2b1 = Line_number2b),
 	
 ssi1([["prev_pred_id",Prev_pred_id],L,All_predicate_numbers31,Line_number2b1,"predicate",Query2,
 	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
