@@ -56,7 +56,7 @@ ssi_test_all_bt0(test,Arity,Lang,Debug,NTotal1,NTotal2,Score1,Score2,NTotal4) :-
 %% ssi_test_all_bt01(ssi_test_open_types, 5,"en2",off,1,Passed).
 
 ssi_test_all_bt01(test,_Arity,Lang,Debug,NTotal3,Passed) :-
-	ssi_test_all_bt000(Ssi_test,Debug,NTotal3,0,Passed1,Lang),
+	ssi_test_all_bt000(test,Debug,NTotal3,0,Passed1,Lang),
 	(Passed1=1->Passed=passed;Passed=failed),
 	/**
 	((international_lucianpl([lang,"en"],Debug,Query,Functions,Result1),%%writeln(Result1),

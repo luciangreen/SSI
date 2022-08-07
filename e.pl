@@ -93,14 +93,14 @@ writeln1(delete_cp(Choice_point_trail1,[Cp_a,Cb_b,_Pred_id,Level,Predicate_numbe
 	(Pred_or_line="predicate"->
 	
 	%(All_predicate_numbers2=[]->
-	%(
+	(
 	delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12,CP_Vars21,CP_Vars3,_),
 
 %***
 	
 	%);
 	
-	(
+	
 	All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
 	
 	All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],

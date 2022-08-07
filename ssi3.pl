@@ -878,14 +878,14 @@ append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
+        append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
 
         Vars3=[Function1|Vars31],
         Query2=[Function1,Vars31],	
-	pred_numbers(Pred_numbers),length(Arguments,Arity1),member([Function1,Arity1,Pred_numbers1],Pred_numbers)))
+	pred_numbers(Pred_numbers),length(Arguments,Arity1),member([Function1,Arity1,_Pred_numbers1],Pred_numbers)))
 	) ->
 
-(d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
+(d(Pred_id,D,Level,Predicate_number,Line_number_b,Query2,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
 
 ((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 	get_lang_word("cut",Dbw_cut1),Dbw_cut1=Dbw_cut,
@@ -1272,11 +1272,11 @@ cp_since_findall_start3(Choice_point_trail1,_Level,_D1,E1,_D11,CP_Vars1,CP_Vars2
 
 reverse(Choice_point_trail1,Choice_point_trail14),
 	member_cut1([_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],Choice_point_trail14),
-	D11=[A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
+	D1=[A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
 	%writeln1(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)),
 	get_later_cps_than_cp11(Choice_point_trail1,
 	[_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
-	D1,B),
+	D11,B),
 	
 	reverse(B,B1),
 	

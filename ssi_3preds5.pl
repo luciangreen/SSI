@@ -31,7 +31,8 @@ ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),	((%Value2=empty,
+debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),
+	((%Value2=empty,
 	
 	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var(empty,Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,modes,W]),abort)),
@@ -39,9 +40,10 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 (W=ii->
 (member(Value2,Value1)->
 
-	
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]);
-      debug_fail(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]));
+    (Vars1=Vars2,	
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]));
+    (Vars1=Vars2,
+     debug_fail(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]])));
       
 (W=io->
 ((findall([Vars2b,[Value1,Value2a],Value2a],(member(Value2a,Value1),
@@ -91,7 +93,46 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 			Vars2c1]
 
 	,
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1a,Value2]]))))))).
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1a,Value2]]));
+      
+      
+(W=oo->
+
+
+(%trace,
+command_n_sols(N),
+	findall([Vars2b,[Value1,Value2a],%Value1a,
+	Value2a],(findnsols(N,%[Value1A2,
+	Value2A2%]
+	,(member(Value1A,Value2A),
+        %replace_in_term(Value1A,_%'$VAR'(_)
+        %,empty,Value1A1),
+        replace_in_term(Value2A,_%'$VAR'(_)
+        ,empty,Value2A1),
+        
+        %convert_to_lp_pipe(Value1A1,Value1A2),
+        convert_to_lp_pipe(Value2A1,Value2A2)
+        )
+        ,ValueA),!,
+        %val1emptyorvalsequal(Value3,Value3A),
+        %trace,
+        %Vars1=Vars2,
+        member(%[Value1a,
+        Value2a%]
+        ,ValueA),
+        %putvalue_equals4(Variable1,Value1a,Vars1,Vars3),%)->
+        putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,%Value1a,
+	Value2a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,%_,
+		_],Vars2d),Vars2c1),
+		
+%trace,
+					Vars2c=[[Dbw_n,Dbw_member2],[Value1,Value2a],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]]))))))))      .
             
       
       
@@ -99,7 +140,7 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 ssi_interpretpart(stringconcat,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("stringconcat",Dbw_stringconcat1),Dbw_stringconcat1=Dbw_stringconcat,
-
+%Vars1=Vars2,
 %trace,        
 
 getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
@@ -117,8 +158,10 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,stringconc
 %,
 %replace_undefined_with_empty(Item,Item_e)
 )->
-debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]);
-debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]])),
+(Vars1=Vars2,
+debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]));
+(Vars1=Vars2,
+debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]))),
 	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	%),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
 		%findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1)),
@@ -222,6 +265,7 @@ debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]])),
 ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("append",Dbw_append1),Dbw_append1=Dbw_append,
+%Vars1=Vars2,
         getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),	
 
@@ -238,8 +282,10 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,mod
 %,
 %replace_undefined_with_empty(Item,Item_e)
 )->
-debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]]);
-debug_fail(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]])),
+(Vars1=Vars2,
+debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]]));
+(Vars1=Vars2,
+debug_fail(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]]))),
 	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	%),Vars2a),Vars2a=[[Vars2,_,Value2a]|Vars2d],
 		%findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_],Vars2d),Vars2c1)),
