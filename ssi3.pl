@@ -881,11 +881,11 @@ append([Function],Arguments,Arguments1),
         append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
 
         Vars3=[Function1|Vars31],
-        Query2=[Function1,Vars31],	
+        _Query2=[Function1,Vars31],	
 	pred_numbers(Pred_numbers),length(Arguments,Arity1),member([Function1,Arity1,_Pred_numbers1],Pred_numbers)))
 	) ->
 
-(d(Pred_id,D,Level,Predicate_number,Line_number_b,Query2,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
+(d(Pred_id,D,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1e,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars3,CP_Vars2));
 
 ((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 	get_lang_word("cut",Dbw_cut1),Dbw_cut1=Dbw_cut,
