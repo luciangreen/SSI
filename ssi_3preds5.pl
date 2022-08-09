@@ -410,9 +410,49 @@ findall([Vars2b,[Value1,Value2a,Value3a],Value3a],(
 			_,_,%[Value1,Value2a]
 			Vars2c1],
 
-      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2a,Value3]]))
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2a,Value3]]));
+      
+(W=ooo->
 
-)))))).	
+
+(%trace,
+command_n_sols(N),
+replace_in_term(Value2,empty,%'$VAR'(_)
+        _,Value22),	findall([Vars2b,[Value1a,%Value2a,
+	Value3a],Value1a,%Value2a,
+	Value3a],(findnsols(N,[Value1A1,%Value2A1,
+	Value3A1],(append1(Value1A,Value22,Value3A),
+        replace_in_term(Value1A,_%'$VAR'(_)
+        ,empty,Value1A2),
+        %replace_in_term(Value2A,_%'$VAR'(_)
+        %,empty,Value2A1),
+        replace_in_term(Value3A,_%'$VAR'(_)
+        ,empty,Value3A2),
+        convert_to_lp_pipe(Value1A2,Value1A1),
+        %convert_to_lp_pipe(Value2A2,Value2A1),
+        convert_to_lp_pipe(Value3A2,Value3A1)
+        )
+        ,ValueA),!,
+        %val1emptyorvalsequal(Value3,Value3A),
+        %trace,
+        %Vars1=Vars2,
+        member([Value1a,%Value2a,
+        Value3a],ValueA),
+        putvalue_equals4(Variable1,Value1a,Vars1,Vars3b),%)->
+        %putvalue_equals4(Variable2,Value2a,Vars3b,Vars3),%)->
+        putvalue_equals4(Variable3,Value3a,Vars3b,Vars2b)
+	),Vars2a),Vars2a=[[Vars2,_,Value1a,%Value2a,
+	Value3a]|Vars2d],
+		findall([Vars2e,Vals2g],member([Vars2e,Vals2g,_,_],Vars2d),Vars2c1),
+		
+					Vars2c=[[Dbw_n,Dbw_append],[Value1,Value2,Value3],_,_,%,%Value2a
+			_,_,%[Value1,Value2a]
+			Vars2c1],
+
+      debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2a,Value3a]]))
+
+
+))))))).	
 
 
      % writeln(Vars2c),trace.
