@@ -1276,7 +1276,7 @@ reverse(Choice_point_trail1,Choice_point_trail14),
 	%writeln1(cp_since_findall_start(Choice_point_trail1,Level,D1,E1)),
 	get_later_cps_than_cp11(Choice_point_trail1,
 	[_A1,_A2,A_Pred_id,A_Level,A_Predicate_number,A_Line_number_a,"findall",A3|A4],
-	D11,B),
+	D1,B),
 	
 	reverse(B,B1),
 	
