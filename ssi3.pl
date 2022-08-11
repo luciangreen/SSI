@@ -1894,13 +1894,13 @@ sort(Pred_ids1a,Pred_ids2),
 
 %replace_cps(E3,B21,B23,B22),
 
-%replace1(Choice_point_trail1,Pred_ids2,Choice_point_trail3,CP_Vars1,CP_Vars3),
+replace1(Choice_point_trail1,Pred_ids2,Choice_point_trail3,CP_Vars1,CP_Vars3),
 %trace,
 delete1(E3,Pred_ids2,E31),%,CP_Vars3,CP_Vars4),
 
 							%delete_cp2(Choice_point_trail1,E31,Choice_point_trail2,CP_Vars1,CP_Vars2).
 	
-delete_cps(Choice_point_trail1,E31,Choice_point_trail2,CP_Vars1,CP_Vars2).	
+delete_cps(Choice_point_trail3,E31,Choice_point_trail2,CP_Vars3,CP_Vars2).	
 
 %/*
 delete_cps(Choice_point_trail1,[],Choice_point_trail1,CP_Vars,CP_Vars) :- !.
@@ -1912,16 +1912,16 @@ delete_cps(Choice_point_trail3,E32,Choice_point_trail2,CP_Vars3,CP_Vars2),!.
 %*/
 	%replace_cp2(Choice_point_trail1,E3,Choice_point_trail2,CP_Vars1,CP_Vars2).
 
-/*
-replace1(E3,Pred_ids2,E31,CP_Vars1,CP_Vars3) :-
+%/*
+replace1(E3,Pred_ids2,E31,CP_Vars1,CP_Vars1) :-
 
-member([A,B,C,D,E,-1,"predicate",F,H,J],E3),
-member(C,Pred_ids2),
-replace_cp(E3,A,B,[C,D,E,-1,"predicate",F,H,J],
-[C,D,E,-1,"predicate",F,H,[]],E31,CP_Vars1,CP_Vars3),!.
+findall(M,
+(member(N,E3),((N=[A,B,C,D,E,L,"predicate",F,H,J],(L= -1->true;L=["returns to", _, "pred_id", _]),
+member(C,Pred_ids2))->
+M=[A,B,C,D,E,L,"predicate",F,H,[]];
+M=N)),E31),!.
 
-replace1(E,_,E,C,C) :- !.
-*/
+%*/
 
 delete1(E3,Pred_ids2,E31%,CP_Vars1,CP_Vars3
 ) :-
