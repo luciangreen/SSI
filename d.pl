@@ -120,7 +120,7 @@ sort(Pred_ids1a,Pred_ids2),
  member(C,Pred_ids2),not(F_Line_number_a2= -1),
  not(F_Line_number_a2=["returns to", _, "pred_id", _])
  ),M),
- (recursive_predicate(Pred_id,Pred_id,Globals3),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
+ (recursive_predicate(Pred_id,Pred_ids2,Globals3),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
  
  	(Pred_or_line="line"->
 	(All_predicate_numbers2=[Ab,Bb,Cb,Db,Eb,
@@ -136,6 +136,6 @@ cut_cps(Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predi
 %recursive_predicate(A,A,_):- !.
 recursive_predicate(A,B,Globals3):-
  member([pred_id_chain,C,A],Globals3),
- (C=B->true;
+ (member(C,B)->true;
  (recursive_predicate(C,B,Globals3))),!.
  
