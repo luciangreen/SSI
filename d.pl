@@ -117,8 +117,8 @@ sort(Pred_ids1a,Pred_ids2),
  
  % if no cp data for pred_id group, cut cps
  findall([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],Choice_point_trail11),
- member(C,Pred_ids2),not(F_Line_number_a2= -1),
- not(F_Line_number_a2=["returns to", _, "pred_id", _])
+ member(C,Pred_ids2)%,not(F_Line_number_a2= -1),
+ %not(F_Line_number_a2=["returns to", _, "pred_id", _])
  ),M),
  (recursive_predicate(Pred_id,Pred_ids2,Globals3),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
  
