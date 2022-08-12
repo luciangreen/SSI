@@ -1832,9 +1832,12 @@ collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3
 
 collect_connected_pred_ids1(Pred_id,Pred_ids1,Pred_ids3,Predicate_number,Globals3),
 
-findall(Pred_ids6,(member(Pred_id5,Pred_ids3),
-collect_connected_pred_ids2(Pred_id5,[Pred_id5],Pred_ids6,Globals3)),
-Pred_ids2),!.
+%writeln1([*,Pred_ids3]),
+Pred_ids3=Pred_ids2,
+%findall(Pred_ids6,(member(Pred_id5,Pred_ids3),
+%collect_connected_pred_ids2(Pred_id5,[Pred_id5],Pred_ids6,Globals3)),
+%Pred_ids2),
+!.
 
 collect_connected_pred_ids1(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
 
