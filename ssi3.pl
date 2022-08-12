@@ -843,10 +843,14 @@ Vars1,
 	(
 	%trace,
 	%cut_cps_if_necessary1(Pred_id,Choice_point_trail1e,Choice_point_trail1f,CP_Vars3,CP_Vars311,Predicate_number,Globals3),
+%clear_cps(Choice_point_trail1e,Choice_point_trail1f,CP_Vars3,CP_Vars3a),
 
+Choice_point_trail1e=Choice_point_trail1f,
+
+CP_Vars3=CP_Vars3a,
 	
 	end_nested_findall(FA
-	,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2,End_line42)
+	,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1f,Choice_point_trail3,Vars1,Vars2,CP_Vars3a,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2,End_line42)
 
 ));
 %Level32 is Level-1,
@@ -1865,7 +1869,6 @@ collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids2,Globals3) :-
  */
  
  collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids2,Globals3) :-
-
  ((findall(Next_pred_id,member([pred_id_chain,Pred_id,Next_pred_id],Globals3),Next_pred_id),
  %member(Next_pred_id,Next_pred_id1),
  %not(member(Next_pred_id,Pred_ids1))
@@ -1899,12 +1902,26 @@ collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3
  collect_connected_pred_ids(Next_pred_id,Pred_ids3,Pred_ids2,Predicate_number,Globals3));
  Pred_ids1=Pred_ids2),!.
 */
- 
+clear_cps(Choice_point_trail1a,Choice_point_trail1,CP_Vars1a,CP_Vars1)  :-
+
+findall([A,B,C,D,E,L,M,F,H,J],
+(member([A,B,C,D,E,L,M,F,H,J],E3),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
+	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _])),K),
+delete_cps(Choice_point_trail1a,K,Choice_point_trail1,CP_Vars1a,CP_Vars1),!.
+
 % delete choicepoints in all clauses of current predicate x
 % find cps of same name, arity that have same previous pred_id x
-cut_cps(Choice_point_trail1,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
+cut_cps(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
 
 %trace,		% collect pred ids connected by curr pred num
+		
+		
+% clear empty Cps
+
+%clear_cps(Choice_point_trail1a,Choice_point_trail1,CP_Vars1a,CP_Vars1),
+Choice_point_trail1a=Choice_point_trail1,
+CP_Vars1a=CP_Vars1,
+% (possibly not necessarily) collect connected pred ids
 		
 findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
 
