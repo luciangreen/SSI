@@ -528,6 +528,7 @@ pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) a
 
 	member([[level,Pred_id1],Level_a],Globals1),
 
+ %delete(Globals1,[[firstargs,Pred_id1],FirstArgs],Globals3)
 	Globals1=Globals3,
 
 	(debug3(on)->
@@ -843,6 +844,7 @@ Vars1,
 	(
 	%trace,
 	%cut_cps_if_necessary1(Pred_id,Choice_point_trail1e,Choice_point_trail1f,CP_Vars3,CP_Vars311,Predicate_number,Globals3),
+
 %clear_cps(Choice_point_trail1e,Choice_point_trail1f,CP_Vars3,CP_Vars3a),
 
 Choice_point_trail1e=Choice_point_trail1f,
@@ -1903,10 +1905,10 @@ collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3
  Pred_ids1=Pred_ids2),!.
 */
 clear_cps(Choice_point_trail1a,Choice_point_trail1,CP_Vars1a,CP_Vars1)  :-
-
+%trace,
 findall([A,B,C,D,E,L,M,F,H,J],
-(member([A,B,C,D,E,L,M,F,H,J],E3),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
-	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _])),K),
+(member([A,B,C,D,E,L,M,F,H,J],Choice_point_trail1a),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
+	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")),K),
 delete_cps(Choice_point_trail1a,K,Choice_point_trail1,CP_Vars1a,CP_Vars1),!.
 
 % delete choicepoints in all clauses of current predicate x

@@ -16,6 +16,8 @@ pred_minus_one_fail2([Pred_id1,Level,_Predicate_number,_Line_number,"predicate",
 
 	member([[level,Pred_id1],Level_a],Globals1),
 
+	%delete(Globals1,[[function,Pred_id1],Function],Globals3),
+
 	Globals1=Globals3,
 
 /*(trace,

@@ -1,5 +1,5 @@
 e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Result2, 
-	Globals1,Globals2,
+	Globals1a,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2
@@ -28,7 +28,7 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	ssi1([_,0,_Predicate_number,-3,"predicate",_Query_a,
 	Vars3,_All_predicate_numbers], _Result21, Functions,Vars2,
 	Result1, Result2, 
-	Globals1,Globals2,
+	Globals1a,Globals2,
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2));
@@ -57,10 +57,13 @@ e(Pred_id,Level,Predicate_number,Vars3,End_result,Functions,Vars2,Result1, Resul
 	 [Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
 	 CP_Vars1,CP_Vars21)	,
 	 
-	member([[function,Pred_id],Function],Globals1),
-	member([[arguments1,Pred_id],Arguments1],Globals1),
+	member([[function,Pred_id],Function],Globals1a),
+	member([[arguments1,Pred_id],Arguments1],Globals1a),
 
-	member([[skip,Pred_id],Skip],Globals1),
+	member([[skip,Pred_id],Skip],Globals1a),
+	
+	%delete(Globals1a,[[function,Pred_id],Function],Globals1),
+	Globals1a=Globals1,
 
 (debug_fail(Skip,[Function,Arguments1])->true;true)
 
@@ -172,11 +175,12 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars21,CP_
 
 %(debug_fail(Skip,[Function,Arguments1])->true;true),
 
+%writeln([globals1a,Globals1a]),
 
 ssi1([Pred_id,Level,Predicate_number,-3,"predicate",-,
 	[],_All_predicate_numbers2], End_result,Functions,Vars2,
 	Result1, Result2,%2, 
-	Globals1,Globals2, % *** Globals1->Globals222
+	Globals1a,Globals2, % *** Globals1->Globals222
 	Choice_point_trail1,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2))
