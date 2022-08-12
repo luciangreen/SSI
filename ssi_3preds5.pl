@@ -44,7 +44,8 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
       debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]));
     (Vars1=Vars2,
      debug_fail(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]])));
-      
+
+(      
 (W=io->
 ((findall([Vars2b,[Value1,Value2a],Value2a],(member(Value2a,Value1),
 	putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
@@ -132,7 +133,8 @@ command_n_sols(N),
 			_,_,%[Value1,Value2a]
 			Vars2c1],
 
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]]))))))))      .
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]]))))))))      ->true;(%writeln1(fail-ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c)),
+      fail)).
             
       
       
@@ -275,7 +277,7 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,mod
 %findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),
 [Value1z,Value2z,Value3z]=[Value1,Value2,Value3],
 
-
+(
 (W=iii->
 (%findall([Vars2b,[Value1,Value2a],Value2a],(,*
 ((append(Value1,Value2,Value3)
@@ -452,7 +454,8 @@ replace_in_term(Value2,empty,%'$VAR'(_)
       debug_exit(Skip,[[Dbw_n,Dbw_append],[Value1a,Value2a,Value3a]]))
 
 
-))))))).	
+)))))))->true;(%writeln1(fail-ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c)),
+fail)).	
 
 
      % writeln(Vars2c),trace.
