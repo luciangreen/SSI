@@ -90,7 +90,7 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Lin
 	
 	%trace,
 cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	,
-	notrace,
+	%notrace,
 	%writeln1(cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	),
 	ssi1([["prev_pred_id",Prev_pred_id],Level2,All_predicate_numbers11,-1,"predicate",Query2,
 	Vars1,All_predicate_numbers2],
@@ -106,8 +106,17 @@ cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_V
 % 		append(Result3,[End_result],Result2)
  .
  
- 
 cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3) :-
+
+cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,check-rec).
+
+
+cut_cps_if_necessary1(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3) :-
+
+cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,no-check-rec).
+
+
+cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,CR_flag) :-
  
  % find pred_id group
 
@@ -129,7 +138,7 @@ sort(Pred_ids1a,Pred_ids2),
  member(C,Pred_ids2)%,not(F_Line_number_a2= -1),
  %not(F_Line_number_a2=["returns to", _, "pred_id", _])
  ),M),
- (recursive_predicate(Pred_id,Pred_ids2,Globals3),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
+ ((CR_flag=check-rec->recursive_predicate(Pred_id,Pred_ids2,Globals3);true),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
  
  	(Pred_or_line="line"->
 	(All_predicate_numbers2=[Ab,Bb,Cb,Db,Eb,

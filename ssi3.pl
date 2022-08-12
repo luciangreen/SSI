@@ -824,6 +824,9 @@ cp_since_findall_start(Choice_point_trail1e,Level,_D10,E1,D1,CP_Vars3,CP_Vars31)
 	)->
 	(
 %trace,
+
+%cut_cps_if_necessary1(Pred_id,Choice_point_trail1e,Choice_point_trail1f,CP_Vars31,CP_Vars311,Predicate_number,Globals3),
+
 	process_cp(Findall_end_line,FA,D1,E1,
 
 _,
@@ -839,7 +842,8 @@ Vars1,
 
 	(
 	%trace,
-	
+	%cut_cps_if_necessary1(Pred_id,Choice_point_trail1e,Choice_point_trail1f,CP_Vars3,CP_Vars311,Predicate_number,Globals3),
+
 	
 	end_nested_findall(FA
 	,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1e,Choice_point_trail3,Vars1,Vars2,CP_Vars3,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2,End_line42)
