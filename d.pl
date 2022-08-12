@@ -88,8 +88,9 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Lin
 	%% **
 	%(Pred_id=3->writeln(here1);true),
 	
+	%trace,
 cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	,
-	
+	notrace,
 	%writeln1(cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	),
 	ssi1([["prev_pred_id",Prev_pred_id],Level2,All_predicate_numbers11,-1,"predicate",Query2,
 	Vars1,All_predicate_numbers2],
@@ -112,9 +113,17 @@ cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,C
 
 findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
 
+%(not(Pred_ids1=[[_]])->writeln1(cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3));true),
+
 flatten(Pred_ids1,Pred_ids1a),
 sort(Pred_ids1a,Pred_ids2),
  
+ %writeln([2,Pred_ids2]),
+ (Pred_ids2=[117]->%writeln(*****************)%
+ true
+ %turndebug(on)
+ ;true),
+
  % if no cp data for pred_id group, cut cps
  findall([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],Choice_point_trail11),
  member(C,Pred_ids2)%,not(F_Line_number_a2= -1),
