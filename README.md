@@ -113,7 +113,7 @@ respectively.
 
 * Before running on your server, change the API key in `api-key(1234567890).` in `ssi-api-key.pl` to a different API key.
 
-* To delete old session files every month, run `swipl ssi-ws.pl` using a scheduler in Linus, i.e. `crontab -e`.
+* To delete old session files every month, run `swipl ssi-ws.pl` using a scheduler in Linux, i.e. `crontab -e`.
 
 # Documentation
 
