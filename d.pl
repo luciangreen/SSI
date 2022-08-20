@@ -110,11 +110,11 @@ cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,C
 
 cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,check-rec).
 
-
+/*
 cut_cps_if_necessary1(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3) :-
 
 cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,no-check-rec).
-
+*/
 
 cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,CR_flag) :-
  
@@ -128,10 +128,10 @@ flatten(Pred_ids1,Pred_ids1a),
 sort(Pred_ids1a,Pred_ids2),
  
  %writeln([2,Pred_ids2]),
- (Pred_ids2=[117]->%writeln(*****************)%
- true
+ %(Pred_ids2=[117]->%writeln(*****************)%
+ %true
  %turndebug(on)
- ;true),
+ %;true),
 
  % if no cp data for pred_id group, cut cps
  findall([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],Choice_point_trail11),
@@ -157,3 +157,10 @@ recursive_predicate(A,B,Globals3):-
  (member(C,B)->true;
  (recursive_predicate(C,B,Globals3))),!.
  
+/*
+recursive_predicate(A,_B,Predicate_number,Globals3):-
+ member([pred_id_chain,C,A],Globals3),
+ ((%member(C,B),
+ member([[pred_num,C],Predicate_number],Globals3))->true;
+ (recursive_predicate(C,_B,Globals3))),!.
+*/
