@@ -8,6 +8,7 @@ append([Cp1],Cps,B),
 
 %writeln1(["*4",append([Cp1],Cps,B)]),
 	[_,_|Cp3]=Cp1.
+/*
 	get_later_cps_than_cp1(List1,Cp1,Cp3,Cps) :-
 	%curr_cp(N),
 	%writeln1([cp1,Cp1]),
@@ -20,6 +21,7 @@ append([Cp1],Cps,B),
 	member([Cp_b,Cp_a1|_Cp5],List1),
 	member([Cp_a1,Cp_a|_Cp4],List1),
 	get_later_cps_than_cp(List1,Cp_a,[],Cps).
+	*/
 	%Cp2=[_,_|Cp3].
 /*
 get_later_cps_than_cp1(List1,Cp_a,Cps,Cps) :-

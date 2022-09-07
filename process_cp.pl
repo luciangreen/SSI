@@ -39,9 +39,9 @@ Vars1,
  	interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
 %writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
-	Value3=empty),
+	is_empty(Value3)),
 	
-(Value3=empty->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
+(is_empty(Value3)->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	
 	turn_back_debug(Debug),
 
@@ -130,9 +130,9 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[Dbw_findall_
  interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
 %writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
-	Value3=empty),
+	is_empty(Value3)),
 	
-(Value3=empty->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
+(is_empty(Value3)->Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	
 	turn_back_debug(Debug),
 

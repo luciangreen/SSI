@@ -30,11 +30,13 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
+get_lang_word("v",Dbw_v),
+
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),
 	((%Value2=empty,
 	
-	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var(empty,Y)->X=o;X=i)),Z),
+	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,modes,W]),abort)),
 
 (W=ii->
@@ -74,9 +76,15 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
         %ValueIA1=[Value3A2,"|",Value3A3],
         	        	
         replace_in_term(Value1A,_%'$VAR'(_)
-        ,empty,Value1A2),
+        ,empty2,Value1A2),
         
-        convert_to_lp_pipe(Value1A2,Value1A1)
+        convert_to_lp_pipe(Value1A2,Value1A3),
+
+        find_v_sys(V_sys),
+        
+        replace_in_term(Value1A3,empty2%'$VAR'(_)
+        ,V_sys,Value1A1)
+        
         )
         ,ValueA),!,
         
@@ -109,10 +117,17 @@ command_n_sols(N),
         %replace_in_term(Value1A,_%'$VAR'(_)
         %,empty,Value1A1),
         replace_in_term(Value2A,_%'$VAR'(_)
-        ,empty,Value2A1),
+        ,empty2,Value2A1),
         
         %convert_to_lp_pipe(Value1A1,Value1A2),
-        convert_to_lp_pipe(Value2A1,Value2A2)
+        convert_to_lp_pipe(Value2A1,Value2A3),
+        
+        find_v_sys(V_sys),
+
+        replace_in_term(Value2A3,empty2%'$VAR'(_)
+        ,V_sys,Value2A2)
+        
+        
         )
         ,ValueA),!,
         %val1emptyorvalsequal(Value3,Value3A),
@@ -148,7 +163,7 @@ get_lang_word("stringconcat",Dbw_stringconcat1),Dbw_stringconcat1=Dbw_stringconc
 getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_stringconcat],[Value1z,Value2z,Value3z]]),	
 
-matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(Y=empty->X=o;X=i)),Z),
+matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(is_empty(Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,stringconcat,modes,W]),abort)),
 
 %findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),
@@ -267,11 +282,13 @@ debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]))),
 ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("append",Dbw_append1),Dbw_append1=Dbw_append,
+get_lang_word("v",Dbw_v),
+
 %Vars1=Vars2,
         getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),	
 
-matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var(empty,Y)->X=o;X=i)),Z),
+matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,modes,W]),abort)),
 
 %findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),
@@ -336,8 +353,10 @@ debug_fail(Skip,[[Dbw_n,Dbw_append],[Value1,Value2,Value3]]))),
 findall([Vars2b,[Value1,Value2a,Value3a],Value3a],(
 
         append1(Value1,_Value2A,Value3A),%ValueA),
+        find_v_sys(V_sys),
+        
         replace_in_term(Value3A,_%'$VAR'(_)
-        ,empty,Value3A1),
+        ,V_sys,Value3A1),
         Value3A1=[Value3A2|Value3A3],
         Value3A4=[Value3A2,"|",Value3A3],
         %val1emptyorvalsequal(Value3,Value3A),
@@ -379,10 +398,12 @@ findall([Vars2b,[Value1,Value2a,Value3a],Value3a],(
 
 (command_n_sols(N),
 	findall([Vars2b,[Value1a,Value2,Value3a],Value1a,Value3a],(findnsols(N,[Value1A1,Value3A1],(append1(Value1A,Value2,Value3A),
+        find_v_sys(V_sys1),
         replace_in_term(Value1A,_%'$VAR'(_)
-        ,empty,Value1A1),
+        ,V_sys1,Value1A1),
+        find_v_sys(V_sys2),
         replace_in_term(Value3A,_%'$VAR'(_)
-        ,empty,Value3A1))
+        ,V_sys2,Value3A1))
         ,ValueA),!,
         %val1emptyorvalsequal(Value3,Value3A),
         %trace,
@@ -419,20 +440,28 @@ findall([Vars2b,[Value1,Value2a,Value3a],Value3a],(
 
 (%trace,
 command_n_sols(N),
-replace_in_term(Value2,empty,%'$VAR'(_)
+%N=3,
+%find_v_sys(V_sys),
+replace_in_term(Value2,[Dbw_v,_],%'$VAR'(_)
         _,Value22),	findall([Vars2b,[Value1a,%Value2a,
 	Value3a],Value1a,%Value2a,
 	Value3a],(findnsols(N,[Value1A1,%Value2A1,
 	Value3A1],(append1(Value1A,Value22,Value3A),
+        find_v_sys(V_sys1),
+        find_v_sys(V_sys2),
         replace_in_term(Value1A,_%'$VAR'(_)
-        ,empty,Value1A2),
+        ,empty2,Value1A2),
         %replace_in_term(Value2A,_%'$VAR'(_)
         %,empty,Value2A1),
         replace_in_term(Value3A,_%'$VAR'(_)
-        ,empty,Value3A2),
-        convert_to_lp_pipe(Value1A2,Value1A1),
+        ,empty2,Value3A2),
+        convert_to_lp_pipe(Value1A2,Value1A3),
         %convert_to_lp_pipe(Value2A2,Value2A1),
-        convert_to_lp_pipe(Value3A2,Value3A1)
+        convert_to_lp_pipe(Value3A2,Value3A3),
+        replace_in_term(Value1A3,empty2%'$VAR'(_)
+        ,V_sys1,Value1A1),
+        replace_in_term(Value3A3,empty2%'$VAR'(_)
+        ,V_sys2,Value3A1)
         )
         ,ValueA),!,
         %val1emptyorvalsequal(Value3,Value3A),

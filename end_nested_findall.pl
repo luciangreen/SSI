@@ -43,15 +43,17 @@ get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,_Line_number
 	 remember_and_turn_off_debug(Debug),
 
 find_sys(Sys_name),
+        
+        %trace,
         interpretpart(match4,Format_vars,[Dbw_v,Sys_name],Vars1,Vars2fa,_),
 
 %trace,
 %writeln([*,FA]),
 	(not(FA=fail)->getvalue([Dbw_v,Sys_name],Value3,Vars2fa);
-	Value3=empty),
+	is_empty(Value3)),
 	
 
-(Value3=empty-> Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
+(is_empty(Value3)-> Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	 
 	 turn_back_debug(Debug),
 
@@ -59,14 +61,19 @@ find_sys(Sys_name),
 	Choice_point_trail1=Choice_point_trail3,
 	CP_Vars4=CP_Vars3,
 	
-	interpretpart(match4,Result_var,Findall_vars2,Vars1,Vars2fb,_),
+	interpretpart(match4,Result_var,Findall_vars2,[]%Vars1
+	,Vars2fb,_),
 	
 	getvalue(Result_var,Value4,Vars2fb),
 	
 	%trace,
 	subtract(Old_vars,[[Result_var,_]],Vars2fd),
 	
-	append(Vars2fd,[[Result_var,Value4]],Vars2fc),
+	append(Vars2fd,[[Result_var,Value4]],Vars2fc),%Vars2fc1),
+
+%trace,
+
+%findall([Var_x,Val_x],(member([Var_x,Val_x],Vars2fc1),not(member([Var_x,_],Format_vars))),Vars2fc),
 
 %trace,
 

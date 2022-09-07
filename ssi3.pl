@@ -113,7 +113,7 @@ find_pred_numbers(Functions2a,[]%Reserved_words
 		All_predicate_numbers2],_End_result,Functions3,_Vars2,[],Result1,
 		[],_Globals2,
 		[], _Choice_point_trail2,
-		[[curr_cp,0],[curr_cp_index,0]],_),
+		[[curr_cp,0],[curr_cp_index,0],[global_cp_trail,[]]],_),
 		Result=Result1.
 		
 lucianpl1(Debug) :- 
@@ -248,10 +248,14 @@ ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 
 %****
 	((var(Vars)->[Result1]=Result2;
-	append(Result1,[Vars],Result2))%,
-	,CP_Vars1=CP_Vars2,
+	append(Result1,[Vars],Result2)),%,
+	
+	%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
+	
+	Choice_point_trail1=Choice_point_trail3,
+	CP_Vars1=CP_Vars2
 
-Choice_point_trail1=Choice_point_trail3	
+%Choice_point_trail1=Choice_point_trail3	
 	)
 	));
 	
@@ -260,7 +264,10 @@ Choice_point_trail1=Choice_point_trail3
 		(%trace,
 	
 	%*****
-	
+			%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail1a,CP_Vars1,CP_Vars1a),
+Choice_point_trail1=Choice_point_trail1a,
+CP_Vars1=CP_Vars1a,
+
 		
 
 ((
@@ -269,10 +276,10 @@ Choice_point_trail1=Choice_point_trail3
 
 %writeln("*2"),
 
-get_last_cp_before_n(Choice_point_trail1,
+get_last_cp_before_n(Choice_point_trail1a,
 	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
 	[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
-	CP_Vars1,CP_Vars3)
+	CP_Vars1a,CP_Vars3)
 
 %(((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;(Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,_,Vars2c],not(Vars2c=[]))))
 
@@ -326,9 +333,9 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 
 %****
 	(Result2=Result1,
-	CP_Vars1=CP_Vars2,
+	CP_Vars1a=CP_Vars2,
 	Globals1=Globals2,
-	Choice_point_trail1=Choice_point_trail3)
+	Choice_point_trail1a=Choice_point_trail3)
 	
 
 	))))
@@ -517,8 +524,12 @@ pred_minus_one_fail2([Pred_id1,Level2,Predicate_number,-3,"predicate",-, % (-) a
 	%[_,_,Pred_id1,Level,Predicate_number,_,"predicate"|_],
 	%Choice_point_trail1a,CP_Vars1,CP_Vars1a,_),
 
-	Choice_point_trail1=Choice_point_trail1a,
-	CP_Vars1=CP_Vars1a,
+		%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail1a,CP_Vars1,CP_Vars1a),
+		Choice_point_trail1=Choice_point_trail1a,
+		CP_Vars1=CP_Vars1a,
+	
+	%Choice_point_trail1=Choice_point_trail1a,
+	%CP_Vars1=CP_Vars1a,
 	
 	member([[firstargs,Pred_id1],FirstArgs],Globals1),
 	
@@ -644,6 +655,8 @@ A=Line_number2a,
 reverse(Globals212,_Globals22),
 
 	updatevars2(FirstArgs1,Vars3,[],Vars5),
+	(var(Vars11)->(Vars11=[]%,trace
+	);true),
 	updatevars3(Vars11,Vars5,Vars6),
 	reverse(Vars6,[],Vars7),
 	((not(Vars7=[])->
@@ -693,15 +706,18 @@ reverse(Globals212,_Globals22),
 	% fail exit from pred
 	->(
 		
+			%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail1a,CP_Vars1,CP_Vars1a),
+			Choice_point_trail1=Choice_point_trail1a,
+			CP_Vars1=CP_Vars1a,
 
 
 pred_minus_three([Pred_id_a1,Level,Predicate_number,Line_number,"predicate",Query_a,
 	Vars,All_predicate_numbers], Result21, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail1a,
 	Choice_point_trail3,
-	CP_Vars1,CP_Vars2)
+	CP_Vars1a,CP_Vars2)
 	
 	))))
 	
@@ -802,7 +818,7 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,Line_number_b,"fi
 CP_Vars1=CP_Vars3)
 ),
 
-
+%(Pred_id=1->trace;true),
 
 append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 
@@ -1213,7 +1229,15 @@ delete_until_last_cp0(Choice_point_trail1,Choice_point_trail2,D1,AC
 	
 	%get_later_cps_than_cp(Choice_point_trail1,D2,C1),
 	%subtract(C1,D2,C2),
-	delete_cp(Choice_point_trail1,D2,Choice_point_trail3,CP_Vars3,CP_Vars4,_),
+	
+	%save_local_to_global_cp_trail(Choice_point_trail1,[],CP_Vars3,CP_Vars3b),
+
+	%load_local_from_global_cp_trail(Pred_id,%Choice_point_trail1,
+%Choice_point_trail2a,CP_Vars3b,CP_Vars3a),
+	Choice_point_trail1=Choice_point_trail2a,
+	CP_Vars3=CP_Vars3a,
+
+delete_cp(Choice_point_trail2a,D2,Choice_point_trail3,CP_Vars3a,CP_Vars4,_),
 	append_cp(Choice_point_trail3,[D10],Choice_point_trail2,CP_Vars4,CP_Vars2),
 	%set(curr_cp,Cp_a), %% * try without this
 	%reverse(C1,Choice_point_trail2),
@@ -1541,6 +1565,14 @@ get_last_p_before_n(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 get_last_p_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 
 	reverse(List1,B1),
+
+/*
+	member([global_cp_trail,Global_cp_trail1],CP_Vars1),
+
+append(Global_cp_trail1,[[_,_,List1]],Global_cp_trail1a),
+	reverse(Global_cp_trail1a%List1
+	,B1),
+	*/
 	%D1=[_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
 	%member([_,_|D1],Choice_point_trail1),
 	
@@ -1549,9 +1581,12 @@ get_last_p_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	%2
 	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I|All_predicate_numbers2],
 	
+	%member([_,_,B11],B1),
+	%reverse(B11,B12),
+	
 	member([A,B2,C,D_Level
 	%2
-	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I|All_predicate_numbers2],B1),
+	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I|All_predicate_numbers2],B1),%B12),
 	
 	Cp2=[A,B2,C,D_Level
 	%2
@@ -1598,7 +1633,14 @@ get_last_cp_before_n(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	%notrace.
 
 get_last_cp_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
+/*
+	member([global_cp_trail,Global_cp_trail1],CP_Vars1),
 
+append(Global_cp_trail1,[[_,_,List1]],Global_cp_trail1a),
+
+	reverse(Global_cp_trail1a%List1
+	,B1),
+*/
 	reverse(List1,B1),
 	%D1=[_Pred_id,Level,_Predicate_number,_Line_number_a,"findall",-|_],
 	%member([_,_|D1],Choice_point_trail1),
@@ -1610,9 +1652,12 @@ get_last_cp_before_n2(List1,Cp1,Cp2,Cp3,CP_Vars1,CP_Vars1) :-
 	
 	%not(F_Line_number_a2=["returns to", _, "pred_id", _]),
 	
+	%member([_,_,B11],B1),
+	%reverse(B11,B12),
+	
 	member([A,B2,C,D_Level
 	%2
-	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],B1),
+	,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],B1),%B12),
 	
 	Cp2=[A,B2,C,D_Level
 	%2
@@ -1676,7 +1721,7 @@ C = [[1, 2, a]].
 C = [[3, 4, c], [2, 3, b], [1, 2, a]].
 
 */
-
+/*
 get_later_cps_than_cp(List1,Cp1,Cps) :-
 	%curr_cp(N),
 	Cp1=[_Cp_b,Cp_a|_Cp],
@@ -1690,7 +1735,7 @@ get_later_cps_than_cp(List1,Cp_a,Cps1,Cps2) :-
 	member([Cp_a,Cp_b|Cp3],List1),
 	append(Cps1,[[Cp_a,Cp_b|Cp3]],Cps3),
 	get_later_cps_than_cp(List1,Cp_b,Cps3,Cps2),!.
-
+*/
 set(A,B,CP_Vars1,CP_Vars2) :-
 	delete(CP_Vars1,[A,_],CP_Vars3),
 	append(CP_Vars3,[[A,B]],CP_Vars2),!.
