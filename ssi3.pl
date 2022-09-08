@@ -174,8 +174,10 @@ true.
  	assertz(retry_back_stack(List2)).
 */
 
+/*
 replace(A,Find,Replace,F) :- 	
 	split_string(A,Find,Find,B),findall([C,Replace],(member(C,B)),D),maplist(append,[D],[E]),concat_list(E,F),!.
+*/
 
 /*
 print_text :-
