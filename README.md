@@ -48,6 +48,7 @@ halt
 
 # Explanation of what it does
 
+* State Saving Interpreter (SSI), like <a href="https://github.com/luciangreen/listprologinterpreter">List Prolog Interpreter</a>, runs algorithms in the <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog language</a>.  List Prolog algorithms are lists, which can be more easily generated and analysed.  SSI is different because it manually creates and follows choice points (allowing multiple possible solutions like Prolog) unlike List Prolog, which relies on Prolog to manage choice points.
 * SSI was written to save the states of the Prolog interpreter. 
 * It solves the problem of backtracking by saving states.
 * It works by manually storing and referring to choice points, records of the variable binding table and recursive states. These include "virtual" commands (commands such as `member2` which compute all results when they are first run). The interpreter loads these choice points as the algorithm encounters flow through predicates, commands and recursion.
