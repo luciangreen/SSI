@@ -7,7 +7,7 @@
 :- use_module(library(http/http_client)).
 :- http_handler('/', ssi_web_form, []).
 
-:-include('test_form1.pl').
+%:-include('test_form1.pl').
 
 %:- include('files/listprolog.pl').
 
@@ -36,11 +36,12 @@ Debug=off,
 
 %international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 
-%testopen_cases(3,Query,Functions),
+testopen_cases(3,Query,Functions),
 	%test(1,Query,Functions,Result),
 
 % Form and HTML Table
-test1(Functions),	Query=[[n,test]],
+%test1(Functions),	
+%Query=[[n,test]],
 	
 	international_lucianpl([lang,"en"],Debug,Query,Functions,_Result1),
 
