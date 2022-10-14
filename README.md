@@ -116,7 +116,7 @@ respectively.
 
 * To delete old session files every month, run `swipl ssi-ws.pl` using a scheduler in Linux, i.e. `crontab -e`.
 
-* <a href="https://github.com/luciangreen/Text-to-Breasonings/blob/master/Setting_up_a_VPS_with_TextToBr.txt">Setting_up_a_VPS_with_TextToBr</a> describes how to set up a VPS, which can run Prolog over the web.
+* <a href="https://github.com/luciangreen/Text-to-Breasonings/blob/master/Setting_up_a_VPS_with_TextToBr.txt">Setting_up_a_VPS_with_TextToBr</a> describes how to set up a Virtual Private Server, which can run Prolog over the web.
 
 * SSI Web Service contains few, but central commands for mainly AI-purposes in Prolog.  For more tutorials, see my <a href="https://www.youtube.com/channel/UCWpmrriB-XGpWWpWgReqluQ">Lucian Academy YouTube Channel</a>.
 
