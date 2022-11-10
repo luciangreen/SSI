@@ -104,6 +104,7 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
+semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
@@ -137,6 +138,10 @@ retractall(retry_back_stack(_)),assertz(retry_back_stack(Retry_back_stack)),
 retractall(retry_back_stack_n(_)),assertz(retry_back_stack_n(Retry_back_stack_n)),
 retractall(cumulative_or_current_text(_)),assertz(cumulative_or_current_text(Cumulative_or_current_text)),
 retractall(number_of_current_text(_)),assertz(number_of_current_text(Number_of_current_text)),
+
+retractall(semicolon(_)),assertz(semicolon(Semicolon)),
+
+
 retractall(html_api_maker_or_terminal(_)),assertz(html_api_maker_or_terminal(Html_api_maker_or_terminal)),
 retractall(pred_numbers(_)),assertz(pred_numbers(Pred_numbers)),
 

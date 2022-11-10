@@ -156,6 +156,9 @@ lucianpl1(Debug) :-
  assertz(retry_back_stack_n(0)),
  assertz(cumulative_or_current_text(current)),
  assertz(number_of_current_text(1)),
+
+ retractall(semicolon(_)),
+ assertz(semicolon(off)),
  %assertz(html_api_maker_or_terminal(html
  %terminal
  %)),
@@ -924,6 +927,7 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
+semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
@@ -952,6 +956,7 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
+semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 

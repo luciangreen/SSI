@@ -28,7 +28,7 @@ get_last_cp_before_n(Choice_point_trail1a,
 	[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
 	CP_Vars1a,CP_Vars3)
 
-,semicolon(Vars)
+,semicolon1(Vars)
 %(((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;(Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,_,Vars2c],not(Vars2c=[]))))
 
 
@@ -90,9 +90,10 @@ delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_V
 	).
 	
 	
-semicolon(Vars) :-
+semicolon1(Vars) :-
+(semicolon(on)->(
 	(var(Vars)->Vars_a="true";%[Result1]=Result3;
 	Vars_a=Vars),%append(Result1,[Vars],Result3)),%,
 	write1(Vars_a),write(" Press ';' "),
 	repeat,get_single_char(Char),[Char]=`;`,
-	writeln(";").
+	writeln(";"));true).
