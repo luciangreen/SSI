@@ -20,6 +20,6 @@ ssi_test(Debug,NTotal1,NTotal2,Score1,Score2) :-
 ssi_test1(Debug,N,Passed) :-
 	test(N,Query,Functions,Result),
 	((international_lucianpl([lang,"en"],Debug,Query,Functions,Result1),
-	writeln1([result1,Result1]),
+	%writeln1([result1,Result1]),
 	Result=Result1
 	)->(Passed=passed,writeln0([ssi_test,N,passed]));(Passed=failed,writeln0([ssi_test,N,failed]))),!.

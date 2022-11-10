@@ -35,11 +35,7 @@ Query1=[Function,Arguments]
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-
-(var(Vars1)->Globals31=Globals32;
-append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32)),
-
-        %append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
+        append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
 
         Vars3=[Function1|Vars31],
         Query2=[Function1,Vars31],

@@ -156,9 +156,6 @@ lucianpl1(Debug) :-
  assertz(retry_back_stack_n(0)),
  assertz(cumulative_or_current_text(current)),
  assertz(number_of_current_text(1)),
-
- retractall(semicolon(_)),
- assertz(semicolon(off)),
  %assertz(html_api_maker_or_terminal(html
  %terminal
  %)),
@@ -252,43 +249,98 @@ ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 (
 
 %****
-%trace,
-
-	((var(Vars)->[Result1]=Result3;
-	append(Result1,[Vars],Result3)),%,
-		%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
+	((var(Vars)->[Result1]=Result2;
+	append(Result1,[Vars],Result2)),%,
 	
-	%Choice_point_trail1=Choice_point_trail3,
-	%CP_Vars1=CP_Vars2
-
-get_cp_etc(
-
-[_,0,_Predicate_number,Line_number,"predicate",_Query_a,
-	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
-	Result3, Result2, 
-	Globals1,Globals2,
-	Choice_point_trail1,
-	Choice_point_trail3,
-	CP_Vars1,CP_Vars2
-	)%,writeln(['*1',vars,Vars,vars2,Vars2])
+	%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
 	
+	Choice_point_trail1=Choice_point_trail3,
+	CP_Vars1=CP_Vars2
+
 %Choice_point_trail1=Choice_point_trail3	
 	)
 	));
 	
 	(Line_number = -3 ->
 	
-		get_cp_etc(
+		(%trace,
+	
+	%*****
+			%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail1a,CP_Vars1,CP_Vars1a),
+Choice_point_trail1=Choice_point_trail1a,
+CP_Vars1=CP_Vars1a,
 
-[_,0,_Predicate_number,Line_number,"predicate",_Query_a,
-	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
+		
+
+((
+%writeln(here2),
+	 Query2=[_|_],
+
+%writeln("*2"),
+
+get_last_cp_before_n(Choice_point_trail1a,
+	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
+	[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
+	CP_Vars1a,CP_Vars3)
+
+%(((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;(Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,_,Vars2c],not(Vars2c=[]))))
+
+
+
+	)
+->
+
+	(Pred_or_line="predicate"->
+	
+	(
+	
+		delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12,
+	CP_Vars3,CP_Vars4,_),
+
+All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
+	
+		All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],
+
+	
+	%(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1,trace) ; Line_number2b1 = Line_number2b),
+
+	ssi1([Prev_pred_id,Level,All_predicate_numbers31,Line_number2b,"predicate",Query2,
+	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail12,
 	Choice_point_trail3,
-	CP_Vars1,CP_Vars2
-	)%,writeln(['*2',vars,Vars,vars2,Vars2])
-	))
+	CP_Vars4,CP_Vars2)
+
+);
+
+(Pred_or_line="line" ->
+	
+(
+
+delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_Vars5),
+
+	(
+	D1=[_,_,Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
+	Vars2d11,Vars2e11],
+	
+	ssi1([Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
+	Vars2d11,Vars2e11], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail6,
+	Choice_point_trail3,["appearance of command",AC],
+	CP_Vars5,CP_Vars2)
+	))));
+
+%****
+	(Result2=Result1,
+	CP_Vars1a=CP_Vars2,
+	Globals1=Globals2,
+	Choice_point_trail1a=Choice_point_trail3)
+	
+
+	))))
 	)->true;(writeln0([ssi1,0,abort]),
 	fail%number_string(a,_)%abort
 	)),!.
@@ -770,8 +822,7 @@ CP_Vars1=CP_Vars3)
 
 %(Pred_id=1->trace;true),
 
-(var(Vars1)->Globals1=Globals3;
-append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3)),
+append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 
 	((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
 get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,	
@@ -854,8 +905,8 @@ CP_Vars3=CP_Vars3a,
 append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
-        %append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        %append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
+        append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
+        append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
 
         Vars3=[Function1|Vars31],
         _Query2=[Function1,Vars31],	
@@ -927,7 +978,6 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
-semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
@@ -956,7 +1006,6 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
-semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
