@@ -35,7 +35,11 @@ Query1=[Function,Arguments]
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
+
+(var(Vars1)->Globals31=Globals32;
+append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32)),
+
+        %append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
 
         Vars3=[Function1|Vars31],
         Query2=[Function1,Vars31],
@@ -91,6 +95,9 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Lin
 	%trace,
 cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	,
 	%notrace,
+	
+	%Choice_point_trail11=Choice_point_trail12,
+	%CP_Vars3=CP_Vars32,
 	%writeln1(cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	),
 	ssi1([["prev_pred_id",Prev_pred_id],Level2,All_predicate_numbers11,-1,"predicate",Query2,
 	Vars1,All_predicate_numbers2],
@@ -119,8 +126,9 @@ cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,C
 cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3,CR_flag) :-
  
  % find pred_id group
+ pred_numbers(Pred_nums),
 
-findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
+findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3,Pred_nums),Pred_ids1),
 
 %(not(Pred_ids1=[[_]])->writeln1(cut_cps_if_necessary(Pred_id,Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Predicate_number,Globals3));true),
 

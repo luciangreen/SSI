@@ -81,6 +81,7 @@ crop down pred from top x just goes to next command
 :-include('used_by_call_command.pl').
 :-include('sessions.pl').
 :-include('ssi-api-key.pl').
+:-include('get_cp_etc.pl').
 %:-include('replace_in_term.pl').
 %:-include('local_and_global_cp_trails.pl').
 
@@ -92,6 +93,7 @@ crop down pred from top x just goes to next command
 :- dynamic retry_back_stack_n/1.
 :- dynamic cumulative_or_current_text/1.
 :- dynamic number_of_current_text/1.
+:- dynamic semicolon/1.
 :- dynamic html_api_maker_or_terminal/1.
 :- dynamic session_number/1.
 
