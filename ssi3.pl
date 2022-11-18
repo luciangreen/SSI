@@ -298,7 +298,7 @@ get_cp_etc(
 	%Choice_point_trail1=Choice_point_trail3,
 	%CP_Vars1=CP_Vars2
 %/*
-		writeln(here2),
+		%writeln(here2),
 		get_cp_etc(
 
 [Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
