@@ -1144,7 +1144,7 @@ interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_,Ski
 interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars2c,_Skip) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	%false.%
-	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c).
+	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c,_N,_Pred_num).
 
 interpretstatement2(ssi,Functions,Functions,_Line,Vars2,Vars3,Result21,_Cut,_,AC,_Skip) :-
 %trace,
