@@ -54,12 +54,30 @@ lucianpl11(Debug,Query,Functions,Result) :-
  	assertz(lang("en")));
 	true),
 	load_lang_db,
-	query_box(Query,Query1,Functions,Functions1),
+	query_box(Query,Query1,Functions,Functions1a),
 
 	%writeln1(query_box(Query,Query1,Functions,Functions1)),
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
-	convert_to_grammar_part1(Functions1,[],Functions2,_),
+
+lib_preds([Types,Modes,Preds]),
+
+append(Functions1a,Preds,Functions1),
+
+(types(on)->(
+typestatements(Typestatements),
+	retractall(typestatements(_)),
+	
+%writeln(here1),
+	findall([A,C],(member([A,B],Types),expand_types(B,[],C)),TypeStatements1),
+	append(Typestatements,TypeStatements1,TypeStatements2),
+ 	assertz(typestatements(TypeStatements2)),
+ 	modestatements(Modestatements),
+	retractall(modestatements(_)),
+	append(Modestatements,Modes,Modestatements2),
+ 	assertz(modestatements(Modestatements2)));true),
+ 	
+ 		convert_to_grammar_part1(Functions1,[],Functions2,_),
 
 	%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),
