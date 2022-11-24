@@ -54,30 +54,12 @@ lucianpl11(Debug,Query,Functions,Result) :-
  	assertz(lang("en")));
 	true),
 	load_lang_db,
-	query_box(Query,Query1,Functions,Functions1a),
+	query_box(Query,Query1,Functions,Functions1),
 
 	%writeln1(query_box(Query,Query1,Functions,Functions1)),
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
-
-lib_preds([Types,Modes,Preds]),
-
-append(Functions1a,Preds,Functions1),
-
-(types(on)->(
-typestatements(Typestatements),
-	retractall(typestatements(_)),
-	
-%writeln(here1),
-	findall([A,C],(member([A,B],Types),expand_types(B,[],C)),TypeStatements1),
-	append(Typestatements,TypeStatements1,TypeStatements2),
- 	assertz(typestatements(TypeStatements2)),
- 	modestatements(Modestatements),
-	retractall(modestatements(_)),
-	append(Modestatements,Modes,Modestatements2),
- 	assertz(modestatements(Modestatements2)));true),
- 	
- 		convert_to_grammar_part1(Functions1,[],Functions2,_),
+	convert_to_grammar_part1(Functions1,[],Functions2,_),
 
 	%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),
@@ -94,8 +76,6 @@ typestatements(Typestatements),
 	%find_pred_sm(Reserved_words),%,"en"),
 find_pred_numbers(Functions2a,[]%Reserved_words
 ,Pred_numbers),
-
-%writeln1([pred_numbers,Pred_numbers]),
 
 	retractall(pred_numbers(_)),
  	assertz(pred_numbers(Pred_numbers)),
@@ -176,9 +156,6 @@ lucianpl1(Debug) :-
  assertz(retry_back_stack_n(0)),
  assertz(cumulative_or_current_text(current)),
  assertz(number_of_current_text(1)),
-
- retractall(semicolon(_)),
- assertz(semicolon(off)),
  %assertz(html_api_maker_or_terminal(html
  %terminal
  %)),
@@ -233,7 +210,7 @@ trace,
  	assertz(number_of_current_text(N2)).
 */
 
-ssi1([Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
+ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
@@ -241,7 +218,7 @@ ssi1([Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Choice_point_trail3,
 	CP_Vars1,CP_Vars2) :-
 	
-	append_retry_back_stack([ssi,[[Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
+	append_retry_back_stack([ssi,[[_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
@@ -250,10 +227,10 @@ ssi1([Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	CP_Vars1,CP_Vars2]]),
 	
 	
-((	Level=0,
+((	Level=_,
 	%/*
 	(debug2(on)->
-	writeln1(ssi1([Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
+	writeln1(ssi1([_,0,_Predicate_number,Line_number,"predicate",_Query_a,
 	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
@@ -272,65 +249,98 @@ ssi1([Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
 (
 
 %****
-%writeln(here1),%trace,
-
-	((var(Vars)->([Result1]=Result3%,More_results=false
-	);
-	(append(Result1,[Vars],Result3)%,More_results=true
-	)),%,
-		%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
+	((var(Vars)->[Result1]=Result2;
+	append(Result1,[Vars],Result2)),%,
 	
-	%Choice_point_trail1=Choice_point_trail3,
-	%CP_Vars1=CP_Vars2
-%writeln(here1),trace,
-get_cp_etc(
-
-[Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
-	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
-	Result3, Result2, 
-	Globals1,Globals2,
-	Choice_point_trail1,
-	Choice_point_trail3,
-	CP_Vars1,CP_Vars2
-	%,More_results
-	)%,writeln(['*1',vars,Vars,vars2,Vars2])
+	%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
 	
+	Choice_point_trail1=Choice_point_trail3,
+	CP_Vars1=CP_Vars2
+
 %Choice_point_trail1=Choice_point_trail3	
 	)
 	));
 	
 	(Line_number = -3 ->
 	
-		%(%trace,
-		
-			(
-			%writeln(here2),%trace,
-%trace,%writeln1(Vars),
-%Result1=Result2,
-/*((var(Vars)%->true;Vars=[]
-)->Result1=Result3;
-	append(Result1,[Vars],Result3)),%,
-	*/
-	%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail3,CP_Vars1,CP_Vars2)
+		(%trace,
 	
-	%Choice_point_trail1=Choice_point_trail3,
-	%CP_Vars1=CP_Vars2
-%/*
-		%writeln(here2),
-		get_cp_etc(
+	%*****
+			%save_local_to_global_cp_trail(Choice_point_trail1,Choice_point_trail1a,CP_Vars1,CP_Vars1a),
+Choice_point_trail1=Choice_point_trail1a,
+CP_Vars1=CP_Vars1a,
 
-[Pred_id,0,_Predicate_number,Line_number,"predicate",_Query_a,
-	Vars,_All_predicate_numbers], End_result, Functions,Vars2,
+		
+
+((
+%writeln(here2),
+	 Query2=[_|_],
+
+%writeln("*2"),
+
+get_last_cp_before_n(Choice_point_trail1a,
+	[Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],
+	[Cp_a,Cb_b,Pred_id,_Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],_,
+	CP_Vars1a,CP_Vars3)
+
+%(((Pred_or_line="predicate",not(All_predicate_numbers2=[]))->true;(Pred_or_line="line",All_predicate_numbers2=[_,_,_,_,_,_,Vars2c],not(Vars2c=[]))))
+
+
+
+	)
+->
+
+	(Pred_or_line="predicate"->
+	
+	(
+	
+		delete_cp(Choice_point_trail1,[Cp_a,Cb_b,Pred_id,Level,Predicate_number2,Line_number2b,Pred_or_line,Query2,Vars4,All_predicate_numbers2],Choice_point_trail12,
+	CP_Vars3,CP_Vars4,_),
+
+All_predicate_numbers2=[All_predicate_numbers3|All_predicate_numbers4],
+	
+		All_predicate_numbers3=[All_predicate_numbers31,"prev_pred_id",Prev_pred_id],
+
+	
+	%(Line_number2b = ["returns to", _, "pred_id", _] -> (Line_number2b1 = -1,trace) ; Line_number2b1 = Line_number2b),
+
+	ssi1([Prev_pred_id,Level,All_predicate_numbers31,Line_number2b,"predicate",Query2,
+	Vars4,All_predicate_numbers4], End_result,Functions,Vars2,
 	Result1, Result2, 
 	Globals1,Globals2,
-	Choice_point_trail1,
+	Choice_point_trail12,
 	Choice_point_trail3,
-	CP_Vars1,CP_Vars2%,
-	%false
-	)
-	%*/
-	)%,writeln(['*2',vars,Vars,vars2,Vars2])
-	))
+	CP_Vars4,CP_Vars2)
+
+);
+
+(Pred_or_line="line" ->
+	
+(
+
+delete_until_last_cp(Choice_point_trail1,Choice_point_trail6,D1,AC,CP_Vars3,CP_Vars5),
+
+	(
+	D1=[_,_,Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
+	Vars2d11,Vars2e11],
+	
+	ssi1([Pred_id2,Level11,Predicate_number11,Line_number_a11,"line",-,
+	Vars2d11,Vars2e11], End_result, Functions,Vars2,
+	Result1, Result2, 
+	Globals1,Globals2,
+	Choice_point_trail6,
+	Choice_point_trail3,["appearance of command",AC],
+	CP_Vars5,CP_Vars2)
+	))));
+
+%****
+	(Result2=Result1,
+	CP_Vars1a=CP_Vars2,
+	Globals1=Globals2,
+	Choice_point_trail1a=Choice_point_trail3)
+	
+
+	))))
 	)->true;(writeln0([ssi1,0,abort]),
 	fail%number_string(a,_)%abort
 	)),!.
@@ -812,8 +822,7 @@ CP_Vars1=CP_Vars3)
 
 %(Pred_id=1->trace;true),
 
-(var(Vars1)->Globals1=Globals3;
-append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3)),
+append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 
 	((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
 get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,	
@@ -896,8 +905,8 @@ CP_Vars3=CP_Vars3a,
 append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
-        %append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        %append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
+        append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
+        append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
 
         Vars3=[Function1|Vars31],
         _Query2=[Function1,Vars31],	
@@ -913,27 +922,6 @@ append([Function],Arguments,Arguments1),
 	Line=[[Dbw_n,Dbw_cut],[]]) ->
 	%trace,
 	(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3),
-	
-	%writeln1(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3)),
-	
-	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
-	Vars1,All_predicate_numbers], _End_result3, Functions,Vars2,
-	Result1, Result2, 
-	Globals3,Globals2,
-	Choice_point_trail11,
-	Choice_point_trail3,
-	CP_Vars4,CP_Vars2)
-
-	);
-	
-	(get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-	get_lang_word("cut",Dbw_cut1),Dbw_cut1=Dbw_cut,
-	%writeln1([line,Line]),
-	
-	Line=[[Dbw_n,cut1],[]]) ->
-	%trace,
-	(clear_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4%,Pred_id,Predicate_number,Globals3
-	),
 	
 	%writeln1(cut_cps(Choice_point_trail1e,Choice_point_trail11,CP_Vars3,CP_Vars4,Pred_id,Predicate_number,Globals3)),
 	
@@ -990,7 +978,6 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
-semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
@@ -1019,7 +1006,6 @@ retry_back_stack(Retry_back_stack),
 retry_back_stack_n(Retry_back_stack_n),
 cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
-semicolon(Semicolon),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
@@ -1145,7 +1131,7 @@ atom_string(Form_text,Form_text1),
 	Globals3,Globals2,
 	Choice_point_trail1e,
 	Choice_point_trail3,
-	CP_Vars3,CP_Vars2))))))))))		->true;(writeln0([ssi1,line,abort]),
+	CP_Vars3,CP_Vars2)))))))))		)->true;(writeln0([ssi1,line,abort]),
 	fail%number_string(a,_)%abort
 	)),!.
 
@@ -1162,8 +1148,7 @@ interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,_,Ski
 interpretstatement2(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1,Vars2c,_Skip) :-
 	%writeln1(interpretstatement2(Functions,Functions,Line,Vars2,Vars3,Result21,_Cut1)),
 	%false.%
-	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c%,_N,_Pred_num
-	).
+	interpretstatement1(ssi,Functions,Functions,Line,Vars2,Vars3,Result21,_Cut,Vars2c).
 
 interpretstatement2(ssi,Functions,Functions,_Line,Vars2,Vars3,Result21,_Cut,_,AC,_Skip) :-
 %trace,
@@ -1462,6 +1447,11 @@ get_lang_word("fail_function",Dbw_fail_function1),Dbw_fail_function1=Dbw_fail_fu
 	Line_number2=Line_number3; Line_number2=Line_number1),!
 	.
 
+find_pred_id(N2) :-
+	pred_id(N1),
+	N2 is N1+1,
+	retractall(pred_id(_)),
+ 	assertz(pred_id(N2)).
 
 
 append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2) :-
@@ -1891,7 +1881,56 @@ exit_findall_line(_Pred_id,_Globals,Predicate_number,B,Functions,Line_number_c))
 )).
 
 %/*
+collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
 
+collect_connected_pred_ids1(Pred_id,Pred_ids1,Pred_ids3,Predicate_number,Globals3),
+
+%writeln1([*,Pred_ids3]),
+Pred_ids3=Pred_ids2,
+%findall(Pred_ids6,(member(Pred_id5,Pred_ids3),
+%collect_connected_pred_ids2(Pred_id5,[Pred_id5],Pred_ids6,Globals3)),
+%Pred_ids2),
+!.
+
+collect_connected_pred_ids1(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+ ((member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+ not(member(Prev_pred_id,Pred_ids1)),
+ member([[pred_num,Prev_pred_id],Predicate_number],Globals3))->
+ (%trace,
+ append(Pred_ids1,[Prev_pred_id],Pred_ids3),
+ %findall(Pred_ids4, collect_connected_pred_ids2(Prev_pred_id,Pred_ids3,Pred_ids4,Globals3),Pred_ids5),
+ Pred_ids3=Pred_ids5,
+ collect_connected_pred_ids1(Prev_pred_id,Pred_ids5,Pred_ids2,Predicate_number,Globals3));
+ Pred_ids1=Pred_ids2).
+ 
+ 
+%collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids1,_Globals3) :-
+
+ %not(member([pred_id_chain,Pred_id,Next_pred_id],Globals3)).
+/*
+collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids2,Globals3) :-
+
+ (findall([%Next_pred_id,
+ Next_pred_id1],(member([pred_id_chain,Pred_id,Next_pred_id],Globals3)),Next_pred_id1),
+ member(Next_pred_id2,Next_pred_id),
+ collect_connected_pred_ids2(Next_pred_id2,[Next_pred_id],Pred_ids2,Globals3)).%),Pred_ids2)).
+ */
+ 
+ collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids2,Globals3) :-
+ ((findall(Next_pred_id,member([pred_id_chain,Pred_id,Next_pred_id],Globals3),Next_pred_id),
+ %member(Next_pred_id,Next_pred_id1),
+ %not(member(Next_pred_id,Pred_ids1))
+ subtract(Next_pred_id,Pred_ids1,Next_pred_id1)
+ %member([[pred_num,Prev_pred_id],Predicate_number],Globals3)
+ )->
+ (%trace,
+ append(Pred_ids1,Next_pred_id1,Pred_ids3),
+ %findall(Pred_ids4, collect_connected_pred_ids2(Prev_pred_id,Pred_ids3,Pred_ids4,Globals3),Pred_ids5),
+ Pred_ids3=Pred_ids5,
+ findall(Pred_ids6,(member(Next_pred_id2,Next_pred_id1),collect_connected_pred_ids2(Next_pred_id2,Pred_ids5,Pred_ids6,Globals3)),Pred_ids7),
+ append([Pred_id,Pred_ids7],Next_pred_id1,Pred_ids2));
+ Pred_ids1=Pred_ids2).
 
  /*
  ->
@@ -1916,21 +1955,14 @@ clear_cps(Choice_point_trail1a,Choice_point_trail1,CP_Vars1a,CP_Vars1)  :-
 %trace,
 findall([A,B,C,D,E,L,M,F,H,J],
 (member([A,B,C,D,E,L,M,F,H,J],Choice_point_trail1a),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
-	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")
-	),K),
+	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")),K),
 delete_cps(Choice_point_trail1a,K,Choice_point_trail1,CP_Vars1a,CP_Vars1),!.
 
 % delete choicepoints in all clauses of current predicate x
 % find cps of same name, arity that have same previous pred_id x
-
-
 cut_cps(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
-%trace,
-pred_numbers(Pred_nums),
-%trace,
-%writeln1(cut_cps),
-%writeln1(cut_cps(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3)),
-		% collect pred ids connected by curr pred num
+
+%trace,		% collect pred ids connected by curr pred num
 		
 		
 % clear empty Cps
@@ -1940,13 +1972,10 @@ Choice_point_trail1a=Choice_point_trail1,
 CP_Vars1a=CP_Vars1,
 % (possibly not necessarily) collect connected pred ids
 		
-findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id
-],Pred_ids,Predicate_number,Globals3,Pred_nums),Pred_ids1a),
+findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
 
-flatten(Pred_ids1a,Pred_ids1b),
-sort(Pred_ids1b,Pred_ids2a),
-subtract(Pred_ids2a,[%Pred_id
-],Pred_ids2),
+flatten(Pred_ids1,Pred_ids1a),
+sort(Pred_ids1a,Pred_ids2),
 
 %writeln([1,Pred_ids2]),
 		% replace their cps with [] x
@@ -1963,14 +1992,13 @@ subtract(Pred_ids2a,[%Pred_id
 	member(Predicate_number1,Pred_numbers2)),
 	Pred_ids2),
 */	
-/*
 	findall(%[
 	E2%,E4
 	%]
 	,(member(C,Pred_ids2),
 	E2=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
 	member(E2,Choice_point_trail1)
-	*/
+	
 	%E1=[C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
 	
 /*
@@ -1983,21 +2011,20 @@ subtract(Pred_ids2a,[%Pred_id
 	not(All_predicate_numbers2=[]),
 	E4=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,[]])
 */
-	%),E3),
+	),E3),
 
 				% * delete not replace []s, heap since first line needed for retry
 				% - delete rest of cps with pred_ids2		
 
 %replace_cps(E3,B21,B23,B22),
 
-replace1(Choice_point_trail1,Pred_ids2,Choice_point_trail2,CP_Vars1,CP_Vars2).
+replace1(Choice_point_trail1,Pred_ids2,Choice_point_trail3,CP_Vars1,CP_Vars3),
 %trace,
-
-%delete1(E3,Pred_ids2,E31),%,CP_Vars3,CP_Vars4),
+delete1(E3,Pred_ids2,E31),%,CP_Vars3,CP_Vars4),
 
 							%delete_cp2(Choice_point_trail1,E31,Choice_point_trail2,CP_Vars1,CP_Vars2).
 	
-%delete_cps(Choice_point_trail3,E31,Choice_point_trail2,CP_Vars3,CP_Vars2).	
+delete_cps(Choice_point_trail3,E31,Choice_point_trail2,CP_Vars3,CP_Vars2).	
 
 %/*
 delete_cps(Choice_point_trail1,[],Choice_point_trail1,CP_Vars,CP_Vars) :- !.
@@ -2012,22 +2039,11 @@ delete_cps(Choice_point_trail3,E32,Choice_point_trail2,CP_Vars3,CP_Vars2),!.
 %/*
 replace1(E3,Pred_ids2,E31,CP_Vars1,CP_Vars1) :-
 
-/*
-findall([A,B,C,D,E,L,M,F,H,J1],
-(member([A,B,C,D,E,L,M,F,H,J],E3),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
-	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")
-	),E31)
-	*/
-	%/*
-	%trace,
 findall(M,
-(member(N,E3),(N=[A,B,C,D,E,L,M1,F,H,J],(((not(J=[]),not(J=[Ab,Bb,Cb,Db,Eb,Fb,[]])->true;
-(L= -1->true;(L=["returns to", _, "pred_id", _]->true;(L=[findall_exit_function,_])->true;M1="findall"))),
+(member(N,E3),((N=[A,B,C,D,E,L,"predicate",F,H,J],(L= -1->true;L=["returns to", _, "pred_id", _]),
 member(C,Pred_ids2))->
-M=[A,B,C,D,E,L,M1,F,H,[]];
-M=N))),E31)
-%*/
-,!.
+M=[A,B,C,D,E,L,"predicate",F,H,[]];
+M=N)),E31),!.
 
 %*/
 
