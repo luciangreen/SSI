@@ -16,7 +16,7 @@ ssi_test_all_bt00(Lang,Debug,NTotal,Score) :-
 	retractall(lang(_)),
 	assertz(lang(Lang)),
 
-	ssi_test_all_bt0(test,4,Lang,Debug,NT1,S1),
+	ssi_test_all_bt0(test,5,Lang,Debug,NT1,S1),
 	writeln0([ssi_verify4,S1,/,NT1,passed]),
 	writeln0(""),	writeln0(""),
 	
@@ -37,7 +37,11 @@ ssi_test_all_bt00(Lang,Debug,NTotal,Score) :-
 	
 ssi_test_all_bt0(Ssi_test,Arity,Lang,Debug,NTotal,Score) :-
 	functor(Ssi_test2,Ssi_test,Arity),
-	findall(ssi_test2,(Ssi_test2),B),length(B,NTotal1),
+	findall(ssi_test2,(Ssi_test2),B1),
+	functor(Test3,Ssi_test,Arity),
+	arg(1,Test3,ssi),
+	delete(B1,Test3,B),
+	length(B,NTotal1),
 ssi_test_all_bt0(Ssi_test,Arity,Lang,Debug,0,NTotal,0,Score,NTotal1),!.
 ssi_test_all_bt0(_Ssi_test,_Arity,_Lang,_Debug,NTotal,NTotal,Score,Score,NTotal) :- 
 %NTotal=105, 
@@ -66,7 +70,8 @@ ssi_test_all_bt01(test,_Arity,Lang,Debug,NTotal3,Passed) :-
 	!.
 
 ssi_test_all_bt000(test,Debug,NTotal3,Score1,Score3,Lang) :-
-	test(NTotal3,Query,Functions,Result),
+	test(Version,NTotal3,Query,Functions,Result),
+	(Version=both->true;Version=ssi),
 	trans_alg1(Query,"en",Lang,Query1),
 	(Query=Query1->true%writeln("Query=Query1")
 	;(writeln0("not(Query=Query1)"),abort)),
