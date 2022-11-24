@@ -83,6 +83,8 @@ crop down pred from top x just goes to next command
 :-include('ssi-api-key.pl').
 :-include('get_cp_etc.pl').
 :-include('add_line_numbers_to_algorithm.pl').
+:-include('lib_preds.pl').
+:-include('pred_id.pl').
 %:-include('replace_in_term.pl').
 %:-include('local_and_global_cp_trails.pl').
 
