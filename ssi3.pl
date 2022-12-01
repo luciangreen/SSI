@@ -122,8 +122,13 @@ lucianpl1(Debug) :-
  	assertz(debug(Debug)),
    retractall(cut(_)),
    assertz(cut(off)),
-	retractall(leash1(_)),
-   assertz(leash1(off)), %% Should normally be off
+   
+	%retractall(leash1(_)),
+   %assertz(leash1(off)), 
+   %% Should normally be off
+	(not(leash1(_))->(retractall(leash1(_)),assertz(leash1(off)));true),
+
+
   	retractall(sys(_)),
  	assertz(sys(1)),
 	retractall(pred_id(_)),
