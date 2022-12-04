@@ -942,12 +942,22 @@ append([Function],Arguments,Arguments1),
 	
 	(((%trace,
 	get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-	get_lang_word("read_string",Dbw_read_string1),Dbw_read_string1=Dbw_read_string,
+	%trace,
+	get_lang_word("read_string",Dbw_read_string1),get_lang_word("read_password",Dbw_read_string2),
+	%writeln1([Dbw_read_string1,Dbw_read_string2]),
+	%trace,
+	%Dbw_read_string1=Dbw_read_string->true;Dbw_read_string2=Dbw_read_string),
+	%trace,
 	%writeln1([line,Line]),
 	
-	Line=[[Dbw_n,Dbw_read_string],[Variable1]],
+	((Line=[[Dbw_n,Dbw_read_string1],[Variable1]],
+	Dbw_read_string1=Dbw_read_string)->true;
+	(Line=[[Dbw_n,Dbw_read_string2],[Variable1]],
+	Dbw_read_string2=Dbw_read_string)),
 	
-	html_api_maker_or_terminal(html)
+	%true%
+	html_api_maker_or_terminal(html
+	)
 	)->
 	
 	(
@@ -1044,11 +1054,22 @@ save_session(Session_number,Hidden3),
 	replace_new(Hidden1,"\"","&quot;",Hidden2),
 	%replace_new(Hidden2,"\'","\'\'",Hidden3),
 	
+	%writeln1([Dbw_read_string=Dbw_read_string2]),
+	
+	%writeln1(["*1",Dbw_read_string=Dbw_read_string2]),
+
+	(
+	
+	Dbw_read_string=Dbw_read_string2 % read_password
+	->
+	Form_input="password";
+	Form_input="text"),
+	
 	concat_list(["
 	   
   <form action=\"/landing\" method=\"POST\">
   <label for=ssi></label>
-  <input type=text id=input name=input value=''><br><br>
+  <input type=",Form_input," id=input name=input value=''><br><br>
   <input type=hidden id=ssi name=ssi value=\"",Hidden2,"\"><br><br>
   <input type=submit name=submit value='Submit'>
 </form>
@@ -1076,7 +1097,7 @@ atom_string(Form_text,Form_text1),
 	((
 	
 	(not((get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-	get_lang_word("read_string",Dbw_read_string1),Dbw_read_string1=Dbw_read_string,
+	get_lang_word("read_string",Dbw_read_string1),get_lang_word("read_password",Dbw_read_string2),Dbw_read_string1=Dbw_read_string,Dbw_read_string2=Dbw_read_string,
 	%writeln1([line,Line]),
 	
 	Line=[[Dbw_n,Dbw_read_string],[Variable1]],
