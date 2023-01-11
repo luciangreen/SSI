@@ -944,6 +944,7 @@ append([Function],Arguments,Arguments1),
 	get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 	%trace,
 	get_lang_word("read_string",Dbw_read_string1),get_lang_word("read_password",Dbw_read_string2),
+	get_lang_word("text_area",Dbw_read_string3),
 	%writeln1([Dbw_read_string1,Dbw_read_string2]),
 	%trace,
 	%Dbw_read_string1=Dbw_read_string->true;Dbw_read_string2=Dbw_read_string),
@@ -953,7 +954,9 @@ append([Function],Arguments,Arguments1),
 	((Line=[[Dbw_n,Dbw_read_string1],[Variable1]],
 	Dbw_read_string1=Dbw_read_string)->true;
 	(Line=[[Dbw_n,Dbw_read_string2],[Variable1]],
-	Dbw_read_string2=Dbw_read_string)),
+	Dbw_read_string2=Dbw_read_string);
+	(Line=[[Dbw_n,Dbw_read_string3],[Variable1,Variable2,Variable3]],
+	Dbw_read_string3=Dbw_read_string)),
 	
 	%true%
 	html_api_maker_or_terminal(html
@@ -981,7 +984,15 @@ append([Function],Arguments,Arguments1),
 */
 
 getvalue(Variable1,Value1,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_read_string],[variable]]),
+
+(Dbw_read_string3=Dbw_read_string->
+(getvalue(Variable2,Value2,Vars1),
+getvalue(Variable3,Value3,Vars1),
+debug_call(Skip,[[Dbw_n,Dbw_read_string3],[Value1,Value2,variable]]));
+% text area
+
+(debug_call(Skip,[[Dbw_n,Dbw_read_string],[variable]]))),
+
 
 lang(Lang),
 
@@ -1011,7 +1022,11 @@ Hidden=Session_number,
 
 %writeln(3),
 
-Hidden3=[Dbw_n,Dbw_read_string,Value1,Variable1,Line_number_b,Skip,lang(Lang),
+(Dbw_read_string3=Dbw_read_string-> %text area
+(Value1A=Value3,Variable1A=Variable3);
+(ValueIA=Value1,Variable1A=Variable1)),
+
+Hidden3=[Dbw_n,Dbw_read_string,Value1A,Variable1A,Line_number_b,Skip,lang(Lang),
 
 debug2(Debug2),
 debug3(Debug3),
@@ -1058,18 +1073,27 @@ save_session(Session_number,Hidden3),
 	
 	%writeln1(["*1",Dbw_read_string=Dbw_read_string2]),
 
-	(
 	
-	Dbw_read_string=Dbw_read_string2 % read_password
+
+	(Dbw_read_string=Dbw_read_string2 % read_password
 	->
 	Form_input="password";
+	
 	Form_input="text"),
+	
+	
+	(Dbw_read_string=Dbw_read_string3 % text_area
+	->
+	concat_list(["<textarea id=input name=input ",Value1,">",Value2,"</textarea>"],CL1);
+
+	concat_list(["<input type=",Form_input," id=input name=input value=''>"],CL1)),
+
 	
 	concat_list(["
 	   
   <form action=\"/landing\" method=\"POST\">
   <label for=ssi></label>
-  <input type=",Form_input," id=input name=input value=''><br><br>
+  ",CL1,"<br><br>
   <input type=hidden id=ssi name=ssi value=\"",Hidden2,"\"><br><br>
   <input type=submit name=submit value='Submit'>
 </form>

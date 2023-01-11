@@ -36,7 +36,7 @@ Debug=off,
 
 %international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 
-testopen_cases(7,Query,Functions),
+testopen_cases(8,Query,Functions),
 	%test(1,Query,Functions,Result),
 
 % Form and HTML Table
