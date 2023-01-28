@@ -35,15 +35,16 @@ Debug=off,
 	%test_open_types_cases(4,Query,Types,Modes,Functions),
 
 %international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
+%p2lpconverter([file,"../private/la_com_ssi1.pl"],List3),
 
-testopen_cases(8,Query,Functions),
+%testopen_cases(8,[[n,test]],List3),
 	%test(1,Query,Functions,Result),
 
 % Form and HTML Table
 %test1(Functions),	
 %Query=[[n,test]],
-	
-	international_lucianpl([lang,"en"],Debug,Query,Functions,_Result1),
+	ssi_test(List3),
+	international_lucianpl([lang,"en"],Debug,[[n,test]],List3),_Result1),
 
 
 format(Footer,[])
