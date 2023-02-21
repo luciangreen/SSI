@@ -1024,7 +1024,7 @@ Hidden=Session_number,
 
 (Dbw_read_string3=Dbw_read_string-> %text area
 (Value1A=Value3,Variable1A=Variable3);
-(ValueIA=Value1,Variable1A=Variable1)),
+(Value1A=Value1,Variable1A=Variable1)),
 
 Hidden3=[Dbw_n,Dbw_read_string,Value1A,Variable1A,Line_number_b,Skip,lang(Lang),
 
@@ -2004,8 +2004,8 @@ collect_connected_pred_ids(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3
 clear_cps(Choice_point_trail1a,Choice_point_trail1,CP_Vars1a,CP_Vars1)  :-
 %trace,
 findall([A,B,C,D,E,L,M,F,H,J],
-(member([A,B,C,D,E,L,M,F,H,J],Choice_point_trail1a),(J=[]->true;J=[Ab,Bb,Cb,Db,Eb,
-	Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")),K),
+(member([A,B,C,D,E,L,M,F,H,J],Choice_point_trail1a),(J=[]->true;J=[_Ab,_Bb,_Cb,_Db,_Eb,
+	_Fb,[]]),not(L= -1),not(L=["returns to", _, "pred_id", _]),not(L=[findall_exit_function,_]),not(M="findall")),K),
 delete_cps(Choice_point_trail1a,K,Choice_point_trail1,CP_Vars1a,CP_Vars1),!.
 
 % delete choicepoints in all clauses of current predicate x
@@ -2046,7 +2046,7 @@ sort(Pred_ids1a,Pred_ids2),
 	E2%,E4
 	%]
 	,(member(C,Pred_ids2),
-	E2=[A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
+	E2=[_A,_B2,C,_D_Level,_E_Predicate_number2,_F_Line_number_a2,_Pred_or_line,_H,_I,_All_predicate_numbers2],
 	member(E2,Choice_point_trail1)
 	
 	%E1=[C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],
@@ -2080,7 +2080,7 @@ delete_cps(Choice_point_trail3,E31,Choice_point_trail2,CP_Vars3,CP_Vars2).
 delete_cps(Choice_point_trail1,[],Choice_point_trail1,CP_Vars,CP_Vars) :- !.
 
 delete_cps(Choice_point_trail1,[E31|E32],Choice_point_trail2,CP_Vars1,CP_Vars2) :-	
-E31=[A,B|E33],
+E31=[_A,_B|E33],
 delete_cp(Choice_point_trail1,[_,_|E33],Choice_point_trail3,CP_Vars1,CP_Vars3,_),
 delete_cps(Choice_point_trail3,E32,Choice_point_trail2,CP_Vars3,CP_Vars2),!.
 %*/
@@ -2090,7 +2090,7 @@ delete_cps(Choice_point_trail3,E32,Choice_point_trail2,CP_Vars3,CP_Vars2),!.
 replace1(E3,Pred_ids2,E31,CP_Vars1,CP_Vars1) :-
 
 findall(M,
-(member(N,E3),((N=[A,B,C,D,E,L,"predicate",F,H,J],(L= -1->true;L=["returns to", _, "pred_id", _]),
+(member(N,E3),((N=[A,B,C,D,E,L,"predicate",F,H,_J],(L= -1->true;L=["returns to", _, "pred_id", _]),
 member(C,Pred_ids2))->
 M=[A,B,C,D,E,L,"predicate",F,H,[]];
 M=N)),E31),!.

@@ -141,8 +141,8 @@ sort(Pred_ids1a,Pred_ids2),
  ((CR_flag=check-rec->recursive_predicate(Pred_id,Pred_ids2,Globals3);true),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
  
  	(Pred_or_line="line"->
-	(All_predicate_numbers2=[Ab,Bb,Cb,Db,Eb,
-	Fb,Vars2c],not(Vars2c=[]));
+	(All_predicate_numbers2=[_Ab,_Bb,_Cb,_Db,_Eb,
+	_Fb,Vars2c],not(Vars2c=[]));
 	Pred_or_line="predicate"->
 	not(All_predicate_numbers2=[]))))->
 	

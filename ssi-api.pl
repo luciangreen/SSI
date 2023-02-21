@@ -44,7 +44,7 @@ Debug=off,
 %test1(Functions),	
 %Query=[[n,test]],
 	ssi_test(List3),
-	international_lucianpl([lang,"en"],Debug,[[n,test]],List3),_Result1),
+	international_lucianpl([lang,"en"],Debug,[[n,test]],List3,_Result1),
 
 
 format(Footer,[])
