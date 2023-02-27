@@ -873,7 +873,7 @@ Vars1,
 Choice_point_trail1e=Choice_point_trail1f,
 
 CP_Vars3=CP_Vars3a,
-	
+	%writeln(here2),
 	end_nested_findall(FA
 	,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail1f,Choice_point_trail3,Vars1,Vars2,CP_Vars3a,CP_Vars2,Functions,Globals3,Globals2,Result1, Result2,End_line42)
 
@@ -1154,7 +1154,9 @@ atom_string(Form_text,Form_text1),
  (
 
  (var(Skip)->Globals3=Globals4;
- append(Globals3,[[[skip,Pred_id,Line_number_b],Skip]],Globals4)),
+ (
+ %writeln1([append,[skip,Pred_id,Line_number_b],Skip]),
+ append(Globals3,[[[skip,Pred_id,Line_number_b],Skip]],Globals4))),
  
  (%trace,
  Vars2c=[]->(Choice_point_trail1e=Choice_point_trail11,

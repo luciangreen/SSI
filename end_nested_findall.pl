@@ -34,8 +34,8 @@ x
 
 %trace,
 
-get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
-	[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
+get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
+	[Cp_b1,Cb_b2,_,_Level,_Predicate_number,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
 	D1=[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 
 	get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
@@ -85,10 +85,20 @@ get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
 %trace,
 (Line_number_b=[_,Line_number_b2]->Line_number_b2=_Line_number_b1;
 Line_number_b2=Line_number_b),
+
+%writeln(hered),
+
+/*
+writeln1([member,[skip,Pred_id,Line_number_b2],Skip%,Globals10
+]),
+
 	member([[skip,Pred_id,Line_number_b2],Skip],Globals1),
+	%Globals10=Globals1,
 
+	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
+%trace,
 debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
-
+*/
 
 %trace,
 ((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
@@ -146,9 +156,26 @@ member_cut1([_,_,_,_,_,_,"findall",-|_],Choice_point_trail52)
 
 %cp_since_findall_start(Choice_point_trail5,_Level,_D10,E1,_D1,CP_Vars41,CP_Vars4)
 -> 
-end_nested_findall(exit,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2,End_line42);
+(%writeln(here1),writeln([line_number_a,_Line_number_a]),
+%trace,
+%writeln(herea),
+
+%writeln1([member,[skip,Pred_id,Line_number_a],Skip%,Globals10
+%]),
+
+	member([[skip,Pred_id,Line_number_a],Skip],Globals1),
+	%Globals10=Globals1,
+
+	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
+%trace,
+debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
+
+
+end_nested_findall(exit,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2,End_line42));
 (%trace,
-(cp_since_findall_start(Choice_point_trail3,Level,_,E100,D100,CP_Vars3,CP_Vars3111)->
+(%writeln(hereb),
+
+cp_since_findall_start(Choice_point_trail3,Level,_,E100,D100,CP_Vars3,CP_Vars3111)->
 
 (
 /*
@@ -188,7 +215,18 @@ Vars1,
 
 	);
 
-(
+(%writeln(herec),
+%/*
+%writeln1([member,[skip,Pred_id,Line_number_a],Skip%,Globals10
+%]),
+
+	member([[skip,Pred_id,Line_number_a],Skip],Globals1),
+	%Globals10=Globals1,
+
+	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
+%trace,
+debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
+%*/
 %trace,
 ((%var(Line_number_b),
 number(End_line42))->Line_number_b3=End_line42;Line_number_b3=Line_number_b),
