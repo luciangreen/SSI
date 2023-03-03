@@ -55,7 +55,6 @@ find_sys(Sys_name),
 
 (is_empty(Value3)-> Findall_vars=Findall_vars2;	append(Findall_vars,[Value3],Findall_vars2)),
 	 
-	 turn_back_debug(Debug),
 
 	%delete_cp(Choice_point_trail1,D1,Choice_point_trail3,CP_Vars4,CP_Vars3,_), 
 	Choice_point_trail1=Choice_point_trail3,
@@ -63,6 +62,8 @@ find_sys(Sys_name),
 	
 	interpretpart(match4,Result_var,Findall_vars2,[]%Vars1
 	,Vars2fb,_),
+	
+	 turn_back_debug(Debug),
 	
 	getvalue(Result_var,Value4,Vars2fb),
 	
@@ -168,7 +169,7 @@ member_cut1([_,_,_,_,_,_,"findall",-|_],Choice_point_trail52)
 
 	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
 %trace,
-debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
+debug_exit(Skip,[[Dbw_n,Dbw_findall],[Format_vars,"...",Value4]]),
 
 
 end_nested_findall(exit,Pred_id,Level,Predicate_number,Line_number_b,Choice_point_trail5,Choice_point_trail2,Result42,Vars2,CP_Vars411,CP_Vars2,Functions,Globals1,Globals2,Result1, Result2,End_line42));
@@ -225,7 +226,7 @@ Vars1,
 
 	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
 %trace,
-debug_exit(Skip,[[Dbw_n,Dbw_findall]]),
+debug_exit(Skip,[[Dbw_n,Dbw_findall],[Format_vars,"...",Value4]]),
 %*/
 %trace,
 ((%var(Line_number_b),
