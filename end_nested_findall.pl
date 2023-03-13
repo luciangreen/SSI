@@ -221,12 +221,12 @@ Vars1,
 %writeln1([member,[skip,Pred_id,Line_number_a],Skip%,Globals10
 %]),
 
-	member([[skip,Pred_id,Line_number_a],Skip],Globals1),
+	member([[skip,Pred_id,Line_number_a],Skip1],Globals1),
 	%Globals10=Globals1,
 
 	%delete(Globals10,[[skip,Pred_id,Line_number_b2],Skip],Globals1),
 %trace,
-debug_exit(Skip,[[Dbw_n,Dbw_findall],[Format_vars,"...",Value4]]),
+debug_exit(Skip1,[[Dbw_n,Dbw_findall],[Format_vars,"...",Value4]]),
 %*/
 %trace,
 ((%var(Line_number_b),
