@@ -33,9 +33,9 @@ format(Header,[]),
 
 Debug=off,
 
-	%test_open_types_cases(25,Query,Types,Modes,Functions),
+	test_open_types_cases(25,Query,Types,Modes,Functions),
 
-%international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
+international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 %p2lpconverter([file,"../private/la_com_ssi1.pl"],List3),
 
 %testopen_cases(8,[[n,test]],List3),
@@ -46,8 +46,8 @@ Debug=off,
 %Query=[[n,test]],
 	%ssi_test(List3),
 	
-	para(List3),
-	international_lucianpl([lang,"en"],Debug,[[n,paraphraser]],List3,_Result1),
+	%para(List3),
+	%international_lucianpl([lang,"en"],Debug,[[n,paraphraser]],List3,_Result1),
 
 
 format(Footer,[])
@@ -111,7 +111,7 @@ number_of_current_text(Number_of_current_text),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 
-pred_id_a(Pred_id),
+pred_id(Pred_id),
 types(Types),
 typestatements(Typestatements),
 modestatements(Modestatements),
