@@ -10,7 +10,7 @@ para([
 ],["rows=\"8\" style=\"width:100%\"","",[v,string_a]]],
 	
 	[[n,string_codes],[[v,string_a],[v,codes]]],
-	[[n,=],[[v,sepandpad],"."%"#@~%`$?-+*^,()|.:;=_/[]<>{}\\n\\r\\s\\t\\\\\\!0123456789"
+	[[n,=],[[v,sepandpad],"#@~%`$?-+*^,()|.:;=_/[]<>{}\\n\\r\\s\\t\\\\\\!0123456789"
 	]],
 	[[n,string_codes],[[v,sepandpad],[v,sepandpad1]]],
 	[[n,split_on_substring117],[[v,codes],[v,sepandpad1],[],[v,file_list]]],
