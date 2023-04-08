@@ -1008,7 +1008,7 @@ html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
 %curr_cp_index(Curr_cp_index),
 %trace,
-pred_id(Pred_id),
+%*pred_id(Pred_id),
 %writeln([Pred_id,pred_id(Pred_id_a)]),
 (true%pred_id(Pred_id)
 ->true;(writeln([Pred_id,pred_id(Pred_id_a)]),fail)),
