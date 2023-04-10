@@ -9,7 +9,8 @@ para([
 [[n,text_area
 ],["rows=\"8\" style=\"width:100%\"","",[v,string_a]]],
 	
-	[[n,string_chars],[" .", %"#@~%`$?-+*^,()|.:;=_/[]<>{}\n\r\s\t\\\"!0123456789",
+	[[n,string_chars],[%" .", 
+	"#@~%`$?-+*^,()|.:;=_/[]<>{}\n\r\s\t\\\"!0123456789",
 	[v,sepandpad]
 	]],
 	
@@ -105,22 +106,25 @@ para([
 
 	%[[n,trace]],
 
-[[n,paraphrase1],[[v,file_list],[],[v,file_list2a],[v,synonym_list],[v,synonym_list2]]],
-	[[n,concat_list],[[v,file_list2a],[v,file_list_a]]],
+[[n,paraphrase1],[[v,file_list],[],[v,file_lista],[v,synonym_list],[v,synonym_listb]]],
+	%
+%[[n,writeln],[["4",[v,file_list],[],[v,file_lista],[v,synonym_list],[v,synonym_listb]]]],
+	%[[n,read_string],[[v,input_a]]], %% for testing
+	[[n,concat_list],[[v,file_lista],[v,file_listd]]],
 
-	[[n,writeln],[[v,file_list_a]]],
+	[[n,writeln],[[v,file_listd]]],
 	
 	/*[
 	[[n,open],['file2.txt',write,[v,stream1]]],
 	[[n,write],[[v,stream1],[v,file_list_a]]],
 	[[n,close],[[v,stream1]]]
 	],*/
-	[[n,term_to_atom],[[v,synonym_list2],[v,synonym_list_a]]],
+	[[n,term_to_atom],[[v,synonym_listb],[v,synonym_listc]]],
 	
 	[[n,writeln],["Finished (submit does nothing). Please save thesaurus below."]],
 
 	[[n,text_area
-],["rows=\"4\" style=\"width:100%\"",[v,synonym_list_a],[v,s]]],
+],["rows=\"4\" style=\"width:100%\"",[v,synonym_listc],[v,s]]],
 	/*[
 	[[n,open],['thesaurus.txt',write,[v,stream2]]],
 	[[n,write],[[v,stream2],[v,synonym_list_a]]],
@@ -158,7 +162,8 @@ para([
 	[
 	[[n,equals4],[[v,file_list1],[v,file_list2]]],
 	[[n,equals4],[[v,synonym_list],[v,synonym_list2]]]
-	%,[[n,cut]]
+	%,[[n,writeln],[["3",[v,file_list2],[v,synonym_list2]]]]
+	,[[n,cut]]
 	],
 
 	[
@@ -179,6 +184,8 @@ para([
 		[[n,member],[["the","a","i","on","with","of","an","for","to","was","were","and","in","my","from","out","by"],[v,file_list3]]]
 	]],
 	[[n,append],[[v,file_list1],[[v,file_list3]],[v,file_list6]]],
+
+	%[[n,writeln],[["1",[v,file_list6],[v,synonym_list]]]],
 	[[n,paraphrase1],[[v,file_list4],[v,file_list6],[v,file_list2],[v,synonym_list],[v,synonym_list2]]]%,
 	%[[n,cut]]
 ],
@@ -225,6 +232,7 @@ para([
 	
 	%,[[n,trace]]%,[[n,paraphrase1],[[v,file_list4],[v,file_list6],[v,file_list2],[v,synonym_list1],[v,synonym_list2]]]
 	%[[n,trace]],[[n,writeln],[[[v,file_list4],[v,file_list6],[v,file_list2],[v,synonym_list1],[v,synonym_list2]]]]
+	%,[[n,writeln],[["2",[v,file_list6],[v,synonym_list1]]]]
 
 			,[[n,paraphrase1],[[v,file_list4],[v,file_list6],[v,file_list2],[v,synonym_list1],[v,synonym_list2]]]%,
 
@@ -260,7 +268,7 @@ para([
 [[n,concat_list1],[[v,a],[v,list],[v,b]],":-",
 [
 	[[n,equals4],[[v,list],[[v,item],"|",[v,items]]]],
-	[[n,string_concat],[[v,a],[v,item],[v,c]]],
+	[[n,stringconcat],[[v,a],[v,item],[v,c]]],
 	[[n,concat_list1],[[v,c],[v,items],[v,b]]]
 ]]
 
