@@ -9,8 +9,8 @@ para([
 [[n,text_area
 ],["rows=\"8\" style=\"width:100%\"","",[v,string_a]]],
 	
-	[[n,string_chars],[%" .", 
-	"#@~%`$?-+*^,()|.:;=_/[]<>{}\n\r\s\t\\\"!0123456789",
+	[[n,string_chars],[" .", 
+	%"#@~%`$?-+*^,()|.:;=_/[]<>{}\n\r\s\t\\\"!0123456789",
 	[v,sepandpad]
 	]],
 	
@@ -106,7 +106,9 @@ para([
 
 	%[[n,trace]],
 
-[[n,paraphrase1],[[v,file_list],[],[v,file_lista],[v,synonym_list],[v,synonym_listb]]],
+ [[n,delete],[[v,file_list],"",[v,file_list0]]],
+ 
+[[n,paraphrase1],[[v,file_list0],[],[v,file_lista],[v,synonym_list],[v,synonym_listb]]],
 	%
 %[[n,writeln],[["4",[v,file_list],[],[v,file_lista],[v,synonym_list],[v,synonym_listb]]]],
 	%[[n,read_string],[[v,input_a]]], %% for testing
