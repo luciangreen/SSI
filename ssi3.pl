@@ -1010,6 +1010,7 @@ pred_numbers(Pred_numbers),
 %trace,
 %*pred_id(Pred_id),
 %writeln([Pred_id,pred_id(Pred_id_a)]),
+pred_id(Pred_id_a),
 (true%pred_id(Pred_id)
 ->true;(writeln([Pred_id,pred_id(Pred_id_a)]),fail)),
 (types(Types)->true;(writeln(types),fail)),
@@ -1042,7 +1043,7 @@ cumulative_or_current_text(Cumulative_or_current_text),
 number_of_current_text(Number_of_current_text),
 html_api_maker_or_terminal(Html_api_maker_or_terminal),
 pred_numbers(Pred_numbers),
-pred_id(Pred_id),
+pred_id(Pred_id_a),
 types(Types),
 typestatements(Typestatements),
 modestatements(Modestatements),
@@ -1510,6 +1511,7 @@ find_pred_id(N2) :-
 
 
 append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2) :-
+	%writeln1(append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2)),
 	%trace,
 	%(writeln("y to trace"),(get_char(y)->trace;true)),
 	%trace,
@@ -1819,7 +1821,7 @@ V = [[min_cp, 1], [max_cp, 3], [curr_cp, 3], [curr_cp_index, 3]].
 */
 
 delete_cp(List1,CP,List5,CP_Vars1,CP_Vars2,Swaps) :-
-	%writeln1(delete_cp1(List1,CP,List5)),
+	%writeln1(delete_cp1(List1,CP,List5,CP_Vars1,CP_Vars2,Swaps)),
 	%trace,
 	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),	
 		%trace,
