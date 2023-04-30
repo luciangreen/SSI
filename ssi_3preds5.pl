@@ -27,9 +27,9 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 ;     debug_fail(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]])),!.
 */
 
-ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
+ssi_interpretpart(member2,Dbw_member2,Variable1,Variable2,Vars1,Vars2,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
+%get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
 get_lang_word("v",Dbw_v),
 
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
@@ -286,7 +286,7 @@ get_lang_word("v",Dbw_v),
 
 %Vars1=Vars2,
         getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),	
+debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),
 
 matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,modes,W]),abort)),
@@ -527,9 +527,9 @@ debug_call(Skip,[[Dbw_n,Dbw_member],[Value1,Value2]]),
 !.
 */
 
-ssi_interpretpart(member2,_Variable1,_Variable2,_Vars1,Vars2,_Vars2c,AC) :-
+ssi_interpretpart(member2,Dbw_member2,_Variable1,_Variable2,_Vars1,Vars2,_Vars2c,AC) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
+%get_lang_word("member2",Dbw_member21),Dbw_member21=Dbw_member2,
 %trace,
 AC=[[Dbw_n,Dbw_member2],Value1_Value2,Value1a_Value2a,Vars2|_],
 %writeln1(AC),
