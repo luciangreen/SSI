@@ -36,7 +36,7 @@ get_lang_word("v",Dbw_v),
 debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),
 	((%Value2=empty,
 	
-	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var1([Dbw_v,_],Y)->X=o;X=i)),Z),
+	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,modes,W]),abort)),
 
 (W=ii->
@@ -288,7 +288,7 @@ get_lang_word("v",Dbw_v),
         getvalues_equals4(Variable1,Variable2,Variable3,Value1z,Value2z,Value3z,Vars1),
 debug_call(Skip,[[Dbw_n,Dbw_append],[Value1z,Value2z,Value3z]]),	
 
-matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var1([Dbw_v,_],Y)->X=o;X=i)),Z),
+matrix(Matrix),findall(X,(member(Y,[Value1z,Value2z,Value3z]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
 foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,append,modes,W]),abort)),
 
 %findall(Item_u,(member(Item,[Value1z,Value2z,Value3z]),replace_empty_with_undefined(Item,Item_u)),[Value1,Value2,Value3]),

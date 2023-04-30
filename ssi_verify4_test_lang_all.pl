@@ -49,10 +49,10 @@ ssi_test_all0(Test,Arity,Lang,Debug,NTotal1,NTotal2,Score1,Score2,NTotal4) :-
 
 %% ssi_test_all01 individual cases, Debug=trace=on or off, N=case number, Passed=output=result
 
-%% ssi_test_all01(ssi_test,            4,"en2",off,1,Passed).
-%% ssi_test_all01(ssi_test_types_cases,6,"en2",off,1,Passed).
-%% ssi_test_all01(ssi_testopen_cases,  3,"en2",off,1,Passed).
-%% ssi_test_all01(ssi_test_open_types, 5,"en2",off,1,Passed).
+%% ssi_test_all01(test,            4,"en2",off,1,Passed).
+%% ssi_test_all01(test_types_cases,6,"en2",off,1,Passed).
+%% ssi_test_all01(testopen_cases,  3,"en2",off,1,Passed).
+%% ssi_test_all01(test_open_types, 5,"en2",off,1,Passed).
 
 ssi_test_all01(Test,_Arity,Lang,Debug,NTotal3,Passed) :-
 	ssi_test_all000(Test,Debug,NTotal3,0,Passed1,Lang),
