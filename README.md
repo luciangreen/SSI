@@ -129,6 +129,10 @@ respectively.
 
 See <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Documentation</a>.
 
+# SSI with Prolog queries
+
+* Run <a href="https://github.com/luciangreen/Philosophy">SSI with Prolog queries</a>.
+
 # Authors
 
 Lucian Green - Initial programmer - <a href="https://www.lucianacademy.com/">Lucian Academy</a>
