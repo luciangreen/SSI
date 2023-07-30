@@ -33,7 +33,7 @@ get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("v",Dbw_v),
 
         getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]),
+debug_call(Skip,[[Dbw_n,Dbw_member2],[Value2,Value1]]),
 	((%Value2=empty,
 	
 	matrix_member(Matrix),findall(X,(member(Y,[Value1,Value2]),(contains_var([Dbw_v,_],Y)->X=o;X=i)),Z),
@@ -43,9 +43,9 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 (member(Value2,Value1)->
 
     (Vars1=Vars2,	
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]]));
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value2,Value1]]));
     (Vars1=Vars2,
-     debug_fail(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2]])));
+     debug_fail(Skip,[[Dbw_n,Dbw_member2],[Value2,Value1]])));
 
 (      
 (W=io->
@@ -58,7 +58,7 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 			Vars2c1],
 
 	
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]])));
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value2a,Value1]])));
       
         
         
@@ -102,7 +102,7 @@ foldr(atom_concat,Z,'',W),(member(W,Matrix)->true;(writeln([incorrect,member2,mo
 			Vars2c1]
 
 	,
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1a,Value2]]));
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value2,Value1a]]));
       
       
 (W=oo->
@@ -148,7 +148,7 @@ command_n_sols(N),
 			_,_,%[Value1,Value2a]
 			Vars2c1],
 
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value1,Value2a]]))))))))      ->true;(%writeln1(fail-ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c)),
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value2a,Value1]]))))))))      ->true;(%writeln1(fail-ssi_interpretpart(member2,Variable1,Variable2,Vars1,Vars2,Vars2c)),
       fail)).
             
       
@@ -535,13 +535,16 @@ AC=[[Dbw_n,Dbw_member2],Value1_Value2,Value1a_Value2a,Vars2|_],
 %writeln1(AC),
 %writeln1(AC),
     %getvalues_equals4(Variable1,Variable2,Value1,Value2,Vars1),
-debug_call(Skip,[[Dbw_n,Dbw_member2],Value1_Value2]),	%((%Value2=empty,
+    Value1_Value2=[Value1_x,Value2_x],
+debug_call(Skip,[[Dbw_n,Dbw_member2],[Value2_x,Value1_x]]), 
+	%((%Value2=empty,
 	%((findall([Vars2b,Value2a],(member(Value2a,Value1),
 	%putvalue_equals4(Variable2,Value2a,Vars1,Vars2b)
 	%),Vars2a),Vars2a=[[Vars2,Value2a]|Vars2d],
 	%	findall(Vars2e,member([Vars2e,_],Vars2d),Vars2c)
 	%))),
-      debug_exit(Skip,[[Dbw_n,Dbw_member2],Value1a_Value2a])%)
+	Value1a_Value2a=[Value1a_x,Value2a_x],
+      debug_exit(Skip,[[Dbw_n,Dbw_member2],[Value2a_x,Value1a_x]])%)
       .
       
       
