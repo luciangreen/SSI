@@ -266,7 +266,7 @@ get_lang_word("append",Dbw_append1),Dbw_append1=Dbw_append,
 
         ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c).
 
-interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member2],[Variable1,Variable2]],Vars1,Vars2,true,nocut,Vars2c) :-
+interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_member2],[Variable2,Variable1]],Vars1,Vars2,true,nocut,Vars2c) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 %trace,
 ((get_lang_word("member2",Dbw_member21),
