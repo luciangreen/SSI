@@ -58,7 +58,8 @@ get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
-(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))
+(Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0)))))
 
 
 	),Unique_predicates1),
@@ -77,7 +78,8 @@ get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
-(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))
+(Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0)))))
 
 
 

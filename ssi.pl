@@ -189,7 +189,16 @@ append(Algorithm2,[[Number1,Name,Arguments4,Symbol2,Body2]],Algorithm4))->true;
 	(Function1=[Name],symbol(":-",Symbol2),
 		add_line_numbers_to_algorithm_body2([[[Dbw_n,Dbw_true]]],Body2,0,_),
 
-	append(Algorithm2,[[Number1,Name,[],Symbol2,Body2]],Algorithm4))))),
+	append(Algorithm2,[[Number1,Name,[],Symbol2,Body2]],Algorithm4))->true;
+	
+	% [":-", [n, include], ['../b/b.pl']]
+	((Function1=[Symbol2,Name,Arguments1],symbol(":-",Symbol2),
+	findall(Arguments3,(member(Arguments2,Arguments1),slp2lp_variables(Arguments2,Arguments3)),Arguments4),
+	
+		add_line_numbers_to_algorithm_body2([[[Dbw_n,Dbw_true]]],Body2,0,_),
+
+append(Algorithm2,[[Number1,Symbol2,Name,Arguments4,Body2]],Algorithm4)))))),
+
 
 	Number1a is Number1+1,
 	%%writeln1([Number1,Name,Arguments4,Symbol2,Body2]),
