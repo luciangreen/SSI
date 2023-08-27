@@ -55,12 +55,14 @@ find_pred_numbers(Functions,_Reserved_words,Pred_numbers) :-
 get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
 get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 	member([Pred_number2,Pred_name1|Rest],Functions),
+pred_rest(Arity1,Rest,_)
+	/*
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
 (Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
 (Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0)))))
-
+ */
 
 	),Unique_predicates1),
 	sort(Unique_predicates1,Unique_predicates2),
@@ -75,16 +77,25 @@ get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 
 
 	member([Pred_number2,Pred_name2|Rest],Functions),
+	pred_rest(Arity1,Rest,_)
+/*
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
 (Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
 (Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0)))))
-
+*/
 
 
 ),Pred_number3)),Pred_numbers).
 
 % stores these in pred calls in the sm - see ssi_find_sm.pl
 
+pred_rest(Arity1,Rest,Lines) :-
+
+(Rest=[Args,":-",Lines]->length(Args,Arity1);
+(Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
+(Rest=[":-",Lines]->Arity1=0;
+(Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
+(Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))),!.
 
