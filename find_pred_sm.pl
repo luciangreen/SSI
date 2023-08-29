@@ -96,6 +96,6 @@ pred_rest(Arity1,Rest,Lines) :-
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
 (Rest=[":-",Lines]->Arity1=0;
-(Rest=[[Dbw_n,_],Args,Lines]->length(Args,Arity1);
+(Rest=[[Dbw_n,_],Args|Lines]->length(Args,Arity1);
 (Rest=[],Lines=[[[Dbw_n,Dbw_true]]],Arity1=0))))),!.
 
