@@ -52,8 +52,6 @@ find_pred_numbers(Functions,_Reserved_words,Pred_numbers) :-
 	
 	%member([_Pred_number1,Pred_name1|Arguments_Body],Functions),(Arguments=":-"->Arity1=0;length(Arguments,Arity1))
 	
-get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
-get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 	member([Pred_number2,Pred_name1|Rest],Functions),
 pred_rest(Arity1,Rest,_)
 	/*
@@ -92,6 +90,9 @@ pred_rest(Arity1,Rest,_)
 % stores these in pred calls in the sm - see ssi_find_sm.pl
 
 pred_rest(Arity1,Rest,Lines) :-
+
+get_lang_word("n",Dbw_n1),Dbw_n1=Dbw_n,
+get_lang_word("true",Dbw_true1),Dbw_true1=Dbw_true,
 
 (Rest=[Args,":-",Lines]->length(Args,Arity1);
 (Rest=[Args]->(Lines=[[[Dbw_n,Dbw_true]]],length(Args,Arity1));
