@@ -22,7 +22,7 @@ main :-
 	working_directory(_, 'GitHub/SSI/'),
 
 delete_old_sessions,
-ssi_server(8000),sleep(86400).
+ssi_server(8000),sleep(86390),halt.
 
 main :- halt(1).
 
