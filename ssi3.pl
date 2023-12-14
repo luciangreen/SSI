@@ -60,6 +60,7 @@ lucianpl11(Debug,Query,Functions,Result) :-
 %%writeln1([i1]),
 	%%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),
 	convert_to_grammar_part1(Functions1,[],Functions2,_),
+	%insert_cuts(Functions2a,Functions2),
 
 	%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),

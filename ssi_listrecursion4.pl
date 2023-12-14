@@ -64,6 +64,7 @@ get_lang_word("call",Dbw_call1),Dbw_call1=Dbw_call,
  
  	query_box(Query2,_Query3,Functions,Functions1),
 	convert_to_grammar_part1(Functions1,[],Functions2,_),
+	%insert_cuts(Functions2a,Functions2),
 %Functions1=Functions2,
 	%writeln1(convert_to_grammar_part1(Functions1,[],Functions2,_)),	%trace,
 	%writeln1(Functions2),
