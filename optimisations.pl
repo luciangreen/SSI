@@ -27,8 +27,11 @@ sort(Pred_ids1a,Pred_ids2),
 	
 % is in last clause of a predicate
 
-append(_,[[Predicate_number|Commands]|Functions1],Functions),
-not(append(_,[[Predicate_number|_]|_],Functions1)),
+append(_,[[Predicate_number,F1,Args1|Commands]|Functions1],Functions),
+not((append(_,[[Predicate_number,F1,Args2|_]|_],Functions1),
+length(Args1,L),length(Args2,L))),
+
+%[1,[n,count],[1,2],":-"
 
 % is last command
 append(_,[Commands1],Commands),
@@ -48,8 +51,11 @@ sort(Pred_ids3a,Pred_ids4),
 	member(E2,Choice_point_trail11)
 	
 	),E3),
+	%trace,
+	delete(E3,[_,_,_Pred_id,_,_,-1,"predicate",_,_,_],E32),
 	
-	subtract(E3,[[_,_,Pred_id,_,_,-1,"predicate",_,_,_]],E31),
+	delete(E32,[_,_,_Pred_id1,_,_,["returns to",_,"pred_id",_],"predicate",_,_,_],E31),
+	%E32=E31,
 
 delete_cps(Choice_point_trail11,E31,Choice_point_trail3,CP_Vars1,CP_Vars2),!.
 

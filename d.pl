@@ -3,8 +3,10 @@ d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicat
 %writeln1(d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars1,CP_Vars2)),
 
 %trace,
-(false%last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1)
-->true;
+(false% too slow
+%last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1)
+->true%writeln1(last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1))
+;
 (Choice_point_trail10=Choice_point_trail1,CP_Vars1=CP_Vars10)),
 
 %(
