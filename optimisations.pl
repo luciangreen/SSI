@@ -21,9 +21,9 @@ sort(Pred_ids1a,Pred_ids2),
  
  	(Pred_or_line="line"->
 	(All_predicate_numbers2=[_Ab,_Bb,_Cb,_Db,_Eb,
-	_Fb,Vars2c],not(Vars2c=[]));
+	_Fb,Vars2c],(Vars2c=[]));
 	Pred_or_line="predicate"->
-	not(All_predicate_numbers2=[])))),
+	(All_predicate_numbers2=[])))),
 	
 % is in last clause of a predicate
 
@@ -31,17 +31,19 @@ append(_,[[Predicate_number|Commands]|Functions1],Functions),
 not(append(_,[[Predicate_number|_]|_],Functions1)),
 
 % is last command
-
 append(_,[Commands1],Commands),
-append(_,[Line_number_b|_],Commands1),
+append(_,[[Line_number_b|_]],Commands1),
 
 
 %delete_frame_contents
 
 collect_connected_pred_ids2(Pred_id,Pred_ids2,Pred_ids3,Globals3),
 
+flatten(Pred_ids3,Pred_ids3a),
+sort(Pred_ids3a,Pred_ids4),
 
-	findall(E2,(member(C1,Pred_ids3),
+
+	findall(E2,(member(C1,Pred_ids4),
 	E2=[_A,_B2,C1,_D_Level,_E_Predicate_number2,_F_Line_number_a2,_Pred_or_line,_H,_I,_All_predicate_numbers2],
 	member(E2,Choice_point_trail11)
 	

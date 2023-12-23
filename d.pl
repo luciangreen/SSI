@@ -161,6 +161,7 @@ cut_cps(Choice_point_trail11,Choice_point_trail2,CP_Vars1,CP_Vars2,Pred_id,Predi
 (Choice_point_trail11=Choice_point_trail2,CP_Vars1=CP_Vars2)).
 
 %recursive_predicate(A,A,_):- !.
+recursive_predicate(A,B,_):-member(A,B),!.
 recursive_predicate(A,B,Globals3):-
  member([pred_id_chain,C,A],Globals3),
  (member(C,B)->true;
