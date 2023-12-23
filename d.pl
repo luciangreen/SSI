@@ -1,5 +1,12 @@
-d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars1,CP_Vars2) :-
+d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail10,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars10,CP_Vars2) :-
 
+%writeln1(d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars1,CP_Vars2)),
+
+%trace,
+(last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1)->true;
+(Choice_point_trail10=Choice_point_trail1,CP_Vars1=CP_Vars10)),
+
+%(
 %append(D,All_predicate_numbers,All_predicate_numbers3),
 	%All_predicate_numbers3=
 
@@ -35,7 +42,7 @@ Query1=[Function,Arguments]
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
+        del_append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
 
         Vars3=[Function1|Vars31],
         Query2=[Function1,Vars31],
@@ -89,7 +96,9 @@ append_cp(Choice_point_trail1,[[Pred_id,Level,Predicate_number,["returns to",Lin
 	%(Pred_id=3->writeln(here1);true),
 	
 	%trace,
-cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	,
+%cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	,
+Choice_point_trail11=Choice_point_trail12,
+CP_Vars3=CP_Vars32,
 	%notrace,
 	%writeln1(cut_cps_if_necessary(Prev_pred_id,Choice_point_trail11,Choice_point_trail12,CP_Vars3,CP_Vars32,All_predicate_numbers11,Globals32)	),
 	ssi1([["prev_pred_id",Prev_pred_id],Level2,All_predicate_numbers11,-1,"predicate",Query2,

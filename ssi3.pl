@@ -828,7 +828,7 @@ CP_Vars1=CP_Vars3)
 
 %(Pred_id=1->trace;true),
 
-append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
+del_append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3),
 
 	((get_lang_word("findall_exit_function",Dbw_findall_exit_function1),Dbw_findall_exit_function1=Dbw_findall_exit_function,
 get_lang_word("findall_fail_function",Dbw_findall_fail_function1),Dbw_findall_fail_function1=Dbw_findall_fail_function,	
@@ -912,7 +912,7 @@ append([Function],Arguments,Arguments1),
         substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
-        append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
+        del_append(Globals31,[[[vars1,Pred_id],Vars1]],_Globals32),
 
         Vars3=[Function1|Vars31],
         _Query2=[Function1,Vars31],	

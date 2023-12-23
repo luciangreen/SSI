@@ -83,6 +83,7 @@ crop down pred from top x just goes to next command
 :-include('ssi-api-key.pl').
 %:-include('replace_in_term.pl').
 %:-include('local_and_global_cp_trails.pl').
+:-include('optimisations.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.
