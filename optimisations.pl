@@ -8,7 +8,7 @@ last_call_optimisation(Globals3,Choice_point_trail11,Choice_point_trail3,Predica
 
 % is determinate
 
-member([[pred_num,Pred_id],Predicate_number],Globals3),
+member([[pred_num,Pred_id],Predicate_number],Globals3),!,
 
 findall(Pred_ids,collect_connected_pred_ids1(Pred_id,[Pred_id
 ],Pred_ids,Predicate_number,Globals3),Pred_ids1),
@@ -30,23 +30,23 @@ sort(Pred_ids1a,Pred_ids2),
 	
 % is in last clause of a predicate
 
-append(_,[[Predicate_number,F1,Args1|Commands]|Functions1],Functions),
+append(_,[[Predicate_number,F1,Args1|Commands]|Functions1],Functions),!,
 
 
 
 not((append(_,[[_Predicate_number_b,F1,Args2|_]|_],Functions1),
-length(Args1,L),length(Args2,L))),
+length(Args1,L),length(Args2,L))),!,
 
 %[1,[n,count],[1,2],":-"
 
 % is last command
-append(_,[Commands1],Commands),
+append(_,[Commands1],Commands),!,
 append(_,[[Line_number_b,_,_,_,_,F2,Args3|_]|_],Commands1),
 %[0, [on_true, -2], [go_after, -], [on_false, -3], [go_to_predicates, [1, 2]], [n, count], [0, [v, n]]]
 
 % is recursive
 
-F1=F2,length(Args1,L),length(Args3,L),
+F1=F2,length(Args1,L),length(Args3,L),!,
 
 %delete_frame_contents
 
