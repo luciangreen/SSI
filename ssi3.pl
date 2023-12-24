@@ -1966,6 +1966,42 @@ collect_connected_pred_ids1(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals
  Pred_ids1=Pred_ids2).
  
  
+ /*collect_connected_pred_ids0(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+collect_connected_pred_ids01(Pred_id,Pred_ids1,Pred_ids3,Predicate_number,Globals3),
+
+%writeln1([*,Pred_ids3]),
+Pred_ids3=Pred_ids2,
+%findall(Pred_ids6,(member(Pred_id5,Pred_ids3),
+%collect_connected_pred_ids2(Pred_id5,[Pred_id5],Pred_ids6,Globals3)),
+%Pred_ids2),
+!.
+
+collect_connected_pred_ids01(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+ ((%member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+ Prev_pred_id=Pred_id,
+ not(member(Prev_pred_id,Pred_ids1)),
+ member([[pred_num,Prev_pred_id],Predicate_number],Globals3))->
+ (%trace,
+ append(Pred_ids1,[Prev_pred_id],Pred_ids3),
+ %findall(Pred_ids4, collect_connected_pred_ids2(Prev_pred_id,Pred_ids3,Pred_ids4,Globals3),Pred_ids5),
+ Pred_ids3=Pred_ids5,
+ collect_connected_pred_ids01(Prev_pred_id,Pred_ids5,Pred_ids2,Predicate_number,Globals3));
+ Pred_ids1=Pred_ids2).
+
+collect_connected_pred_ids01(Pred_id,Pred_ids1,Pred_ids2,Predicate_number,Globals3) :-
+
+ ((member([pred_id_chain,Prev_pred_id,Pred_id],Globals3),
+ not(member(Prev_pred_id,Pred_ids1)),
+ member([[pred_num,Prev_pred_id],Predicate_number],Globals3))->
+ (%trace,
+ append(Pred_ids1,[Prev_pred_id],Pred_ids3),
+ %findall(Pred_ids4, collect_connected_pred_ids2(Prev_pred_id,Pred_ids3,Pred_ids4,Globals3),Pred_ids5),
+ Pred_ids3=Pred_ids5,
+ collect_connected_pred_ids01(Prev_pred_id,Pred_ids5,Pred_ids2,Predicate_number,Globals3));
+ Pred_ids1=Pred_ids2).
+ */
 %collect_connected_pred_ids2(Pred_id,Pred_ids1,Pred_ids1,_Globals3) :-
 
  %not(member([pred_id_chain,Pred_id,Next_pred_id],Globals3)).

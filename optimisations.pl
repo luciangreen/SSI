@@ -6,18 +6,21 @@ del_append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32) :-
 
 last_call_optimisation(Globals3,Choice_point_trail11,Choice_point_trail3,Predicate_number,Line_number_b,Functions,CP_Vars1,CP_Vars2) :-
 
-% is recursive, determinate
+% is determinate
 
 member([[pred_num,Pred_id],Predicate_number],Globals3),
 
-findall(Pred_ids,collect_connected_pred_ids(Pred_id,[Pred_id],Pred_ids,Predicate_number,Globals3),Pred_ids1),
+findall(Pred_ids,collect_connected_pred_ids1(Pred_id,[Pred_id
+],Pred_ids,Predicate_number,Globals3),Pred_ids1),
 
 flatten(Pred_ids1,Pred_ids1a),
 sort(Pred_ids1a,Pred_ids2),
   findall([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],Choice_point_trail11),
  member(C,Pred_ids2)
  ),M),
- recursive_predicate(Pred_id,Pred_ids2,Globals3),(forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
+
+ %recursive_predicate(Pred_id,Pred_ids2,Globals3),
+ (forall(member([A,B2,C,D_Level,E_Predicate_number2,F_Line_number_a2,Pred_or_line,H,I,All_predicate_numbers2],M),
  
  	(Pred_or_line="line"->
 	(All_predicate_numbers2=[_Ab,_Bb,_Cb,_Db,_Eb,
@@ -28,15 +31,22 @@ sort(Pred_ids1a,Pred_ids2),
 % is in last clause of a predicate
 
 append(_,[[Predicate_number,F1,Args1|Commands]|Functions1],Functions),
-not((append(_,[[Predicate_number,F1,Args2|_]|_],Functions1),
+
+
+
+not((append(_,[[_Predicate_number_b,F1,Args2|_]|_],Functions1),
 length(Args1,L),length(Args2,L))),
 
 %[1,[n,count],[1,2],":-"
 
 % is last command
 append(_,[Commands1],Commands),
-append(_,[[Line_number_b|_]],Commands1),
+append(_,[[Line_number_b,_,_,_,_,F2,Args3|_]|_],Commands1),
+%[0, [on_true, -2], [go_after, -], [on_false, -3], [go_to_predicates, [1, 2]], [n, count], [0, [v, n]]]
 
+% is recursive
+
+F1=F2,length(Args1,L),length(Args3,L),
 
 %delete_frame_contents
 
