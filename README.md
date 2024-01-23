@@ -61,6 +61,9 @@ halt
 
 # Tests
 
+To run SSI-specific tests, run:
+`only_ssi_test(off,NTotal,Score).`
+
 To run all tests (main, types, open and open types) in any language:
 ```
 ssi_test_all00("en",off,NTotal,Score).
