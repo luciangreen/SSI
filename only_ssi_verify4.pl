@@ -28,10 +28,11 @@ only_ssi_test1(Debug,N,Passed) :-
 
 only_ssi_test(1,[[n,findall],[[[v,a],[v,b]],[[n,appendz],[[v,a],[v,b],[1,2,3]]],[v,c]]],
 [
-[[n,appendz],[[],[v,a],[v,a]],":-",[[[n,true]]]],
+[[n,appendz],[[],[v,a],[v,a]]%,":-",[[[n,true]]]
+],
 [[n,appendz],[[[v,a],"|",[v,d]],[v,b],[[v,a],"|",[v,c]]],":-",
 [
-[[n,appendz],[[v,d],[v,b],[v,c]]],[[n,cut]]
+[[n,appendz],[[v,d],[v,b],[v,c]]]%,[[n,cut]]
 ]
 ]]
 ,[[[[v,c],[[[],[1,2,3]],[[1],[2,3]],[[1,2],[3]],[[1,2,3],[]]]]]]).
