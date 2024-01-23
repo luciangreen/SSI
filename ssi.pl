@@ -108,6 +108,8 @@ crop down pred from top x just goes to next command
 :- dynamic typestatements/1.
 :- dynamic modestatements/1.
 
+%main:-
+%ssi_test1(off,15,Passed),writeln(Passed).
 %:- dynamic hidden/1.
 
 
