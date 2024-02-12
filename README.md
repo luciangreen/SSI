@@ -116,7 +116,7 @@ respectively.
 
 # SSI Web Service
 
-* A low-code back-end web Prolog service.
+* A low-code backend web Prolog service.
 
 * After loading `swipl` and `[ssi].`, load State Saving Interpreter to run web apps with `ssi_server(8000).` and go to `http://127.0.0.1:8000` in your browser.
 
