@@ -118,7 +118,7 @@ modestatements(Modestatements),
 
 
 	ssi1([Pred_id,Level,Predicate_number,A,"line",Query,
-	Vars3,All_predicate_numbers], _End_result3, Functions,_Vars2,
+	Vars3,All_predicate_numbers], End_result3, Functions,_Vars2,
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
@@ -188,7 +188,7 @@ format(Header,[]),
 ;     (debug_fail(Skip,[[Dbw_n,Dbw_read_string],[variable]]),
 
       	ssi1([Pred_id,Level,Predicate_number,C,"line",Query,
-	Vars1,All_predicate_numbers], _End_result3, Functions,_Vars21,
+	Vars1,All_predicate_numbers], End_result3, Functions,_Vars21,
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
