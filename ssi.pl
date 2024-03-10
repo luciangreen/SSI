@@ -110,7 +110,15 @@ crop down pred from top x just goes to next command
 :- dynamic modestatements/1.
 
 main2:-
-time((ssi_test1(off,15,Passed),writeln(Passed))).
+time((
+only_ssi_test(off,NTotal1,Score1),
+ssi_test_all00("en",off,NTotal2,Score2),
+ssi_test_all00("en2",off,NTotal3,Score3),
+ssi_test_all_bt00("en2",off,NTotal4,Score4),
+writeln(only_ssi_test(off,NTotal1,Score1)),
+writeln(ssi_test_all00("en",off,NTotal2,Score2)),
+writeln(ssi_test_all00("en2",off,NTotal3,Score3)),
+writeln(ssi_test_all_bt00("en2",off,NTotal4,Score4)))).
 %:- dynamic hidden/1.
 
 
