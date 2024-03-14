@@ -51,6 +51,10 @@ halt
 
 * You may need to replace `swipl` with `swipl --stack-limit=1G` above to run tests 15 and 25.
 
+# Learn Prolog with SSI
+
+You can learn List Prolog, SSI's programming language at <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog Documentation</a>.
+
 # Explanation of what it does
 
 * State Saving Interpreter (SSI), like <a href="https://github.com/luciangreen/listprologinterpreter">List Prolog Interpreter</a>, runs algorithms in the <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LPI_docs.md">List Prolog language</a>.  List Prolog algorithms are lists, which can be more easily generated and analysed.  SSI is different because it manually creates and follows choice points (allowing multiple possible solutions like Prolog) unlike List Prolog Interpreter, which relies on Prolog to manage choice points.
