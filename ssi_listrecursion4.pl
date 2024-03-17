@@ -96,13 +96,15 @@ Pred_numbers),
 
 
 	%trace,
-         ((Tm=off->international_lucianpl1([lang,Lang2],off,%Debug,
+         ((Tm=off->international_lucianpl1([lang,Lang2],%off,%
+         Debug2,
          Query2,Functions3a,Result1a)
          %international_interpret([lang,Lang2],off,%Debug2,
 %Query2,Functions,Result1a)
 ;
 
-international_lucianpl1([lang,Lang2],off,%Debug,
+international_lucianpl1([lang,Lang2],%off,%
+Debug2,
 Query2,Types,Modes,Functions3a,Result1a)	%international_interpret([lang,Lang2],off,%Debug2
 	%Query2,Types,Modes,Functions,Result1a)
 	)->true;(turn_back_debug(Debug),false)),
@@ -333,8 +335,8 @@ get_lang_word("member3",Dbw_member31),Dbw_member31=Dbw_member3,
         ssi_interpretpart(member3,Variable1,Variable2,Vars1,Vars2,Vars2c,AC).
 
 
-interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C,[]) :- %writeln(here),
-interpretstatement1(ssi,_F0,_Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C).
+interpretstatement1(ssi,F0,Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C,[]) :- %writeln(here),
+interpretstatement1(ssi,F0,Functions,[[Dbw_n,Dbw_name]|Args],Vars1,Vars2,T,C).
 
 %%%%
 

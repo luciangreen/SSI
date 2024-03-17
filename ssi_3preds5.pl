@@ -113,7 +113,7 @@ command_n_sols(N),
 	findall([Vars2b,[Value1,Value2a],%Value1a,
 	Value2a],(findnsols(N,%[Value1A2,
 	Value2A2%]
-	,(member(Value1A,Value2A),
+	,(member(_Value1A,Value2A),
         %replace_in_term(Value1A,_%'$VAR'(_)
         %,empty,Value1A1),
         replace_in_term(Value2A,_%'$VAR'(_)
@@ -274,8 +274,6 @@ debug_fail(Skip,[[Dbw_n,Dbw_stringconcat],[Value1,Value2,Value3]]))),
       debug_exit(Skip,[[Dbw_n,Dbw_stringconcat],[Value1a,Value2a,Value3]]))
 
 ))))).	
-
-
 
 
 	
@@ -485,6 +483,8 @@ replace_in_term(Value2,[Dbw_v,_],%'$VAR'(_)
 
 )))))))->true;(%writeln1(fail-ssi_interpretpart(append,Variable1,Variable2,Variable3,Vars1,Vars2,Vars2c)),
 fail)).	
+
+
 
 
      % writeln(Vars2c),trace.

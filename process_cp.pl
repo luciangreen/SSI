@@ -3,7 +3,7 @@ process_cp(Findall_end_line,FA,D1,E1,
 Query_a2,
 
 Vars1,
-	_End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1e,
@@ -23,8 +23,8 @@ Vars1,
 	,Query_a2,_CPV0,CPV3],
 	%trace,
 	(Pred_or_line="line"->
-	(CPV3=[CPV_A1,CPV_A2,_CPV_A3,_CPV_A4,_CPV_A5,
-	_CPV_A6,CPV],
+	(CPV3=[CPV_A1,CPV_A2,CPV_A31,CPV_A41,CPV_A51,
+	CPV_A61,CPV],
 	
 	%CPV=[CPV1|CPV2],
 	CPV=[[CPV11,CPV12]|CPV2],
@@ -78,8 +78,8 @@ delete_cp(Choice_point_trail1b,[_,_|E1],Choice_point_trail1c,CP_Vars6,CP_Vars7,_
 		%CPV22=CPV2,
 		CPV22=[CPV_A1,CPV_A2,CPV12,CPV11],
 		
-		CPV23=[CPV_A1,CPV_A2,_CPV_A3,_CPV_A4,_CPV_A5,
-	_CPV_A6,CPV2],
+		CPV23=[CPV_A1,CPV_A2,CPV_A31,CPV_A41,CPV_A51,
+	CPV_A61,CPV2],
 %/*
 %writeln(["*1",append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line,_,_,CPV23]],Choice_point_trail1d,CP_Vars7,CP_Vars8)]),
 append_cp(Choice_point_trail1c,[[Pred_id2,Level3,Predicate_number2,Line_number_a2,Pred_or_line,_,_,CPV23]],Choice_point_trail1d,CP_Vars7,CP_Vars8),/*
@@ -105,7 +105,7 @@ append_cp(Choice_point_trail1d,[[Pred_id2,Level3,Predicate_number2,[Dbw_findall_
 
 	ssi1([Pred_id2,Level3, %*
 	Predicate_number2,Line_number_a2,"line",Query_a2,
-	Old_vars,CPV23], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	Old_vars,CPV23], End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1d1,
@@ -203,7 +203,7 @@ fail)),%->
 
 ssi1([Prev_pred_id,Level3, %*
 	CPV10,Line_number_a2,"line",Query_a2,
-	_,CPV2], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	_,CPV2], End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1d1,
@@ -216,7 +216,7 @@ ssi1([Prev_pred_id,Level3, %*
 
 	ssi1([Prev_pred_id,Level3, %*
 	CPV10,Line_number_a2,"line",Query_a2,
-	_,CPV2], _End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
+	_,CPV2], End_result, Functions,Vars2, %% CPVs here?**** CPV0,CPV to CPV1,CPV2
 	Result1, Result2, 
 	Globals3,Globals2,
 	Choice_point_trail1d1,

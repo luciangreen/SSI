@@ -21,7 +21,7 @@ x
 
 */
 	
-%(cp_since_findall_start(Choice_point_trail1,_Level,_D10,E1,[%A1c,A2c,
+%(cp_since_findall_start(Choice_point_trail1,Level1,_D10,E1,[%A1c,A2c,
 %Ac, Bc, Cc, Dc, "findall", -,
 %[old_vars,Ec],[findall_vars,Fc],[format_vars,Gc],[result_var,Hc]],CP_Vars5a,
 %CP_Vars5a1)->
@@ -34,9 +34,9 @@ x
 
 %trace,
 
-get_last_p_before_n(Choice_point_trail1,[_,_Level,_Predicate_number,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
-	[Cp_b1,Cb_b2,_,_Level,_Predicate_number,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
-	D1=[Cp_b1,Cb_b2,_,_Level,_Predicate_number,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
+get_last_p_before_n(Choice_point_trail1,[_,Level1,Predicate_number1,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
+	[Cp_b1,Cb_b2,_,Level1,Predicate_number1,Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],_,CP_Vars1,CP_Vars4),
+	D1=[Cp_b1,Cb_b2,_,Level1,Predicate_number1,_Line_number_a,"findall",-,[old_vars,Old_vars],[findall_vars,Findall_vars],[format_vars,Format_vars],[result_var,Result_var]],
 
 	get_lang_word("v",Dbw_v1),Dbw_v1=Dbw_v,
 		
@@ -85,7 +85,8 @@ get_lang_word("findall",Dbw_findall1),Dbw_findall1=Dbw_findall,
 
 %trace,
 (Line_number_b=[_,Line_number_b2]->Line_number_b2=_Line_number_b1;
-Line_number_b2=Line_number_b),
+true%Line_number_b2=Line_number_b
+),
 
 %writeln(hered),
 
@@ -155,7 +156,7 @@ reverse(Choice_point_trail5,Choice_point_trail52),
 member_cut1([_,_,_,_,_,_,"findall",-|_],Choice_point_trail52)
 )
 
-%cp_since_findall_start(Choice_point_trail5,_Level,_D10,E1,_D1,CP_Vars41,CP_Vars4)
+%cp_since_findall_start(Choice_point_trail5,Level1,_D10,E1,_D1,CP_Vars41,CP_Vars4)
 -> 
 (%writeln(here1),writeln([line_number_a,_Line_number_a]),
 %trace,
