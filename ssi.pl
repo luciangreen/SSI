@@ -85,6 +85,7 @@ crop down pred from top x just goes to next command
 %:-include('local_and_global_cp_trails.pl').
 :-include('optimisations.pl').
 :-include('only_ssi_verify4.pl').
+:-include('ssi_verify_pl.pl').
 
 :- dynamic debug2/1.
 :- dynamic debug3/1.

@@ -8,7 +8,7 @@ del_append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3) :-
 (var(Vars1)->Globals1=Globals3;
 append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3)),!.
 
-last_call_optimisation(Globals3,Choice_point_trail11,Choice_point_trail3,Predicate_number,Line_number_b,Functions,CP_Vars1,CP_Vars2) :-
+last_call_optimisation(Globals3,Choice_point_trail11,Choice_point_trail3,Predicate_number,Line_number_b,Functions,CP_Vars1,CP_Vars2,Globals33,Globals3) :-
 
 % is determinate
 

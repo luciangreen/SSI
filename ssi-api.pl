@@ -12,6 +12,8 @@
 %:- include('files/listprolog.pl').
 %:- include('paraphraser1_lp.pl').
 
+%:-include('../Prolog-to-List-Prolog/p2lpconverter.pl').
+
 ssi_server(Port) :-
         http_server(http_dispatch, [port(Port)]).
 
@@ -33,8 +35,11 @@ format(Header,[]),
 
 Debug=off,
 
-	test_open_types_cases(25,Query,Types,Modes,Functions),
 
+%open_string_file_s("../private/la_ws.pl",S),p2lpconverter([string,S],T),	
+test_open_types_cases(25,Query,Types,Modes,Functions),
+
+%international_lucianpl([lang,"en"],Debug,[[n,main]],T,_Result),
 international_lucianpl([lang,"en"],Debug,Query,Types,Modes,Functions,_Result),
 %p2lpconverter([file,"../private/la_com_ssi1.pl"],List3),
 
