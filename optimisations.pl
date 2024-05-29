@@ -8,14 +8,14 @@ del_append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3) :-
 (var(Vars1)->Globals1=Globals3;
 append(Globals1,[[[vars1,Pred_id],Vars1]],Globals3)),!.
 
-last_call_optimisation(Globals3,Choice_point_trail11,Choice_point_trail3,Predicate_number,Line_number_b,Functions,CP_Vars1,CP_Vars2,Globals33,Globals3) :-
+last_call_optimisation(_Globals3,Choice_point_trail11,Choice_point_trail3,Predicate_number,Line_number_b,Functions,CP_Vars1,CP_Vars2,Globals33,Globals3) :-
 
 % is determinate
 
-member([[pred_num,Pred_id],Predicate_number],Globals3),!,
+member([[pred_num,Pred_id],Predicate_number],Globals33),!,
 
 findall(Pred_ids,collect_connected_pred_ids1(Pred_id,[Pred_id
-],Pred_ids,Predicate_number,Globals3),Pred_ids1),
+],Pred_ids,Predicate_number,Globals33),Pred_ids1),
 
 flatten(Pred_ids1,Pred_ids1a),
 sort(Pred_ids1a,Pred_ids2),
@@ -54,7 +54,7 @@ F1=F2,length(Args1,L),length(Args3,L),!,
 
 %delete_frame_contents
 
-collect_connected_pred_ids2(Pred_id,Pred_ids2,Pred_ids3,Globals3),
+collect_connected_pred_ids2(Pred_id,Pred_ids2,Pred_ids3,Globals33),
 
 flatten(Pred_ids3,Pred_ids3a),
 sort(Pred_ids3a,Pred_ids4),
@@ -71,7 +71,8 @@ sort(Pred_ids3a,Pred_ids4),
 	delete(E32,[_,_,_Pred_id1,_,_,["returns to",_,"pred_id",_],"predicate",_,_,_],E31),
 	%E32=E31,
 
-delete_cps(Choice_point_trail11,E31,Choice_point_trail3,CP_Vars1,CP_Vars2),!.
+delete_cps(Choice_point_trail11,E31,Choice_point_trail3,CP_Vars1,CP_Vars2),
+Globals3=Globals33,!.
 
 % - change records of pn to new pn, same pid
 % connect firstargs in globals to new first args x needs to go back through frame tops, first args needs to be computed afterwards, so don't do in 1 frame
