@@ -453,3 +453,20 @@ only_ssi_test(3,[[n,older_brother],[[v,result6]]], %% trying to get working with
 [[[[v,result6],[[peter, jim], [james, lee], [james, sandra], [james, kate], [james, kyle], [peter, jim], [brian, darren]]]]]).
 
 */
+
+only_ssi_test(3,[[n,grammar1],[["a","b","c","b","c"]]],
+[
+		  [[n,grammar1],[[v,s]],":-",
+		  [
+		  			 [[n,1],[[v,s],[]]]
+		  ]
+		  ],
+		  
+	[[n,1],"->",[[]]],
+	[[n,1],"->",[["a"],[[n,2]],[[n,1]]]],
+	[[n,2],"->",[[]]],
+	[[n,2],"->",[["b"],[[n,3]],[[n,2]]]],
+	[[n,3],"->",[[]]],
+	[[n,3],"->",[["c"],[[n,3]]]]		  
+
+],[[]]).
