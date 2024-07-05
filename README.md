@@ -134,7 +134,10 @@ respectively.
 
 * SSI Web Service contains few, but central commands for mainly AI-purposes in Prolog.  For more tutorials, see my <a href="https://www.youtube.com/channel/UCWpmrriB-XGpWWpWgReqluQ">Lucian Academy YouTube Channel</a>.
 
-* To comply with browsers' security requirements, only run SSIWS apps with a password screen.
+* To comply with browsers' security requirements, only run SSIWS apps with a password screen, as follows:
+```
+read_password("password")
+```
 
 # Documentation
 
