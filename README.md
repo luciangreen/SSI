@@ -138,6 +138,11 @@ respectively.
 ```
 read_password("password")
 ```
+or,
+```
+[[n, read_password], ["password"]],
+```
+in List Prolog.
 
 # Documentation
 
