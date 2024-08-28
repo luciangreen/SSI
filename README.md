@@ -142,7 +142,7 @@ or,
 ```
 [[n, read_password], ["password"]],
 ```
-in List Prolog.
+in List Prolog, where "password" should be changed.
 
 # Documentation
 
