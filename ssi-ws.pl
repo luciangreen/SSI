@@ -16,7 +16,7 @@
 :- http_handler('/', web_form, []).
 
 % GitHub/Algorithm-Writer-with-Lists/
-:- include('GitHub/SSI/ssi.pl').
+:-include('GitHub/SSI/ssi.pl').
 
 main :-
 	working_directory(_, 'GitHub/SSI/'),

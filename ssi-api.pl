@@ -9,8 +9,8 @@
 
 %:-include('test_form1.pl').
 
-%:- include('files/listprolog.pl').
-%:- include('paraphraser1_lp.pl').
+%:-include('files/listprolog.pl').
+%:-include('paraphraser1_lp.pl').
 
 %:-include('../Prolog-to-List-Prolog/p2lpconverter.pl').
 
