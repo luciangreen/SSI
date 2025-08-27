@@ -24,6 +24,7 @@ is_deterministic_operation(Query, Functions, Result) :-
     deterministic_builtin(Function),
     % If deterministic, execute directly without choice points
     execute_deterministic(Query, Functions, Result).
+    execute_deterministic(Query, Functions, Result).
 
 % List of operations that are deterministic and don't need backtracking
 deterministic_builtin([n,equals4]).
@@ -63,7 +64,7 @@ optimized_append_cp(Trail_in, New_cp, Trail_out, CP_Vars_in, CP_Vars_out) :-
 % Check if choice point is redundant
 is_redundant_cp([Pred_id,Level,Pred_num,Line_num,"line",Query,Vars,All_pred_nums], Trail) :-
     % Check for duplicate choice points with same state
-    member([Pred_id,Level,Pred_num,Line_num,"line",Query,Vars,All_pred_nums], Trail).
+    member([Pred_id,Level,Pred_num,Line_num,"line",Query,Vars,All_pred_nums], Trail), !.
 
 % Efficient choice point appending with deduplication
 efficient_append_cp(Trail_in, New_cp, Trail_out, CP_Vars_in, CP_Vars_out) :-
