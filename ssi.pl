@@ -84,6 +84,8 @@ crop down pred from top x just goes to next command
 %:-include('replace_in_term.pl').
 %:-include('local_and_global_cp_trails.pl').
 :-include('optimisations.pl').
+:-include('performance_optimizations.pl').
+:-include('paraphraser_optimizations.pl').
 :-include('only_ssi_verify4.pl').
 :-include('ssi_verify_pl.pl').
 
@@ -145,6 +147,16 @@ find_pred_numbers(Functions2a,Reserved_words,Pred_numbers),
 */
 	
 prep_predicate_call(Query,Functions3,All_predicate_numbers) :-
+	% Use optimized predicate call preparation
+	(is_deterministic_operation(Query, Functions3, _) ->
+		increment_metric(deterministic_operations),
+		optimized_prep_predicate_call(Query, Functions3, All_predicate_numbers)
+	;
+		% Fall back to standard implementation
+		prep_predicate_call_standard(Query, Functions3, All_predicate_numbers)
+	).
+
+prep_predicate_call_standard(Query,Functions3,All_predicate_numbers) :-
 
 %writeln(prep_predicate_call(Query,Functions3,All_predicate_numbers)),
 %trace,
