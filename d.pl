@@ -3,8 +3,9 @@ d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicat
 %writeln1(d(Pred_id,D0,Level,Predicate_number,Line_number_b,Query,Vars1,Vars2,All_predicate_numbers,Line,Choice_point_trail1,Globals3,Functions,Result1, Result2,Globals2,Choice_point_trail3,CP_Vars1,CP_Vars2)),
 
 %trace,
-(enable_last_call_optimization(Globals33,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1,Globals33,Globals3)
-->increment_metric(last_call_optimizations)
+(false% too slow
+%last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1,Globals33,Globals3)
+->true%writeln1(last_call_optimisation(Globals3,Choice_point_trail10,Choice_point_trail1,Predicate_number,Line_number_b,Functions,CP_Vars10,CP_Vars1))
 ;
 (Choice_point_trail10=Choice_point_trail1,CP_Vars1=CP_Vars10,Globals33=Globals3)),
 
@@ -41,8 +42,7 @@ Query1=[Function,Arguments]
         ((Function=[Dbw_v,Function2],
         not(reserved_word2(Function2)))->
         (append([Function],Arguments,Arguments1),
-        % Use cached variable substitution for performance
-        cached_substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
+        substitutevarsA1(Arguments1,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals31),
         del_append(Globals31,[[[vars1,Pred_id],Vars1]],Globals32),
@@ -60,8 +60,7 @@ Query1=[Function,Arguments]
         
         );
         (
-        % Use cached variable substitution for performance
-        cached_substitutevarsA1(Arguments,Vars1,[],Vars3,[],FirstArgs),
+        substitutevarsA1(Arguments,Vars1,[],Vars3,[],FirstArgs),
         
         append(Globals3,[[[firstargs_uv2,Pred_id],FirstArgs]],Globals32),
 

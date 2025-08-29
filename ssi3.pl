@@ -119,10 +119,6 @@ find_pred_numbers(Functions2a,[]%Reserved_words
 		
 lucianpl1(Debug) :- 
 
-	% Initialize performance optimizations
-	init_performance_optimizations,
-	init_performance_metrics,
-
 	retractall(debug(_)),
  	assertz(debug(Debug)),
    retractall(cut(_)),
@@ -1520,26 +1516,15 @@ find_pred_id(N2) :-
 
 append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2) :-
 	%writeln1(append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2)),
-	% Use optimized choice point management
-	optimized_append_cp(List1, CP, List5_temp, CP_Vars1, CP_Vars_temp),
-	(List5_temp = List1 ->
-		% Choice point was pruned as redundant
-		increment_metric(choice_points_pruned),
-		List5a = List1,
-		CP_Vars2 = CP_Vars1
-	;
-		% Choice point was added
-		increment_metric(choice_points_created),
-		%trace,
-		%(writeln("y to trace"),(get_char(y)->trace;true)),
-		%trace,
-		get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
-		(debug4(on)->writeln1(append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2));true),
-		(append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2)->true;(writeln0([append_cp,abort]),abort)),
-		%writeln1(append_cp(List1,CP,List5a)),
-		get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
-		(debug4(on)->writeln0([append_cp,curr_cp,Curr_cp,Curr_cp1,List5a,CP_Vars1,CP_Vars2]);true)
-	).
+	%trace,
+	%(writeln("y to trace"),(get_char(y)->trace;true)),
+	%trace,
+	get(curr_cp,Curr_cp,CP_Vars1),%writeln([curr_cp,Curr_cp]),
+	(debug4(on)->writeln1(append_cp(List1,CP,List5a,CP_Vars1,CP_Vars2));true),
+	(append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2)->true;(writeln0([append_cp,abort]),abort)),
+	%writeln1(append_cp(List1,CP,List5a)),
+	get(curr_cp,Curr_cp1,CP_Vars2),%writeln([curr_cp,Curr_cp1]),
+	(debug4(on)->writeln0([append_cp,curr_cp,Curr_cp,Curr_cp1,List5a,CP_Vars1,CP_Vars2]);true).
 	%notrace.
 
 append_cp1(List1,CP,List5a,CP_Vars1,CP_Vars2a) :-
@@ -2073,18 +2058,6 @@ delete_cps(Choice_point_trail1a,K,Choice_point_trail1,CP_Vars1a,CP_Vars1),!.
 % delete choicepoints in all clauses of current predicate x
 % find cps of same name, arity that have same previous pred_id x
 cut_cps(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
-	% Use optimized cut handling
-	optimized_cut(Choice_point_trail1a, Choice_point_trail_temp, CP_Vars1a, CP_Vars_temp, Pred_id, Predicate_number),
-	(Choice_point_trail_temp = Choice_point_trail1a ->
-		% Fall back to standard cut handling
-		cut_cps_standard(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3)
-	;
-		% Use optimized result
-		Choice_point_trail2 = Choice_point_trail_temp,
-		CP_Vars2 = CP_Vars_temp
-	).
-
-cut_cps_standard(Choice_point_trail1a,Choice_point_trail2,CP_Vars1a,CP_Vars2,Pred_id,Predicate_number,Globals3) :-
 
 %trace,		% collect pred ids connected by curr pred num
 		
