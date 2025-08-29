@@ -92,9 +92,9 @@ member([pred_id_chain,PID1,Pred_id1],Globals3),%;
 	CP_Vars1,CP_Vars41),
 	
 	get_last_p_before_n(Choice_point_trail1,
-	[PID1,Level21,Predicate_number2,-1%Line_number2b
+	[PID1,Level21,Predicate_number2,Line_number2b
 	,"predicate",Query21,Vars9,All_predicate_numbers2],
-	[_Cp_a1,_Cb_b1,PID1,Level21,Predicate_number2,-1%Line_number2b
+	[_Cp_a1,_Cb_b1,PID1,Level21,Predicate_number2,Line_number2b
 	,"predicate",Query21,Vars9,All_predicate_numbers2],_,
 	CP_Vars41,CP_Vars42),
 	
@@ -116,10 +116,10 @@ Choice_point_trail1=Choice_point_trail1a,CP_Vars42=CP_Vars4,
 		
 		%member([[vars1,PID1],Vars5],Globals3),
 		
-	(%Line_number2b=["returns to",
-	%Line_number3,"pred_id",Pred_id3]
+	(Line_number2b=["returns to",
+	Line_number3,"pred_id",Pred_id3]
 
-	true % *** this may lower test results
+	% Now check if we have the proper return pattern
 	->
 	(
 %member([[pred_num,Pred_id3],Predicate_number2],Globals3),

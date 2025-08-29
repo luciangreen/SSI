@@ -6,6 +6,7 @@
 :- dynamic fast_deterministic_mode/1.
 :- dynamic choice_point_cache/1.
 :- dynamic variable_binding_cache/1.
+:- discontiguous execute_deterministic/3.
 
 % Initialize performance optimization settings
 init_performance_optimizations :-
@@ -21,9 +22,8 @@ is_deterministic_operation(Query, Functions, Result) :-
     fast_deterministic_mode(on),
     Query = [Function|Args],
     % Check for known deterministic operations
-    deterministic_builtin(Function),
+    deterministic_builtin(Query),  % Pass the full Query instead of just Function
     % If deterministic, execute directly without choice points
-    execute_deterministic(Query, Functions, Result).
     execute_deterministic(Query, Functions, Result).
 
 % List of operations that are deterministic and don't need backtracking
@@ -40,10 +40,10 @@ deterministic_builtin([n,string_codes]).
 deterministic_builtin([n,cut]).
 
 % Execute deterministic operations without choice point overhead
-execute_deterministic([Function|Args], Functions, Result) :-
+execute_deterministic([Function|Args], _Functions, Result) :-
     % Direct execution path for deterministic operations
     (current_predicate(interpretstatement1/9) ->
-        interpretstatement1(ssi, Functions, Functions, [Function|Args], [], Vars, true, nocut, [])
+        interpretstatement1(ssi, _Functions, _Functions, [Function|Args], [], _Vars, true, nocut, [])
     ;
         true
     ),
@@ -137,20 +137,23 @@ enable_last_call_optimization(Globals3, Choice_point_trail11, Choice_point_trail
 optimized_last_call_check(Globals3, Choice_point_trail11, Predicate_number, 
                          Line_number_b, Functions, Success) :-
     % Quick check if optimization applies
-    member([[pred_num,Pred_id],Predicate_number], Globals3),
+    member([[pred_num,_Pred_id],Predicate_number], Globals3),
     is_tail_recursive(Predicate_number, Functions),
     has_no_pending_variables(Choice_point_trail11),
+    Line_number_b = _Line_number_b,  % Use variable to avoid singleton warning
     Success = true.
 optimized_last_call_check(_, _, _, _, _, false).
 
 % Check if predicate is tail recursive
 is_tail_recursive(Predicate_number, Functions) :-
-    member([Predicate_number, Name, Args, ":-", Body], Functions),
-    is_tail_recursive_body(Body, Name, Args).
+    member([Predicate_number, Name, _Args, ":-", Body], Functions),
+    is_tail_recursive_body(Body, Name, _Args).
 
 is_tail_recursive_body(Body, Name, Args) :-
     append(_, [LastCommand], Body),
-    LastCommand = [_, _, _, _, _, Name, Args|_].
+    LastCommand = [_, _, _, _, _, Name, Args|_],
+    % Use variables to avoid singleton warning
+    Body = _Body, Name = _Name, Args = _Args.
 
 % Check if there are pending variables that prevent optimization
 has_no_pending_variables(Choice_point_trail) :-
@@ -191,7 +194,7 @@ findall_with_limit(Template, Goal, List, Count, Limit) :-
     ).
 
 % Optimized arity checking
-check_arity_match([Args,":-",Lines], Arguments_length) :-
+check_arity_match([Args,":-",_Lines], Arguments_length) :-
     length(Args, Arguments_length).
 check_arity_match([Args], Arguments_length) :-
     length(Args, Arguments_length).
