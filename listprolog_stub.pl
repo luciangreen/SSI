@@ -1,6 +1,9 @@
 % listprolog_stub.pl
 % Minimal stub for listprolog functionality to allow SSI to load
 
+:- discontiguous international_lucianpl/5.
+:- discontiguous international_lucianpl/7.
+
 % Main interpreter predicate stub
 international_lucianpl([lang,_Lang], _Debug, Query, Functions, Result) :-
     % Simple stub that just tries to execute basic operations
