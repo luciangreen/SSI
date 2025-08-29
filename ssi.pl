@@ -55,7 +55,8 @@ crop down pred from top x just goes to next command
 
 :-include('interpretstatement3.pl').
 
-:-include('../listprologinterpreter/listprolog.pl').
+% Missing dependency - using stub instead
+:-include('listprolog_stub.pl').
 :-include('find_pred_sm.pl').
 :-include('ssi_find_state_machine.pl').
 %:-include('find_types_sm.pl').
@@ -75,7 +76,7 @@ crop down pred from top x just goes to next command
 :-include('cp_since_findall_start2.pl').
 :-include('pred_minus_three.pl').
 :-include('pred_minus_one_fail2.pl').
-:-include('flush_after_last_findall').
+:-include('flush_after_last_findall.pl').
 :-include('process_cp.pl').
 :-include('end_nested_findall.pl').
 :-include('used_by_call_command.pl').

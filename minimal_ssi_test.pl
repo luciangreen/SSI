@@ -53,8 +53,8 @@ test_ssi_optimizations :-
     % Test 2: Choice point optimization  
     writeln('Test 2: Choice Point Optimization'),
     Trail1 = [[1,2,pred1,1,"line",query1,vars1,all_preds1]],
-    NewCP = [[1,2,pred1,1,"line",query1,vars1,all_preds1]], % Identical choice point
-    optimized_append_cp(Trail1, [NewCP], Trail2, [], CPVars),
+    NewCP = [1,2,pred1,1,"line",query1,vars1,all_preds1], % Identical choice point (unwrapped)
+    optimized_append_cp(Trail1, NewCP, Trail2, [], CPVars),
     (Trail2 = Trail1 ->
         writeln('  ✓ PASS: Redundant choice point pruned')
     ;
