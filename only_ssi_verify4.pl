@@ -5,7 +5,7 @@
 %% only_ssi_test cases, Debug=trace=on or off, NTotal=output=total cases, Score=output=result
 
 only_ssi_test(Debug,NTotal,Score) :- only_ssi_test(Debug,0,NTotal,0,Score),!.
-only_ssi_test(_Debug,NTotal,NTotal,Score,Score) :- NTotal=3, !.
+only_ssi_test(_Debug,NTotal,NTotal,Score,Score) :- NTotal=5, !.
 only_ssi_test(Debug,NTotal1,NTotal2,Score1,Score2) :-
 	NTotal3 is NTotal1+1,
 	only_ssi_test(NTotal3,Query,Functions,Result),
