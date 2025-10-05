@@ -191,6 +191,13 @@ See <a href="https://github.com/luciangreen/listprologinterpreter/blob/master/LP
 
 * Run <a href="https://github.com/luciangreen/Philosophy">SSI with Prolog queries</a>.
 
+# Queen Bug
+
+* The January 2022 bug fix `Query2=[_|_],` enabled 100% correctness in SSI (see 
+<a href="https://youtu.be/kHalBYXcATo?si=_tzaOdrFLhl0Od0j">Youtube video</a>. It resulted from pinpointing the problem and trial and error.
+* See the bug fix in the <a href="https://github.com/luciangreen/SSI/commit/6cc73e41d23e4d643d03076c7ef799e5d543b192">Version History</a>.
+* <img width="1320" height="2868" alt="Image" src="https://github.com/user-attachments/assets/f81bf5eb-f19e-42a4-ad94-f6a940ce0aab">
+
 # Authors
 
 Lucian Green - Initial programmer - <a href="https://www.lucianacademy.com/">Lucian Academy</a>
